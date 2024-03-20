@@ -7,8 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="messaging-service" />
+        <module name="picloudmicro" />
         <module name="gateway-service" />
-        <module name="interview-service" />
         <module name="task-service" />
         <module name="user-service" />
         <module name="project-service" />
@@ -16,6 +16,9 @@
         <module name="talentGateway" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="interview-service" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -23,6 +26,7 @@
       <module name="internship-service" options="-parameters" />
       <module name="interview-service" options="-parameters" />
       <module name="messaging-service" options="-parameters" />
+      <module name="picloudmicro" options="-parameters" />
       <module name="project-service" options="-parameters" />
       <module name="task-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
