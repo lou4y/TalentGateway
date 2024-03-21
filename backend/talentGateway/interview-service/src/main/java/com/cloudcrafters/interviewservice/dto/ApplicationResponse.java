@@ -16,11 +16,14 @@ import java.util.Date;
 @NoArgsConstructor
 public class ApplicationResponse {
     private String id;
-    private Date dateAcceptation;
     @Temporal(TemporalType.DATE)
     private Date dateDePostulation;
-
+    private Date dateAcceptation;
     private Status status;
+
+    private String userid;
+    private String offreid;
+
 
 
 }

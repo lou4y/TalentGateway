@@ -1,5 +1,6 @@
 package com.cloudcrafters.interviewservice.dto;
 
+import com.cloudcrafters.interviewservice.model.Application;
 import com.cloudcrafters.interviewservice.model.InterviewMode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,5 +17,6 @@ public class InterviewResponse {
     private String id;
     private Date dateEntretien;
     private InterviewMode modaliteEntretien;
+
 
 }
