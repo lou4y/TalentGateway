@@ -3,37 +3,6 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-<<<<<<< HEAD
-        <module name="picloudmicro" />
-=======
-        <module name="messaging-service" />
-        <module name="picloudmicro" />
-        <module name="gateway-service" />
-        <module name="task-service" />
-        <module name="user-service" />
-        <module name="project-service" />
-        <module name="internship-service" />
-        <module name="talentGateway" />
->>>>>>> 6e2be9bccb5a6f200aa1a6d9ce8af517467e2f28
-      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="interview-service" target="17" />
-    </bytecodeTargetLevel>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="gateway-service" options="-parameters" />
-      <module name="internship-service" options="-parameters" />
-      <module name="messaging-service" options="-parameters" />
-      <module name="picloudmicro" options="-parameters" />
-      <module name="project-service" options="-parameters" />
-      <module name="task-service" options="-parameters" />
-      <module name="user-service" options="-parameters" />
-    </option>
   </component>
 </project>
