@@ -41,14 +41,11 @@ public class InterviewService implements InterviewServiceInterface {
         Interview interview = new Interview();
         interview.setDateentretien(interviewRequest.getDateEntretien());
         interview.setModaliteEntretien(interviewRequest.getModaliteEntretien());
-        interview.setApplication(application); // Associer l'entretien à la candidature
-
+        interview.setApplication(application); // Associer l'entretien à la candidature///
         Interview savedInterview = interviewRepository.save(interview);
-
         // Associer l'entretien à la candidature
         application.setInterview(savedInterview);
         applicationRepository.save(application);
-
         return mapToInterviewResponse(savedInterview);
     }
 
@@ -84,17 +81,11 @@ public class InterviewService implements InterviewServiceInterface {
         log.info("Interview {} is deleted", id);
     }
 
-
-
-
-
-
     private InterviewResponse mapToInterviewResponse(Interview interview) {
         InterviewResponse response = new InterviewResponse();
         response.setId(interview.getId());
         response.setDateEntretien(interview.getDateentretien());
         response.setModaliteEntretien(interview.getModaliteEntretien());
-        // Autres champs si nécessaire
         return response;
     }
 }

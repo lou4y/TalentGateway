@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
 
@@ -26,7 +27,6 @@ public class Application {
     private Date dateDePostulation ;
 
     private Status status;
-
     private String userid;
     private String offreid;
     @DBRef

@@ -1,6 +1,7 @@
 
 package com.cloudcrafters.interviewservice.dto;
 
+import com.cloudcrafters.interviewservice.model.InterviewMode;
 import com.cloudcrafters.interviewservice.model.Status;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -11,15 +12,21 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+
+
+// pour laffichage de chaque interview id pour chaque utlisateur
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ApplicationRequest {
-    private Date dateAcceptation ;
-    @Temporal(TemporalType.DATE)
+public class ApplicationInterviewResponse {
     private Date dateDePostulation;
-    private String userid;
-    private String offreid;
+    private Date dateEntretien;
+    private InterviewMode modaliteEntretien;
     private Status status;
+    private String offreid;
+
+
+
 }
