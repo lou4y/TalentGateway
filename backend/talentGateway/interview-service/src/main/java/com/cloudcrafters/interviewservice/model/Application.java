@@ -27,6 +27,8 @@ public class Application {
 
     private Status status;
 
+    private String userid;
+    private String offreid;
     @DBRef
     private Interview interview;
 
