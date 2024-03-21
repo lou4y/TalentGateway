@@ -16,9 +16,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ApplicationRequest {
-    private Date dateAcceptation ;
+    private Date DateofAcceptance ;
     @Temporal(TemporalType.DATE)
-    private Date dateDePostulation;
+    private Date DateofApplication;
     private String userid;
     private String offreid;
     private Status status;

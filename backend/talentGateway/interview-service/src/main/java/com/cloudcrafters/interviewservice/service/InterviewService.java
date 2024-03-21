@@ -39,8 +39,8 @@ public class InterviewService implements InterviewServiceInterface {
 
         // Créer un nouvel entretien
         Interview interview = new Interview();
-        interview.setDateentretien(interviewRequest.getDateEntretien());
-        interview.setModaliteEntretien(interviewRequest.getModaliteEntretien());
+        interview.setInterviewDate(interviewRequest.getInterviewDate());
+        interview.setInterviewmode(interviewRequest.getInterviewmode());
         interview.setApplication(application); // Associer l'entretien à la candidature///
         Interview savedInterview = interviewRepository.save(interview);
         // Associer l'entretien à la candidature
@@ -69,8 +69,8 @@ public class InterviewService implements InterviewServiceInterface {
         Interview existingInterview = interviewRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Interview not found with id: " + id));
 
-        existingInterview.setDateentretien(interviewRequest.getDateEntretien());
-        existingInterview.setModaliteEntretien(interviewRequest.getModaliteEntretien());
+        existingInterview.setInterviewDate(interviewRequest.getInterviewDate());
+        existingInterview.setInterviewmode(interviewRequest.getInterviewmode());
 
         interviewRepository.save(existingInterview);
         log.info("Interview {} is updated", id);
@@ -84,8 +84,8 @@ public class InterviewService implements InterviewServiceInterface {
     private InterviewResponse mapToInterviewResponse(Interview interview) {
         InterviewResponse response = new InterviewResponse();
         response.setId(interview.getId());
-        response.setDateEntretien(interview.getDateentretien());
-        response.setModaliteEntretien(interview.getModaliteEntretien());
+        response.setInterviewDate(interview.getInterviewDate());
+        response.setInterviewmode(interview.getInterviewmode());
         return response;
     }
 }

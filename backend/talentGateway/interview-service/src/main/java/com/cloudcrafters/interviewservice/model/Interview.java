@@ -20,9 +20,9 @@ public class Interview {
 @Id
     private String id;
     @Temporal(TemporalType.DATE)
-    private Date dateentretien;
+    private Date InterviewDate;
 
-    private InterviewMode modaliteEntretien;
+    private InterviewMode Interviewmode;
     @DBRef
     private Application application;
 

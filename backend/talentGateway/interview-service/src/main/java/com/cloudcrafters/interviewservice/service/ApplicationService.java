@@ -12,6 +12,8 @@
     import lombok.RequiredArgsConstructor;
     import lombok.extern.slf4j.Slf4j;
     import org.springframework.stereotype.Service;
+
+    import java.util.Date;
     import java.util.List;
     import java.util.stream.Collectors;
 
@@ -28,8 +30,8 @@
         public void createApplication(ApplicationRequest applicationRequest){
 
             Application application =   Application.builder()
-                    .dateAcceptation(applicationRequest.getDateAcceptation())
-                    .dateDePostulation(applicationRequest.getDateDePostulation())
+                    .DateofAcceptance(applicationRequest.getDateofApplication())
+                    .DateofApplication(applicationRequest.getDateofAcceptance())
                     .status(applicationRequest.getStatus())
                     .offreid(applicationRequest.getOffreid())
                     .userid(applicationRequest.getUserid())
@@ -54,8 +56,8 @@
                     .orElseThrow(() -> new IllegalArgumentException("Application not found with id: " + id));
 
             // Mettre à jour les champs de l'application
-            existingApplication.setDateAcceptation(applicationRequest.getDateAcceptation());
-            existingApplication.setDateDePostulation(applicationRequest.getDateDePostulation());
+            existingApplication.setDateofAcceptance(applicationRequest.getDateofAcceptance());
+            existingApplication.setDateofApplication(applicationRequest.getDateofApplication());
             existingApplication.setStatus(applicationRequest.getStatus());
             existingApplication.setOffreid(applicationRequest.getOffreid());
             existingApplication.setUserid(applicationRequest.getUserid());
@@ -99,25 +101,27 @@
 
 
 
+
         ////////////// Partie de mappage gérée manuellement //////////////
         private ApplicationInterviewResponse mapToApplicationInterviewResponse(Application application) {
             Interview interview = application.getInterview();
             ApplicationInterviewResponse response = new ApplicationInterviewResponse();
-            response.setDateDePostulation(application.getDateDePostulation());
+            response.setDateofApplication(application.getDateofApplication());
             response.setOffreid(application.getOffreid());
             response.setStatus(application.getStatus());
             if (interview != null) {
-                response.setDateEntretien(interview.getDateentretien());
-                response.setModaliteEntretien(interview.getModaliteEntretien());
+                response.setInterviewDate(interview.getInterviewDate());
+                response.setInterviewDate(interview.getInterviewDate());
             }
             return response;
+
         }
 
         private ApplicationResponse mapToApplicationResponse(Application application) {
             return ApplicationResponse.builder()
                     .id(application.getId())
-                    .dateDePostulation(application.getDateDePostulation())
-                    .dateAcceptation(application.getDateAcceptation())
+                    .DateofApplication(application.getDateofApplication())
+                    .DateofAcceptance(application.getDateofAcceptance())
                     .status(application.getStatus())
                     .offreid(application.getOffreid())
                     .userid(application.getUserid())
