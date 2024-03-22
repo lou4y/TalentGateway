@@ -28,6 +28,6 @@ public class ApplicationInterviewResponse {
     private InterviewMode modaliteEntretien;
     private Status status;
     private String offreid;
-    private String test;
+
 
 }
