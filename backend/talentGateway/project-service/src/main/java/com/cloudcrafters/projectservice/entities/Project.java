@@ -1,21 +1,18 @@
 package com.cloudcrafters.projectservice.entities;
 
+import com.cloudcrafters.projectservice.enums.ProjectStatus;
+import com.cloudcrafters.projectservice.models.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor @Builder
 @Entity
 @Table(name = "projects")
-public class Project {
-    public enum ProjectStatus {
-        PLANNING,
-        IN_PROGRESS,
-        COMPLETED,
-        ON_HOLD,
-        CANCELED
-    }
+public class Project implements Serializable {
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long projectId;
     private String projectName;
@@ -25,7 +22,12 @@ public class Project {
     @Temporal(TemporalType.DATE)
     private Date endTime;
     private double price;
+    @Enumerated(EnumType.STRING)
     private ProjectStatus projectStatus;
+    @Transient
+    private User projectCreator;
+    private String creatorId;
+
 
 
 }

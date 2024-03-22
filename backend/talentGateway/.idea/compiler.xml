@@ -16,12 +16,14 @@
         <module name="project-service" />
         <module name="internship-service" />
         <module name="talentGateway" />
+        <module name="discovery-service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="config-service" options="-parameters" />
+      <module name="discovery-service" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
       <module name="internship-service" options="-parameters" />
       <module name="interview-service" options="-parameters" />
