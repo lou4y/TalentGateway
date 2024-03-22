@@ -1,6 +1,8 @@
 package com.cloudcrafters.projectservice.controllers;
 
+import com.cloudcrafters.projectservice.clients.UserRestClient;
 import com.cloudcrafters.projectservice.entities.Project;
+import com.cloudcrafters.projectservice.models.User;
 import com.cloudcrafters.projectservice.services.ProjectService;
 import jakarta.ws.rs.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/project-service")
+//@RequestMapping("/project-service")
 public class ProjectController {
     @Autowired
     ProjectService projectService;
+    @Autowired
+    UserRestClient userRestClient;
 
     @GetMapping("/projects")
     public List<Project> getAllProjects(){
@@ -22,7 +26,10 @@ public class ProjectController {
     }
     @GetMapping("/projects/{id}")
     public Project getProjectById(@PathVariable Long id){
-        return projectService.getProjectById(id);
+       Project project= projectService.getProjectById(id);
+       User creator=userRestClient.findCreatorById(project.getCreatorId());
+       project.setProjectCreator(creator);
+       return project;
     }
     @PostMapping("/projects")
     public Project addNewProject(@RequestBody Project p){
