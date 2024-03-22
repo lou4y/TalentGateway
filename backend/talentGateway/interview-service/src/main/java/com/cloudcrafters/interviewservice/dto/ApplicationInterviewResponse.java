@@ -15,7 +15,7 @@ import java.util.Date;
 
 
 // pour laffichage de chaque interview id pour chaque utlisateur
-
+// test
 @Data
 @Builder
 @AllArgsConstructor
@@ -28,6 +28,6 @@ public class ApplicationInterviewResponse {
     private InterviewMode modaliteEntretien;
     private Status status;
     private String offreid;
-
+    private String test;
 
 }
