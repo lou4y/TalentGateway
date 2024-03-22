@@ -13,8 +13,8 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class InterviewRequest {
-    private Date dateEntretien;
-    private InterviewMode modaliteEntretien;
+    private Date InterviewDate;
+    private InterviewMode Interviewmode;
 
 
 }

@@ -17,8 +17,8 @@ import java.util.Date;
 public class ApplicationResponse {
     private String id;
     @Temporal(TemporalType.DATE)
-    private Date dateDePostulation;
-    private Date dateAcceptation;
+    private Date DateofApplication;
+    private Date DateofAcceptance;
     private Status status;
 
     private String userid;

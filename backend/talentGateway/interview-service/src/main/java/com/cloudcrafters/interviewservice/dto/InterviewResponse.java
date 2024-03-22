@@ -15,8 +15,8 @@ import java.util.Date;
 @Builder
 public class InterviewResponse {
     private String id;
-    private Date dateEntretien;
-    private InterviewMode modaliteEntretien;
+    private Date InterviewDate;
+    private InterviewMode Interviewmode;
 
 
 }

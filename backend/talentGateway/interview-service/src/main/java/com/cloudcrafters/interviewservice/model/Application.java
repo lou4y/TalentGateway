@@ -22,9 +22,9 @@ import java.util.Date;
 public class Application {
     @Id
     private String id;
-    private Date dateAcceptation ;
+    private Date DateofAcceptance ;
     @Temporal(TemporalType.DATE)
-    private Date dateDePostulation ;
+    private Date DateofApplication ;
 
     private Status status;
     private String userid;
