@@ -19,25 +19,23 @@ import java.util.List;
 public class ApplicationController {
     private final ApplicationService applicationService;
 
-   // @PostMapping
-   @PostMapping("/create")
+    // @PostMapping
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createApplication(@RequestBody ApplicationRequest applicationRequest){
+    public void createApplication(@RequestBody ApplicationRequest applicationRequest) {
 
 
         applicationService.createApplication(applicationRequest);
     }
 
 
-
-   // @GetMapping
-   @GetMapping("/all")
+    // @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public List<ApplicationResponse> getALLApplication(){
-     return applicationService.getALLApplication();
+    public List<ApplicationResponse> getALLApplication() {
+        return applicationService.getALLApplication();
 
     }
-
 
 
     // Endpoint pour mettre à jour une application
@@ -59,7 +57,7 @@ public class ApplicationController {
 
     @GetMapping("/interviews/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<ApplicationInterviewResponse> getInterviewsByUserId(@PathVariable String userId){
+    public List<ApplicationInterviewResponse> getInterviewsByUserId(@PathVariable String userId) {
         return applicationService.getInterviewsByUserId(userId);
     }
 

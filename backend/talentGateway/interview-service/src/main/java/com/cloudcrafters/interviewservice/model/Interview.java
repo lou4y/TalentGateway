@@ -1,5 +1,6 @@
 package com.cloudcrafters.interviewservice.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,7 @@ import java.util.Date;
 public class Interview {
 @Id
     private String id;
-    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date dateentretien;
 
     private InterviewMode modaliteEntretien;

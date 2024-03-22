@@ -1,6 +1,7 @@
 
 package com.cloudcrafters.interviewservice.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
@@ -22,8 +23,9 @@ import java.util.Date;
 public class Application {
     @Id
     private String id;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateAcceptation ;
-    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateDePostulation ;
 
     private Status status;

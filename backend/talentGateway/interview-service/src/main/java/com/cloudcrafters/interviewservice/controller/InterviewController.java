@@ -1,5 +1,6 @@
 
 package com.cloudcrafters.interviewservice.controller;
+
 import com.cloudcrafters.interviewservice.dto.ApplicationInterviewResponse;
 import com.cloudcrafters.interviewservice.dto.InterviewRequest;
 import com.cloudcrafters.interviewservice.dto.InterviewResponse;
@@ -50,12 +51,6 @@ public class InterviewController {
     public void deleteInterview(@PathVariable String id) {
         interviewService.deleteInterview(id);
     }
-
-
-
-
-
-
 
 
 }

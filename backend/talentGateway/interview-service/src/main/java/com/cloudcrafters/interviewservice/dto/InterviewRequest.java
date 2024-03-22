@@ -1,6 +1,7 @@
 package com.cloudcrafters.interviewservice.dto;
 
 import com.cloudcrafters.interviewservice.model.InterviewMode;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class InterviewRequest {
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date dateEntretien;
     private InterviewMode modaliteEntretien;
 

@@ -49,7 +49,7 @@ public class InterviewService implements InterviewServiceInterface {
         return mapToInterviewResponse(savedInterview);
     }
 
-@Override
+    @Override
     public List<InterviewResponse> getAllInterviews() {
         List<Interview> interviews = interviewRepository.findAll();
         return interviews.stream()
@@ -75,7 +75,8 @@ public class InterviewService implements InterviewServiceInterface {
         interviewRepository.save(existingInterview);
         log.info("Interview {} is updated", id);
     }
-@Override
+
+    @Override
     public void deleteInterview(String id) {
         interviewRepository.deleteById(id);
         log.info("Interview {} is deleted", id);
