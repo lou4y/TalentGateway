@@ -12,13 +12,14 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+
 @Document(value = "interview")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Interview {
-@Id
+    @Id
     private String id;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date dateentretien;
