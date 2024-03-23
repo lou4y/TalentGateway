@@ -108,6 +108,13 @@ public class ApplicationService implements IApplicationService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public ApplicationResponse getApplicationById(String id) {
+        Application application = applicationrepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Application not found with id: " + id));
+        return mapToApplicationResponse(application);
+    }
+
 
     ////////////// Partie de mappage gérée manuellement //////////////
     private ApplicationInterviewResponse mapToApplicationInterviewResponse(Application application) {
