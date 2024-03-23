@@ -28,6 +28,14 @@ public class ApplicationInterviewResponse {
     private InterviewMode modaliteEntretien;
     private Status status;
     private String offreid;
+    private String intershipCompany;
+    private String IntershipTitle;
+
+
+    // Méthode pour mettre à jour le champ intershipCompany
+    public void setIntershipCompany(String intershipCompany) {
+        this.intershipCompany = intershipCompany;
+    }
 
 
 }

@@ -17,4 +17,7 @@ public interface IApplicationService {
     void deleteApplication(String id);
 
     List<ApplicationInterviewResponse> getInterviewsByUserId(String userId);
+
+    ApplicationResponse getApplicationById(String id);
+
 }

@@ -1,14 +1,25 @@
 package com.cloudcrafters.interviewservice.controller;
 
 
+import com.cloudcrafters.interviewservice.clients.OffreRestClient;
+import com.cloudcrafters.interviewservice.clients.UserRestClient;
 import com.cloudcrafters.interviewservice.dto.ApplicationInterviewResponse;
 import com.cloudcrafters.interviewservice.dto.ApplicationRequest;
 import com.cloudcrafters.interviewservice.dto.ApplicationResponse;
 import com.cloudcrafters.interviewservice.dto.InterviewResponse;
+import com.cloudcrafters.interviewservice.entities.Offre;
 import com.cloudcrafters.interviewservice.service.ApplicationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+
 import org.springframework.web.bind.annotation.*;
+
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 
 import java.util.List;
@@ -19,22 +30,49 @@ import java.util.List;
 public class ApplicationController {
     private final ApplicationService applicationService;
 
+    @Autowired
+    UserRestClient userRestClient;
+
+    @Autowired
+    OffreRestClient offreRestClient;
+
+
     // @PostMapping
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public void createApplication(@RequestBody ApplicationRequest applicationRequest) {
-
-
         applicationService.createApplication(applicationRequest);
     }
 
 
-    // @GetMapping
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ApplicationResponse getApplicationById(@PathVariable String id) {
+        ApplicationResponse applicationResponse = applicationService.getApplicationById(id);
+        // Récupérer l'offre de l'application
+        Offre offre = offreRestClient.findOffreById(applicationResponse.getOffreid());
+        // Mettre à jour uniquement le champ intershipCompany dans l'objet ApplicationResponse
+        applicationResponse.setIntershipCompany(offre.getIntershipCompany());
+        applicationResponse.setIntershipTitle(offre.getIntershipTitle());
+        // Retourner uniquement l'ApplicationResponse avec le champ intershipCompany rempli
+        return applicationResponse;
+    }
+
+
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<ApplicationResponse> getALLApplication() {
-        return applicationService.getALLApplication();
+        List<ApplicationResponse> allApplications = applicationService.getALLApplication();
 
+        for (ApplicationResponse applicationResponse : allApplications) {
+            // Récupérer l'offre de l'application
+            Offre offre = offreRestClient.findOffreById(applicationResponse.getOffreid());
+            // Mettre à jour uniquement le champ intershipCompany dans l'objet ApplicationResponse
+            applicationResponse.setIntershipCompany(offre.getIntershipCompany());
+            applicationResponse.setIntershipTitle(offre.getIntershipTitle());
+        }
+
+        return allApplications;
     }
 
 
@@ -58,7 +96,17 @@ public class ApplicationController {
     @GetMapping("/interviews/{userId}")
     @ResponseStatus(HttpStatus.OK)
     public List<ApplicationInterviewResponse> getInterviewsByUserId(@PathVariable String userId) {
-        return applicationService.getInterviewsByUserId(userId);
+        List<ApplicationInterviewResponse> interviewResponses = applicationService.getInterviewsByUserId(userId);
+
+        // Parcourir chaque élément de la liste et mettre à jour le champ intershipCompany
+        for (ApplicationInterviewResponse interviewResponse : interviewResponses) {
+            Offre offre = offreRestClient.findOffreById(interviewResponse.getOffreid());
+            interviewResponse.setIntershipCompany(offre.getIntershipCompany());
+            interviewResponse.setIntershipTitle(offre.getIntershipTitle());
+        }
+
+        // Retourner la liste mise à jour
+        return interviewResponses;
     }
 
 
