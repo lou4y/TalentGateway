@@ -20,7 +20,6 @@ public class ApplicationResponse {
     private Date DateofApplication;
     private Date DateofAcceptance;
     private Status status;
-
     private String userid;
     private String offreid;
 
