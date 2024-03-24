@@ -44,16 +44,12 @@ public class InternshipServiceImpl  implements InternshipService {
 
     @Override
     public List<Internship> getAllInternshipsByCategory(Long categoryId) {
-        // Implement this method based on your requirements
         return internshipDao.findAllByCategoryId(categoryId);
-
     }
 
     @Override
     public List<Internship> getAllInternshipsByUserId(String userId) {
-        // Implement this method based on your requirements
         return internshipDao.findInternshipsByUserId(userId);
-
     }
 
     @Override
@@ -61,11 +57,10 @@ public class InternshipServiceImpl  implements InternshipService {
         Optional<Internship> internshipOptional = internshipDao.findById(internshipId);
         if (internshipOptional.isPresent()) {
             Internship internship = internshipOptional.get();
-            // Set the category for the internship
             internship.setCategory(new Category(categoryId, "", ""));
             return internshipDao.save(internship);
         }
-        return null; // or throw exception indicating internship not found
+        return null;
     }
 
     @Override
@@ -73,14 +68,9 @@ public class InternshipServiceImpl  implements InternshipService {
         Optional<Internship> internshipOptional = internshipDao.findById(internshipId);
         if (internshipOptional.isPresent()) {
             Internship internship = internshipOptional.get();
-            // Remove the category for the internship
             internship.setCategory(null);
             return internshipDao.save(internship);
         }
-        return null; // or throw exception indicating internship not found
+        return null;
     }
-
-
-
-    // Other methods implementation remains the same as before
 }

@@ -17,8 +17,13 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryDao categoryDao;
 
     @Override
-    public List<Category> getAllCategories() {
-        return categoryDao.findAll();
+    public Category createCategory(Category category) {
+        return categoryDao.save(category);
+    }
+
+    @Override
+    public Category updateCategory(Category category) {
+        return categoryDao.save(category);
     }
 
     @Override
@@ -28,23 +33,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category saveCategory(Category category) {
-        return categoryDao.save(category);
-    }
-
-    @Override
-    public void deleteCategory(Long id) {
+    public void deleteCategoryById(Long id) {
         categoryDao.deleteById(id);
     }
 
     @Override
-    public Category updateCategory(Long id, Category category) {
-        // Check if the category with the given id exists
-        if (categoryDao.existsById(id)) {
-            // Set the id of the category to update
-            category.setCategoryId(id);
-            return categoryDao.save(category);
-        }
-        return null; // Or throw an exception indicating category not found
+    public List<Category> getAllCategories() {
+        return categoryDao.findAll();
     }
 }
