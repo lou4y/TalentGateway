@@ -1,0 +1,80 @@
+@use '../utils' as *;
+
+.tp-custom-accordio {
+    & .accordion-items {
+        margin-bottom: 20px;
+        border:1px solid #F2F5FA;
+    }
+
+    & .accordion-buttons {
+        position: relative;
+        width: 100%;
+        text-align: left;
+        font-size: 24px;
+        font-weight: 700;
+        padding: 40px;
+        padding-bottom: 20px;
+        background-color: var(--tp-common-white);
+        color: #212121;
+        border-radius: 10px 10px 0 0;
+        @media #{$xs} {
+            font-size: 17px;
+            padding: 28px 20px
+        }
+
+        &::after {
+            position: absolute;
+            content: "\f063";
+            font-family: 'Font Awesome 5 Pro';
+            background-image: none;
+            top: auto;
+            right: 40px;
+            color: var(--tp-theme-primary);
+            width: auto;
+            height: auto;
+            font-weight: 300;
+            font-size: 20px;
+
+            @media #{$xs} {
+                top: 33px;
+                right: 18px;
+            }
+        }
+
+        &.collapsed {
+            padding: 40px;
+            &::after {
+                content: '\f062';
+               color: var(--tp-common-black);
+            }
+        }
+    }
+
+    & .collapsed {
+        border-radius: 10px 10px 10px 10px;
+    }
+
+    & .accordion-body {
+        background-color: var(--tp-common-white);
+        padding: 0;
+        position: relative;
+        z-index: 1;
+        font-size: 16px;
+        padding: 40px;
+        padding-top: 0;
+        padding-right: 80px;
+        border-bottom: 4px solid var(--tp-theme-primary);
+        @media #{$xs} {
+            padding: 20px 25px;
+        }
+    }
+}
+
+.faq-accordio-border {
+    & .accordion-items {
+        background-color: var(--tp-common-white);
+        border: 1px solid #F5F5F5;
+        border-radius: 10px;
+    }
+
+}
