@@ -1,0 +1,226 @@
+/* pulse effect animation */
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+
+    70% {
+        -webkit-box-shadow: 0 0 0 45px rgba(255, 255, 255, 0);
+    }
+
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+
+    70% {
+        -moz-box-shadow: 0 0 0 45px rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0 45px rgba(255, 255, 255, 0);
+    }
+
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+
+@keyframes tp-bounce {
+
+    20%,
+    53%,
+    80%,
+    from,
+    to {
+        animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+        transform: translate3d(0, 0, 0)
+    }
+
+    40%,
+    43% {
+        animation-timing-function: cubic-bezier(.755, .050, .855, .060);
+        transform: translate3d(0, -30px, 0)
+    }
+
+    70% {
+        animation-timing-function: cubic-bezier(.755, .050, .855, .060);
+        transform: translate3d(0, -15px, 0)
+    }
+
+    90% {
+        transform: translate3d(0, -4px, 0)
+    }
+}
+
+.tp-bounce {
+    animation-name: bounce;
+    transform-origin: center bottom
+}
+
+@keyframes tfLeftToRight {
+    49% {
+        transform: translateX(30%);
+    }
+
+    50% {
+        opacity: 0;
+        transform: translateX(-30%);
+    }
+
+    51% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes tp-float-1 {
+    0% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: translate(30px, 40px) rotate(0deg) scale(1);
+    }
+
+    100% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+    }
+}
+
+@keyframes tp-float-1 {
+    0% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: translate(30px, 40px) rotate(0deg) scale(1);
+    }
+
+    100% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+    }
+}
+
+@keyframes tp-float-2 {
+    0% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: translate(30px, -30px) rotate(0deg) scale(1);
+    }
+
+    100% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+    }
+}
+
+@-webkit-keyframes tp-float-2 {
+    0% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: translate(30px, 40px) rotate(0deg) scale(1);
+    }
+
+    100% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+    }
+}
+
+@-webkit-keyframes  tp-float-3 {
+    0% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: translate(20px, 30px) rotate(0deg) scale(1);
+    }
+
+    100% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+    }
+}
+
+@keyframes tp-float-3 {
+    0% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: translate(20px, 30px) rotate(0deg) scale(1);
+    }
+
+    100% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+    }
+}
+
+
+// tp swing animtaion
+
+@keyframes tpswing{
+	0% { 
+		transform:rotate(6deg);
+	}
+    100% { 
+		transform:rotate(-6deg);
+	}
+}
+@keyframes tpswing2{
+	0% { 
+		transform:rotate(5deg);
+	}
+    100% { 
+		transform:rotate(-1deg);
+	}
+}
+// tp up down animtaion
+@keyframes tpupdown{
+	0% { 
+		transform:translateY(0);
+	}
+    100% { 
+		transform:translateY(-20px);
+	}
+}
+@keyframes opactiy{
+	0% { 
+		transform:rotate(5deg);
+	}
+    100% { 
+		transform:rotate(-1deg);
+	}
+}
+// tp up down animtaion
+@keyframes opactiy{
+	0% { 
+		opacity: .1;
+	}
+	50% { 
+		opacity: 1;
+	}
+    100% { 
+		opacity: 0;
+	}
+}
+
+@keyframes borderanimate2{
+    0% {
+        transform: translate(-50%, -50%) scale(.8);
+    }
+	60%{
+		opacity: 1;
+	}
+      100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+      }
+}

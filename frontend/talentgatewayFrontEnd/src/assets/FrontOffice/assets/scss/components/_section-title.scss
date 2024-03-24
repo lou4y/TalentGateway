@@ -1,0 +1,45 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  SECTION TITLE CSS START
+/*----------------------------------------*/
+
+.tp-section{
+    &__title{
+        font-size: 40px;
+        color: var(--tp-common-black);
+        & span {
+            color: var(--tp-theme-primary);
+        }
+        @media #{$lg}{
+            font-size: 35px;
+        }
+        @media #{$md} {
+            & br{
+                display: none;
+            }
+        }
+        @media #{$sm}{
+            font-size: 30px;
+            & br{
+                display: none;
+            }
+        }
+
+        @media #{$xs}{
+            font-size: 25px;
+            & br{
+                display: none;
+            }
+        }
+    }
+    &__title-wrapper{
+        & p{
+            font-size: 16px;
+        }
+    }
+}
+
+.error__title{
+    font-size: 70px;
+}

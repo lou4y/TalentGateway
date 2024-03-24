@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="messaging-service" />
         <module name="config-service" />
+        <module name="picloudmicro" />
         <module name="gateway-service" />
         <module name="interview-service" />
         <module name="task-service" />
@@ -17,7 +18,6 @@
         <module name="internship-service" />
         <module name="talentGateway" />
         <module name="discovery-service" />
-        <module name="picloudmicro" />
       </profile>
     </annotationProcessing>
   </component>
@@ -27,6 +27,7 @@
       <module name="discovery-service" options="-parameters" />
       <module name="gateway-service" options="-parameters" />
       <module name="internship-service" options="-parameters" />
+      <module name="interview-service" options="-parameters" />
       <module name="messaging-service" options="-parameters" />
       <module name="picloudmicro" options="-parameters" />
       <module name="project-service" options="-parameters" />

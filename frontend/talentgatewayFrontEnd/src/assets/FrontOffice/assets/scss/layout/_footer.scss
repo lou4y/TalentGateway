@@ -1,0 +1,305 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  21. FOOTER CSS
+/*----------------------------------------*/
+
+.footer {
+    &__widget {
+        &-logo{
+            & img {
+                width: 150px;
+            }
+        }
+        & p {
+            color: var(--tp-text-1);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        &-space {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        &-title {
+            font-size: 20px;
+            padding-top: 15px;
+            margin-bottom: 35px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        & ul {
+            overflow: hidden;
+
+            & li {
+                list-style: none;
+                margin-bottom: 24px;
+                line-height: 1;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                a {
+                    font-size: 14px;
+                    color: var(--tp-text-body);
+                    position: relative;
+
+                    &:hover {
+                        color: var(--tp-theme-primary);
+                    }
+                }
+            }
+        }
+    }
+
+    &__blog {
+        &-meta {
+            margin-bottom: 3px;
+
+            & span {
+                color: var(--tp-text-1);
+
+                & i {
+                    color: var(--tp-theme-primary);
+                    margin-right: 3px;
+                }
+
+                &:hover {
+                    color: var(--tp-common-black);
+                }
+            }
+        }
+
+        &-title {
+            font-size: 15px;
+            text-transform: uppercase;
+            color: var(--tp-common-black);
+            margin-bottom: 0;
+            line-height: 1.4;
+
+            & a {
+                &:hover {
+                    color: var(--tp-theme-primary);
+                }
+            }
+        }
+    }
+
+    &__info {
+        &-item {
+            margin-bottom: 20px;
+        }
+
+        &-icon {
+            & i {
+                font-size: 20px;
+                color: var(--tp-theme-primary);
+            }
+        }
+
+        &-text {
+            & h4 {
+                color: var(--tp-common-black);
+                font-size: 18px;
+                margin-bottom: 0;
+            }
+
+            & a {
+                color: var(--tp-text-1);
+            }
+        }
+    }
+
+    &__contact {
+        & p {
+            color: var(--tp-text-1);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        & iframe {
+            width: 100%;
+            height: 110px;
+            filter: grayscale(100%);
+        }
+    }
+
+    &__subscribe {
+        & p {
+            color: var(--tp-text-1);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        &-box {
+            position: relative;
+            
+        }
+
+        &-input {
+            &.has-border-radius{
+                border-radius: 4px;
+                overflow: hidden;
+            }
+            & input {
+                width: 100%;
+                height: 50px;
+                padding: 0 23px;
+                padding-right: 160px;
+                border: 1px solid transparent;
+                background-color: var(--tp-common-white);
+                font-size: 16px; 
+                color: var(--tp-common-black);
+                &:focus{
+                    border-color: var(--tp-theme-primary);
+                }
+                @include tp-placeholder {
+                    color: var(--tp-text-3);
+                }
+                @media #{$lg} {
+                    padding-right: 23px;
+                }
+                @media #{$md} {
+                    padding-right: 160px;
+                }
+                @media #{$xs,$sm} {
+                    padding-right:23px;
+                }
+            }
+        }
+    }
+
+    &__copyright {
+        & p {
+            font-size: 16px;
+            & a  {
+                color: var(--tp-theme-primary);
+                opacity: .7;
+                &:hover{
+                   opacity: .9;
+                }
+            }
+        }
+
+    }
+
+    &__social {
+        & span {
+            display: inline-block;
+            &:not(:last-child) {
+                margin-right: 10px;
+            }
+
+            & a {
+                display: inline-block;
+                font-size: 15px;
+                @include square-btn(34px,$circle:true);
+                line-height: 32px;
+                text-align: center;
+                background: #0d88f0;
+                color: var(--tp-common-white);
+                border:1px solid transparent;
+                &:hover {
+                    background-color: var(--tp-common-white);
+                    color: #0d88f0;
+                    border:1px solid var(--tp-theme-primary);
+                }
+
+                &.tw {
+                    background: #03a9f4;
+                    &:hover {
+                        background-color: var(--tp-common-white);
+                        color: #03a9f4;
+                        border-color:#03a9f4 ;
+                    }
+                }
+
+                &.yt {
+                    background: #d2173f;
+                    border-color: #d2173f;
+
+                    &:hover {
+                        background-color: var(--tp-common-white);
+                        color: #d2173f;
+                    }
+                }
+            }
+        }
+    }
+    &__top {
+        position: relative;
+        padding-top: 100px;
+        padding-bottom: 40px;
+        z-index: 1;
+    }
+
+    &__bottom {
+        border-top: 1px solid;
+        border-color: rgba($color: #000f2f, $alpha: .06);
+        padding-top: 25px;
+        padding-bottom: 25px;
+
+        & p {
+            margin-bottom: 0;
+        }
+    }
+}
+
+
+.footer-sub-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    height: 100%;
+    line-height: 50px;
+    padding: 0 30px;
+    text-align: center;
+    font-size: 15px;
+    color: var(--tp-common-white);
+    background-color: var(--tp-theme-primary);
+    @media #{$xs,$sm,$lg} {
+        position: relative;
+        margin-top: 15px;
+        width: 100%;
+    }
+    &:hover {
+        color: var(--tp-common-white);
+        background-color: var(--tp-common-black);
+    }
+}
+
+/* footer col design for home 1 */
+.footer-col {
+    &-1 {
+        padding-right: 35px;
+        @media #{$xs,$sm,$md,$lg} {
+            padding-right: 0;
+        }
+    }
+
+    &-2 {
+        padding-left: 30px;
+        padding-right: 30px;
+
+        @media #{$sm,$xs,$md} {
+           padding-right: 0;
+           padding-left: 0;
+        }
+    }
+
+    &-3 {
+        padding-right: 10px;
+        padding-left: 60px;
+        padding-right: 60px;
+
+        @media #{$sm,$xs,$md,$lg} {
+            padding-right: 0;
+            padding-left: 0;
+         }
+    }
+
+}
