@@ -9,9 +9,15 @@ import java.util.List;
 
 public interface IApplicationService {
     void createApplication(ApplicationRequest applicationRequest);
+
     List<ApplicationResponse> getALLApplication();
+
     void updateApplication(String id, ApplicationRequest applicationRequest);
+
     void deleteApplication(String id);
 
     List<ApplicationInterviewResponse> getInterviewsByUserId(String userId);
+
+    ApplicationResponse getApplicationById(String id);
+
 }

@@ -1,8 +1,11 @@
 
 package com.cloudcrafters.interviewservice.model;
 
+import com.cloudcrafters.interviewservice.entities.Offre;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,12 +25,15 @@ import java.util.Date;
 public class Application {
     @Id
     private String id;
-    private Date DateofAcceptance ;
-    @Temporal(TemporalType.DATE)
-    private Date DateofApplication ;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date dateAcceptation ;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date dateDePostulation ;
 
     private Status status;
     private String userid;
+    @Transient
+    private Offre offre;
     private String offreid;
     @DBRef
     private Interview interview;

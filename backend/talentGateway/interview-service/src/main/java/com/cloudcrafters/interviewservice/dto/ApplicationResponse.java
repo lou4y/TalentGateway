@@ -1,12 +1,11 @@
 package com.cloudcrafters.interviewservice.dto;
 
 import com.cloudcrafters.interviewservice.model.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
@@ -14,15 +13,22 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class ApplicationResponse {
     private String id;
-    @Temporal(TemporalType.DATE)
-    private Date DateofApplication;
-    private Date DateofAcceptance;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date dateDePostulation;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date dateAcceptation;
     private Status status;
     private String userid;
+
     private String offreid;
 
+    private String intershipCompany;
 
+    private String IntershipTitle;
 
 }
+

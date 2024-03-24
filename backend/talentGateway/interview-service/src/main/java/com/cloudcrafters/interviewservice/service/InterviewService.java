@@ -39,8 +39,8 @@ public class InterviewService implements InterviewServiceInterface {
 
         // Créer un nouvel entretien
         Interview interview = new Interview();
-        interview.setInterviewDate(interviewRequest.getInterviewDate());
-        interview.setInterviewmode(interviewRequest.getInterviewmode());
+        interview.setDateentretien(interviewRequest.getDateEntretien());
+        interview.setModaliteEntretien(interviewRequest.getModaliteEntretien());
         interview.setApplication(application); // Associer l'entretien à la candidature///
         Interview savedInterview = interviewRepository.save(interview);
         // Associer l'entretien à la candidature
@@ -49,7 +49,7 @@ public class InterviewService implements InterviewServiceInterface {
         return mapToInterviewResponse(savedInterview);
     }
 
-@Override
+    @Override
     public List<InterviewResponse> getAllInterviews() {
         List<Interview> interviews = interviewRepository.findAll();
         return interviews.stream()
@@ -69,13 +69,14 @@ public class InterviewService implements InterviewServiceInterface {
         Interview existingInterview = interviewRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Interview not found with id: " + id));
 
-        existingInterview.setInterviewDate(interviewRequest.getInterviewDate());
-        existingInterview.setInterviewmode(interviewRequest.getInterviewmode());
+        existingInterview.setDateentretien(interviewRequest.getDateEntretien());
+        existingInterview.setModaliteEntretien(interviewRequest.getModaliteEntretien());
 
         interviewRepository.save(existingInterview);
         log.info("Interview {} is updated", id);
     }
-@Override
+
+    @Override
     public void deleteInterview(String id) {
         interviewRepository.deleteById(id);
         log.info("Interview {} is deleted", id);
@@ -84,8 +85,8 @@ public class InterviewService implements InterviewServiceInterface {
     private InterviewResponse mapToInterviewResponse(Interview interview) {
         InterviewResponse response = new InterviewResponse();
         response.setId(interview.getId());
-        response.setInterviewDate(interview.getInterviewDate());
-        response.setInterviewmode(interview.getInterviewmode());
+        response.setDateEntretien(interview.getDateentretien());
+        response.setModaliteEntretien(interview.getModaliteEntretien());
         return response;
     }
 }
