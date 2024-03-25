@@ -7,7 +7,12 @@
     <list default="true" id="4a98612b-a361-4a8d-9357-0d378f7d788f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/interview-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/pom.xml" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/ApplicationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/ApplicationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/angular.json" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +57,8 @@
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
-}]]></component>
-  <component name="RunManager" selected="Spring Boot.InterviewServiceApplication">
+</component>
+  <component name="RunManager" selected="Spring Boot.TaskServiceApplication">
     <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.configservice.ConfigServiceApplication" />
@@ -134,7 +139,13 @@
       <workItem from="1711134599681" duration="8464000" />
       <workItem from="1711185227664" duration="13643000" />
       <workItem from="1711199029157" duration="1305000" />
-      <workItem from="1711208479155" duration="662000" />
+      <workItem from="1711208479155" duration="1383000" />
+      <workItem from="1711220981293" duration="1038000" />
+      <workItem from="1711229535119" duration="1249000" />
+      <workItem from="1711362482303" duration="597000" />
+      <workItem from="1711363488084" duration="382000" />
+      <workItem from="1711379905363" duration="6216000" />
+      <workItem from="1711392082950" duration="4669000" />
     </task>
     <servers />
   </component>

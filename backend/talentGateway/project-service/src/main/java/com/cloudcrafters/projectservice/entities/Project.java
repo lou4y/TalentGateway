@@ -2,11 +2,14 @@ package com.cloudcrafters.projectservice.entities;
 
 import com.cloudcrafters.projectservice.enums.ProjectStatus;
 import com.cloudcrafters.projectservice.models.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor @Builder
 @Entity
@@ -24,9 +27,15 @@ public class Project implements Serializable {
     private double price;
     @Enumerated(EnumType.STRING)
     private ProjectStatus projectStatus;
+    //@JsonIgnore
     @Transient
     private User projectCreator;
     private String creatorId;
+
+    @ManyToOne
+    private Team team;
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    private Set<Comment> comments= new HashSet<>();
 
 
 

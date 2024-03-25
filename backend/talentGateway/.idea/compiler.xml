@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="messaging-service" />
         <module name="config-service" />
+        <module name="picloudmicro" />
         <module name="gateway-service" />
         <module name="interview-service" />
         <module name="task-service" />

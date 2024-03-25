@@ -1,20 +1,27 @@
 
 package com.cloudcrafters.interviewservice.service;
 
+import com.cloudcrafters.interviewservice.clients.OffreRestClient;
 import com.cloudcrafters.interviewservice.dto.ApplicationInterviewResponse;
 import com.cloudcrafters.interviewservice.dto.ApplicationRequest;
 import com.cloudcrafters.interviewservice.dto.ApplicationResponse;
 import com.cloudcrafters.interviewservice.dto.InterviewResponse;
+import com.cloudcrafters.interviewservice.entities.Offre;
 import com.cloudcrafters.interviewservice.model.Application;
 import com.cloudcrafters.interviewservice.model.Interview;
+import com.cloudcrafters.interviewservice.model.Status;
 import com.cloudcrafters.interviewservice.repository.Applicationrepository;
 import com.cloudcrafters.interviewservice.repository.InterviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -27,9 +34,10 @@ public class ApplicationService implements IApplicationService {
     private final InterviewRepository interviewRepository;
 
 
-    // creation d'une seul  application pour un offre appliquer a un user
     @Override
     public void createApplication(ApplicationRequest applicationRequest) {
+
+
         // Vérifier s'il existe déjà une application pour cette offre et cet utilisateur
         boolean applicationExists = applicationrepository.existsByOffreidAndUserid(
                 applicationRequest.getOffreid(),
@@ -114,6 +122,65 @@ public class ApplicationService implements IApplicationService {
                 .orElseThrow(() -> new IllegalArgumentException("Application not found with id: " + id));
         return mapToApplicationResponse(application);
     }
+
+
+    ////////calculer le porcentage des application
+    @Override
+    public Map<Status, Double> calculateStatusPercentage() {
+        List<Application> applications = applicationrepository.findAll();
+        int totalApplications = applications.size();
+        Map<Status, Integer> statusCount = new HashMap<>();
+
+        // Initialisation du compteur pour chaque état
+        for (Status status : Status.values()) {
+            statusCount.put(status, 0);
+        }
+
+        // Comptage du nombre d'applications pour chaque état
+        for (Application application : applications) {
+            Status status = application.getStatus();
+            statusCount.put(status, statusCount.get(status) + 1);
+        }
+
+        // Calcul du pourcentage pour chaque état
+        Map<Status, Double> statusPercentage = new HashMap<>();
+        DecimalFormat df = new DecimalFormat("#.0"); // Définir le format pour un chiffre après la virgule
+        for (Map.Entry<Status, Integer> entry : statusCount.entrySet()) {
+            double percentage = (entry.getValue() * 100.0) / totalApplications;
+            statusPercentage.put(entry.getKey(), Double.valueOf(df.format(percentage)));
+        }
+
+        return statusPercentage;
+    }
+
+
+    @Override
+    public Map<Status, Double> calculateStatusPercentageByUserId(String userId) {
+        List<Application> applications = applicationrepository.findByUserid(userId);
+        int totalApplications = applications.size();
+        Map<Status, Integer> statusCount = new HashMap<>();
+
+        // Initialisation du compteur pour chaque état
+        for (Status status : Status.values()) {
+            statusCount.put(status, 0);
+        }
+
+        // Comptage du nombre d'applications pour chaque état
+        for (Application application : applications) {
+            Status status = application.getStatus();
+            statusCount.put(status, statusCount.get(status) + 1);
+        }
+
+        // Calcul du pourcentage pour chaque état
+        Map<Status, Double> statusPercentage = new HashMap<>();
+        for (Map.Entry<Status, Integer> entry : statusCount.entrySet()) {
+            double percentage = (entry.getValue() * 100.0) / totalApplications;
+            statusPercentage.put(entry.getKey(), percentage);
+        }
+
+        return statusPercentage;
+    }
+
 
 
     ////////////// Partie de mappage gérée manuellement //////////////

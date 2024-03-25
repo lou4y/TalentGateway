@@ -6,13 +6,16 @@ import com.cloudcrafters.interviewservice.clients.UserRestClient;
 import com.cloudcrafters.interviewservice.dto.ApplicationInterviewResponse;
 import com.cloudcrafters.interviewservice.dto.ApplicationRequest;
 import com.cloudcrafters.interviewservice.dto.ApplicationResponse;
-import com.cloudcrafters.interviewservice.dto.InterviewResponse;
+
 import com.cloudcrafters.interviewservice.entities.Offre;
+
+import com.cloudcrafters.interviewservice.model.Status;
 import com.cloudcrafters.interviewservice.service.ApplicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/application")
@@ -108,6 +112,26 @@ public class ApplicationController {
         // Retourner la liste mise à jour
         return interviewResponses;
     }
+
+
+    // aficher le % pour tout les application du notre site
+    @GetMapping("/statusPercentage")
+    public ResponseEntity<Map<Status, Double>> getStatusPercentage() {
+        Map<Status, Double> statusPercentage = applicationService.calculateStatusPercentage();
+        return new ResponseEntity<>(statusPercentage, HttpStatus.OK);
+    }
+
+
+    // afficher le % des application de chaque user
+    @GetMapping("/statusPercentage/{userId}")
+    public ResponseEntity<Map<Status, Double>> getStatusPercentageByUser(@PathVariable String userId) {
+        Map<Status, Double> statusPercentage = applicationService.calculateStatusPercentageByUserId(userId);
+        return new ResponseEntity<>(statusPercentage, HttpStatus.OK);
+
+    }
+
+
+    // Endpoint pour récupérer les applications filtrées par ID d'offre
 
 
 }
