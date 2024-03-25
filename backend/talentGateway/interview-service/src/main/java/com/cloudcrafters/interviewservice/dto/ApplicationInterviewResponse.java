@@ -33,9 +33,9 @@ public class ApplicationInterviewResponse {
 
 
     // Méthode pour mettre à jour le champ intershipCompany
-    public void setIntershipCompany(String intershipCompany) {
+   /* public void setIntershipCompany(String intershipCompany) {
         this.intershipCompany = intershipCompany;
     }
-
+*/
 
 }

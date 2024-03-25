@@ -75,10 +75,7 @@ public class ApplicationService implements IApplicationService {
                 .orElseThrow(() -> new IllegalArgumentException("Application not found with id: " + id));
         // Mettre à jour les champs de l'application
         existingApplication.setDateAcceptation(applicationRequest.getDateAcceptation());
-        existingApplication.setDateDePostulation(applicationRequest.getDateDePostulation());
         existingApplication.setStatus(applicationRequest.getStatus());
-        existingApplication.setOffreid(applicationRequest.getOffreid());
-        existingApplication.setUserid(applicationRequest.getUserid());
         // Enregistrer les modifications
         applicationrepository.save(existingApplication);
         log.info("Application {} is updated", id);
