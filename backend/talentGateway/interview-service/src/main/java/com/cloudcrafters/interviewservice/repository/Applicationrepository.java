@@ -3,6 +3,7 @@ package com.cloudcrafters.interviewservice.repository;
 
 import com.cloudcrafters.interviewservice.model.Application;
 
+import com.cloudcrafters.interviewservice.model.Status;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
@@ -13,4 +14,8 @@ public interface Applicationrepository extends MongoRepository<Application, Stri
 
 
     boolean existsByOffreidAndUserid(String offreid, String userid);
+
+
+
+
 }
