@@ -29,7 +29,7 @@ public interface IApplicationService {
 
   //  List<Application> getApplicationsByStatusAndOffreId(Status status, String offreId);
 
-    //List<ApplicationResponse> getApplicationsByOffreId(String offreId);
+
 
     Map<Status, Double> calculateStatusPercentageByUserId(String userId);
 }

@@ -6,9 +6,9 @@ import com.cloudcrafters.interviewservice.clients.UserRestClient;
 import com.cloudcrafters.interviewservice.dto.ApplicationInterviewResponse;
 import com.cloudcrafters.interviewservice.dto.ApplicationRequest;
 import com.cloudcrafters.interviewservice.dto.ApplicationResponse;
-import com.cloudcrafters.interviewservice.dto.InterviewResponse;
+
 import com.cloudcrafters.interviewservice.entities.Offre;
-import com.cloudcrafters.interviewservice.model.Application;
+
 import com.cloudcrafters.interviewservice.model.Status;
 import com.cloudcrafters.interviewservice.service.ApplicationService;
 import lombok.RequiredArgsConstructor;
@@ -112,7 +112,6 @@ public class ApplicationController {
         // Retourner la liste mise à jour
         return interviewResponses;
     }
-
 
 
     // aficher le % pour tout les application du notre site
