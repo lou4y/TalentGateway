@@ -1,10 +1,9 @@
 package com.cloudcrafters.interviewservice.service;
 
-import com.cloudcrafters.interviewservice.dto.ApplicationInterviewResponse;
+
 import com.cloudcrafters.interviewservice.dto.ApplicationRequest;
 import com.cloudcrafters.interviewservice.dto.ApplicationResponse;
-import com.cloudcrafters.interviewservice.dto.InterviewResponse;
-import com.cloudcrafters.interviewservice.model.Application;
+
 import com.cloudcrafters.interviewservice.model.Status;
 
 import java.util.List;

@@ -23,9 +23,9 @@ public class ApplicationResponse {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateAcceptation;
     private Status status;
-    private String IntershipTitle;
     private String userid;
     private String offreid;
     private String intershipCompany;
+    private String IntershipTitle;
     private InterviewResponse interview;
 }

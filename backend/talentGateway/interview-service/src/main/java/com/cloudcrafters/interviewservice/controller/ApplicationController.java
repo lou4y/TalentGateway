@@ -3,7 +3,7 @@ package com.cloudcrafters.interviewservice.controller;
 
 import com.cloudcrafters.interviewservice.clients.OffreRestClient;
 import com.cloudcrafters.interviewservice.clients.UserRestClient;
-import com.cloudcrafters.interviewservice.dto.ApplicationInterviewResponse;
+
 import com.cloudcrafters.interviewservice.dto.ApplicationRequest;
 import com.cloudcrafters.interviewservice.dto.ApplicationResponse;
 
