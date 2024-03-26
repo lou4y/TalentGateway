@@ -11,8 +11,6 @@
       <change beforePath="$PROJECT_DIR$/../../.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/ApplicationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/ApplicationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/dto/ApplicationInterviewResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/dto/ApplicationInterviewResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/ApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/ApplicationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/angular.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +57,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Spring Boot.InterviewServiceApplication">
+  <component name="RunManager" selected="Spring Boot.InternshipServiceApplication">
     <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.configservice.ConfigServiceApplication" />
@@ -146,7 +144,8 @@
       <workItem from="1711362482303" duration="597000" />
       <workItem from="1711363488084" duration="382000" />
       <workItem from="1711379905363" duration="6216000" />
-      <workItem from="1711392082950" duration="9172000" />
+      <workItem from="1711392082950" duration="10530000" />
+      <workItem from="1711448579958" duration="4268000" />
     </task>
     <servers />
   </component>

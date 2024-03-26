@@ -74,6 +74,7 @@ public class ApplicationController {
             // Mettre à jour uniquement le champ intershipCompany dans l'objet ApplicationResponse
             applicationResponse.setIntershipCompany(offre.getIntershipCompany());
             applicationResponse.setIntershipTitle(offre.getIntershipTitle());
+
         }
 
         return allApplications;
