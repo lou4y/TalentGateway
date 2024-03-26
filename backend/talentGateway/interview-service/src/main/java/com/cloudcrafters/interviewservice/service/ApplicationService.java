@@ -180,7 +180,7 @@ public class ApplicationService implements IApplicationService {
 
 
 
-    ////////////// Partie de mappage gérée manuellement //////////////
+    ////////////// Partie de mappage gérée manuellement ////////////
     private ApplicationInterviewResponse mapToApplicationInterviewResponse(Application application) {
         Interview interview = application.getInterview();
         ApplicationInterviewResponse response = new ApplicationInterviewResponse();
