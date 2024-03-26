@@ -19,7 +19,7 @@ public interface IApplicationService {
 
     void deleteApplication(String id);
 
-    List<ApplicationInterviewResponse> getInterviewsByUserId(String userId);
+    List<ApplicationResponse> getApplicationsByUserId(String userId);
 
     ApplicationResponse getApplicationById(String id);
 
@@ -29,8 +29,11 @@ public interface IApplicationService {
 
   //  List<Application> getApplicationsByStatusAndOffreId(Status status, String offreId);
 
-
+  //  List<ApplicationResponse> getApplicationsByStatus(Status status);
+  List<ApplicationResponse> getApplicationsByStatus(Status status);
 
     Map<Status, Double> calculateStatusPercentageByUserId(String userId);
+
+    List<ApplicationResponse> getApplicationsByOffreId(String offreId);
 }
 

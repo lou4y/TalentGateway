@@ -1,5 +1,6 @@
 package com.cloudcrafters.interviewservice.dto;
 
+import com.cloudcrafters.interviewservice.model.InterviewMode;
 import com.cloudcrafters.interviewservice.model.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,13 +23,9 @@ public class ApplicationResponse {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateAcceptation;
     private Status status;
-    private String userid;
-
-    private String offreid;
-
-    private String intershipCompany;
-
     private String IntershipTitle;
-
+    private String userid;
+    private String offreid;
+    private String intershipCompany;
+    private InterviewResponse interview;
 }
-
