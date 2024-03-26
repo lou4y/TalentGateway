@@ -19,7 +19,7 @@ public interface Applicationrepository extends MongoRepository<Application, Stri
 
     List<Application> findByOffreid(String offreId);
 
-    List<Application> findByStatus(Status status);
+  //  List<Application> findByStatus(Status status);
 
     List<Application> findAllByStatus(Status status);
 }
