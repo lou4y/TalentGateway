@@ -30,12 +30,9 @@ public class ApplicationInterviewResponse {
     private String offreid;
     private String intershipCompany;
     private String IntershipTitle;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date dateAcceptation;
 
 
-    // Méthode pour mettre à jour le champ intershipCompany
-   /* public void setIntershipCompany(String intershipCompany) {
-        this.intershipCompany = intershipCompany;
-    }
-*/
 
 }

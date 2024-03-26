@@ -32,6 +32,7 @@ public class ApplicationService implements IApplicationService {
 
     private final Applicationrepository applicationrepository;
     private final InterviewRepository interviewRepository;
+    private final OffreRestClient offreRestClient;
 
 
     @Override
@@ -51,7 +52,10 @@ public class ApplicationService implements IApplicationService {
         Application application = Application.builder()
                 .dateAcceptation(applicationRequest.getDateAcceptation())
                 .dateDePostulation(currentDate)
-                .status(applicationRequest.getStatus())
+                //  .status(applicationRequest.getStatus())
+                .status(applicationRequest.getStatus() != null ? applicationRequest.getStatus() : Status.PENDING)
+
+
                 .offreid(applicationRequest.getOffreid())
                 .userid(applicationRequest.getUserid())
                 .build();
@@ -62,11 +66,12 @@ public class ApplicationService implements IApplicationService {
 
     @Override
     public List<ApplicationResponse> getALLApplication() {
-
         List<Application> applications = applicationrepository.findAll();
-
-        return applications.stream().map(this::mapToApplicationResponse).toList();
+        return applications.stream()
+                .map(this::mapToApplicationResponseWithInterviewDetails)
+                .collect(Collectors.toList());
     }
+
 
     @Override
     // Mettre à jour une application
@@ -104,20 +109,50 @@ public class ApplicationService implements IApplicationService {
     }
 
 
-    ////////////affficher les interview pour chaque user /////////////////////
+    ////////////affficher les interview pour chaque user /////getInterviewsByUserId////////////////
     @Override
-    public List<ApplicationInterviewResponse> getInterviewsByUserId(String userId) {
+    public List<ApplicationResponse> getApplicationsByUserId(String userId) {
         List<Application> applications = applicationrepository.findByUserid(userId);
         return applications.stream()
-                .map(this::mapToApplicationInterviewResponse)
+                .map(this::mapToApplicationResponseWithInterviewDetails)
                 .collect(Collectors.toList());
     }
+
 
     @Override
     public ApplicationResponse getApplicationById(String id) {
         Application application = applicationrepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Application not found with id: " + id));
-        return mapToApplicationResponse(application);
+
+        // Récupérer l'offre associée à cette application
+        Offre offre = offreRestClient.findOffreById(application.getOffreid());
+
+        // Créer une ApplicationResponse avec les détails de l'application et de l'offre
+        ApplicationResponse applicationResponse = mapToApplicationResponseWithInterviewDetails(application);
+        applicationResponse.setIntershipCompany(offre.getIntershipCompany());
+        applicationResponse.setIntershipTitle(offre.getIntershipTitle());
+
+        return applicationResponse;
+    }
+
+
+    @Override
+    public List<ApplicationResponse> getApplicationsByOffreId(String offreId) {
+        List<Application> applications = applicationrepository.findByOffreid(offreId);
+        return applications.stream()
+                .map(this::mapToApplicationResponseWithInterviewDetails)
+                .collect(Collectors.toList());
+    }
+
+
+
+    @Override
+    public List<ApplicationResponse> getApplicationsByStatus(Status status) {
+        List<Application> applications = applicationrepository.findAllByStatus(status);
+
+        return applications.stream()
+                .map(this::mapToApplicationResponseWithInterviewDetails)
+                .collect(Collectors.toList());
     }
 
 
@@ -150,7 +185,6 @@ public class ApplicationService implements IApplicationService {
         return statusPercentage;
     }
 
-
     @Override
     public Map<Status, Double> calculateStatusPercentageByUserId(String userId) {
         List<Application> applications = applicationrepository.findByUserid(userId);
@@ -179,29 +213,35 @@ public class ApplicationService implements IApplicationService {
     }
 
 
-
-    ////////////// Partie de mappage gérée manuellement ////////////
-    private ApplicationInterviewResponse mapToApplicationInterviewResponse(Application application) {
-        Interview interview = application.getInterview();
-        ApplicationInterviewResponse response = new ApplicationInterviewResponse();
+    private ApplicationResponse mapToApplicationResponseWithInterviewDetails(Application application) {
+        ApplicationResponse response = new ApplicationResponse();
+        response.setId(application.getId());
         response.setDateDePostulation(application.getDateDePostulation());
-        response.setOffreid(application.getOffreid());
+        response.setDateAcceptation(application.getDateAcceptation());
         response.setStatus(application.getStatus());
+        response.setOffreid(application.getOffreid());
+        response.setUserid(application.getUserid());
+
+        // Récupérer l'interview associé à cette application
+        Interview interview = application.getInterview();
         if (interview != null) {
-            response.setDateEntretien(interview.getDateentretien());
-            response.setModaliteEntretien(interview.getModaliteEntretien());
+            response.setInterview(mapToInterviewResponse(interview));
         }
+        // Récupérer l'offre de l'application
+        Offre offre = offreRestClient.findOffreById(application.getOffreid());
+        response.setIntershipCompany(offre.getIntershipCompany());
+        response.setIntershipTitle(offre.getIntershipTitle());
+
         return response;
     }
 
-    private ApplicationResponse mapToApplicationResponse(Application application) {
-        return ApplicationResponse.builder()
-                .id(application.getId())
-                .dateDePostulation(application.getDateDePostulation())
-                .dateAcceptation(application.getDateAcceptation())
-                .status(application.getStatus())
-                .offreid(application.getOffreid())
-                .userid(application.getUserid())
-                .build();
+    // Méthode pour mapper un entretien à sa réponse
+    private InterviewResponse mapToInterviewResponse(Interview interview) {
+        InterviewResponse response = new InterviewResponse();
+        response.setId(interview.getId());
+        response.setDateEntretien(interview.getDateentretien());
+        response.setModaliteEntretien(interview.getModaliteEntretien());
+        return response;
     }
+
 }
