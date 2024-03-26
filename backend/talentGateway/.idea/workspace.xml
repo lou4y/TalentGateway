@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e73b47b-08c5-4f76-b484-a47489d2d9d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-
-
-      <change beforePath="$PROJECT_DIR$/interview-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/pom.xml" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/ApplicationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/ApplicationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/dto/ApplicationInterviewResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/dto/ApplicationInterviewResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/ApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/ApplicationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/angular.json" afterDir="false" />
-
-
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +38,7 @@
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -144,12 +135,9 @@
       <created>1711412710321</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-
-      <updated>1711412710321</updated>
+      <updated>1711127554368</updated>
       <workItem from="1711412712503" duration="85000" />
       <workItem from="1711412952177" duration="821000" />
-
-      <updated>1711127554368</updated>
       <workItem from="1711127557275" duration="46000" />
       <workItem from="1711127715297" duration="10000" />
       <workItem from="1711128757601" duration="1927000" />
@@ -165,7 +153,6 @@
       <workItem from="1711363488084" duration="382000" />
       <workItem from="1711379905363" duration="6216000" />
       <workItem from="1711392082950" duration="9172000" />
-
     </task>
     <servers />
   </component>
@@ -174,6 +161,8 @@
   </component>
   <component name="WfRunsListSearchHistory"><![CDATA[{
   "history": [
+    {
+    },
     {
     },
     {
