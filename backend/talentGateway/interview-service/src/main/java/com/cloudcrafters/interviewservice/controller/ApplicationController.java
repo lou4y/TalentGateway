@@ -131,7 +131,4 @@ public class ApplicationController {
     }
 
 
-    // Endpoint pour récupérer les applications filtrées par ID d'offre
-
-
 }
