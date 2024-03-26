@@ -26,10 +26,7 @@ public interface IApplicationService {
     Map<Status, Double> calculateStatusPercentage();
 
 
-  //  List<Application> getApplicationsByStatusAndOffreId(Status status, String offreId);
-
-  //  List<ApplicationResponse> getApplicationsByStatus(Status status);
-  List<ApplicationResponse> getApplicationsByStatus(Status status);
+    List<ApplicationResponse> getApplicationsByStatus(Status status);
 
     Map<Status, Double> calculateStatusPercentageByUserId(String userId);
 

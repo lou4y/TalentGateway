@@ -1,8 +1,6 @@
 
 package com.cloudcrafters.interviewservice.service;
-
 import com.cloudcrafters.interviewservice.clients.OffreRestClient;
-
 import com.cloudcrafters.interviewservice.dto.ApplicationRequest;
 import com.cloudcrafters.interviewservice.dto.ApplicationResponse;
 import com.cloudcrafters.interviewservice.dto.InterviewResponse;
@@ -14,9 +12,7 @@ import com.cloudcrafters.interviewservice.repository.Applicationrepository;
 import com.cloudcrafters.interviewservice.repository.InterviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.stereotype.Service;
-
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.HashMap;
