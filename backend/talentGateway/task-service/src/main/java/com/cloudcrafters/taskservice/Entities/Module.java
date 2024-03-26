@@ -1,5 +1,6 @@
 package com.cloudcrafters.taskservice.Entities;
 
+import com.cloudcrafters.taskservice.models.Project;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,6 +22,8 @@ public class Module implements Serializable {
     private String moduleDescription;
 
 
+    @Transient
+    private Project project ;
 
 
 }

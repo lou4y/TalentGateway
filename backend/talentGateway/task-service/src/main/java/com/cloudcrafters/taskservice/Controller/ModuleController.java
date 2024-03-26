@@ -1,6 +1,8 @@
 package com.cloudcrafters.taskservice.Controller;
 
+import com.cloudcrafters.taskservice.Clients.ProjectRestClient;
 import com.cloudcrafters.taskservice.Entities.Module;
+import com.cloudcrafters.taskservice.models.Project;
 import com.cloudcrafters.taskservice.services.ModuleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,10 @@ public class ModuleController {
     @Autowired
     private final ModuleService moduleService;
 
+    @Autowired
+    private final ProjectRestClient projectRestClient;
+
+
     // Create module
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -29,6 +35,7 @@ public class ModuleController {
     @ResponseStatus(HttpStatus.OK)
     public List<Module> getAllModules() {
         return moduleService.getAllModules();
+
     }
 
     // Get module by ID
