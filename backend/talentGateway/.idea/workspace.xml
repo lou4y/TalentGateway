@@ -4,6 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+ 
+    <list default="true" id="1e73b47b-08c5-4f76-b484-a47489d2d9d5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/controller/SkillController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/dao/SkillDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/entity/Skill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/enums/SkillLevel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/services/SkillService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/servicesImpl/SkillServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/header-front/header-front.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/dto/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/dto/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/keycloakclient/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/keycloakclient/UserResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/policy-enforcer.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/policy-enforcer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" afterDir="false" />
+ 
+  main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,28 +46,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "internship",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
-
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
@@ -67,7 +63,6 @@
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-
   }
  
 }&lt;/component&gt;
@@ -194,7 +189,18 @@
       <workItem from="1711229535119" duration="1249000" />
       <workItem from="1711362482303" duration="597000" />
       <workItem from="1711363488084" duration="382000" />
+ 
+      <workItem from="1711379905363" duration="6216000" />
+      <workItem from="1711392082950" duration="10530000" />
+      <workItem from="1711448579958" duration="5002000" />
+      <workItem from="1711392082950" duration="9172000" />
+      <workItem from="1711459711501" duration="6974000" />
+      <workItem from="1711466751903" duration="10882000" />
+      <workItem from="1711548995109" duration="25000" />
+      <workItem from="1711557004599" duration="614000" />
+ 
 
+  main
     </task>
     <servers />
   </component>
@@ -203,8 +209,6 @@
   </component>
   <component name="WfRunsListSearchHistory">{
   &quot;history&quot;: [
-    {
-    },
     {
     },
     {
