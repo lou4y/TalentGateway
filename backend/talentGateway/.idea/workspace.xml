@@ -4,24 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
- 
     <list default="true" id="1e73b47b-08c5-4f76-b484-a47489d2d9d5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/controller/SkillController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/dao/SkillDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/entity/Skill.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/enums/SkillLevel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/services/SkillService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/servicesImpl/SkillServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/header-front/header-front.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/dto/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/dto/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/keycloakclient/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/keycloakclient/UserResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/policy-enforcer.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/policy-enforcer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" afterDir="false" />
- 
-  main
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +39,9 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;internship&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -189,7 +175,6 @@
       <workItem from="1711229535119" duration="1249000" />
       <workItem from="1711362482303" duration="597000" />
       <workItem from="1711363488084" duration="382000" />
- 
       <workItem from="1711379905363" duration="6216000" />
       <workItem from="1711392082950" duration="10530000" />
       <workItem from="1711448579958" duration="5002000" />
@@ -197,10 +182,7 @@
       <workItem from="1711459711501" duration="6974000" />
       <workItem from="1711466751903" duration="10882000" />
       <workItem from="1711548995109" duration="25000" />
-      <workItem from="1711557004599" duration="614000" />
- 
-
-  main
+      <workItem from="1711557004599" duration="815000" />
     </task>
     <servers />
   </component>
