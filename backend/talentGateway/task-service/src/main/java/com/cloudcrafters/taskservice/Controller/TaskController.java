@@ -1,8 +1,10 @@
 package com.cloudcrafters.taskservice.Controller;
 
+import com.cloudcrafters.taskservice.Clients.ProjectRestClient;
 import com.cloudcrafters.taskservice.Entities.Task;
 import com.cloudcrafters.taskservice.dto.TaskResponse;
 import com.cloudcrafters.taskservice.Enums.Priority;
+import com.cloudcrafters.taskservice.models.Project;
 import com.cloudcrafters.taskservice.services.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ public class TaskController {
     @Autowired
     private final TaskService taskService;
 
+    private ProjectRestClient projectRestClient;
+
     // Create task
     @PostMapping("/CreateTask")
     public ResponseEntity<?> createTask(@RequestBody Task task) {
@@ -35,7 +39,7 @@ public class TaskController {
     }
 
     // Get all tasks
-    @GetMapping("/GetAllTasks")
+    @GetMapping( "/GetAllTasks")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskResponse> getAllTasks() {
         return taskService.getAllTasks();
