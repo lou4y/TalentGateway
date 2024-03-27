@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@RequiredArgsConstructor
+
 @RestController
 @RequestMapping("/Modules") // Note the leading slash for consistency
 public class ModuleController {
@@ -20,8 +20,12 @@ public class ModuleController {
     private final ModuleService moduleService;
 
     @Autowired
-    private final ProjectRestClient projectRestClient;
+    private ProjectRestClient projectRestClient;
 
+    public ModuleController(ModuleService moduleService, ProjectRestClient projectRestClient) {
+        this.moduleService = moduleService;
+        this.projectRestClient = projectRestClient;
+    }
 
     // Create module
     @PostMapping
@@ -34,22 +38,22 @@ public class ModuleController {
     @GetMapping("/GetAllModules")
     @ResponseStatus(HttpStatus.OK)
     public List<Module> getAllModules() {
-        return moduleService.getAllModules();
-
+        List <Module> modules = moduleService.getAllModules();
+        for (Module module : modules) {
+            Project project = projectRestClient.findProjectById(module.getProjectId());
+            module.setProject(project);
+        }
+        return modules;
     }
 
     // Get module by ID
     @GetMapping("GetModuleById/{moduleId}")
-    public ResponseEntity<?> getModuleById(@PathVariable Long moduleId) {
-        try {
-            Module module = moduleService.getModuleById(moduleId);
-            return ResponseEntity.ok(module);
-        } catch (RuntimeException ex) {
-            // Assuming the exception is thrown if the module is not found
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Module not found with ID: " + moduleId);
-        }
-    }
+    public Module getModuleById(@PathVariable Long moduleId) {
+        Module module = moduleService.getModuleById(moduleId);
+        Project project = projectRestClient.findProjectById(module.getProjectId());
+        module.setProject(project);
+        return module; }
+
 
     // Update module
     @PutMapping("UpdateModule/{moduleId}")

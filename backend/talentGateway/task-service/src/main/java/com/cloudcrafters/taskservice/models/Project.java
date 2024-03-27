@@ -6,17 +6,13 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-@Getter
-@Setter
-@ToString
+@Getter @Setter @ToString
 public class Project {
-
     private Long projectId;
     private String projectName;
     private String projectDescription;
+
 
     private Date startDate;
 
@@ -26,4 +22,6 @@ public class Project {
 
 
 
+
 }
+

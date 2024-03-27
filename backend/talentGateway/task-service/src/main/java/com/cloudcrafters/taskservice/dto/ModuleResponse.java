@@ -14,7 +14,5 @@ public class ModuleResponse {
     private String moduleName;
     private String moduleDescription;
 
-    private Long projectId;
-    private String projectName;
 
 }

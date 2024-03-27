@@ -6,18 +6,22 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@ForgeinClient(name = "project-service", url = "http://localhost:8080/PROJECT-SERVICE")
+@FeignClient(name="PROJECT-SERVICE")
 public interface ProjectRestClient {
-    @CircuitBreaker(name = "internship-servic", fallbackMethod = "getDefaultCreator")
-    @GetMapping("projects/{id}")
-    Project getProjectById(@PathVariable("id") String offreId);
+    @GetMapping("/projects/{id}")
+    @CircuitBreaker(name = "project-service", fallbackMethod = "getDefaultProject")
+    Project findProjectById(@PathVariable Long id);
 
 
-    default Project getDefaultCreator(String id, Exception exception) {
-        Project offre = new Project();
 
-        Project.setPrject("Not available");
-        Project.setIntershipTitle("Not available");
-        return offre;
+    default Project getDefaultProject(Long id, Exception exception){
+        Project project = new Project();
+        project.setProjectId(id);
+        project.setProjectName("Not available");
+        project.setProjectDescription("Not available");
+        project.setStartDate(null);
+        project.setEndTime(null);
+        project.setPrice(0);
+        return project;
     }
 }
