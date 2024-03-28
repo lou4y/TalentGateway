@@ -1,5 +1,6 @@
 package com.cloudcrafters.projectservice.models;
 
+import jakarta.persistence.Lob;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.*;
@@ -15,4 +16,6 @@ public class User {
     private String password;
     @Temporal(TemporalType.DATE)
     private Date birthDate;
+    @Lob
+    private String imageData;
 }

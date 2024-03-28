@@ -1,0 +1,89 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  05. HERO CSS
+/*----------------------------------------*/
+
+/* hero css start here */
+
+.tp-hero {
+    &__section {}
+
+    &__shapes {
+        &-1 {
+            position: absolute;
+            top: 110px;
+            left: 50%;
+            animation: tp-float-1  6s infinite alternate;
+        }
+        &-2 {
+            position: absolute;
+            top: 310px;
+            right: 5%;
+            animation: tp-float-2  8s infinite alternate;
+        }
+        &-3 {
+            position: absolute;
+            bottom: 100px;
+            left: 5%;
+            animation: tp-float-1  5s infinite alternate;
+        }
+        &-4 {
+            position: absolute;
+            top: 0;
+            right: 0;
+           
+        }
+        &-5 {
+            position: absolute;
+            bottom: 270px;
+            right: 0;
+            animation: tpswing 1s ease-in-out 1s forwards infinite alternate;
+            transform-origin: top bottom;
+        }
+        &-6 {
+            position: absolute;
+            top: 240px;
+            left: 13%;
+            animation: tp-float-2  7s infinite alternate;
+        }
+    }
+    &__img {
+        margin-left: -80px;
+      }
+}
+
+.tp-hero {
+    &__section{
+        margin-bottom: -100px;
+    }
+    &__subtitle {
+        font-size: 20px;
+        display: inline-block;
+    }
+    &__title{
+        font-size: 70px;
+        font-weight: 800;
+        line-height: 1.1;
+        @media #{$xs} {
+            font-size: 48px;
+        }
+    }
+    &__content{
+        position: relative;
+        z-index: 1;
+        @media #{$xs,$sm} {
+            padding-top: 0;
+        }
+        & p{
+            font-size: 18px;
+        }
+    }
+    &__img{
+        @media #{$xs,$sm,$md} {
+            & img {
+                width: 100%;
+            }
+        }
+    }
+}

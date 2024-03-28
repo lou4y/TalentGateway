@@ -62,7 +62,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   }
 
   // Theme Drk Light Mode
-  changeMode(value) {    
+  changeMode(value) {
     switch (value) {
       case "light":
         document.body.setAttribute('data-bs-theme', 'light');
