@@ -25,6 +25,7 @@ public class Project implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date endTime;
     private double price;
+    private String projectFile;
     @Enumerated(EnumType.STRING)
     private ProjectStatus projectStatus;
     //@JsonIgnore
@@ -36,6 +37,7 @@ public class Project implements Serializable {
     private Team team;
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private Set<Comment> comments= new HashSet<>();
+
 
 
 

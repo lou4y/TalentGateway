@@ -1,52 +1,96 @@
-import { Component, OnInit, Input, EventEmitter, ViewChild, Output } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ProjectService } from 'src/app/services/project.service';
+import { TeamService } from 'src/app/services/team.service';
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss']
 })
-
-/**
- * Projects-create component
- */
 export class CreateComponent implements OnInit {
 
-  constructor() { }
-  // bread crumb items
-  breadCrumbItems: Array<{}>;
+  file: File | null = null;
+  fileURL: string | ArrayBuffer | null = null;
+  teams: any[] = [];
+  selectedTeam: number;
+  projectData = {
+    projectName: '',
+    projectDescription: '',
+    projectStatus: '',
+    startDate: '',
+    endTime: '',
+    price: 0
+  };
 
-  selected: any;
-  hidden: boolean;
-  files: File[] = [];
-  
-  @Input() fromDate: Date;
-  @Input() toDate: Date;
-  @Output() dateRangeSelected: EventEmitter<{}> = new EventEmitter();
+  constructor(
+    private projectService: ProjectService,
+    private http: HttpClient,
+    private teamService: TeamService
+  ) { }
 
-  @ViewChild('dp', { static: true }) datePicker: any;
-
-  ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Projects' }, { label: 'Create New', active: true }];
-
-    this.selected = '';
-    this.hidden = true;
+  ngOnInit(): void {
+    this.fetchTeams();
   }
 
-    // File Upload
-    imageURL: any;
-    onSelect(event: any) {
-      this.files.push(...event.addedFiles);
-      let file: File = event.addedFiles[0];
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imageURL = reader.result as string;
-        setTimeout(() => {
-          // this.profile.push(this.imageURL)
-        }, 100);
-      }
-      reader.readAsDataURL(file)
+  fetchTeams() {
+    this.teamService.getTeams().subscribe((teams: any[]) => {
+      this.teams = teams;
+    });
+  }
+
+  onFileSelected(event: any) {
+    if (event && event.addedFiles && event.addedFiles.length > 0) {
+      this.file = event.addedFiles[0];
+      this.getFileDataURL(this.file);
+    } else {
+      console.error('No file selected.');
+    }
+  }
+
+  getFileDataURL(file: File) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.fileURL = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  addNewProject() {
+    if (!this.file) {
+        console.error('Please select a file for the project.');
+        return;
     }
 
- 
+    if (!this.selectedTeam) {
+        console.error('Please select a team for the project.');
+        return;
+    }
+
+    const projectData = {
+        projectName: this.projectData.projectName,
+        projectDescription: this.projectData.projectDescription,
+        startDate: this.projectData.startDate,
+        endTime: this.projectData.endTime,
+        price: this.projectData.price,
+        projectFile: this.file.name,
+        projectStatus: this.projectData.projectStatus,
+        creatorId:'abc',
+        team: {
+            teamId: this.selectedTeam // Ensure that the teamId is correctly named
+        }
+    };
+
+    this.projectService.addProject(projectData).subscribe((response: any) => {
+        console.log('Project added successfully:', response);
+        // Reset the form or perform other necessary actions
+    });
+}
+
+
+
+  onRemove() {
+    this.file = null;
+    this.fileURL = null;
+  }
 }

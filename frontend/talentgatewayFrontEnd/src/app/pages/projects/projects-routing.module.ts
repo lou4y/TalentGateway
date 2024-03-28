@@ -5,6 +5,7 @@ import { ProjectgridComponent } from './projectgrid/projectgrid.component';
 import { ProjectlistComponent } from './projectlist/projectlist.component';
 import { OverviewComponent } from './overview/overview.component';
 import { CreateComponent } from './create/create.component';
+import { UpdateProjectComponent } from './update-project/update-project.component';
 
 const routes: Routes = [
     {
@@ -22,6 +23,10 @@ const routes: Routes = [
     {
         path: 'create',
         component: CreateComponent
+    },
+    {
+        path: 'updateProject/:id',
+        component: UpdateProjectComponent
     }
 ];
 
