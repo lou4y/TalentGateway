@@ -4,13 +4,6 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a98612b-a361-4a8d-9357-0d378f7d788f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Controller/ModuleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Controller/ModuleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Entities/Module.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Entities/Module.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/dto/ModuleResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/dto/ModuleResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +13,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -29,14 +21,35 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 6
+  &quot;associatedIndex&quot;: 3
 }</component>
-  <component name="ProjectId" id="2e3JuWc8FeoMhwYCVWYoCfbzoag" />
+  <component name="ProjectId" id="2eCdsyKaehm8XPAxAHZ9C3KJDVJ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "internship",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
+
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
@@ -46,17 +59,54 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;TaskService&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ahmed/IdeaProjects/picloudmicro&quot;,
+
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+
   }
+ 
+}&lt;/component&gt;
+  &lt;component name=&quot;RunManager&quot; selected=&quot;Spring Boot.InternshipServiceApplication&quot;&gt;
+    &lt;configuration name=&quot;ConfigServiceApplication&quot; type=&quot;SpringBootApplicationConfigurationType&quot; factoryName=&quot;Spring Boot&quot; nameIsGenerated=&quot;true&quot;&gt;
+      &lt;module name=&quot;config-service&quot; /&gt;
+      &lt;option name=&quot;SPRING_BOOT_MAIN_CLASS&quot; value=&quot;com.cloudcrafters.configservice.ConfigServiceApplication&quot; /&gt;
+      &lt;method v=&quot;2&quot;&gt;
+        &lt;option name=&quot;Make&quot; enabled=&quot;true&quot; /&gt;
+      &lt;/method&gt;
+    &lt;/configuration&gt;
+    &lt;configuration name=&quot;DiscoveryServiceApplication&quot; type=&quot;SpringBootApplicationConfigurationType&quot; factoryName=&quot;Spring Boot&quot; nameIsGenerated=&quot;true&quot;&gt;
+      &lt;module name=&quot;discovery-service&quot; /&gt;
+      &lt;option name=&quot;SPRING_BOOT_MAIN_CLASS&quot; value=&quot;com.cloudcrafters.discoveryservice.DiscoveryServiceApplication&quot; /&gt;
+      &lt;method v=&quot;2&quot;&gt;
+        &lt;option name=&quot;Make&quot; enabled=&quot;true&quot; /&gt;
+      &lt;/method&gt;
+    &lt;/configuration&gt;
+    &lt;configuration name=&quot;GatewayServiceApplication&quot; type=&quot;SpringBootApplicationConfigurationType&quot; factoryName=&quot;Spring Boot&quot; nameIsGenerated=&quot;true&quot;&gt;
+      &lt;module name=&quot;gateway-service&quot; /&gt;
+      &lt;option name=&quot;SPRING_BOOT_MAIN_CLASS&quot; value=&quot;com.cloudcrafters.gatewayservice.GatewayServiceApplication&quot; /&gt;
+      &lt;method v=&quot;2&quot;&gt;
+        &lt;option name=&quot;Make&quot; enabled=&quot;true&quot; /&gt;
+      &lt;/method&gt;
+    &lt;/configuration&gt;
+    &lt;configuration name=&quot;InternshipServiceApplication&quot; type=&quot;SpringBootApplicationConfigurationType&quot; factoryName=&quot;Spring Boot&quot; nameIsGenerated=&quot;true&quot;&gt;
+      &lt;module name=&quot;internship-service&quot; /&gt;
+      &lt;option name=&quot;SPRING_BOOT_MAIN_CLASS&quot; value=&quot;com.cloudcrafters.internshipservice.InternshipServiceApplication&quot; /&gt;
+      &lt;method v=&quot;2&quot;&gt;
+        &lt;option name=&quot;Make&quot; enabled=&quot;true&quot; /&gt;
+      &lt;/method&gt;
+    &lt;/configuration&gt;
+    &lt;configuration name=&quot;InterviewServiceApplication&quot; type=&quot;SpringBootApplicationConfigurationType&quot; factoryName=&quot;Spring Boot&quot; nameIsGenerated=&quot;true&quot;&gt;
+ 
 }</component>
-  <component name="RunManager" selected="Spring Boot.TaskServiceApplication">
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RunManager" selected="Spring Boot.InterviewServiceApplication">
     <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.configservice.ConfigServiceApplication" />
@@ -124,11 +174,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4a98612b-a361-4a8d-9357-0d378f7d788f" name="Changes" comment="" />
-      <created>1711127554368</created>
+      <changelist id="1e73b47b-08c5-4f76-b484-a47489d2d9d5" name="Changes" comment="" />
+      <created>1711412710321</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1711127554368</updated>
+      <workItem from="1711412712503" duration="85000" />
+      <workItem from="1711412952177" duration="821000" />
       <workItem from="1711127557275" duration="46000" />
       <workItem from="1711127715297" duration="10000" />
       <workItem from="1711128757601" duration="1927000" />
@@ -142,13 +194,23 @@
       <workItem from="1711229535119" duration="1249000" />
       <workItem from="1711362482303" duration="597000" />
       <workItem from="1711363488084" duration="382000" />
-      <workItem from="1711379905363" duration="5359000" />
-      <workItem from="1711399039146" duration="2599000" />
-      <workItem from="1711448234623" duration="4501000" />
+
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="WfRunsListSearchHistory">{
+  &quot;history&quot;: [
+    {
+    },
+    {
+    },
+    {
+    }
+  ],
+  &quot;lastFilter&quot;: {
+  }
+}</component>
 </project>

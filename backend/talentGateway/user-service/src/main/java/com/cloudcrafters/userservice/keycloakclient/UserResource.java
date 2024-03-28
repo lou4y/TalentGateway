@@ -44,7 +44,7 @@ public class UserResource {
 		return mapUser(keycloak.realm(realm).users().get(id).toRepresentation());
 	}
 	
-	@PostMapping(value = "/user")
+	@PostMapping(value = "/user/signin")
 	public Response createUser(User user) {
 		UserRepresentation userRep = mapUserRep(user);
 		Keycloak keycloak = keycloakUtil.getKeycloakInstance();
@@ -100,6 +100,8 @@ public class UserResource {
 		user.setLastName(userRep.getLastName());
 		user.setEmail(userRep.getEmail());
 		user.setUserName(userRep.getUsername());
+		user.setIsEmailVerified(userRep.isEmailVerified())	;
+
 		return user;
 	}
 	
@@ -111,7 +113,7 @@ public class UserResource {
 		userRep.setLastName(user.getLastName());
 		userRep.setEmail(user.getEmail());
 		userRep.setEnabled(true);
-		userRep.setEmailVerified(true);
+		userRep.setEmailVerified(user.getIsEmailVerified());
 		List<CredentialRepresentation> creds = new ArrayList<>();
 		CredentialRepresentation cred = new CredentialRepresentation();
 		cred.setTemporary(false);
