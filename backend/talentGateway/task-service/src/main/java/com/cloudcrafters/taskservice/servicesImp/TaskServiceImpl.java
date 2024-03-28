@@ -78,6 +78,7 @@ public class TaskServiceImpl implements TaskService {
         }
 
         // Update other task details
+        existingTask.setTaskName(taskDetails.getTaskName());
         existingTask.setStartDate(taskDetails.getStartDate());
         existingTask.setEndDate(taskDetails.getEndDate());
         existingTask.setDuration(taskDetails.getDuration());
@@ -112,6 +113,14 @@ public class TaskServiceImpl implements TaskService {
         return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
     }
 
+    // Search tasks by keyword(Task name)
+    @Override
+    public List<TaskResponse> searchTasks(String keyword) {
+        List<Task> tasks = taskDao.searchTask(keyword);
+        return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
+
+    }
+
 
     //DTO
     private TaskResponse mapToTaskResponse(Task task) {
@@ -125,6 +134,7 @@ public class TaskServiceImpl implements TaskService {
         return TaskResponse.builder()
                 .id(task.getId())
                 .startDate(task.getStartDate())
+                .taskName(task.getTaskName())
                 .endDate(task.getEndDate())
                 .duration(task.getDuration())
                 .statut(task.getStatut())
