@@ -101,6 +101,7 @@ public class UserResource {
 		user.setEmail(userRep.getEmail());
 		user.setUserName(userRep.getUsername());
 		user.setIsEmailVerified(userRep.isEmailVerified())	;
+
 		return user;
 	}
 	

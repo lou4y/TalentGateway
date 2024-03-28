@@ -1,10 +1,10 @@
 package com.cloudcrafters.taskservice.Entities;
 
+import com.cloudcrafters.taskservice.models.Project;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 
 @Entity
@@ -16,11 +16,13 @@ import java.util.List;
 public class Module implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long moduleid ;
+    private Long moduleId;
     private String moduleName;
     private String moduleDescription;
 
-
+    @Transient
+    private Project project;
+    private Long projectId;
 
 
 }

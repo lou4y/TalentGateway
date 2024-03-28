@@ -22,6 +22,8 @@
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" afterDir="false" />
+    <list default="true" id="1e73b47b-08c5-4f76-b484-a47489d2d9d5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +48,20 @@
   </component>
   <component name="ProjectId" id="2eF5g5F7o2SQlFbXzujVLOeQUsm" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2eCdsyKaehm8XPAxAHZ9C3KJDVJ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -74,6 +90,57 @@
   </component>
   <component name="RunManager" selected="Spring Boot.ProjectServiceApplication">
     <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;internship&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+ 
+}&lt;/component&gt;
+  &lt;component name=&quot;RunManager&quot; selected=&quot;Spring Boot.InternshipServiceApplication&quot;&gt;
+    &lt;configuration name=&quot;ConfigServiceApplication&quot; type=&quot;SpringBootApplicationConfigurationType&quot; factoryName=&quot;Spring Boot&quot; nameIsGenerated=&quot;true&quot;&gt;
+      &lt;module name=&quot;config-service&quot; /&gt;
+      &lt;option name=&quot;SPRING_BOOT_MAIN_CLASS&quot; value=&quot;com.cloudcrafters.configservice.ConfigServiceApplication&quot; /&gt;
+      &lt;method v=&quot;2&quot;&gt;
+        &lt;option name=&quot;Make&quot; enabled=&quot;true&quot; /&gt;
+      &lt;/method&gt;
+    &lt;/configuration&gt;
+    &lt;configuration name=&quot;DiscoveryServiceApplication&quot; type=&quot;SpringBootApplicationConfigurationType&quot; factoryName=&quot;Spring Boot&quot; nameIsGenerated=&quot;true&quot;&gt;
+      &lt;module name=&quot;discovery-service&quot; /&gt;
+      &lt;option name=&quot;SPRING_BOOT_MAIN_CLASS&quot; value=&quot;com.cloudcrafters.discoveryservice.DiscoveryServiceApplication&quot; /&gt;
+      &lt;method v=&quot;2&quot;&gt;
+        &lt;option name=&quot;Make&quot; enabled=&quot;true&quot; /&gt;
+      &lt;/method&gt;
+    &lt;/configuration&gt;
+    &lt;configuration name=&quot;GatewayServiceApplication&quot; type=&quot;SpringBootApplicationConfigurationType&quot; factoryName=&quot;Spring Boot&quot; nameIsGenerated=&quot;true&quot;&gt;
+      &lt;module name=&quot;gateway-service&quot; /&gt;
+      &lt;option name=&quot;SPRING_BOOT_MAIN_CLASS&quot; value=&quot;com.cloudcrafters.gatewayservice.GatewayServiceApplication&quot; /&gt;
+      &lt;method v=&quot;2&quot;&gt;
+        &lt;option name=&quot;Make&quot; enabled=&quot;true&quot; /&gt;
+      &lt;/method&gt;
+    &lt;/configuration&gt;
+    &lt;configuration name=&quot;InternshipServiceApplication&quot; type=&quot;SpringBootApplicationConfigurationType&quot; factoryName=&quot;Spring Boot&quot; nameIsGenerated=&quot;true&quot;&gt;
+      &lt;module name=&quot;internship-service&quot; /&gt;
+      &lt;option name=&quot;SPRING_BOOT_MAIN_CLASS&quot; value=&quot;com.cloudcrafters.internshipservice.InternshipServiceApplication&quot; /&gt;
+      &lt;method v=&quot;2&quot;&gt;
+        &lt;option name=&quot;Make&quot; enabled=&quot;true&quot; /&gt;
+      &lt;/method&gt;
+    &lt;/configuration&gt;
+    &lt;configuration name=&quot;InterviewServiceApplication&quot; type=&quot;SpringBootApplicationConfigurationType&quot; factoryName=&quot;Spring Boot&quot; nameIsGenerated=&quot;true&quot;&gt;
+ 
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RunManager" selected="Spring Boot.InterviewServiceApplication">
+    <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.configservice.ConfigServiceApplication" />
       <method v="2">
@@ -159,6 +226,34 @@
       <workItem from="1711487596201" duration="3368000" />
       <workItem from="1711546362268" duration="9138000" />
       <workItem from="1711649864988" duration="4851000" />
+      <changelist id="1e73b47b-08c5-4f76-b484-a47489d2d9d5" name="Changes" comment="" />
+      <created>1711412710321</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711127554368</updated>
+      <workItem from="1711412712503" duration="85000" />
+      <workItem from="1711412952177" duration="821000" />
+      <workItem from="1711127557275" duration="46000" />
+      <workItem from="1711127715297" duration="10000" />
+      <workItem from="1711128757601" duration="1927000" />
+      <workItem from="1711134187112" duration="271000" />
+      <workItem from="1711134475115" duration="98000" />
+      <workItem from="1711134599681" duration="8464000" />
+      <workItem from="1711185227664" duration="13643000" />
+      <workItem from="1711199029157" duration="1305000" />
+      <workItem from="1711208479155" duration="1383000" />
+      <workItem from="1711220981293" duration="1038000" />
+      <workItem from="1711229535119" duration="1249000" />
+      <workItem from="1711362482303" duration="597000" />
+      <workItem from="1711363488084" duration="382000" />
+      <workItem from="1711379905363" duration="6216000" />
+      <workItem from="1711392082950" duration="10530000" />
+      <workItem from="1711448579958" duration="5002000" />
+      <workItem from="1711392082950" duration="9172000" />
+      <workItem from="1711459711501" duration="6974000" />
+      <workItem from="1711466751903" duration="10882000" />
+      <workItem from="1711548995109" duration="25000" />
+      <workItem from="1711557004599" duration="815000" />
     </task>
     <servers />
   </component>
@@ -176,4 +271,15 @@
       </map>
     </option>
   </component>
+  <component name="WfRunsListSearchHistory">{
+  &quot;history&quot;: [
+    {
+    },
+    {
+    }
+  ],
+  &quot;lastFilter&quot;: {
+  }
+}</component>
+
 </project>
