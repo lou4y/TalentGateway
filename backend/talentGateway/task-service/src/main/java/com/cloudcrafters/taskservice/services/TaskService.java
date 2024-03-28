@@ -15,4 +15,5 @@ public interface TaskService {
     List<TaskResponse> findTasksByPriority(Priority priority);
     List<TaskResponse> findTasksByUserId(String userId);
 
+    List<TaskResponse> searchTasks(String keyword);
 }

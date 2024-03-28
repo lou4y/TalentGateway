@@ -7,13 +7,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="talentGateway" />
         <module name="task-service" />
+        <module name="config-service" />
+        <module name="project-service" />
+        <module name="talentGateway" />
+        <module name="discovery-service" />
+        <module name="gateway-service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="config-service" options="-parameters" />
+      <module name="discovery-service" options="-parameters" />
+      <module name="gateway-service" options="-parameters" />
+      <module name="project-service" options="-parameters" />
       <module name="task-service" options="-parameters" />
     </option>
   </component>

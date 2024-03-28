@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/Modules") // Note the leading slash for consistency
+@CrossOrigin("*")  // autorise les requêtes de tous les domaines
 public class ModuleController {
 
     @Autowired
