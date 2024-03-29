@@ -1,30 +1,20 @@
 package com.cloudcrafters.interviewservice.controller;
-
-
 import com.cloudcrafters.interviewservice.clients.OffreRestClient;
 import com.cloudcrafters.interviewservice.clients.UserRestClient;
-
 import com.cloudcrafters.interviewservice.dto.ApplicationRequest;
 import com.cloudcrafters.interviewservice.dto.ApplicationResponse;
-
 import com.cloudcrafters.interviewservice.entities.Offre;
-
 import com.cloudcrafters.interviewservice.model.Status;
 import com.cloudcrafters.interviewservice.service.ApplicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-
 import java.util.List;
 import java.util.Map;
 
@@ -62,6 +52,8 @@ public class ApplicationController {
         return applicationResponse;
     }
 
+/////////////////////////http://localhost:8080/api/application/all////////////////
+ ////////////////  avec fonction avonce de recherche -->/http://localhost:8080/api/application/all?status=PENDING/////////////
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
@@ -105,6 +97,7 @@ public class ApplicationController {
     }
 
 
+    /////////////////////http://localhost:8080/api/application/offre/1/////////////////
     @GetMapping("/offre/{offreId}")
     public ResponseEntity<List<ApplicationResponse>> getApplicationsByOffreId(@PathVariable String offreId) {
         List<ApplicationResponse> applications = applicationService.getApplicationsByOffreId(offreId);
@@ -121,7 +114,7 @@ public class ApplicationController {
     }
 
 
-
+///////////////////http://localhost:8080/api/application/interviews/2////////
     @GetMapping("/interviews/{userId}")
     @ResponseStatus(HttpStatus.OK)
     public List<ApplicationResponse> getApplicationsByUserId(@PathVariable String userId) {
@@ -140,7 +133,7 @@ public class ApplicationController {
 
 
 
-    // aficher le % pour tout les application du notre site
+    //fonction avonce pour  aficher le % pour tout les application du notre site//http://localhost:8080/api/application/statusPercentage
     @GetMapping("/statusPercentage")
     public ResponseEntity<Map<Status, Double>> getStatusPercentage() {
         Map<Status, Double> statusPercentage = applicationService.calculateStatusPercentage();
@@ -148,7 +141,7 @@ public class ApplicationController {
     }
 
 
-    // afficher le % des application de chaque user
+    // fonction avonce pour  aficher afficher le % des application de chaque user////http://localhost:8080/api/application/statusPercentage/2
     @GetMapping("/statusPercentage/{userId}")
     public ResponseEntity<Map<Status, Double>> getStatusPercentageByUser(@PathVariable String userId) {
         Map<Status, Double> statusPercentage = applicationService.calculateStatusPercentageByUserId(userId);

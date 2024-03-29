@@ -1,0 +1,72 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  PRELOADER CSS START
+/*----------------------------------------*/
+
+.tp-preloader {
+	background-color: var(--tp-common-white);
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	z-index: 9999;
+	left: 0;
+	opacity: 1;
+	visibility: visible;
+	@include transition(.3s);
+
+	&__center {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+	}
+
+	& img,
+	svg {
+		display: block;
+		width: 100px;
+		height: 100px;
+		animation: tp-bounce 3s infinite;
+		& .path-yellow {
+			color: #EDB83E;
+			width: 0;
+			animation: colorchange 1.5s infinite;
+			@include transition(.5s);
+		}
+	}
+}
+
+@keyframes colorchange {
+	10% {
+		color:green;
+	}
+	10% {
+		color:pink;
+	}
+	20% {
+		color:deeppink;
+	}
+	30% {
+		color:darkorange;
+	}
+	40% {
+		color:aquamarine;
+	}
+	50% {
+		color:darkcyan;
+	}
+	70% {
+		color:orange;
+	}
+	80% {
+		color:cornflowerblue;
+	}
+	90% {
+		color:grey;
+	}
+	100% {
+		color:white;
+	}
+}

@@ -25,7 +25,9 @@ public class ApplicationResponse {
     private Status status;
     private String userid;
     private String offreid;
+    private InterviewResponse interview;
     private String intershipCompany;
     private String IntershipTitle;
-    private InterviewResponse interview;
+
+
 }

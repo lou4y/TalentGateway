@@ -28,9 +28,9 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task createTask(Task task) {
-        if (task.getModule() != null && task.getModule().getModuleid() != null) {
+        if (task.getModule() != null && task.getModule().getModuleId() != null) {
             // Fetch the module from the database
-            Module module = moduleService.getModuleById(task.getModule().getModuleid());
+            Module module = moduleService.getModuleById(task.getModule().getModuleId());
             if (module == null) {
                 throw new RuntimeException("Module ID does not exist");
             }
@@ -62,15 +62,15 @@ public class TaskServiceImpl implements TaskService {
                 .orElseThrow(() -> new RuntimeException("Task not found for id: " + taskId));
 
         // Check if the module ID is provided in the request body
-        if (taskDetails.getModule() != null && taskDetails.getModule().getModuleid() != null) {
+        if (taskDetails.getModule() != null && taskDetails.getModule().getModuleId() != null) {
             // Fetch the module from the database based on the provided module ID
-            Module module = moduleService.getModuleById(taskDetails.getModule().getModuleid());
+            Module module = moduleService.getModuleById(taskDetails.getModule().getModuleId());
             if (module != null) {
                 // Set the fetched module details to the task
                 existingTask.setModule(module);
             } else {
                 // If the module does not exist, throw an exception or handle the error as needed
-                throw new RuntimeException("Module not found for id: " + taskDetails.getModule().getModuleid());
+                throw new RuntimeException("Module not found for id: " + taskDetails.getModule().getModuleId());
             }
         } else {
             // If the module ID is not provided in the request body, retain the existing module
@@ -78,6 +78,7 @@ public class TaskServiceImpl implements TaskService {
         }
 
         // Update other task details
+        existingTask.setTaskName(taskDetails.getTaskName());
         existingTask.setStartDate(taskDetails.getStartDate());
         existingTask.setEndDate(taskDetails.getEndDate());
         existingTask.setDuration(taskDetails.getDuration());
@@ -112,19 +113,28 @@ public class TaskServiceImpl implements TaskService {
         return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
     }
 
+    // Search tasks by keyword(Task name)
+    @Override
+    public List<TaskResponse> searchTasks(String keyword) {
+        List<Task> tasks = taskDao.searchTask(keyword);
+        return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
+
+    }
+
 
     //DTO
     private TaskResponse mapToTaskResponse(Task task) {
         ModuleResponse moduleResponse = null;
         if (task.getModule() != null) {
             moduleResponse = new ModuleResponse();
-            moduleResponse.setId(task.getModule().getModuleid());
+            moduleResponse.setId(task.getModule().getModuleId());
             moduleResponse.setModuleName(task.getModule().getModuleName());
             moduleResponse.setModuleDescription(task.getModule().getModuleDescription());
         }
         return TaskResponse.builder()
                 .id(task.getId())
                 .startDate(task.getStartDate())
+                .taskName(task.getTaskName())
                 .endDate(task.getEndDate())
                 .duration(task.getDuration())
                 .statut(task.getStatut())
