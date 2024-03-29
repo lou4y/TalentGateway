@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ed9c1919-e35c-4b13-bb22-ff7afed6560e" name="Changes" comment="" />
+    <list default="true" id="ed9c1919-e35c-4b13-bb22-ff7afed6560e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/.idea/shelf/Uncommitted_changes_before_Update_at_3_26_2024_1_09_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/.idea/shelf/Uncommitted_changes_before_Update_at_3_26_2024_1_09_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/InternshipServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/InternshipServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/InternshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/InternshipController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/CategoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/CategoryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/InternshipDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/InternshipDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Internship.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Internship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/InternshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/InternshipService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/CategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/InternshipServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/InternshipServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,18 +35,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "internship",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;internship&quot;,
+    &quot;last_opened_file_path&quot;: &quot;P:/devpicloud/TalentGateway&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -41,10 +59,25 @@
       <workItem from="1711135727058" duration="64000" />
       <workItem from="1711135995481" duration="22000" />
       <workItem from="1711284401918" duration="9000" />
+      <workItem from="1711659043565" duration="8000" />
+      <workItem from="1711659099609" duration="292000" />
+      <workItem from="1711666532322" duration="27000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="WfRunsListSearchHistory"><![CDATA[{
+  "history": [
+    {
+    },
+    {
+    },
+    {
+    }
+  ],
+  "lastFilter": {
+  }
+}]]></component>
 </project>

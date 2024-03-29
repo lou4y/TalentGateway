@@ -4,6 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
+    <list default="true" id="525b8060-74f2-4ea1-b51f-6fda03e34ba2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_26_2024_1_09_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_26_2024_1_09_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/InternshipServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/InternshipServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/InternshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/InternshipController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/CategoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/CategoryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/InternshipDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/InternshipDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Internship.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Internship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/InternshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/InternshipService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/CategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/InternshipServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/InternshipServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/resources/application.properties" afterDir="false" />
+
     <list default="true" id="af8e5df4-2bb5-4255-bb66-7f0e757047a0" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
@@ -24,6 +43,7 @@
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" afterDir="false" />
     <list default="true" id="1e73b47b-08c5-4f76-b484-a47489d2d9d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,13 +79,35 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 3
+  &quot;associatedIndex&quot;: 5
 }</component>
-  <component name="ProjectId" id="2eCdsyKaehm8XPAxAHZ9C3KJDVJ" />
+  <component name="ProjectId" id="2eHBaxjAXni3rcgpAClWo2mRkzh" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "internship",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.uml",
+    "vue.rearranger.settings.migration": "true"
+=======
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
@@ -101,48 +143,19 @@
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+
   }
- 
-}&lt;/component&gt;
-  &lt;component name=&quot;RunManager&quot; selected=&quot;Spring Boot.InternshipServiceApplication&quot;&gt;
-    &lt;configuration name=&quot;ConfigServiceApplication&quot; type=&quot;SpringBootApplicationConfigurationType&quot; factoryName=&quot;Spring Boot&quot; nameIsGenerated=&quot;true&quot;&gt;
-      &lt;module name=&quot;config-service&quot; /&gt;
-      &lt;option name=&quot;SPRING_BOOT_MAIN_CLASS&quot; value=&quot;com.cloudcrafters.configservice.ConfigServiceApplication&quot; /&gt;
-      &lt;method v=&quot;2&quot;&gt;
-        &lt;option name=&quot;Make&quot; enabled=&quot;true&quot; /&gt;
-      &lt;/method&gt;
-    &lt;/configuration&gt;
-    &lt;configuration name=&quot;DiscoveryServiceApplication&quot; type=&quot;SpringBootApplicationConfigurationType&quot; factoryName=&quot;Spring Boot&quot; nameIsGenerated=&quot;true&quot;&gt;
-      &lt;module name=&quot;discovery-service&quot; /&gt;
-      &lt;option name=&quot;SPRING_BOOT_MAIN_CLASS&quot; value=&quot;com.cloudcrafters.discoveryservice.DiscoveryServiceApplication&quot; /&gt;
-      &lt;method v=&quot;2&quot;&gt;
-        &lt;option name=&quot;Make&quot; enabled=&quot;true&quot; /&gt;
-      &lt;/method&gt;
-    &lt;/configuration&gt;
-    &lt;configuration name=&quot;GatewayServiceApplication&quot; type=&quot;SpringBootApplicationConfigurationType&quot; factoryName=&quot;Spring Boot&quot; nameIsGenerated=&quot;true&quot;&gt;
-      &lt;module name=&quot;gateway-service&quot; /&gt;
-      &lt;option name=&quot;SPRING_BOOT_MAIN_CLASS&quot; value=&quot;com.cloudcrafters.gatewayservice.GatewayServiceApplication&quot; /&gt;
-      &lt;method v=&quot;2&quot;&gt;
-        &lt;option name=&quot;Make&quot; enabled=&quot;true&quot; /&gt;
-      &lt;/method&gt;
-    &lt;/configuration&gt;
-    &lt;configuration name=&quot;InternshipServiceApplication&quot; type=&quot;SpringBootApplicationConfigurationType&quot; factoryName=&quot;Spring Boot&quot; nameIsGenerated=&quot;true&quot;&gt;
-      &lt;module name=&quot;internship-service&quot; /&gt;
-      &lt;option name=&quot;SPRING_BOOT_MAIN_CLASS&quot; value=&quot;com.cloudcrafters.internshipservice.InternshipServiceApplication&quot; /&gt;
-      &lt;method v=&quot;2&quot;&gt;
-        &lt;option name=&quot;Make&quot; enabled=&quot;true&quot; /&gt;
-      &lt;/method&gt;
-    &lt;/configuration&gt;
-    &lt;configuration name=&quot;InterviewServiceApplication&quot; type=&quot;SpringBootApplicationConfigurationType&quot; factoryName=&quot;Spring Boot&quot; nameIsGenerated=&quot;true&quot;&gt;
- 
-}</component>
-  <component name="ReactorSettings">
-    <option name="notificationShown" value="true" />
-  </component>
-  <component name="RunManager" selected="Spring Boot.InterviewServiceApplication">
-    <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+}]]></component>
+  <component name="RunManager" selected="Spring Boot.ConfigServiceApplication">
+    <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="config-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.configservice.ConfigServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cloudcrafters.configservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -160,16 +173,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
+    <configuration name="GatewayServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+
     <configuration name="GatewayServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+
       <module name="gateway-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.gatewayservice.GatewayServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cloudcrafters.gatewayservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="InternshipServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+
     <configuration name="InternshipServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="internship-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.internshipservice.InternshipServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cloudcrafters.internshipservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -202,22 +233,68 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
+    <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+
     <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+
       <module name="user-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.userservice.UserServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cloudcrafters.userservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
+    <list>
+      <item itemvalue="Spring Boot.InterviewServiceApplication" />
+      <item itemvalue="Spring Boot.MessagingServiceApplication" />
+      <item itemvalue="Spring Boot.ProjectServiceApplication" />
+      <item itemvalue="Spring Boot.TaskServiceApplication" />
+      <item itemvalue="Spring Boot.ConfigServiceApplication" />
+      <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
+      <item itemvalue="Spring Boot.GatewayServiceApplication" />
+      <item itemvalue="Spring Boot.InternshipServiceApplication" />
+      <item itemvalue="Spring Boot.UserServiceApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.InternshipServiceApplication" />
+        <item itemvalue="Spring Boot.ConfigServiceApplication" />
+        <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
+        <item itemvalue="Spring Boot.GatewayServiceApplication" />
+        <item itemvalue="Spring Boot.UserServiceApplication" />
+
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
+
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+
+      <changelist id="525b8060-74f2-4ea1-b51f-6fda03e34ba2" name="Changes" comment="" />
+      <created>1711551700931</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711551700931</updated>
+      <workItem from="1711551702280" duration="22411000" />
+      <workItem from="1711655410371" duration="4000" />
+      <workItem from="1711655426269" duration="3362000" />
+      <workItem from="1711659437610" duration="462000" />
+      <workItem from="1711662016569" duration="4203000" />
+      <workItem from="1711666527954" duration="5329000" />
+      <workItem from="1711713529185" duration="308000" />
+      <workItem from="1711714766860" duration="11587000" />
+
       <changelist id="af8e5df4-2bb5-4255-bb66-7f0e757047a0" name="Changes" comment="" />
       <created>1711487594529</created>
       <option name="number" value="Default" />
@@ -254,6 +331,7 @@
       <workItem from="1711466751903" duration="10882000" />
       <workItem from="1711548995109" duration="25000" />
       <workItem from="1711557004599" duration="815000" />
+
     </task>
     <servers />
   </component>
@@ -271,15 +349,37 @@
       </map>
     </option>
   </component>
+
+  <component name="WfRunsListSearchHistory"><![CDATA[{
+  "history": [
+    {
+    },
+    {
+    },
+    {
+    },
+    {
+    },
+    {
+    },
+
   <component name="WfRunsListSearchHistory">{
   &quot;history&quot;: [
+
     {
     },
     {
     }
   ],
-  &quot;lastFilter&quot;: {
+  "lastFilter": {
   }
+
+}]]></component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+
 }</component>
 
 </project>
