@@ -10,10 +10,8 @@ import com.cloudcrafters.internshipservice.services.InternshipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -100,5 +98,27 @@ public class InternshipServiceImpl implements InternshipService {
         }
     }
 
+    @Override
+    public List<Internship> searchInternshipsByKeyword(String keyword) {
+        List<Internship> internships = InternshipDao.findAll();
+
+        return internships.stream()
+                .filter(internship ->
+                        internship.getIntershipTitle().toLowerCase().contains(keyword.toLowerCase()) ||
+                                internship.getIntershipCompany().toLowerCase().contains(keyword.toLowerCase()) ||
+                                internship.getIntershipSkills().toLowerCase().contains(keyword.toLowerCase()) ||
+                                internship.getIntershipLocation().toLowerCase().contains(keyword.toLowerCase()) ||
+                                internship.getIntershipType().toString().toLowerCase().contains(keyword.toLowerCase()) || // Convert to string first
+                                internship.getCategories().stream().anyMatch(category -> category.getCategoryName().toLowerCase().contains(keyword.toLowerCase())))
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public List<Internship> treeInternshipsByPostedDate() {
+        List<Internship> internships = InternshipDao.findAll();
+        internships.sort(Comparator.comparing(Internship::getIntershippostedDate));
+        return internships;
+    }
 
 }

@@ -20,4 +20,9 @@ public interface InternshipService {
     //update internship by id
     Internship updateInternship(Long id, Internship internship);
 
+    List<Internship> searchInternshipsByKeyword(String keyword);
+
+    List<Internship> treeInternshipsByPostedDate();
+
+
 }

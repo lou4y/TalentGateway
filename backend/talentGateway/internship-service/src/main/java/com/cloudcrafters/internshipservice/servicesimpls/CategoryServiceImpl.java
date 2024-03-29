@@ -66,6 +66,16 @@ public class CategoryServiceImpl implements CategoryService {
             // Remove the associations between the category and internships
             for (Internship internship : category.getInternships()) {
                 internship.getCategories().remove(category);
+                if (internship.getCategories().isEmpty()) {
+                    // If the internship has no categories after removing the deleted one, add the "other" category
+                    Category otherCategory = getCategoryByName("other");
+                    if (otherCategory == null) {
+                        // If "other" category doesn't exist, create it
+                        otherCategory = Category.builder().categoryName("other").categoryDescription("Other").build();
+                        otherCategory = saveCategory(otherCategory);
+                    }
+                    internship.getCategories().add(otherCategory);
+                }
                 internshipService.saveInternship(internship);
             }
             // Delete the category
@@ -74,6 +84,7 @@ public class CategoryServiceImpl implements CategoryService {
             throw new NotFoundException("Category with id " + id + " not found.");
         }
     }
+
 
     @Override
     public Category getCategoryByName(String categoryName) {
