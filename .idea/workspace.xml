@@ -24,6 +24,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "internship",
+    "last_opened_file_path": "/Users/mohamed/Desktop/TalentGateway",
+    "nodejs_package_manager_path": "yarn",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -41,10 +43,22 @@
       <workItem from="1711135727058" duration="64000" />
       <workItem from="1711135995481" duration="22000" />
       <workItem from="1711284401918" duration="9000" />
+      <workItem from="1711725516053" duration="37000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
