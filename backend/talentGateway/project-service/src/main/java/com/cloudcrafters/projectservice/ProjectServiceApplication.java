@@ -1,12 +1,14 @@
 package com.cloudcrafters.projectservice;
 
 import com.cloudcrafters.projectservice.clients.UserRestClient;
+import com.cloudcrafters.projectservice.config.GlobalConfig;
 import com.cloudcrafters.projectservice.daos.ProjectDao;
 import com.cloudcrafters.projectservice.entities.Project;
 import com.cloudcrafters.projectservice.enums.ProjectStatus;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
@@ -17,6 +19,7 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableFeignClients
+@EnableConfigurationProperties(GlobalConfig.class)
 public class ProjectServiceApplication {
 
     public static void main(String[] args) {
