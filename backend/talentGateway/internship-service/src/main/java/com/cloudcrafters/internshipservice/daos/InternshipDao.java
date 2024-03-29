@@ -6,11 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface InternshipDao extends JpaRepository<Internship, Long> {
 
-
-    @Query("SELECT i FROM Internship i WHERE i.category.CategoryId = :categoryId")
-    List<Internship> findAllByCategoryId(@Param("categoryId") Long categoryId);
-    List<Internship> findInternshipsByUserId(String userId);
 }
