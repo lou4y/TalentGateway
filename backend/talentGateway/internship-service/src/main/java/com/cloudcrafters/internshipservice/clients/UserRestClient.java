@@ -20,11 +20,7 @@ public interface UserRestClient {
     @GetMapping("/users")
     List<User> getAllUsers();
 
-    @GetMapping("/internships/{id}")
-    Internship findInternshipById(@PathVariable Long id);
 
-    @GetMapping("/categories/{id}")
-    Category findCategoryById(@PathVariable Long id);
 
     default User getDefaultUser(String id, Exception exception) {
         User user = new User();

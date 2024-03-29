@@ -23,7 +23,7 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long CategoryId;
     private String categoryName;
-    private String CategoryDescription;
+    private String categoryDescription;
 
     @ManyToMany(mappedBy = "categories", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnoreProperties("categories")

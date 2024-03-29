@@ -25,26 +25,39 @@ public class InternshipController {
 
 
     //create internship
+
     @PostMapping
     @ResponseBody
     public ResponseEntity<Object> createInternship(@RequestBody Internship internship) {
         try {
-            // Iterate over the categories of the internship
-            Set<Category> categories = new HashSet<>();
-            for (Category category : internship.getCategories()) {
-                // Check if the category already exists in the database
-                Category existingCategory = categoryService.getCategoryByName(category.getCategoryName());
-                if (existingCategory != null) {
-                    // If the category exists, use the existing one
-                    categories.add(existingCategory);
-                } else {
-                    // If the category doesn't exist, save the new category
-                    Category savedCategory = categoryService.saveCategory(category);
-                    categories.add(savedCategory);
+            // Check if categories are provided in the request
+            if (internship.getCategories() != null && !internship.getCategories().isEmpty()) {
+                Set<Category> categories = new HashSet<>();
+                for (Category category : internship.getCategories()) {
+                    // Check if the category already exists in the database
+                    Category existingCategory = categoryService.getCategoryByName(category.getCategoryName());
+                    if (existingCategory != null) {
+                        // If the category exists, use the existing one
+                        categories.add(existingCategory);
+                    } else {
+                        // If the category doesn't exist, save the new category
+                        Category savedCategory = categoryService.saveCategory(category);
+                        categories.add(savedCategory);
+                    }
                 }
+                // Set the categories for the internship
+                internship.setCategories(categories);
+            } else {
+                // If no categories are provided, set the internship to the "other" category
+                Category otherCategory = categoryService.getCategoryByName("other");
+                if (otherCategory == null) {
+                    // If "other" category doesn't exist, create it
+                    otherCategory = Category.builder().categoryName("other").categoryDescription("Other").build();
+                    otherCategory = categoryService.saveCategory(otherCategory);
+                }
+                // Set the "other" category for the internship
+                internship.setCategories(Collections.singleton(otherCategory));
             }
-            // Set the categories for the internship
-            internship.setCategories(categories);
             // Save the internship
             Internship savedInternship = internshipService.saveInternship(internship);
             return ResponseEntity.ok(savedInternship);
@@ -53,6 +66,7 @@ public class InternshipController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
+
 
 
 
@@ -100,5 +114,21 @@ public class InternshipController {
             return ResponseEntity.notFound().build();
         }
     }
+
+
+
+    @GetMapping("/search")
+    @ResponseBody
+    public List<Internship> searchInternshipsByKeyword(@RequestParam String keyword) {
+        return internshipService.searchInternshipsByKeyword(keyword);
+    }
+
+
+    @GetMapping("/tree-by-posted-date")
+    @ResponseBody
+    public List<Internship> treeInternshipsByPostedDate() {
+        return internshipService.treeInternshipsByPostedDate();
+    }
+
 
 }
