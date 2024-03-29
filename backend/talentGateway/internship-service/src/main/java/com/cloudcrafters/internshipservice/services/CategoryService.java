@@ -3,12 +3,18 @@ package com.cloudcrafters.internshipservice.services;
 import com.cloudcrafters.internshipservice.entites.Category;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CategoryService {
-    Category createCategory(Category category);
-    Category updateCategory(Category category);
-    Category getCategoryById(Long id);
-    void deleteCategoryById(Long id);
+
+    Category saveCategory(Category category);
     List<Category> getAllCategories();
+    //get category by id
+    Category getCategoryById(Long id);
+    Category updateCategory(Long id, Category category);
+    Category getCategoryByName(String categoryName);
+    void deleteCategoryById(Long id);
+
+
 
 }

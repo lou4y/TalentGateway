@@ -12,7 +12,6 @@ public interface OffreRestClient {
     @GetMapping("/internships/{offreId}")
     Offre findOffreById(@PathVariable("offreId") String offreId);
 
-
     default Offre getDefaultCreator(String id, Exception exception) {
         Offre offre = new Offre();
 

@@ -17,6 +17,7 @@ import java.util.Date;
 public class TaskResponse {
 
     private Long id;
+    private String taskName;
     private Date startDate;
     private Date endDate;
     private String duration;
