@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e73b47b-08c5-4f76-b484-a47489d2d9d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/repository/Applicationrepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/repository/Applicationrepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +183,10 @@
       <workItem from="1711459711501" duration="6974000" />
       <workItem from="1711466751903" duration="10882000" />
       <workItem from="1711548995109" duration="25000" />
-      <workItem from="1711557004599" duration="815000" />
+      <workItem from="1711557004599" duration="1108000" />
+      <workItem from="1711563878074" duration="1027000" />
+      <workItem from="1711719485110" duration="292000" />
+      <workItem from="1711794012585" duration="1021000" />
     </task>
     <servers />
   </component>
@@ -199,4 +203,8 @@
   &quot;lastFilter&quot;: {
   }
 }</component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
 </project>
