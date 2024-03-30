@@ -3,12 +3,12 @@ package com.cloudcrafters.taskservice.servicesImp;
 import com.cloudcrafters.taskservice.Dao.ModuleDao;
 import com.cloudcrafters.taskservice.Entities.Module;
 import com.cloudcrafters.taskservice.services.ModuleService;
-import com.cloudcrafters.taskservice.services.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -46,5 +46,11 @@ public class ModuleServiceImpl implements ModuleService {
     public void deleteModule(Long moduleId) {
         Module module = getModuleById(moduleId);
         moduleDao.delete(module);
+    }
+
+    //test
+    @Override
+    public Optional<Module> getModuleByName(String moduleName) {
+        return moduleDao.findByModuleName(moduleName);
     }
 }

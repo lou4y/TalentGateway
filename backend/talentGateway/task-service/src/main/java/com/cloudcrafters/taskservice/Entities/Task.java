@@ -24,6 +24,7 @@ public class Task implements Serializable {
     private Long id;
 
     private String taskName;
+    private String taskDescription;
     @Temporal(TemporalType.DATE)
     private Date startDate;
 
@@ -43,10 +44,11 @@ public class Task implements Serializable {
     @JoinColumn(name = "module_Id") // This column in the 'Task' table will reference the primary key of 'Module'
     private Module module;
 
-    // other MS
+    // Relation with User
     @Transient
     private User user;
     private String userId;
+    private String firstName;
 
 
 }
