@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ed9c1919-e35c-4b13-bb22-ff7afed6560e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/talentGateway/.idea/shelf/Uncommitted_changes_before_Update_at_3_26_2024_1_09_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/.idea/shelf/Uncommitted_changes_before_Update_at_3_26_2024_1_09_PM__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/talentGateway/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/InternshipServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/InternshipServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/InternshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/InternshipController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/CategoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/CategoryDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/InternshipDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/InternshipDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Internship.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Internship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/CategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/InternshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/InternshipService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/CategoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/InternshipServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/InternshipServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/internship-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/config-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/config-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Clients/UserRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Clients/UserRestClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Controller/ModuleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Controller/ModuleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Dao/ModuleDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Dao/TaskDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Dao/TaskDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Entities/Module.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Entities/Module.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Entities/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Entities/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/TaskServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/TaskServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/dto/TaskResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/dto/TaskResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/models/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/models/Project.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/services/ModuleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/services/ModuleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/ModuleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/ModuleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/TaskServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/talentGateway/task-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,19 +39,87 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;internship&quot;,
-    &quot;last_opened_file_path&quot;: &quot;P:/devpicloud/TalentGateway&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Amine/Documents/TalentGateway/TalentGateway/backend/talentGateway/project-service",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RunManager" selected="Spring Boot.TaskServiceApplication">
+    <configuration name="All in discovery-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="discovery-service" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in task-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="task-service" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="config-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.configservice.ConfigServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DiscoveryServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="discovery-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.discoveryservice.DiscoveryServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="gateway-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.gatewayservice.GatewayServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProjectServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="project-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.projectservice.ProjectServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="task-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.taskservice.TaskServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in task-service" />
+        <item itemvalue="JUnit.All in discovery-service" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -62,14 +134,15 @@
       <workItem from="1711659043565" duration="8000" />
       <workItem from="1711659099609" duration="292000" />
       <workItem from="1711666532322" duration="27000" />
+      <workItem from="1711798800827" duration="8261000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="WfRunsListSearchHistory"><![CDATA[{
-  "history": [
+  <component name="WfRunsListSearchHistory">{
+  &quot;history&quot;: [
     {
     },
     {
@@ -77,7 +150,7 @@
     {
     }
   ],
-  "lastFilter": {
+  &quot;lastFilter&quot;: {
   }
-}]]></component>
+}</component>
 </project>

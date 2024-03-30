@@ -2,6 +2,7 @@ package com.cloudcrafters.taskservice.services;
 
 import com.cloudcrafters.taskservice.Entities.Module;
 import java.util.List;
+import java.util.Optional;
 
 public interface ModuleService {
     Module createModule(Module module);
@@ -9,4 +10,6 @@ public interface ModuleService {
     List<Module> getAllModules();
     Module getModuleById(Long moduleId);
     void deleteModule(Long moduleId);
+
+    Optional<Module> getModuleByName(String moduleName);
 }

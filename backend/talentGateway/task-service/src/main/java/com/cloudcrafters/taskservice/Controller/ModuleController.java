@@ -1,16 +1,20 @@
 package com.cloudcrafters.taskservice.Controller;
 
 import com.cloudcrafters.taskservice.Clients.ProjectRestClient;
+
+import com.cloudcrafters.taskservice.Dao.ModuleDao;
 import com.cloudcrafters.taskservice.Entities.Module;
 import com.cloudcrafters.taskservice.models.Project;
 import com.cloudcrafters.taskservice.services.ModuleService;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/Modules") // Note the leading slash for consistency
@@ -22,6 +26,7 @@ public class ModuleController {
 
     @Autowired
     private ProjectRestClient projectRestClient;
+    private ModuleDao moduleDao;
 
     public ModuleController(ModuleService moduleService, ProjectRestClient projectRestClient) {
         this.moduleService = moduleService;
@@ -30,10 +35,12 @@ public class ModuleController {
 
     // Create module
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Module createModule(@RequestBody Module module) {
-       return moduleService.createModule(module);
+    public ResponseEntity<Module> createModule(@RequestBody Module module) {
+        Module createdModule = moduleService.createModule(module);
+        return new ResponseEntity<>(createdModule, HttpStatus.CREATED);
     }
+
+
 
     // Get all modules
     @GetMapping("/GetAllModules")
@@ -75,4 +82,20 @@ public class ModuleController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Module not found for this Module_Id: "+ + moduleId);
         }
     }
+
+    // Get module by name
+    @GetMapping("/byName/{moduleName}")
+    public ResponseEntity<?> getModuleByName(@PathVariable String moduleName) {
+        Optional<Module> moduleOptional = moduleService.getModuleByName(moduleName);
+
+        return moduleOptional.map(module -> {
+            // Ici, vous tentez de récupérer et d'associer les détails du projet, si projectId n'est pas null
+            if (module.getProjectId() != null) {
+                Project project = projectRestClient.findProjectById(module.getProjectId());
+                module.setProject(project);
+            }
+            return ResponseEntity.ok(module);
+        }).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
 }
