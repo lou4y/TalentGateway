@@ -28,11 +28,12 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task createTask(Task task) {
-        if (task.getModule() != null && task.getModule().getModuleId() != null) {
+        if (task.getModule() != null && task.getModule().getModuleName() != null) {
             // Fetch the module from the database
-            Module module = moduleService.getModuleById(task.getModule().getModuleId());
+            Module module = moduleService.getModuleByName(task.getModule().getModuleName())
+                    .orElse(null);
             if (module == null) {
-                throw new RuntimeException("Module ID does not exist");
+                throw new RuntimeException("Module Name does not exist");
             }
             task.setModule(module);
         } else {
@@ -79,12 +80,14 @@ public class TaskServiceImpl implements TaskService {
 
         // Update other task details
         existingTask.setTaskName(taskDetails.getTaskName());
+        existingTask.setTaskDescription(taskDetails.getTaskDescription());
         existingTask.setStartDate(taskDetails.getStartDate());
         existingTask.setEndDate(taskDetails.getEndDate());
         existingTask.setDuration(taskDetails.getDuration());
         existingTask.setStatut(taskDetails.getStatut());
         existingTask.setPriority(taskDetails.getPriority());
         existingTask.setUserId(taskDetails.getUserId());
+        existingTask.setFirstName(taskDetails.getFirstName());
 
         // Save and return the updated task
         return taskDao.save(existingTask);
@@ -135,12 +138,14 @@ public class TaskServiceImpl implements TaskService {
                 .id(task.getId())
                 .startDate(task.getStartDate())
                 .taskName(task.getTaskName())
+                .taskDescription(task.getTaskDescription())
                 .endDate(task.getEndDate())
                 .duration(task.getDuration())
                 .statut(task.getStatut())
                 .priority(task.getPriority())
                 .module(moduleResponse) //  sets a ModuleResponse
                 .userId(task.getUserId())
+                .firstName(task.getFirstName())
                 .build();
     }
 
