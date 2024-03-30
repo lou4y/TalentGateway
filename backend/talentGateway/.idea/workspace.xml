@@ -4,27 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
- 
-    <list default="true" id="1e73b47b-08c5-4f76-b484-a47489d2d9d5" name="Changes" comment="">
+    <list default="true" id="b92eb469-ffe0-4c5c-968e-ca54bf378532" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/repository/Applicationrepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/repository/Applicationrepository.java" afterDir="false" />
- 
-    <list default="true" id="375a5b9b-c2f5-413d-b90c-0a3cc658a36a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/InternshipServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/InternshipServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/clients/UserRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/clients/UserRestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/InternshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/InternshipController.java" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Internship.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Internship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/resources/application.properties" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/InternshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/InternshipService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/CategoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/InternshipServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/InternshipServiceImpl.java" afterDir="false" />
-  
+      <change beforePath="$PROJECT_DIR$/config-repo" beforeDir="false" afterPath="$PROJECT_DIR$/config-repo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/internship-service.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +20,7 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -57,26 +42,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;internship&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "internship",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
+}]]></component>
+  <component name="RunManager" selected="Spring Boot.InternshipServiceApplication">
     <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.configservice.ConfigServiceApplication" />
@@ -144,12 +125,11 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="375a5b9b-c2f5-413d-b90c-0a3cc658a36a" name="Changes" comment="" />
+      <changelist id="b92eb469-ffe0-4c5c-968e-ca54bf378532" name="Changes" comment="" />
       <created>1711728599422</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-  interview-service
-      <updated>1711127554368</updated>
+      <updated>1711728599422</updated>
       <workItem from="1711412712503" duration="85000" />
       <workItem from="1711412952177" duration="821000" />
       <workItem from="1711127557275" duration="46000" />
@@ -176,23 +156,20 @@
       <workItem from="1711563878074" duration="1027000" />
       <workItem from="1711719485110" duration="292000" />
       <workItem from="1711794012585" duration="1021000" />
-
-      <updated>1711728599422</updated>
       <workItem from="1711728603234" duration="123000" />
       <workItem from="1711729540327" duration="708000" />
       <workItem from="1711746820295" duration="11070000" />
       <workItem from="1711800372333" duration="12050000" />
-
       <workItem from="1711746820295" duration="5950000" />
-
+      <workItem from="1711815804583" duration="5854000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="WfRunsListSearchHistory"><![CDATA[{
-  "history": [
+  <component name="WfRunsListSearchHistory">{
+  &quot;history&quot;: [
     {
     },
     {
@@ -202,13 +179,12 @@
     {
     }
   ],
-  "lastFilter": {
+  &quot;lastFilter&quot;: {
   }
   interview-service
-}</component>
+}&lt;/component&gt;
  
-}]]></component>
-  main
+}</component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
