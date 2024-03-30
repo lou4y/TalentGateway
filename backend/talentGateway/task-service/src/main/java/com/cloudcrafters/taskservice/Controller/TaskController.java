@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("Tasks")
 @RequiredArgsConstructor
+@CrossOrigin("*")  // autorise les requêtes de tous les domaines
 public class TaskController {
 
     @Autowired
@@ -94,6 +95,15 @@ public class TaskController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.emptyList());
         }
         return ResponseEntity.ok(tasks);
+    }
+
+
+
+    // Search tasks
+    @GetMapping( "/search")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TaskResponse> searchTasks(@RequestParam(name ="keyword" , defaultValue = "") String keyword) {
+        return taskService.searchTasks("%"+keyword+"%");
     }
 
 }

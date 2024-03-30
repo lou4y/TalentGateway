@@ -1,0 +1,6 @@
+[
+  "config.client.version",
+  "spring.cloud.client.hostname",
+  "global.params.p2",
+  "global.params.p1"
+]

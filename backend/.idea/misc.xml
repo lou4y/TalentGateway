@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
@@ -5,6 +6,10 @@
       <list>
         <option value="$PROJECT_DIR$/talentGateway/pom.xml" />
         <option value="$PROJECT_DIR$/talentGateway/task-service/pom.xml" />
+        <option value="$PROJECT_DIR$/talentGateway/config-service/pom.xml" />
+        <option value="$PROJECT_DIR$/talentGateway/discovery-service/pom.xml" />
+        <option value="$PROJECT_DIR$/talentGateway/gateway-service/pom.xml" />
+        <option value="$PROJECT_DIR$/talentGateway/project-service/pom.xml" />
       </list>
     </option>
   </component>

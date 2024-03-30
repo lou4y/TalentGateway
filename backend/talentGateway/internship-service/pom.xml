@@ -74,6 +74,23 @@
             <groupId>io.github.resilience4j</groupId>
             <artifactId>resilience4j-annotations</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <!--<dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>-->
+
+
+
+
+
+
     </dependencies>
     <dependencyManagement>
         <dependencies>
@@ -85,6 +102,7 @@
                 <scope>import</scope>
             </dependency>
         </dependencies>
+
     </dependencyManagement>
 
     <build>
