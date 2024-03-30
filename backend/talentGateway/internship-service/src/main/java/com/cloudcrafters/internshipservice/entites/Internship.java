@@ -1,6 +1,7 @@
 package com.cloudcrafters.internshipservice.entites;
 
 import com.cloudcrafters.internshipservice.enums.InternshipType;
+import com.cloudcrafters.internshipservice.models.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -48,9 +49,18 @@ public class Internship implements Serializable {
                     @JoinColumn(name = "category_id")
             }
     )
-    @JsonIgnoreProperties("internships")
+    @JsonIgnoreProperties("internships")// to avoid infinite recursion
     private Set<Category> categories = new HashSet<>();
 
     private String userId;
+
+
+    // Setter method for setting the creator of the internship
+    public void setCreator(User creator) {
+        // Implement your logic here to set the creator
+        // For example:
+        this.userId = creator.getUserId();
+    }
 }
+
 
