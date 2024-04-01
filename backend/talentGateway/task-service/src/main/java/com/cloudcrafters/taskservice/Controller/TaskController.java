@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("Tasks")
@@ -106,4 +107,21 @@ public class TaskController {
         return taskService.searchTasks("%"+keyword+"%");
     }
 
+
+    // Get all tasks sorted by date
+    @GetMapping("/SortedByDate")
+    public ResponseEntity<List<TaskResponse>> getTasksSortedByStartDate() {
+        List<TaskResponse> tasks = taskService.findTasksSortedByStartDate();
+        if (tasks.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(tasks);
+    }
+
+    @GetMapping("/user/{userId}/stats")
+    public ResponseEntity<?> getTaskStatsByUserId(@PathVariable String userId) {
+        long completedTasks = taskService.countCompletedTasksByUserId(userId);
+        long incompleteTasks = taskService.countIncompleteTasksByUserId(userId);
+        return ResponseEntity.ok(Map.of("completedTasks", completedTasks, "incompleteTasks", incompleteTasks));
+    }
 }
