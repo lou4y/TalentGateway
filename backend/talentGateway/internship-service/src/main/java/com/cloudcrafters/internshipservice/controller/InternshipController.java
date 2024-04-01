@@ -114,14 +114,11 @@ public class InternshipController {
         }
     }
 
-
-
     @GetMapping("/search")
     @ResponseBody
     public List<Internship> searchInternshipsByKeyword(@RequestParam String keyword) {
         return internshipService.searchInternshipsByKeyword(keyword);
     }
-
 
     @GetMapping("/tree-by-posted-date")
     @ResponseBody
