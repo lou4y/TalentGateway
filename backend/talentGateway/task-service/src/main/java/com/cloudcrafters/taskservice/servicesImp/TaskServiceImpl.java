@@ -3,6 +3,7 @@ package com.cloudcrafters.taskservice.servicesImp;
 import com.cloudcrafters.taskservice.Dao.TaskDao;
 import com.cloudcrafters.taskservice.Entities.Module;
 import com.cloudcrafters.taskservice.Entities.Task;
+import com.cloudcrafters.taskservice.Enums.Statut;
 import com.cloudcrafters.taskservice.dto.ModuleResponse;
 import com.cloudcrafters.taskservice.dto.TaskResponse;
 import com.cloudcrafters.taskservice.Enums.Priority;
@@ -149,4 +150,23 @@ public class TaskServiceImpl implements TaskService {
                 .build();
     }
 
+
+    public List<TaskResponse> findTasksSortedByStartDate() {
+        List<Task> tasks = taskDao.findByOrderByStartDateAsc();
+        return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
+    }
+
+
+    @Override
+    public long countCompletedTasksByUserId(String userId) {
+        return taskDao.countByUserIdAndStatut(userId, Statut.Finished);
+    }
+
+    @Override
+    public long countIncompleteTasksByUserId(String userId) {
+        // Combiner le compte de TO_DO et IN_PROGRESS pourrait nécessiter une approche différente
+        // Ici, pour simplifier, considérons uniquement TO_DO comme exemple
+        return taskDao.countByUserIdAndStatut(userId, Statut.To_do) +
+                taskDao.countByUserIdAndStatut(userId, Statut.In_Progress);
+    }
 }

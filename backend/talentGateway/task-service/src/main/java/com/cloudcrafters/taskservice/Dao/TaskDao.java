@@ -2,6 +2,7 @@ package com.cloudcrafters.taskservice.Dao;
 
 import com.cloudcrafters.taskservice.Entities.Task;
 import com.cloudcrafters.taskservice.Enums.Priority;
+import com.cloudcrafters.taskservice.Enums.Statut;
 import com.cloudcrafters.taskservice.dto.TaskResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,4 +22,7 @@ public interface TaskDao extends JpaRepository<Task, Long> {
     @Query("select t from Task t where t.taskName like :kw")
     List<Task> searchTask(@Param("kw") String keyword);
 
+    List<Task> findByOrderByStartDateAsc();
+
+    long countByUserIdAndStatut(String userId, Statut statut);
 }
