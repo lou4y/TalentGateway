@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "SERVICE-USERTEST")
+@FeignClient(name = "user-service")
 public interface UserRestClient {
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/keycloak/users/{id}")
     @CircuitBreaker(name = "userService", fallbackMethod = "getDefaultUser")
     User findUserById(@PathVariable String id);
 
-    @GetMapping("/users")
+    @GetMapping("/keycloak/users/")
     List<User> getAllUsers();
     // Methods for User entity
 
