@@ -4,9 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="375a5b9b-c2f5-413d-b90c-0a3cc658a36a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/config-repo" beforeDir="false" afterPath="$PROJECT_DIR$/config-repo" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config-repo/internship-service.properties" beforeDir="false" />
+=======
+    <list default="true" id="b92eb469-ffe0-4c5c-968e-ca54bf378532" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo" beforeDir="false" afterPath="$PROJECT_DIR$/config-repo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/internship-service.properties" beforeDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/internship-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/clients/UserRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/clients/UserRestClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/InternshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/InternshipController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/ScheduledTasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/ScheduledTasks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internship-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/resources/application.properties" afterDir="false" />
+
+
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/policy-enforcer.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/policy-enforcer.json" afterDir="false" />
+>>>>>>> 5217182acb50721743591b6600b5eb19c2c617f2
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +34,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
+        <option value="Dockerfile" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -44,6 +65,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RequestMappingsPanelOrder0": "0",
@@ -64,6 +86,42 @@
   }
 }]]></component>
   <component name="RunManager" selected="Spring Boot.ConfigServiceApplication">
+=======
+
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;internship&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+
+  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
+>>>>>>> 5217182acb50721743591b6600b5eb19c2c617f2
     <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.configservice.ConfigServiceApplication" />
@@ -131,14 +189,44 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="375a5b9b-c2f5-413d-b90c-0a3cc658a36a" name="Changes" comment="" />
+      <changelist id="b92eb469-ffe0-4c5c-968e-ca54bf378532" name="Changes" comment="" />
       <created>1711728599422</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1711728599422</updated>
+      <workItem from="1711412712503" duration="85000" />
+      <workItem from="1711412952177" duration="821000" />
+      <workItem from="1711127557275" duration="46000" />
+      <workItem from="1711127715297" duration="10000" />
+      <workItem from="1711128757601" duration="1927000" />
+      <workItem from="1711134187112" duration="271000" />
+      <workItem from="1711134475115" duration="98000" />
+      <workItem from="1711134599681" duration="8464000" />
+      <workItem from="1711185227664" duration="13643000" />
+      <workItem from="1711199029157" duration="1305000" />
+      <workItem from="1711208479155" duration="1383000" />
+      <workItem from="1711220981293" duration="1038000" />
+      <workItem from="1711229535119" duration="1249000" />
+      <workItem from="1711362482303" duration="597000" />
+      <workItem from="1711363488084" duration="382000" />
+      <workItem from="1711379905363" duration="6216000" />
+      <workItem from="1711392082950" duration="10530000" />
+      <workItem from="1711448579958" duration="5002000" />
+      <workItem from="1711392082950" duration="9172000" />
+      <workItem from="1711459711501" duration="6974000" />
+      <workItem from="1711466751903" duration="10882000" />
+      <workItem from="1711548995109" duration="25000" />
+      <workItem from="1711557004599" duration="1108000" />
+      <workItem from="1711563878074" duration="1027000" />
+      <workItem from="1711719485110" duration="292000" />
+      <workItem from="1711794012585" duration="1021000" />
       <workItem from="1711728603234" duration="123000" />
       <workItem from="1711729540327" duration="708000" />
+      <workItem from="1711746820295" duration="11070000" />
+      <workItem from="1711800372333" duration="12050000" />
       <workItem from="1711746820295" duration="5950000" />
+      <workItem from="1711815804583" duration="5854000" />
+      <workItem from="1711984975144" duration="3467000" />
     </task>
     <servers />
   </component>
@@ -147,6 +235,11 @@
   </component>
   <component name="WfRunsListSearchHistory">{
   &quot;history&quot;: [
+<<<<<<< HEAD
+=======
+    {
+    },
+>>>>>>> 5217182acb50721743591b6600b5eb19c2c617f2
     {
     },
     {
@@ -156,6 +249,12 @@
   ],
   &quot;lastFilter&quot;: {
   }
+<<<<<<< HEAD
+=======
+  interview-service
+}&lt;/component&gt;
+ 
+>>>>>>> 5217182acb50721743591b6600b5eb19c2c617f2
 }</component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

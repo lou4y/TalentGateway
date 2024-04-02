@@ -1,13 +1,25 @@
-services:
+  services:
+    talentgateway-discovery-service:
+      build: ./discovery-service
+      container_name: discovery-service
+      ports:
+        - '8761:8761'
+      expose:
+        - '8761'
+      healthcheck:
+        test: [ "CMD", "curl", "-f", "http://localhost:8761/actuator/health" ]
+        interval: 10s
+        retries: 4
 
 
-  task-service :
-    build: ./task-service
-    container_name: task-service
-    ports:
-      - "8015:8015"
-    expose:
-      - "8015"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8015/actuator/health"]
-      interval: 10s
+
+    internship-service:
+      build: ./internship-service
+      container_name: internship-service
+      ports:
+        - "8087:8087"
+      expose:
+        - "8087"
+      healthcheck:
+        test: [ "CMD", "curl", "-f", "http://localhost:8087/actuator/health" ]
+        interval: 10s

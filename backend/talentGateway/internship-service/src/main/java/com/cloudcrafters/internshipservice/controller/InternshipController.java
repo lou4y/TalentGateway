@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/internships")
@@ -115,14 +114,11 @@ public class InternshipController {
         }
     }
 
-
-
     @GetMapping("/search")
     @ResponseBody
     public List<Internship> searchInternshipsByKeyword(@RequestParam String keyword) {
         return internshipService.searchInternshipsByKeyword(keyword);
     }
-
 
     @GetMapping("/tree-by-posted-date")
     @ResponseBody
