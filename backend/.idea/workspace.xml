@@ -5,20 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b3235a2-864b-49c4-ac34-c600c17883f6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/talentGateway/config-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/talentGateway/config-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Controller/ModuleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Controller/ModuleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Dao/ModuleDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Entities/Module.java" beforeDir="false" afterPath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Entities/Module.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Entities/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/Entities/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/TaskServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/TaskServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/dto/TaskResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/dto/TaskResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/models/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/models/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/services/ModuleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/services/ModuleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/ModuleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/ModuleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/talentGateway/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/TaskServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/talentGateway/task-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/talentGateway/task-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +42,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "TaskService",
     "last_opened_file_path": "C:/Users/Amine/Documents/TalentGateway/TalentGateway/backend/talentGateway/config-repo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -127,6 +116,7 @@
       <workItem from="1711760529864" duration="43000" />
       <workItem from="1711762149069" duration="78000" />
       <workItem from="1711762685868" duration="6982000" />
+      <workItem from="1712009157426" duration="159000" />
     </task>
     <servers />
   </component>
