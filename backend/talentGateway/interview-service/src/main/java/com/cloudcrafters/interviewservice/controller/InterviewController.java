@@ -1,7 +1,7 @@
 
 package com.cloudcrafters.interviewservice.controller;
 
-import com.cloudcrafters.interviewservice.dto.ApplicationInterviewResponse;
+
 import com.cloudcrafters.interviewservice.dto.InterviewRequest;
 import com.cloudcrafters.interviewservice.dto.InterviewResponse;
 

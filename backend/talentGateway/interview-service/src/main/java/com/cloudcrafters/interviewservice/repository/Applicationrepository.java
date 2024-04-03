@@ -1,6 +1,7 @@
 
 package com.cloudcrafters.interviewservice.repository;
 
+
 import com.cloudcrafters.interviewservice.model.Application;
 
 import com.cloudcrafters.interviewservice.model.Status;
@@ -16,6 +17,9 @@ public interface Applicationrepository extends MongoRepository<Application, Stri
     boolean existsByOffreidAndUserid(String offreid, String userid);
 
 
+    List<Application> findByOffreid(String offreId);
 
+  //  List<Application> findByStatus(Status status);
 
+    List<Application> findAllByStatus(Status status);
 }

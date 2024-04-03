@@ -1,8 +1,10 @@
 package com.cloudcrafters.taskservice.Controller;
 
+import com.cloudcrafters.taskservice.Clients.ProjectRestClient;
 import com.cloudcrafters.taskservice.Entities.Task;
 import com.cloudcrafters.taskservice.dto.TaskResponse;
 import com.cloudcrafters.taskservice.Enums.Priority;
+import com.cloudcrafters.taskservice.models.Project;
 import com.cloudcrafters.taskservice.services.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +14,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("Tasks")
 @RequiredArgsConstructor
+@CrossOrigin("*")  // autorise les requêtes de tous les domaines
 public class TaskController {
 
     @Autowired
     private final TaskService taskService;
+
+    private ProjectRestClient projectRestClient;
 
     // Create task
     @PostMapping("/CreateTask")
@@ -35,7 +41,7 @@ public class TaskController {
     }
 
     // Get all tasks
-    @GetMapping("/GetAllTasks")
+    @GetMapping( "/GetAllTasks")
     @ResponseStatus(HttpStatus.OK)
     public List<TaskResponse> getAllTasks() {
         return taskService.getAllTasks();
@@ -92,4 +98,30 @@ public class TaskController {
         return ResponseEntity.ok(tasks);
     }
 
+
+
+    // Search tasks
+    @GetMapping( "/search")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TaskResponse> searchTasks(@RequestParam(name ="keyword" , defaultValue = "") String keyword) {
+        return taskService.searchTasks("%"+keyword+"%");
+    }
+
+
+    // Get all tasks sorted by date
+    @GetMapping("/SortedByDate")
+    public ResponseEntity<List<TaskResponse>> getTasksSortedByStartDate() {
+        List<TaskResponse> tasks = taskService.findTasksSortedByStartDate();
+        if (tasks.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(tasks);
+    }
+
+    @GetMapping("/user/{userId}/stats")
+    public ResponseEntity<?> getTaskStatsByUserId(@PathVariable String userId) {
+        long completedTasks = taskService.countCompletedTasksByUserId(userId);
+        long incompleteTasks = taskService.countIncompleteTasksByUserId(userId);
+        return ResponseEntity.ok(Map.of("completedTasks", completedTasks, "incompleteTasks", incompleteTasks));
+    }
 }

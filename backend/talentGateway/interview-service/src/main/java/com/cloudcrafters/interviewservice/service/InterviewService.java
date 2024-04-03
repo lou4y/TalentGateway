@@ -1,20 +1,14 @@
 package com.cloudcrafters.interviewservice.service;
-
-
 import com.cloudcrafters.interviewservice.dto.InterviewResponse;
 import com.cloudcrafters.interviewservice.dto.InterviewRequest;
 import com.cloudcrafters.interviewservice.model.Application;
 import com.cloudcrafters.interviewservice.model.Interview;
-
 import com.cloudcrafters.interviewservice.repository.Applicationrepository;
 import com.cloudcrafters.interviewservice.repository.InterviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-
 import java.util.List;
-
 import java.util.stream.Collectors;
 
 
