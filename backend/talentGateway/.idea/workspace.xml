@@ -4,72 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af8e5df4-2bb5-4255-bb66-7f0e757047a0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/messaging-service/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/config/WebSocketConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/controllers/ChatController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/controllers/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/daos/ChatMessageRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/daos/ChatRoomRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/daos/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/entities/ChatMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/entities/ChatNotification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/entities/ChatRoom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/entities/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/enums/Status.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/services/ChatMessageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/services/ChatRoomService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/services/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/resources/static/call.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/resources/static/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/resources/static/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/messaging-service/src/main/resources/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/MessagingServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/MessagingServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/test/java/com/cloudcrafters/messagingservice/MessagingServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/test/java/com/cloudcrafters/messagingservice/MessagingServiceApplicationTests.java" afterDir="false" />
-    </list>
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
-  </component>
-  <component name="JpbToolWindowState">
-    <option name="isToolWindowVisible" value="false" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
+
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="useMavenConfig" value="true" />
+
       </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 3
-}</component>
-  <component name="ProjectId" id="2eCdsyKaehm8XPAxAHZ9C3KJDVJ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RequestMappingsPanelOrder0": "0",
@@ -78,31 +28,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/4arctic2/semestre2/springboot/pi/backend/talentGateway/user-service",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "5448b0bb10a8a84adff5a788704972bc"
-  }
-}]]></component>
-  <component name="ReactorSettings">
-    <option name="notificationShown" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/messaging-service" />
-      <recent name="$PROJECT_DIR$/messaging-service/src/main/resources" />
-      <recent name="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice" />
-    </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="configurationTypes">
-      <set>
-        <option value="SpringBootApplicationConfigurationType" />
-      </set>
-    </option>
-  </component>
-  <component name="RunManager" selected="Spring Boot.MessagingServiceApplication">
+
     <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.configservice.ConfigServiceApplication" />
@@ -110,35 +36,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DiscoveryServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="DiscoveryServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="discovery-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.discoveryservice.DiscoveryServiceApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cloudcrafters.discoveryservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GatewayServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="GatewayServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="gateway-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.gatewayservice.GatewayServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InternshipServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="InternshipServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="internship-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.internshipservice.InternshipServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InterviewServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <option name="ACTIVE_PROFILES" />
+
       <module name="interview-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.interviewservice.InterviewServiceApplication" />
       <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
@@ -150,9 +69,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MessagingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <option name="ACTIVE_PROFILES" />
-      <option name="ALTERNATIVE_JRE_PATH" value="21 (2)" />
+
       <module name="messaging-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.messagingservice.MessagingServiceApplication" />
       <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
@@ -164,8 +81,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProjectServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <option name="ACTIVE_PROFILES" />
+
       <module name="project-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.projectservice.ProjectServiceApplication" />
       <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
@@ -177,15 +93,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TaskServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="TaskServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="task-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.taskservice.TaskServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <option name="ACTIVE_PROFILES" />
+
       <module name="user-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.userservice.UserServiceApplication" />
       <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
@@ -197,34 +112,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Spring Boot.ConfigServiceApplication" />
-      <item itemvalue="Spring Boot.GatewayServiceApplication" />
-      <item itemvalue="Spring Boot.InternshipServiceApplication" />
-      <item itemvalue="Spring Boot.InterviewServiceApplication" />
-      <item itemvalue="Spring Boot.MessagingServiceApplication" />
-      <item itemvalue="Spring Boot.ProjectServiceApplication" />
-      <item itemvalue="Spring Boot.TaskServiceApplication" />
-      <item itemvalue="Spring Boot.UserServiceApplication" />
-      <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
-      </list>
-    </recent_temporary>
+
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="af8e5df4-2bb5-4255-bb66-7f0e757047a0" name="Changes" comment="" />
-      <created>1711412710321</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1711127554368</updated>
-      <workItem from="1711487596201" duration="3368000" />
-      <workItem from="1711546362268" duration="9138000" />
-      <workItem from="1711649864988" duration="4851000" />
+
       <workItem from="1711412712503" duration="85000" />
       <workItem from="1711412952177" duration="821000" />
       <workItem from="1711127557275" duration="46000" />
@@ -247,33 +140,14 @@
       <workItem from="1711459711501" duration="6974000" />
       <workItem from="1711466751903" duration="10882000" />
       <workItem from="1711548995109" duration="25000" />
-      <workItem from="1711557004599" duration="815000" />
-      <workItem from="1711730382420" duration="861000" />
+
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="WfRunsListSearchHistory">{
   &quot;history&quot;: [
-    {
-    },
-    {
-    }
-  ],
-  &quot;lastFilter&quot;: {
-  }
-}</component>
+
 </project>
