@@ -30,6 +30,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+
     "git-widget-placeholder": "TaskService",
     "last_opened_file_path": "C:/Users/Amine/Documents/TalentGateway/TalentGateway/backend/talentGateway/project-service",
     "node.js.detected.package.eslint": "true",
@@ -113,6 +114,7 @@
       <workItem from="1711135727058" duration="64000" />
       <workItem from="1711135995481" duration="22000" />
       <workItem from="1711284401918" duration="9000" />
+
       <workItem from="1711659043565" duration="8000" />
       <workItem from="1711659099609" duration="292000" />
       <workItem from="1711666532322" duration="27000" />
@@ -124,6 +126,18 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+=======
   <component name="WfRunsListSearchHistory">{
   &quot;history&quot;: [
     {
