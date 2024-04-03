@@ -5,7 +5,6 @@ import com.cloudcrafters.messagingservice.services.*;
 import com.cloudcrafters.messagingservice.daos.*;
 import lombok.*;
 import org.springframework.stereotype.*;
-
 import java.util.*;
 
 @Service
@@ -18,6 +17,10 @@ public class ChatMessageService {
         var chatId = chatRoomService
                 .getChatRoomId(chatMessage.getSenderId(), chatMessage.getRecipientId(), true)
                 .orElseThrow(); // You can create your own dedicated exception
+
+        // Encrypt the content before saving
+        chatMessage.setContent(ChatMessage.encrypt(chatMessage.getContent()));
+
         chatMessage.setChatId(chatId);
         repository.save(chatMessage);
         return chatMessage;
@@ -25,6 +28,15 @@ public class ChatMessageService {
 
     public List<ChatMessage> findChatMessages(String senderId, String recipientId) {
         var chatId = chatRoomService.getChatRoomId(senderId, recipientId, false);
-        return chatId.map(repository::findByChatId).orElse(new ArrayList<>());
+        List<ChatMessage> messages = chatId.map(repository::findByChatId).orElse(new ArrayList<>());
+
+        // Decrypt the content of each message
+        messages.forEach(message -> message.setContent(ChatMessage.decrypt(message.getContent())));
+
+        return messages;
+    }
+
+    public void deleteMessage(String messageId) {
+        repository.deleteById(messageId);
     }
 }

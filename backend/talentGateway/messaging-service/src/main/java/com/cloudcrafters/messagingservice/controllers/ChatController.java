@@ -39,4 +39,10 @@ public class ChatController {
         return ResponseEntity
                 .ok(chatMessageService.findChatMessages(senderId, recipientId));
     }
+
+    @DeleteMapping("/messages/{messageId}")
+    public ResponseEntity<?> deleteMessage(@PathVariable String messageId) {
+        chatMessageService.deleteMessage(messageId);
+        return ResponseEntity.noContent().build();
+    }
 }
