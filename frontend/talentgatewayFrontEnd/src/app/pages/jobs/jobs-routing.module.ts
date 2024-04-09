@@ -8,12 +8,18 @@ import { DetailsComponent } from "./details/details.component";
 import { CategoriesComponent } from "./categories/categories.component";
 import {CandidateListComponent} from "./candidate-list/candidate-list.component";
 import { CandidateOverviewComponent } from "./candidate-overview/candidate-overview.component";
+import { AllapplicationComponent } from "./allapplication/allapplication.component";
 
 const routes: Routes = [
    {
     path:"list",
     component:ListComponent
    },
+
+   {
+    path: "allapplication",
+    component: AllapplicationComponent  
+  },
    {
     path:"grid",
     component:GridComponent
