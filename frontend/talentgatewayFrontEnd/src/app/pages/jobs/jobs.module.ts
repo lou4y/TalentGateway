@@ -17,7 +17,8 @@ import { DetailsComponent } from './details/details.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { CandidateListComponent } from './candidate-list/candidate-list.component';
 import { CandidateOverviewComponent } from './candidate-overview/candidate-overview.component';
-import { AllapplicationComponent } from './allapplication/allapplication.component'; 
+import { AllapplicationComponent } from './allapplication/allapplication.component';
+import { MyapplicationComponent } from './myapplication/myapplication.component'; 
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AllapplicationComponent } from './allapplication/allapplication.compone
     CategoriesComponent,
     CandidateListComponent,
     CandidateOverviewComponent,
-    AllapplicationComponent
+    AllapplicationComponent,
+    MyapplicationComponent
   ],
   imports: [
     CommonModule,

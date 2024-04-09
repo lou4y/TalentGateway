@@ -9,6 +9,7 @@ import { CategoriesComponent } from "./categories/categories.component";
 import {CandidateListComponent} from "./candidate-list/candidate-list.component";
 import { CandidateOverviewComponent } from "./candidate-overview/candidate-overview.component";
 import { AllapplicationComponent } from "./allapplication/allapplication.component";
+import { MyapplicationComponent } from "./myapplication/myapplication.component";
 
 const routes: Routes = [
    {
@@ -20,6 +21,10 @@ const routes: Routes = [
     path: "allapplication",
     component: AllapplicationComponent  
   },
+  {
+    path: "myapplication",
+    component: MyapplicationComponent 
+   },
    {
     path:"grid",
     component:GridComponent

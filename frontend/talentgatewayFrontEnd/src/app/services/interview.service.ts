@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class InterviewService {
   private apiUrl = 'http://localhost:8080/api/application'; // Définissez l'URL de base ici
+  
 
   constructor(private http: HttpClient) { }
 
@@ -30,4 +31,14 @@ export class InterviewService {
   deleteApplication(id: string): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/delete/${id}`);
   }
+
+  getApplicationById(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
+
+
+  createInterview(applicationId: string, interviewData: any) {
+    return this.http.post<any>(`http://localhost:8080/api/interview/create/${applicationId}`, interviewData);
+  }
+  
 }
