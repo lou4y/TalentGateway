@@ -216,6 +216,7 @@ export class MyapplicationComponent implements OnInit {
       (response) => {
         console.log('Application updated successfully:', response);
         // Add any additional actions after successful update dateAcceptation
+        this.modalRef.hide();
       },
       (error) => {
         console.error('Error updating application:', error);
