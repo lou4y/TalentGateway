@@ -1,153 +1,317 @@
 <div class="container-fluid">
-    <app-page-title title="All Application" [breadcrumbItems]="breadCrumbItems"></app-page-title>
-  
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-body border-bottom">
-            <div class="d-flex align-items-center">
-              <h5 class="mb-0 card-title flex-grow-1">Application List</h5>
+  <app-page-title
+    title="All Application"
+    [breadcrumbItems]="breadCrumbItems"
+  ></app-page-title>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body border-bottom">
+          <div class="d-flex align-items-center">
+            <h5 class="mb-0 card-title flex-grow-1">Application List</h5>
+          </div>
+        </div>
+        <div class="card-body border-bottom">
+          <div class="row g-3">
+            <div class="col-lg-6 col-xxl-4">
+              <input
+                type="search"
+                class="form-control"
+                id="searchInput"
+                placeholder="Search by status ..."
+                [(ngModel)]="searchTerm"
+              />
+            </div>
+            <div class="col-lg-4 col-xxl-2">
+              <button
+                type="button"
+                class="btn btn-soft-secondary w-100"
+                (click)="searchApplications()"
+              >
+                <i class="mdi mdi-filter-outline align-middle"></i> Filter
+              </button>
             </div>
           </div>
-          <div class="card-body border-bottom">
-            <div class="row g-3">
-              <div class="col-lg-6 col-xxl-4">
-                <input type="search" class="form-control" id="searchInput" placeholder="Search by status ..." [(ngModel)]="searchTerm">
-              </div>
-              <div class="col-lg-4 col-xxl-2">
-                <button type="button" class="btn btn-soft-secondary w-100" (click)="searchApplications()">
-                  <i class="mdi mdi-filter-outline align-middle"></i> Filter
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table align-middle dt-responsive nowrap w-100 table-check" id="job-list">
-                <thead>
-                  <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Application Date</th>
-                    <th scope="col">Acceptance Date</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">User ID</th>
-                    <th scope="col">Offer ID</th>
-                    <th scope="col">Interview ID</th>
-                    <th scope="col">Interview Date</th>
-                    <th scope="col">Interview Mode</th>
-                    <th scope="col">Internship Company</th>
-                    <th scope="col">Internship Title</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let data of getCurrentPageApplications()">
-                    <td>{{ data.id }}</td>
-                    <td>{{ data.dateDePostulation }}</td>
-                    <td>{{ data.dateAcceptation }}</td>
-                    <td>
-                      <span class="badge" [ngClass]="{
-                          'bg-success': data.status === 'ACCEPTED',
-                          'bg-info': data.status === 'PENDING',
-                          'bg-danger': data.status === 'REJECTED'
-                        }">{{data.status}}</span>
-                    </td>
-                    <td>{{ data.userid }}</td>
-                    <td>{{ data.offreid }}</td>
-                    <td>{{ data.interview?.id || 'No maintenance is planned at the moment' }}</td>
-                    <td>{{ data.interview?.dateEntretien || 'No maintenance is planned at the moment' }}</td>
-                    <td>{{ data.interview?.modaliteEntretien || 'No maintenance is planned at the moment' }}</td>
-                    <td>{{ data.intershipCompany }}</td>
-                    <td>{{ data.intershipTitle }}</td>
-                    <td>
-                      <ul class="list-unstyled hstack gap-1 mb-0">
-                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit-interview">
-                          <a href="javascript:void(0);" class="btn btn-sm btn-soft-info" (click)="editDataGet(data.id, content)">
-                            <i class="mdi mdi-pencil-outline"></i>
-                          </a>
-
-
-                        </li>
-                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                          <a href="javascript:void(0);" data-bs-toggle="modal" class="btn btn-sm btn-soft-danger" (click)="deleteApplicationConfirmed(data.id)">
-                         <i class="mdi mdi-delete-outline"></i>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table
+              class="table align-middle dt-responsive nowrap w-100 table-check"
+              id="job-list"
+            >
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Application Date</th>
+                  <th scope="col">Acceptance Date</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">User ID</th>
+                  <th scope="col">Offer ID</th>
+                  <th scope="col">Interview ID</th>
+                  <th scope="col">Interview Date</th>
+                  <th scope="col">Interview Mode</th>
+                  <th scope="col">Internship Company</th>
+                  <th scope="col">Internship Title</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of getCurrentPageApplications()">
+                  <td>{{ data.id }}</td>
+                  <td>{{ data.dateDePostulation }}</td>
+                  <td>{{ data.dateAcceptation }}</td>
+                  <td>
+                    <span
+                      class="badge"
+                      [ngClass]="{
+                        'bg-success': data.status === 'ACCEPTED',
+                        'bg-info': data.status === 'PENDING',
+                        'bg-danger': data.status === 'REJECTED'
+                      }"
+                      >{{ data.status }}</span
+                    >
+                  </td>
+                  <td>{{ data.userid }}</td>
+                  <td>{{ data.offreid }}</td>
+                  <td>
+                    {{
+                      data.interview?.id ||
+                        "No maintenance is planned at the moment"
+                    }}
+                  </td>
+                  <td>
+                    {{
+                      data.interview?.dateEntretien ||
+                        "No maintenance is planned at the moment"
+                    }}
+                  </td>
+                  <td>
+                    {{
+                      data.interview?.modaliteEntretien ||
+                        "No maintenance is planned at the moment"
+                    }}
+                  </td>
+                  <td>{{ data.intershipCompany }}</td>
+                  <td>{{ data.intershipTitle }}</td>
+                  <td>
+                    <ul class="list-unstyled hstack gap-1 mb-0">
+                      <li
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Edit-interview"
+                      >
+                        <a
+                          href="javascript:void(0);"
+                          class="btn btn-sm btn-soft-info"
+                          (click)="editDataGet(data.id, content)"
+                        >
+                          <i class="mdi mdi-pencil-outline"></i>
                         </a>
+                      </li>
+                      <li
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Delete"
+                      >
+                        <a
+                          href="javascript:void(0);"
+                          data-bs-toggle="modal"
+                          class="btn btn-sm btn-soft-danger"
+                          (click)="deleteApplicationConfirmed(data.id)"
+                        >
+                          <i class="mdi mdi-delete-outline"></i>
+                        </a>
+                      </li>
 
-
-
-
-                        </li>
-                      </ul>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="row justify-content-between align-items-center">
-              <div class="col-auto me-auto">
-                <p class="text-muted mb-0">Showing <b>{{startIndex}}</b> to <b>{{endIndex}}</b> of <b>{{totalRecords}}</b> entries</p>
-              </div>
-              <div class="col-auto">
-                <div class="text-md-right float-md-end pagination-rounded">
-                  <ul class="pagination pagination-rounded justify-content-end mb-2">
-                    <pagination [totalItems]="totalRecords" [(ngModel)]="page" [itemsPerPage]="5" previousText="&lsaquo;" nextText="&rsaquo;" (pageChanged)="pageChanged($event)"></pagination>
-                  </ul>
-                </div>
-              </div>
-            </div> <!-- Ligne principale -->
+                      <!-- Bouton pour éditer l'application -->
+                      <li
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Edit Application"
+                      >
+                        <a
+                          href="javascript:void(0);"
+                          class="btn btn-sm btn-soft-primary"
+                          (click)="editApplication(data.id, content)"
+                        >
+                          <i class="mdi mdi-pencil"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+          <div class="row justify-content-between align-items-center">
+            <div class="col-auto me-auto">
+              <p class="text-muted mb-0">
+                Showing <b>{{ startIndex }}</b> to <b>{{ endIndex }}</b> of
+                <b>{{ totalRecords }}</b> entries
+              </p>
+            </div>
+            <div class="col-auto">
+              <div class="text-md-right float-md-end pagination-rounded">
+                <ul
+                  class="pagination pagination-rounded justify-content-end mb-2"
+                >
+                  <pagination
+                    [totalItems]="totalRecords"
+                    [(ngModel)]="page"
+                    [itemsPerPage]="5"
+                    previousText="&lsaquo;"
+                    nextText="&rsaquo;"
+                    (pageChanged)="pageChanged($event)"
+                  ></pagination>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Ligne principale -->
         </div>
       </div>
     </div>
   </div>
-  
-  <!-- Order Create Model -->
-  
-  <ng-template #content role="document" let-modal>
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Add Interview</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal" (click)="modalRef?.hide()"></button>
+</div>
+
+<!-- Order Create Model -->
+
+<ng-template #content role="document" let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Add Interview</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      id="close-modal"
+      (click)="modalRef?.hide()"
+    ></button>
+  </div>
+
+ <!-- <form (ngSubmit)="saveEdit(applicationId)" [formGroup]="jobListForm">-->
+  <form (ngSubmit)="saveApplication(applicationId)" [formGroup]="applicationForm">
+
+    <div class="modal-body">
+      <input type="hidden" name="id" value="" formControlName="ids" />
+
+      <div class="mb-3">
+        <label for="interview-mode-field" class="form-label"
+          >Interview Mode</label
+        >
+        <select
+          id="interview-mode-field"
+          class="form-select"
+          formControlName="interviewMode"
+          required
+          [ngClass]="{
+            'is-invalid': submitted && jobListForm.get('interviewMode').errors
+          }"
+        >
+          <option value="" disabled selected>Select Interview Mode</option>
+          <option value="FACETOFACE">FACETOFACE</option>
+          <option value="ONLINE">ONLINE</option>
+        </select>
+        <div
+          *ngIf="submitted && jobListForm.get('interviewMode').errors"
+          class="invalid-feedback"
+          align="left"
+        >
+          <div *ngIf="jobListForm.get('interviewMode').errors['required']">
+            Interview Mode is required
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="interview-date-field" class="form-label"
+          >Interview Date</label
+        >
+        <div class="row">
+          <div class="col">
+            <input
+              type="date"
+              id="interview-date-field"
+              class="form-control"
+              placeholder="Select Date"
+              required
+              formControlName="interviewDate"
+              [ngClass]="{
+                'is-invalid':
+                  submitted && jobListForm.get('interviewDate').errors
+              }"
+            />
+            <div
+              *ngIf="submitted && jobListForm.get('interviewDate').errors"
+              class="invalid-feedback"
+              align="left"
+            >
+              <div *ngIf="jobListForm.get('interviewDate').errors['required']">
+                Interview Date is required
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <label for="interview-time">Interview Time</label>
+            <input
+              type="time"
+              id="interview-time"
+              class="form-control"
+              required
+              formControlName="interviewTime"
+              [ngClass]="{
+                'is-invalid':
+                  submitted && jobListForm.get('interviewTime').errors
+              }"
+            />
+            <div
+              *ngIf="submitted && jobListForm.get('interviewTime').errors"
+              class="invalid-feedback"
+              align="left"
+            >
+              <div *ngIf="jobListForm.get('interviewTime').errors['required']">
+                Interview Time is required
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <form (ngSubmit)="saveEdit(applicationId)" [formGroup]="jobListForm">
-  
-      <div class="modal-body">
-        <input type="hidden" name="id" value="" formControlName="ids" />
-  
-        <div class="mb-3">
-          <label for="interview-mode-field" class="form-label">Interview Mode</label>
-          <select id="interview-mode-field" class="form-select" formControlName="interviewMode" required [ngClass]="{ 'is-invalid': submitted && jobListForm.get('interviewMode').errors }">
-            <option value="" disabled selected>Select Interview Mode</option>
-            <option value="FACETOFACE">FACETOFACE</option>
-            <option value="ONLINE">ONLINE</option>
-          </select>
-          <div *ngIf="submitted && jobListForm.get('interviewMode').errors" class="invalid-feedback" align="left">
-            <div *ngIf="jobListForm.get('interviewMode').errors['required']">Interview Mode is required</div>
-          </div>
-        </div>
-  
-        <div class="mb-3">
-          <label for="interview-date-field" class="form-label">Interview Date</label>
-          <div class="row">
-            <div class="col">
-              <input type="date" id="interview-date-field" class="form-control" placeholder="Select Date" required formControlName="interviewDate" [ngClass]="{ 'is-invalid': submitted && jobListForm.get('interviewDate').errors }" />
-              <div *ngIf="submitted && jobListForm.get('interviewDate').errors" class="invalid-feedback" align="left">
-                <div *ngIf="jobListForm.get('interviewDate').errors['required']">Interview Date is required</div>
-              </div>
-            </div>
-            <div class="col">
-              <label for="interview-time">Interview Time</label>
-              <input type="time" id="interview-time" class="form-control" required formControlName="interviewTime" [ngClass]="{ 'is-invalid': submitted && jobListForm.get('interviewTime').errors }" />
-              <div *ngIf="submitted && jobListForm.get('interviewTime').errors" class="invalid-feedback" align="left">
-                <div *ngIf="jobListForm.get('interviewTime').errors['required']">Interview Time is required</div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+  </form>
+</ng-template>
+<!-- End Modal -->
+
+<!-- Nouveau contenu pour l'édition de l'application -->
+<ng-template #editApplicationContent>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Edit Application</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal" (click)="modalRef?.hide()"></button>
+  </div>
+  <form (ngSubmit)="saveEdit(applicationId)" [formGroup]="applicationForm">
+    <!-- Champs pour l'édition de l'application -->
+    <div class="modal-body">
+      <div class="mb-3">
+        <label for="status-field" class="form-label">Status</label>
+        <select id="status-field" class="form-select" formControlName="status" required>
+          <option value="PENDING">PENDING</option>
+          <option value="ACCEPTED">ACCEPTED</option>
+          <option value="REJECTED">REJECTED</option>
+        </select>
       </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Create</button>
+      <div class="mb-3">
+        <label for="acceptance-date-field" class="form-label">Acceptance Date</label>
+        <input type="date" id="acceptance-date-field" class="form-control" formControlName="acceptanceDate">
       </div>
-    </form>
-  </ng-template>
-  <!-- End Modal -->
-  
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" (click)="saveApplication(applicationId)">Save</button>
+
+       
+
+    </div>
+  </form>
+</ng-template>
