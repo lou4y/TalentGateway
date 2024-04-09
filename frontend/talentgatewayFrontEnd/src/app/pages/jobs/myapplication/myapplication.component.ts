@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'; // Import des modules nécessaires
+import { Component, OnInit , ViewChild, TemplateRef } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+
 import { InterviewService } from 'src/app/services/interview.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import Swal from 'sweetalert2';
@@ -19,26 +21,34 @@ export class MyapplicationComponent implements OnInit {
   endIndex: number = 0;
   modalRef?: BsModalRef;
   submitted: boolean = false;
-  jobListForm: FormGroup; // Déclaration du formulaire FormGroup
+  jobListForm: FormGroup;
   applicationId: any;
+  applicationForm: FormGroup;
 
-  // Injectez les services requis dans le constructeur
+  @ViewChild('editApplicationContent') editApplicationContent!: TemplateRef<any>;
+
   constructor(
     private interviewService: InterviewService,
     private modalService: BsModalService,
-    private formBuilder: FormBuilder // Injection du FormBuilder
+    private formBuilder: FormBuilder,
+    private http: HttpClient // Injection du service HttpClient
   ) {}
 
   ngOnInit(): void {
     this.getAllApplications();
-    this.initForm(); // Initialisation du formulaire
+    this.initForm();
   }
 
   initForm(): void {
     this.jobListForm = this.formBuilder.group({
-      interviewDate: ['', Validators.required], // Définition des contrôles de formulaire avec validation requise
+      interviewDate: ['', Validators.required],
       interviewTime: ['', Validators.required],
       interviewMode: ['', Validators.required],
+    });
+
+    this.applicationForm = this.formBuilder.group({
+      status: ['', Validators.required],
+      acceptanceDate: ['']
     });
   }
 
@@ -94,21 +104,18 @@ export class MyapplicationComponent implements OnInit {
     this.endIndex = endIndex;
   }
 
- // Méthode pour supprimer une application
- deleteApplication(id: string): void {
-  this.interviewService.deleteApplication(id).subscribe(
-    (response) => {
-      // Si la suppression réussit, mettre à jour la liste des applications
-      this.getAllApplications();
-    },
-    (error) => {
-      console.error('Erreur lors de la suppression de l\'application :', error);
-    }
-  );
-}
+  deleteApplication(id: string): void {
+    this.interviewService.deleteApplication(id).subscribe(
+      (response) => {
+        this.getAllApplications();
+      },
+      (error) => {
+        console.error('Error deleting application:', error);
+      }
+    );
+  }
 
-   // Méthode pour confirmer la suppression de l'application
-   deleteApplicationConfirmed(id: string): void {
+  deleteApplicationConfirmed(id: string): void {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -133,7 +140,6 @@ export class MyapplicationComponent implements OnInit {
             'Your file has been deleted.',
             'success'
           );
-          // Appeler la méthode de suppression ici avec l'ID de l'application à supprimer
           this.deleteApplication(id);
         } else if (
           result.dismiss === Swal.DismissReason.cancel
@@ -149,19 +155,15 @@ export class MyapplicationComponent implements OnInit {
 
   editDataGet(id: any, content: any) {
     this.submitted = false;
-    this.applicationId = id; // Sauvegardez l'ID de l'application
-    // Vous pouvez maintenant utiliser this.applicationId pour l'ID de l'application
+    this.applicationId = id;
     this.modalRef = this.modalService.show(content, { class: 'modal-md' });
     var modelTitle = document.querySelector('.modal-title') as HTMLAreaElement;
     modelTitle.innerHTML = 'Create Interview';
     var updateBtn = document.getElementById('add-btn') as HTMLAreaElement;
     updateBtn.innerHTML = "Update";
     var listData = this.lists.filter((data: { id: any; }) => data.id === id);
-    // Utilisez listData pour pré-remplir le formulaire d'édition
   }
   
-  
-
   saveEdit(applicationId: string): void {
     if (this.jobListForm.invalid) {
       this.submitted = true;
@@ -174,16 +176,14 @@ export class MyapplicationComponent implements OnInit {
     const combinedDateTime: string = interviewDate + ' ' + interviewTime;
   
     const interviewData: any = {
-      dateEntretien: combinedDateTime, // Utilisez le nom de propriété correct pour la date
-      modaliteEntretien: this.jobListForm.value.interviewMode // Utilisez le nom de propriété correct pour la modalité
+      dateEntretien: combinedDateTime,
+      modaliteEntretien: this.jobListForm.value.interviewMode
     };
   
     this.interviewService.createInterview(applicationId, interviewData).subscribe(
       (response) => {
         console.log('Interview created successfully:', response);
-        // Réinitialiser le formulaire après la création de l'interview
         this.jobListForm.reset();
-        // Masquer le modal
         this.modalRef.hide();
       },
       (error) => {
@@ -192,7 +192,35 @@ export class MyapplicationComponent implements OnInit {
     );
   }
   
-
-
-
+  editApplication(applicationId: string): void {
+    this.submitted = false;
+    this.applicationId = applicationId;
+    this.modalRef = this.modalService.show(this.editApplicationContent, { class: 'modal-md' });
+  }
+  
+  saveApplication(applicationId: string): void {
+    if (this.applicationForm.invalid) {
+      this.submitted = true;
+      return;
+    }
+  
+    const status = this.applicationForm.value.status;
+    const acceptanceDate = this.applicationForm.value.acceptanceDate;
+  
+    const applicationData = {
+      status: status,
+      dateAcceptation: acceptanceDate
+    };
+  
+    this.interviewService.updateApplication(applicationId, applicationData).subscribe(
+      (response) => {
+        console.log('Application updated successfully:', response);
+        // Add any additional actions after successful update dateAcceptation
+      },
+      (error) => {
+        console.error('Error updating application:', error);
+      }
+    );
+  }
+    
 }

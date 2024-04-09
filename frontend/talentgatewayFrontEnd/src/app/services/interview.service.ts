@@ -40,5 +40,12 @@ export class InterviewService {
   createInterview(applicationId: string, interviewData: any) {
     return this.http.post<any>(`http://localhost:8080/api/interview/create/${applicationId}`, interviewData);
   }
+
+  
+  updateApplication(id: string, applicationData: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/update/${id}`, applicationData);
+  }
+
+  
   
 }
