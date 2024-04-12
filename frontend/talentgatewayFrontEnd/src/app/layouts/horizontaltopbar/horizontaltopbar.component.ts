@@ -2,16 +2,11 @@ import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { LanguageService } from '../../core/services/language.service';
-
 import { EventService } from '../../core/services/event.service';
 import { AuthenticationService } from '../../core/services/auth.service';
-import { AuthfakeauthenticationService } from '../../core/services/authfake.service';
-
 import { DOCUMENT } from '@angular/common';
-
 import { MENU } from './menu';
 import { MenuItem } from './menu.model';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-horizontaltopbar',
@@ -42,7 +37,6 @@ export class HorizontaltopbarComponent implements OnInit, AfterViewInit {
 
   // tslint:disable-next-line: max-line-length
   constructor(@Inject(DOCUMENT) private document: any, private router: Router, private eventService: EventService, private authService: AuthenticationService,
-    private authFackservice: AuthfakeauthenticationService,
     public languageService: LanguageService,
     // tslint:disable-next-line: variable-name
     public _cookiesService: CookieService) {
@@ -79,14 +73,8 @@ export class HorizontaltopbarComponent implements OnInit, AfterViewInit {
    * Logout the user
    */
   logout() {
-    if (environment.defaultauth === 'firebase') {
-      this.authService.logout();
-    } else {
-      this.authFackservice.logout();
-    }
-    this.router.navigate(['/account/login']);
+    this.authService.logout();
   }
-
   /**
    * On menu click
    */
