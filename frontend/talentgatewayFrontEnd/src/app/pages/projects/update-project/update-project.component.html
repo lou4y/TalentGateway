@@ -1,0 +1,111 @@
+<div class="container-fluid">
+  <!-- start page title -->
+  <app-page-title title="Update Project" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <!-- end page title -->
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-body">
+          <input type="hidden" class="form-control" id="formAction" name="formAction" value="update">
+          <input type="hidden" class="form-control" id="project-id-input" [(ngModel)]="project.projectId">
+          <div class="mb-3">
+            <label for="projectname-input" class="form-label">Project Name</label>
+            <input id="projectname-input" name="projectname-input" type="text" class="form-control" placeholder="Enter project name..." [(ngModel)]="project.projectName" required>
+            <div class="invalid-feedback">Please enter a project name.</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Attached Files</label>
+            <!-- Your file upload component -->
+          </div>
+          <div class="mb-3 position-relative">
+            <label for="team-input" class="form-label">Select Team</label>
+            <select class="form-select" id="team-input" [(ngModel)]="project.teamId" name="team-input">
+              <option *ngFor="let team of teams" [value]="team.teamId">{{ team.name }}</option>
+            </select>
+            <div class="invalid-feedback">Please select a team.</div>
+          </div>
+          <div class="mb-3">
+            <label for="projectdesc-input" class="form-label">Project Description</label>
+            <textarea class="form-control" id="projectdesc-input" rows="3" placeholder="Enter project description..." [(ngModel)]="project.projectDescription" required></textarea>
+            <div class="invalid-feedback">Please enter a project description.</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Attached Files</label>
+            <ngx-dropzone class="dropzone" (change)="onFileSelected($event)" [accept]="'.pdf,.doc,.docx'">
+              <ngx-dropzone-label class="dz-message needsclick">
+                  <div class="mb-3">
+                      <i class="display-4 text-muted bx bxs-cloud-upload"></i>
+                  </div>
+                  <h5>Drop files here or click to upload.</h5>
+              </ngx-dropzone-label>
+            </ngx-dropzone>
+            <ngx-dropzone-preview *ngIf="fileURL" class="border rounded" [removable]="true" (removed)="onRemove()">
+                <ngx-dropzone-label>
+                    <div class="d-flex p-2">
+                        <div class="flex-shrink-0 me-3">
+                            <div class="avatar-sm bg-light rounded">
+                                <img class="img-fluid rounded d-block" [src]="fileURL" alt="Dropzone-File">
+                            </div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="pt-1">
+                                <strong class="error text-danger"></strong>
+                            </div>
+                        </div>
+                    </div>
+                </ngx-dropzone-label>
+            </ngx-dropzone-preview>
+            <!-- end dropzone-preview -->
+        </div>
+        </div>
+        <!-- end card body -->
+      </div>
+      <!-- end card -->
+    </div>
+    <!-- end col -->
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-3">Publish</h5>
+          <div class="mb-3">
+            <label class="form-label" for="project-status-input">Status</label>
+            <select class="form-select" id="project-status-input" [(ngModel)]="project.projectStatus">
+              <option value="PLANNING">Planning</option>
+              <option value="IN_PROGRESS">In Progress</option>
+              <option value="COMPLETED">Completed</option>
+              <option value="ON_HOLD">On Hold</option>
+              <option value="CANCELED">Canceled</option>
+            </select>
+            <div class="invalid-feedback">Please select project status.</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="startdate-input">Start Date</label>
+            <input type="date" id="startdate-input" class="form-control" placeholder="Select start date" name="start date" [(ngModel)]="project.startDate" required />
+            <div class="invalid-feedback">Please select start date.</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="duedate-input">Due Date</label>
+            <input type="date" id="duedate-input" class="form-control" placeholder="Select due date" name="due date" [(ngModel)]="project.endTime" required />
+            <div class="invalid-feedback">Please select due date.</div>
+          </div>
+          <div class="mb-3">
+            <label for="price-input" class="form-label">Price</label>
+            <input type="number" class="form-control" id="price-input" name="price" placeholder="Enter price" [(ngModel)]="project.price" required>
+            <div class="invalid-feedback">Please enter a price.</div>
+          </div>
+        </div>
+        <!-- end card body -->
+      </div>
+      <!-- end card -->
+    </div>
+    <!-- end col -->
+
+    <div class="col-lg-8">
+      <div class="text-end mb-4">
+        <button type="submit" class="btn btn-primary" (click)="updateProject()">Update Project</button>
+      </div>
+    </div>
+  </div>
+  <!-- end row -->
+</div>

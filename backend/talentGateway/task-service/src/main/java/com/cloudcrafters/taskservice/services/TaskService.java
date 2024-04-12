@@ -1,5 +1,6 @@
 package com.cloudcrafters.taskservice.services;
 
+import com.cloudcrafters.taskservice.Dao.TaskDao;
 import com.cloudcrafters.taskservice.Entities.Task;
 import com.cloudcrafters.taskservice.dto.TaskResponse;
 import com.cloudcrafters.taskservice.Enums.Priority;
@@ -14,5 +15,12 @@ public interface TaskService {
     void deleteTask(Long taskId);
     List<TaskResponse> findTasksByPriority(Priority priority);
     List<TaskResponse> findTasksByUserId(String userId);
+
+    List<TaskResponse> searchTasks(String keyword);
+
+    List<TaskResponse> findTasksSortedByStartDate();
+
+    long countCompletedTasksByUserId(String userId);
+    long countIncompleteTasksByUserId(String userId);
 
 }

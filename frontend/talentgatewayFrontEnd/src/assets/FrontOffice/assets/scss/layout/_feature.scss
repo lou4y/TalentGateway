@@ -1,0 +1,237 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  14. FEATURE CSS
+/*----------------------------------------*/
+
+// postbox css start
+
+
+.tp-feature {
+    $main: &;
+
+    &__item {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        text-align: center;
+        border: 1px solid rgba($color: #000000, $alpha: .078);
+        background-color: rgba(255, 255, 255, 0);
+        @include transition(.3s);
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            height: 3px;
+            width: 0;
+            right: 0;
+            display: inline-block;
+            background-color: var(--tp-theme-primary);
+            @include transition(.3s);
+        }
+
+        &.before-color {
+            &-1 {
+                &::before {
+                    background-color: #ffa28f;
+                }
+            }
+
+            &-2 {
+                &::before {
+                    background-color: #8997f9;
+                }
+            }
+
+            &-3 {
+                &::before {
+                    background-color: #f86470;
+                }
+            }
+
+            &-4 {
+                &::before {
+                    background-color: #5fa79c;
+                }
+            }
+
+            &-5 {
+                &::before {
+                    background-color: #73d17e;
+                }
+            }
+
+            &-6 {
+                &::before {
+                    background-color: #b451f9;
+                }
+            }
+
+            &-7 {
+                &::before {
+                    background-color: #11c5ce;
+                }
+            }
+
+            &-8 {
+                &::before {
+                    background-color: #ee9c2d;
+                }
+            }
+
+        }
+
+        &:hover {
+            box-shadow: 0px 16px 40px 0px rgba(0, 15, 47, 0.1), inset 0px 3px 0px 0px rgba(44, 121, 255, 0.004);
+            border-color: transparent;
+
+            &::before {
+                width: 100%;
+                right: auto;
+                left: 0;
+            }
+
+            #{$main} {
+                &__icon {
+                    transform: translateY(-8px);
+                }
+            }
+
+        }
+    }
+
+    &__icon {
+        margin-bottom: 50px;
+        @include transition(.3s);
+    }
+
+    &__title {
+        font-size: 20px;
+        & a {
+            &:hover{
+            color: var(--tp-theme-primary);
+            }
+        }
+    }
+
+    &__item {
+        & p {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.tp-feature-2 {
+    $main: &;
+    &__section{
+        & .row{
+            & [class*="col-"]{
+                &:first-child{
+                    #{$main}{
+                        &__item{
+                            border-radius: 10px 0 0 10px; 
+                            @media #{$xs,$sm} {
+                                border-radius: 10px 10px 0 0;
+                            }
+                        }
+                    }
+                }
+                &:last-child{
+                    #{$main}{
+                        &__item{
+                            border-radius: 0 10px 10px 0;
+                            @media #{$xs,$sm} {
+                                border-radius:0 0 10px 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &__item {
+        padding: 35px 50px;
+        @include transition(.3s);
+        position: relative;
+        @media #{$xs,$sm,$md} {
+            padding: 35px 25px;
+        }
+        &.tp-feature-2 {
+            &__color {
+                &-1 {
+                    background-color: #ffa423;
+                    box-shadow: 0px 40px 60px 0px rgba(255, 164, 35, 0.3);
+                }
+
+                &-2 {
+                    background-color: rgb(44, 121, 255);
+                    box-shadow: 0px 40px 60px 0px rgba(50, 111, 253, 0.3);
+                }
+
+                &-3 {
+                    background-color: rgb(162, 0, 255);
+                    box-shadow: 0px 40px 60px 0px rgba(162, 0, 255, 0.3);
+                }
+            }
+        }
+
+        &:hover {
+            #{$main} {
+                &__icon {
+                    transform: rotateY(-180deg);
+                }
+            }
+
+        }
+    }
+
+    &__icon {
+        color: var(--tp-common-white);
+        margin-bottom: 50px;
+        @include transition(.3s);
+        font-size: 36px;
+        display: inline-block;
+    }
+
+    &__title {
+        font-size: 22px;
+        color: var(--tp-common-white);
+        margin-bottom: 15px;
+    }
+
+    &__content {
+        & p {
+            margin-bottom: 20px;
+            color: var(--tp-common-white);
+            font-size: 16px;
+        }
+
+        & span {
+            a {
+                color: var(--tp-common-white);
+                @include square-btn(36px, $circle: true);
+                border: 2px solid;
+                display: inline-block;
+                border-color: rgba($color: #fff, $alpha: .2);
+                line-height: 32px;
+                
+                &:hover {
+                    background-color: var(--tp-common-white);
+                    border-color: transparent;
+                    & i {
+                        animation: tfLeftToRight 0.5s forwards;
+                        color: var(--tp-theme-primary);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.gx-70{
+    --bs-gutter-x: 70px;
+    @media #{$xs,$sm,$md,$lg} {
+        --bs-gutter-x: 1.5rem;
+    }
+}

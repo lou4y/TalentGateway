@@ -2,21 +2,16 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/config-service/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/config-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/discovery-service/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/discovery-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gateway-service/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/gateway-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/internship-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/internship-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/interview-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/messaging-service/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/messaging-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/project-service/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/project-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/task-service/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/task-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/src/main/resources" charset="UTF-8" />
   </component>

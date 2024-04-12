@@ -2,6 +2,7 @@ package com.cloudcrafters.taskservice.Entities;
 
 import com.cloudcrafters.taskservice.Enums.Priority;
 import com.cloudcrafters.taskservice.Enums.Statut;
+import com.cloudcrafters.taskservice.models.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,8 @@ public class Task implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String taskName;
+    private String taskDescription;
     @Temporal(TemporalType.DATE)
     private Date startDate;
 
@@ -38,9 +41,14 @@ public class Task implements Serializable {
 
     //Relation with Module
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "module_id") // This column in the 'Task' table will reference the primary key of 'Module'
+    @JoinColumn(name = "module_Id") // This column in the 'Task' table will reference the primary key of 'Module'
     private Module module;
 
-    // test for user
+    // Relation with User
+    @Transient
+    private User user;
     private String userId;
+    private String firstName;
+
+
 }

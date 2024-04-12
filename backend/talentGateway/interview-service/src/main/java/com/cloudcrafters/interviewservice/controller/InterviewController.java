@@ -1,7 +1,7 @@
 
 package com.cloudcrafters.interviewservice.controller;
 
-import com.cloudcrafters.interviewservice.dto.ApplicationInterviewResponse;
+
 import com.cloudcrafters.interviewservice.dto.InterviewRequest;
 import com.cloudcrafters.interviewservice.dto.InterviewResponse;
 
@@ -17,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/interview")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class InterviewController {
 
     private final InterviewService interviewService;

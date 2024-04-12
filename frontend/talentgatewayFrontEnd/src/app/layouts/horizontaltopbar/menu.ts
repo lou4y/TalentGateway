@@ -170,7 +170,7 @@ export const MENU: MenuItem[] = [
                 link: '/ui/tabs-accordions',
                 parentId: 7
             },
-            
+
             {
                 id: 29,
                 label: 'MENUITEMS.UIELEMENTS.LIST.CROPPER',
