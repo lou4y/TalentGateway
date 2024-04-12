@@ -30,8 +30,8 @@ public class ScheduledTasks {
     private UserRestClient userRestClient;
 
     @Autowired
-    private EmailService emailService; // Inject EmailService
-
+   private EmailService emailService; // Inject EmailService
+/*
     @Scheduled(fixedRate = 10000) // Run every 10 seconds
     public void getRandomInternshipScheduled() {
         List<Internship> internships = internshipService.getAllInternships();
@@ -49,7 +49,7 @@ public class ScheduledTasks {
             }
         }
     }
-
+*/
     private boolean checkSkillsMatch(String internshipSkills, List<Skill> userSkills) {
         if (internshipSkills != null && !internshipSkills.isEmpty() && userSkills != null && !userSkills.isEmpty()) {
             String[] internshipSkillsArray = internshipSkills.split(", ");
