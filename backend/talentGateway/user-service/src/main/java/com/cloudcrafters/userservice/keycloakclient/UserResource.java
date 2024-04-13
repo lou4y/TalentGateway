@@ -3,6 +3,7 @@ package com.cloudcrafters.userservice.keycloakclient;
 import com.cloudcrafters.userservice.dto.Role;
 import com.cloudcrafters.userservice.dto.User;
 import com.cloudcrafters.userservice.security.KeycloakSecurityUtil;
+import com.cloudcrafters.userservice.services.SkillService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.ws.rs.core.Response;
 import org.keycloak.admin.client.Keycloak;
@@ -25,6 +26,8 @@ public class UserResource {
 	
 	@Autowired
 	KeycloakSecurityUtil keycloakUtil;
+	@Autowired
+	SkillService skillService;
 	
 	@Value("${realm}")
 	private String realm;
@@ -37,6 +40,18 @@ public class UserResource {
 				keycloak.realm(realm).users().list();
 		return mapUsers(userRepresentations);
     }
+	@GetMapping
+	@RequestMapping("/usersskills")
+	public List<User> getUsersSkills() {
+		Keycloak keycloak = keycloakUtil.getKeycloakInstance();
+		List<UserRepresentation> userRepresentations =
+				keycloak.realm(realm).users().list();
+		List <User> users = mapUsers(userRepresentations);
+		for (User user: users) {
+			user.setSkills(skillService.getAllSkillsByUser(user.getId()));
+		}
+		return users;
+	}
 	
 	@GetMapping(value = "/users/{id}")
 	public User getUser(@PathVariable("id") String id) {
