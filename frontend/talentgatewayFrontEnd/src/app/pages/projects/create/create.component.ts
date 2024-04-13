@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProjectService } from 'src/app/services/project.service';
 import { TeamService } from 'src/app/services/team.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create',
@@ -59,20 +58,12 @@ export class CreateComponent implements OnInit {
 
   addNewProject() {
     if (!this.file) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Please select a file for the project.!"
-        });
+        console.error('Please select a file for the project.');
         return;
     }
 
     if (!this.selectedTeam) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Please select a team for the project.!"
-        });
+        console.error('Please select a team for the project.');
         return;
     }
 
@@ -84,19 +75,14 @@ export class CreateComponent implements OnInit {
         price: this.projectData.price,
         projectFile: this.file.name,
         projectStatus: this.projectData.projectStatus,
-        creatorId:'1',
+        creatorId:'abc',
         team: {
             teamId: this.selectedTeam // Ensure that the teamId is correctly named
         }
     };
 
     this.projectService.addProject(projectData).subscribe((response: any) => {
-      Swal.fire({
-        title: "Good job!",
-        text: "Your Project added successfully!",
-        icon: "success"
-      });
-
+        console.log('Project added successfully:', response);
         // Reset the form or perform other necessary actions
     });
 }

@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { map, throwError } from 'rxjs';
-import { Observable, catchError } from 'rxjs';
+import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
-import {  Tasks } from 'src/app/core/models/task.model';
-import { TasksService } from 'src/app/services/tasks.service';
+import { taskChart, tasks } from './data';
 
-
+import { ChartType, Tasklist } from './list.model';
 
 @Component({
   selector: 'app-list',
@@ -14,185 +12,84 @@ import { TasksService } from 'src/app/services/tasks.service';
   styleUrls: ['./list.component.scss']
 })
 
+/**
+ * Tasks-list component
+ */
 export class ListComponent implements OnInit {
 
-  tasks!: Observable<Array<Tasks>>;
-  errorMessage!: string;
-  searchFormGroup!: FormGroup;
-
-  currentPage = 1;
-  totalPages = 10;
-  itemsPerPage = 10;
-
-  page = 1;
+  // bread crumb items
   breadCrumbItems: Array<{}>;
-  totalItems = 100;
 
-  showQualificationList: boolean = false;
-  selectedPriority: string | null = null;
-  selectedStatus: string | null = null;
+  modalRef?: BsModalRef;
 
-  sortByDate: boolean = false;
+  submitted = false;
+  formData: UntypedFormGroup;
 
-  constructor(
-    private taskService: TasksService,
-    private fb: FormBuilder
-  ) {}
+  taskChart: ChartType;
 
-  ngOnInit(): void {
-    this.searchFormGroup = this.fb.group({
-      keyword: this.fb.control("")
+  upcomingTasks: Tasklist[];
+  inprogressTasks: Tasklist[];
+  completedTasks: Tasklist[];
+  myFiles: string[] = [];
+
+  constructor(private modalService: BsModalService, private formBuilder: UntypedFormBuilder) { }
+
+  ngOnInit() {
+    this.breadCrumbItems = [{ label: 'Tasks' }, { label: 'Task List', active: true }];
+
+    this.formData = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      file: new UntypedFormControl('', [Validators.required]),
+      taskType: ['', [Validators.required]],
+      status: ['', [Validators.required]]
     });
 
-    this.fetchAllTasks();
-    
-    this.searchFormGroup = this.fb.group({
-      keyword: this.fb.control("")
-    });
-
-    this.selectedPriority = "ALL"; // Initialiser selectedPriority à "ALL"
-    this.selectedStatus = "ALL"; // Initialiser selectedStatus à "ALL"
-    this.fetchAllTasks();
+    this._fetchData();
   }
 
-  handleSearchTasks(): void {
-    let kw = this.searchFormGroup?.value.keyword;
-    this.tasks = this.taskService.searchTasks(kw).pipe(
-      catchError(err => {
-        this.errorMessage = err.message;
-        return throwError(err);
-      })
-    );
-  }
-  
-  onSearch(): void {
-    this.handleSearchTasks();
-  }
-
-  fetchAllTasks(): void {
-    const skip = (this.currentPage - 1) * this.itemsPerPage;
-    this.tasks = this.taskService.getAllTasks(skip, this.itemsPerPage).pipe(
-      catchError(err => {
-        this.errorMessage = err.message;
-        return throwError(err);
-      })
-    );
-  }
-
-  pageChanged(event: any): void {
-    this.page = event.page;
-  }
-
-  toggleQualificationList(): void {
-    if (this.selectedPriority === 'ALL' && this.selectedStatus === 'ALL') {
-      this.fetchAllTasks();
-    } else {
-      this.applyFilters();
+  onFileChange(event) {
+    for (var i = 0; i < event.target.files.length; i++) {
+      this.myFiles.push('assets/images/users/' + event.target.files[i].name);
     }
-  
-    // Appliquer le tri par date si activé
-    if (this.sortByDate) {
-      this.sortTasksByDate();
+  }
+
+  _fetchData() {
+    // all tasks
+    this.inprogressTasks = tasks.filter(t => t.taskType === 'inprogress');
+    this.upcomingTasks = tasks.filter(t => t.taskType === 'upcoming');
+    this.completedTasks = tasks.filter(t => t.taskType === 'completed');
+
+    this.taskChart = taskChart;
+  }
+
+
+  get form() {
+    return this.formData.controls;
+  }
+
+  listData() {
+    if (this.formData.valid) {
+      const name = this.formData.get('name').value;
+      const status = this.formData.get('status').value;
+      const taskType = this.formData.get('taskType').value;
+      tasks.push({
+        index: tasks.length + 1,
+        name,
+        status,
+        taskType,
+        images: this.myFiles,
+        checked: true
+      })
     }
-  
-    // Mettre à jour la valeur de showQualificationList
-    this.showQualificationList = !this.showQualificationList;
-    
-
+    this.modalService.hide()
+    this._fetchData();
+    this.submitted = false;
   }
-  
-  
-
-  
-toggleSortByDate(event: any): void {
-  this.sortByDate = event.target.checked;
-  
-  // Appliquer le tri et/ou le filtrage seulement si le filtre est ouvert
-  if (this.showQualificationList) {
-      this.toggleQualificationList();
-  } else {
-      this.sortTasksByDate();
-  }
-
-  this.sortByDate = event.target.checked;
-  
-  if (this.showQualificationList) {
-    this.applyFilters();
-  } else {
-    this.sortTasksByDate();
+  /**
+   * Open modal
+   * @param content modal content
+   */
+  openModal(content: any) {
+    this.modalRef = this.modalService.show(content);
   }
 }
-
-  
-  
-filterTasksByPriority(): void {
-  if (this.selectedPriority === 'ALL') {
-    this.fetchAllTasks();
-  } else {
-    this.tasks = this.taskService.getTasksByPriority(this.selectedPriority).pipe(
-      catchError(err => {
-        this.errorMessage = err.message;
-        return throwError(err);
-      })
-    );
-  }
-
-  // Appliquer le tri par date si activé
-  if (this.sortByDate) {
-    this.sortTasksByDate();
-  }
-}
-
-
-
-  
-sortTasksByDate(): void {
-  this.tasks = this.tasks.pipe(
-    map(tasks => tasks.sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime())),
-    catchError(err => {
-      this.errorMessage = err.message;
-      return throwError(err);
-    })
-  );
-}
-
-filterTasksByStatus(): void {
-  if (this.selectedStatus === 'ALL' || !this.selectedStatus) {
-    this.fetchAllTasks();
-  } else {
-    this.tasks = this.taskService.getTasksByStatus(this.selectedStatus).pipe(
-      catchError(err => {
-        this.errorMessage = err.message;
-        return throwError(err);
-      })
-    );
-  }
-}
-
-applyFilters(): void {
-  if (this.selectedPriority === 'ALL' && this.selectedStatus === 'ALL') {
-    this.fetchAllTasks();
-  } else if (this.selectedPriority !== 'ALL' && this.selectedStatus === 'ALL') {
-    this.filterTasksByPriority();
-  } else if (this.selectedPriority === 'ALL' && this.selectedStatus !== 'ALL') {
-    this.filterTasksByStatus();
-  } else {
-    this.filterTasksByPriorityAndStatus();
-  }
-
-  // Appliquer le tri par date si activé
-  if (this.sortByDate) {
-    this.sortTasksByDate();
-  }
-}
-
-filterTasksByPriorityAndStatus(): void {
-  this.tasks = this.taskService.getTasksByPriorityAndStatus(this.selectedPriority, this.selectedStatus).pipe(
-    catchError(err => {
-      this.errorMessage = err.message;
-      return throwError(err);
-    })
-  );
-}
-  
-  }

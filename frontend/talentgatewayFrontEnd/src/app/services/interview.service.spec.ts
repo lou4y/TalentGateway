@@ -34,6 +34,4 @@ describe('InterviewService', () => {
     expect(request.request.method).toBe('GET');
     request.flush(mockData);
   });
-
-  
 });
