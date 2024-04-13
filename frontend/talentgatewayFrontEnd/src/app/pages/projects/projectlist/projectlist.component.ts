@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-projectlist',
@@ -11,9 +12,11 @@ export class ProjectlistComponent implements OnInit {
 
   breadCrumbItems: Array<{}>;
   projects: any[]; // Using any[] for simplicity
-  page: any=1;
+  page: any = 1;
+  deleteInProgress: boolean = false;
+  searchCriteria: string = '';
 
-  constructor(private projectService: ProjectService,private router: Router) { }
+  constructor(private projectService: ProjectService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadProjects();
@@ -31,8 +34,6 @@ export class ProjectlistComponent implements OnInit {
     );
   }
 
-  deleteInProgress: boolean = false;
-
   deleteProject(id: number) {
     // Check if delete operation is already in progress
     if (this.deleteInProgress) {
@@ -47,7 +48,11 @@ export class ProjectlistComponent implements OnInit {
         // After deletion, remove the deleted project from the list
         this.projects = this.projects.filter(project => project.id !== id);
         // Show alert indicating successful deletion
-        alert('Project deleted successfully');
+        Swal.fire({
+          title: "Good job!",
+          text: "Your Project deleted successfully!",
+          icon: "success"
+        });
       },
       (error) => {
         //console.error('Error deleting project:', error);
@@ -58,10 +63,19 @@ export class ProjectlistComponent implements OnInit {
           // After deletion, remove the deleted project from the list
           this.projects = this.projects.filter(project => project.id !== id);
           // Show alert indicating successful deletion
-          alert('Project deleted successfully');
+          Swal.fire({
+            title: "Good job!",
+            text: "Your Project deleted successfully!",
+            icon: "success"
+          });
         } else {
           // Show error message to user or handle error appropriately
-          alert('Failed to delete project');
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Failed to delete your project",
+            footer: '<a href="#">Why do I have this issue?</a>'
+          });
         }
       }
     ).add(() => {
@@ -72,17 +86,32 @@ export class ProjectlistComponent implements OnInit {
       this.loadProjects();
     });
   }
- // In projectlist.component.ts
- updateProject(projectId: any) {
-  if (projectId) {
-    this.router.navigate(['projects/updateProject', projectId]);
-    console.log('Project ID:', projectId);
-  } else {
-    console.error('Project ID is undefined or not set properly');
+
+  updateProject(projectId: any) {
+    if (projectId) {
+      this.router.navigate(['projects/updateProject', projectId]);
+      console.log('Project ID:', projectId);
+    } else {
+      console.error('Project ID is undefined or not set properly');
+    }
   }
-}
 
+  onSearch(value: string) {
+    // Update the search criteria
+    this.searchCriteria = value;
+    // Perform search
+    this.searchProjects();
+  }
 
-
-
+  searchProjects() {
+    this.projectService.searchProjects(this.searchCriteria).subscribe(
+      (result: any[]) => {
+        this.projects = result;
+      },
+      (error) => {
+        console.error('Error searching projects:', error);
+        // Handle error (e.g., show error message to user)
+      }
+    );
+  }
 }
