@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/talentGateway/discovery-service/pom.xml" />
         <option value="$PROJECT_DIR$/talentGateway/gateway-service/pom.xml" />
         <option value="$PROJECT_DIR$/talentGateway/project-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../TalentGateway/TalentGateway/backend/talentGateway/user-service/pom.xml" />
       </list>
     </option>
   </component>

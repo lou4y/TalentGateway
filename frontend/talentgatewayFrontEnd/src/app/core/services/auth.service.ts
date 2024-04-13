@@ -1,44 +1,47 @@
 import { Injectable } from '@angular/core';
+
+import { getFirebaseBackend } from '../../authUtils';
+
 import { User } from '../models/auth.models';
-import {KeycloakService} from "keycloak-angular";
 
 @Injectable({ providedIn: 'root' })
 
 export class AuthenticationService {
-    constructor( public KeycloakService: KeycloakService) {
+
+    user: User;
+
+    constructor() {
     }
 
     /**
      * Returns the current user
      */
-    public currentUser(): Promise<User> {
-      return this.KeycloakService.loadUserProfile().then((profile) => {
-        const user: User = {
-          id: profile.id,
-          email: profile.email,
-          username: profile.username,
-          firstName: profile.firstName,
-          lastName: profile.lastName,
-          token: this.KeycloakService.getKeycloakInstance().token,
-
-        };
-        return user;
-      });
+    public currentUser(): User {
+        return getFirebaseBackend().getAuthenticatedUser();
     }
-    async login() {
-      await this.KeycloakService.login(
-        {
-          redirectUri: window.location.origin
-        }
-      );
 
+    /**
+     * Performs the auth
+     * @param email email of user
+     * @param password password of user
+     */
+    login(email: string, password: string) {
+        return getFirebaseBackend().loginUser(email, password).then((response: any) => {
+            const user = response;
+            return user;
+        });
     }
 
     /**
      * Performs the register
+     * @param email email
+     * @param password password
      */
     register(email: string, password: string) {
-
+        return getFirebaseBackend().registerUser(email, password).then((response: any) => {
+            const user = response;
+            return user;
+        });
     }
 
     /**
@@ -46,15 +49,18 @@ export class AuthenticationService {
      * @param email email
      */
     resetPassword(email: string) {
-
+        return getFirebaseBackend().forgetPassword(email).then((response: any) => {
+            const message = response.data;
+            return message;
+        });
     }
 
     /**
      * Logout the user
      */
     logout() {
-      this.KeycloakService.logout(window.location.origin);
-
+        // logout the user
+        getFirebaseBackend().logout();
     }
 }
 

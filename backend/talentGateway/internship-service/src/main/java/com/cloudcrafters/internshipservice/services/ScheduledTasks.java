@@ -32,24 +32,23 @@ public class ScheduledTasks {
     @Autowired
     private EmailService emailService; // Inject EmailService
 
-    /*@Scheduled(fixedRate = 10000) // Run every 10 seconds
-    public void checkMatchingInternshipsScheduled() {
+    @Scheduled(fixedRate = 10000) // Run every 10 seconds
+    public void getRandomInternshipScheduled() {
         List<Internship> internships = internshipService.getAllInternships();
-        List<User> usersWithSkills = userRestClient.getUsersWithSkills();
-
-        if (!internships.isEmpty() && !usersWithSkills.isEmpty()) {
+        if (!internships.isEmpty()) {
             for (Internship internship : internships) {
                 String internshipSkills = internship.getIntershipSkills();
-                for (User user : usersWithSkills) {
-                    List<Skill> userSkills = user.getSkills();
-                    boolean matchFound = checkSkillsMatch(internshipSkills, userSkills);
-                    if (matchFound) {
-                        sendNotificationEmail(user, internship);
+                List<Skill> userSkills = userRestClient.findSkillsByUserId("5db6b347-d4eb-4255-b08d-7dd9549b1377");
+                boolean matchFound = checkSkillsMatch(internshipSkills, userSkills);
+                if (matchFound) {
+                    User user = userRestClient.findUserById("5db6b347-d4eb-4255-b08d-7dd9549b1377");
+                    if (user != null && user.getEmail() != null) {
+                        emailService.sendEmail(user.getEmail(), "Internship Match", "Match found for Internship: " + internship.getIntershipTitle());
                     }
                 }
             }
         }
-    }*/
+    }
 
     private boolean checkSkillsMatch(String internshipSkills, List<Skill> userSkills) {
         if (internshipSkills != null && !internshipSkills.isEmpty() && userSkills != null && !userSkills.isEmpty()) {
@@ -65,15 +64,4 @@ public class ScheduledTasks {
         return false;
     }
 
-   /* private void sendNotificationEmail(User user, Internship internship) {
-        String recipientEmail = user.getEmail();
-        String subject = "Internship Match Notification";
-        String content = "Hello " + user.getFirstName() + ",\n\n"
-                + "We found an internship that matches your skills:\n\n"
-                + "Internship Title: " + internship.getIntershipTitle() + "\n"
-                + "Internship Description: " + internship.getIntershipDescription() + "\n\n"
-                + "Best regards,\nInternship Service";
-
-        emailService.sendEmail(recipientEmail, subject, content);
-    }*/
 }

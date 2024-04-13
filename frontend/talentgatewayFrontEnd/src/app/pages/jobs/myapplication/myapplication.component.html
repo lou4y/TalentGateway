@@ -48,6 +48,7 @@
                   <th scope="col">Status</th>
                   <th scope="col">User ID</th>
                   <th scope="col">Offer ID</th>
+                  <th scope="col">Interview ID</th>
                   <th scope="col">Interview Date</th>
                   <th scope="col">Interview Mode</th>
                   <th scope="col">Internship Company</th>
@@ -68,10 +69,17 @@
                         'bg-info': data.status === 'PENDING',
                         'bg-danger': data.status === 'REJECTED'
                       }"
-                    >{{ data.status }}</span>
+                      >{{ data.status }}</span
+                    >
                   </td>
                   <td>{{ data.userid }}</td>
                   <td>{{ data.offreid }}</td>
+                  <td>
+                    {{
+                      data.interview?.id ||
+                        "No maintenance is planned at the moment"
+                    }}
+                  </td>
                   <td>
                     {{
                       data.interview?.dateEntretien ||
@@ -183,6 +191,8 @@
   </div>
 
   <form (ngSubmit)="saveEdit(applicationId)" [formGroup]="jobListForm">
+  <!--<form (ngSubmit)="saveApplication(applicationId)" [formGroup]="applicationForm">-->
+
     <div class="modal-body">
       <input type="hidden" name="id" value="" formControlName="ids" />
 
@@ -299,6 +309,9 @@
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary" (click)="saveApplication(applicationId)">Save</button>
+
+       
+
     </div>
   </form>
 </ng-template>

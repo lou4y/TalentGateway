@@ -1,10 +1,7 @@
 package com.cloudcrafters.userservice.dto;
 
-import com.cloudcrafters.userservice.entity.Skill;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -23,8 +20,6 @@ public class User {
 	private String password;
 
 	private Boolean isEmailVerified = false;
-
-	private List<Skill> skills;
 
 
 	

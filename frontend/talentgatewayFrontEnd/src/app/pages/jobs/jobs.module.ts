@@ -18,10 +18,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CandidateListComponent } from './candidate-list/candidate-list.component';
 import { CandidateOverviewComponent } from './candidate-overview/candidate-overview.component';
 import { AllapplicationComponent } from './allapplication/allapplication.component';
-import { MyapplicationComponent } from './myapplication/myapplication.component';
-import { ListInternshipsComponent } from './list-internships/list-internships.component';
-import { AddInternshipsComponent } from './add-internships/add-internships.component';
-import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import { MyapplicationComponent } from './myapplication/myapplication.component'; 
 
 @NgModule({
   declarations: [
@@ -33,9 +30,7 @@ import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
     CandidateListComponent,
     CandidateOverviewComponent,
     AllapplicationComponent,
-    MyapplicationComponent,
-    ListInternshipsComponent,
-    AddInternshipsComponent
+    MyapplicationComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +42,6 @@ import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
     CollapseModule.forRoot(),
     UIModule,
     JobsRoutingModule,
-    CKEditorModule,
   ]
 })
 

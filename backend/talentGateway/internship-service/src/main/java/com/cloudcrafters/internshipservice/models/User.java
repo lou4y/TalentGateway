@@ -7,7 +7,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -18,8 +17,7 @@ public class User {
     private String LastName;
     private String email;
     private String password;
-    private List<Skill> skills; // Add skills field
-
+    private String Skills;
     @Temporal(TemporalType.DATE)
     private Date birthDate;
 }

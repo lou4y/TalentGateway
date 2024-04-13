@@ -21,7 +21,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/application")
 @RequiredArgsConstructor
-@CrossOrigin("*")
 public class ApplicationController {
     private final ApplicationService applicationService;
 
