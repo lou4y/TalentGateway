@@ -18,6 +18,9 @@ public class EmailService {
 =======
 
    /* @Value("${sendgrid.api.key}")
+<<<<<<< HEAD
+>>>>>>> parent of 8d3d823 (Merge pull request #75 from lou4y/internship)
+=======
 >>>>>>> parent of 8d3d823 (Merge pull request #75 from lou4y/internship)
     private String sendgridApiKey;
 

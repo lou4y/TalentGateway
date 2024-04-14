@@ -31,11 +31,6 @@ public class ScheduledTasks {
 
     @Autowired
    private EmailService emailService; // Inject EmailService
-<<<<<<< HEAD
-
-=======
-/*
->>>>>>> parent of 8d3d823 (Merge pull request #75 from lou4y/internship)
     @Scheduled(fixedRate = 10000) // Run every 10 seconds
     public void getRandomInternshipScheduled() {
         List<Internship> internships = internshipService.getAllInternships();
@@ -53,10 +48,7 @@ public class ScheduledTasks {
             }
         }
     }
-<<<<<<< HEAD
-=======
-*/
->>>>>>> parent of 8d3d823 (Merge pull request #75 from lou4y/internship)
+
     private boolean checkSkillsMatch(String internshipSkills, List<Skill> userSkills) {
         if (internshipSkills != null && !internshipSkills.isEmpty() && userSkills != null && !userSkills.isEmpty()) {
             String[] internshipSkillsArray = internshipSkills.split(", ");
