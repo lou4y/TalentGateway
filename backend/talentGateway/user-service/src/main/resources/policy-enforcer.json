@@ -3,7 +3,7 @@
   "auth-server-url": "http://127.0.0.1:8080",
   "resource": "backend",
   "credentials": {
-    "secret": "R5NDwdTYcYPJekb2trjIoKOIVxkHxPjc"
+    "secret": "91IvcamClwQlVarnwu0Oy8WRsvPlQ4jw"
   },
   "http-method-as-scope": true,
   "paths" : [

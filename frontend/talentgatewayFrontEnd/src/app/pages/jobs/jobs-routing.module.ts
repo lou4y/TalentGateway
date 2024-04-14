@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ListComponent } from "./list/list.component"; 
+import { ListComponent } from "./list/list.component";
 import { GridComponent } from "./grid/grid.component";
 import { ApplyComponent } from "./apply/apply.component";
 import { DetailsComponent } from "./details/details.component";
@@ -10,6 +10,9 @@ import {CandidateListComponent} from "./candidate-list/candidate-list.component"
 import { CandidateOverviewComponent } from "./candidate-overview/candidate-overview.component";
 import { AllapplicationComponent } from "./allapplication/allapplication.component";
 import { MyapplicationComponent } from "./myapplication/myapplication.component";
+import {ListInternshipsComponent} from "./list-internships/list-internships.component";
+import {AddInternshipsComponent} from "./add-internships/add-internships.component";
+import {InternshipDetailsComponent} from "./internship-details/internship-details.component";
 
 const routes: Routes = [
    {
@@ -19,11 +22,11 @@ const routes: Routes = [
 
    {
     path: "allapplication",
-    component: AllapplicationComponent  
+    component: AllapplicationComponent
   },
   {
     path: "myapplication",
-    component: MyapplicationComponent 
+    component: MyapplicationComponent
    },
    {
     path:"grid",
@@ -48,7 +51,18 @@ const routes: Routes = [
    {
     path:"candidate-overview",
     component:CandidateOverviewComponent
-   }
+   },
+  {
+    path:"internships",
+    component:ListInternshipsComponent
+  },
+  {
+    path:"add-internships",
+    component:AddInternshipsComponent
+  }
+
+
+
 ];
 
 @NgModule({

@@ -212,19 +212,25 @@ export const MENU: MenuItem[] = [
         parentId: 47
       },
       {
+        id: 200,
+        label: 'Internships',
+        link: '/jobs/internships',
+        parentId: 47
+      },
+      {
         id: 100, //  l'id doit etre  unique
         label: 'All Application',
         link: '/jobs/allapplication', // Lien vers AllapplicationComponent myapplication
-        parentId: 47 // Identifiant du parent  
+        parentId: 47 // Identifiant du parent
       },
 
       {
         id: 101, //  l'id doit etre  unique
         label: 'MY Application',
         link: '/jobs/myapplication', // Lien vers AllapplicationComponent myapplication
-        parentId: 47 // Identifiant du parent  
+        parentId: 47 // Identifiant du parent
       },
-      
+
       {
         id: 50,
         label: 'MENUITEMS.JOBS.LIST.APPLYJOB',
