@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class ProjectService {
   readonly API_URL = "http://localhost:8888/PROJECT-SERVICE";
   readonly ENDPOINT_Projects = "/projects";
+  readonly ENDPOINT_Likes = "/likes";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -41,6 +42,23 @@ export class ProjectService {
       params = params.set('searchCriteria', searchCriteria);
     }
     return this.httpClient.get<any[]>(this.API_URL + this.ENDPOINT_Projects + '/search', { params });
+  }
+
+  likeProject(projectId: any, userId: string): Observable<any> {
+    return this.httpClient.post<any>(this.API_URL + this.ENDPOINT_Likes + '/like/' + projectId, null, { params: { userId } });
+  }
+
+
+  dislikeProject(projectId: any, userId: string): Observable<any> {
+    return this.httpClient.delete<any>(this.API_URL + this.ENDPOINT_Likes + '/dislike/' + projectId, { params: { userId } });
+  }
+
+  getNumberOfLikes(projectId: any): Observable<number> {
+    return this.httpClient.get<number>(this.API_URL + this.ENDPOINT_Likes + '/count/' + projectId);
+  }
+
+  isUserLikedProject(userId: string, projectId: any): Observable<boolean> {
+    return this.httpClient.get<boolean>(this.API_URL + this.ENDPOINT_Likes + '/isliked/' + projectId, { params: { userId } });
   }
 
 }
