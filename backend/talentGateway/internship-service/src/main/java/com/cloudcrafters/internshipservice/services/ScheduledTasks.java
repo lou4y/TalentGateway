@@ -31,8 +31,13 @@ public class ScheduledTasks {
 
     @Autowired
 <<<<<<< HEAD
+<<<<<<< HEAD
     private EmailService emailService; // Inject EmailService
 
+=======
+   private EmailService emailService; // Inject EmailService
+/*
+>>>>>>> parent of 8d3d823 (Merge pull request #75 from lou4y/internship)
 =======
    private EmailService emailService; // Inject EmailService
 /*
@@ -55,7 +60,11 @@ public class ScheduledTasks {
         }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+*/
+>>>>>>> parent of 8d3d823 (Merge pull request #75 from lou4y/internship)
 =======
 */
 >>>>>>> parent of 8d3d823 (Merge pull request #75 from lou4y/internship)
