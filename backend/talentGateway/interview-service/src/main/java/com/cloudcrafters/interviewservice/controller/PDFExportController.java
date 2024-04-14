@@ -1,8 +1,4 @@
 package com.cloudcrafters.interviewservice.controller;
-
-
-
-
 import com.cloudcrafters.interviewservice.service.PDFGeneratorService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
