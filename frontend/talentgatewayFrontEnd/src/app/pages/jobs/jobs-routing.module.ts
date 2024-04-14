@@ -12,6 +12,7 @@ import { AllapplicationComponent } from "./allapplication/allapplication.compone
 import { MyapplicationComponent } from "./myapplication/myapplication.component";
 import {ListInternshipsComponent} from "./list-internships/list-internships.component";
 import {AddInternshipsComponent} from "./add-internships/add-internships.component";
+import {InternshipDetailsComponent} from "./internship-details/internship-details.component";
 
 const routes: Routes = [
    {
@@ -59,6 +60,9 @@ const routes: Routes = [
     path:"add-internships",
     component:AddInternshipsComponent
   }
+
+
+
 ];
 
 @NgModule({

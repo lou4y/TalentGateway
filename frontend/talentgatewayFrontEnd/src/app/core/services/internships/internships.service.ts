@@ -23,7 +23,7 @@ export class InternshipsService {
     return this.httpClient.delete<any>(`${this.API_URL}/${id}`);
   }
 
-  getInternshipById(id: number): Observable<Internship> {
+    getInternshipById(id: number): Observable<Internship> {
     return this.httpClient.get<Internship>(`${this.API_URL}/${id}`);
   }
 

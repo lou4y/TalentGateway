@@ -82,8 +82,30 @@
                         <i class="mdi mdi-delete-outline"></i>
                       </a>
                     </li>
+
+                    <!-- View Button with Router Link and Parameter -->
+                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                      <a href="javascript:void(0);" class="btn btn-sm btn-soft-primary"
+                         (click)="viewInternshipDetails(internship.intershipId)">
+                        <i class="mdi mdi-eye-outline"></i>
+                      </a>
+                    </li>
+
+                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                      <a href="javascript:void(0);" class="btn btn-sm btn-soft-info" (click)="editDataGet(internship.internshipId, content)">
+                        <i class="mdi mdi-pencil-outline"></i>
+                      </a>
+                    </li>
+
+
+
+
+
+
+
                   </ul>
                 </td>
+
               </tr>
               </tbody>
             </table>
@@ -108,7 +130,7 @@
 
 
 
-<!-- Add New Job Modal -->
+<!-- Add New Internship Modal -->
 <ng-template #content let-modal>
   <!-- Modal header -->
   <div class="modal-header">

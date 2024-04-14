@@ -32,7 +32,7 @@ public class ScheduledTasks {
     @Autowired
     private EmailService emailService; // Inject EmailService
 
-    /*@Scheduled(fixedRate = 10000) // Run every 10 seconds
+    @Scheduled(fixedRate = 10000) // Run every 10 seconds
     public void checkMatchingInternshipsScheduled() {
         List<Internship> internships = internshipService.getAllInternships();
         List<User> usersWithSkills = userRestClient.getUsersWithSkills();
@@ -49,7 +49,7 @@ public class ScheduledTasks {
                 }
             }
         }
-    }*/
+    }
 
     private boolean checkSkillsMatch(String internshipSkills, List<Skill> userSkills) {
         if (internshipSkills != null && !internshipSkills.isEmpty() && userSkills != null && !userSkills.isEmpty()) {
@@ -65,15 +65,17 @@ public class ScheduledTasks {
         return false;
     }
 
-   /* private void sendNotificationEmail(User user, Internship internship) {
+    private void sendNotificationEmail(User user, Internship internship) {
         String recipientEmail = user.getEmail();
         String subject = "Internship Match Notification";
         String content = "Hello " + user.getFirstName() + ",\n\n"
                 + "We found an internship that matches your skills:\n\n"
                 + "Internship Title: " + internship.getIntershipTitle() + "\n"
-                + "Internship Description: " + internship.getIntershipDescription() + "\n\n"
+                + "Internship Description: " + internship.getIntershipDescription() + "\n"
+                + "Internship URL: http://localhost:4200/internship-details/" + internship.getIntershipId() + "\n\n"
                 + "Best regards,\nInternship Service";
 
         emailService.sendEmail(recipientEmail, subject, content);
-    }*/
+    }
+
 }
