@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "internship-service", url = "http://localhost:8888/INTERNSHIP-SERVICE")
 public interface OffreRestClient {
-    @CircuitBreaker(name = "internship-service", fallbackMethod = "getDefaultCreator")
+    @CircuitBreaker(name = "internship-servic", fallbackMethod = "getDefaultCreator")
     @GetMapping("/internships/{offreId}")
     Offre findOffreById(@PathVariable("offreId") String offreId);
 

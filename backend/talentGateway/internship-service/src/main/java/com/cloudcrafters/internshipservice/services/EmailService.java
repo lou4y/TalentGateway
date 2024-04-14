@@ -14,14 +14,8 @@ import java.io.IOException;
 
 @Service
 public class EmailService {
-<<<<<<< HEAD
-=======
 
-   /* @Value("${sendgrid.api.key}")
-<<<<<<< HEAD
->>>>>>> parent of 8d3d823 (Merge pull request #75 from lou4y/internship)
-=======
->>>>>>> parent of 8d3d823 (Merge pull request #75 from lou4y/internship)
+    /*@Value("${sendgrid.api.key}")
     private String sendgridApiKey;
 
     public void sendEmail(String recipient, String subject, String content) {
@@ -43,5 +37,5 @@ public class EmailService {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    }
+    }*/
 }

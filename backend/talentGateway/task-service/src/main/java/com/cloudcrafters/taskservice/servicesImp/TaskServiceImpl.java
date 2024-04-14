@@ -9,13 +9,11 @@ import com.cloudcrafters.taskservice.dto.TaskResponse;
 import com.cloudcrafters.taskservice.Enums.Priority;
 import com.cloudcrafters.taskservice.services.ModuleService;
 import com.cloudcrafters.taskservice.services.TaskService;
-import com.pusher.rest.Pusher;
 import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,36 +27,21 @@ public class TaskServiceImpl implements TaskService {
     @Resource
     private final ModuleService moduleService;
 
-    @Autowired
-    private Pusher pusher;
-
     @Override
     public Task createTask(Task task) {
-        // Validation et association du module
         if (task.getModule() != null && task.getModule().getModuleName() != null) {
+            // Fetch the module from the database
             Module module = moduleService.getModuleByName(task.getModule().getModuleName())
-                    .orElseThrow(() -> new RuntimeException("Module Name does not exist"));
+                    .orElse(null);
+            if (module == null) {
+                throw new RuntimeException("Module Name does not exist");
+            }
             task.setModule(module);
         } else {
             throw new RuntimeException("Task must have a valid module");
         }
-
-        // Sauvegarde de la tâche
-        Task savedTask = taskDao.save(task);
-
-        // Assurez-vous que task.getModule() et getModule().getProjectId() sont correctement définis
-        Long projectId = task.getModule().getProjectId(); // Ceci suppose que votre Module a un getProjectId()
-        if (projectId != null) {
-            // Envoi de la notification via Pusher
-            pusher.trigger("project-" + projectId, "new-task", Collections.singletonMap("message", "Une nouvelle tâche a été créée : " + task.getTaskName()));
-        } else {
-            // Gérer le cas où l'ID du projet n'est pas disponible
-            System.out.println("Project ID not available for this task");
-        }
-
-        return savedTask;
+        return taskDao.save(task);
     }
-
 
 
     @Override
@@ -124,12 +107,6 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskResponse> findTasksByPriority(Priority priority) {
         List<Task> tasks = taskDao.findByPriority(priority);
-        return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<TaskResponse> findTasksByStatus(Statut statut) {
-        List<Task> tasks = taskDao.findByStatut(statut);
         return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
     }
 

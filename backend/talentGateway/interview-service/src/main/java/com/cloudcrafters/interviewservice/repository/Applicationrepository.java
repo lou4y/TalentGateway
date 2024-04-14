@@ -1,7 +1,7 @@
 
 package com.cloudcrafters.interviewservice.repository;
 
-
+import com.cloudcrafters.interviewservice.dto.ApplicationResponse;
 import com.cloudcrafters.interviewservice.model.Application;
 
 import com.cloudcrafters.interviewservice.model.Status;

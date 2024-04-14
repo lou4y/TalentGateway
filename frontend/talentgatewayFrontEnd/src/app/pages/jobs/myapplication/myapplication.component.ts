@@ -223,5 +223,11 @@ export class MyapplicationComponent implements OnInit {
       }
     );
   }
+
+  getStatusPercentage(status: string): number {
+    const totalApplications = this.lists.length;
+    const statusCount = this.lists.filter(app => app.status === status).length;
+    return (statusCount / totalApplications) * 100;
+  }
     
 }
