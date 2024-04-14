@@ -14,16 +14,6 @@ import java.io.IOException;
 
 @Service
 public class EmailService {
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-    @Value("${sendgrid.api.key}")
-=======
-   /* @Value("${sendgrid.api.key}")
->>>>>>> parent of 8d3d823 (Merge pull request #75 from lou4y/internship)
-=======
-   /* @Value("${sendgrid.api.key}")
->>>>>>> parent of 8d3d823 (Merge pull request #75 from lou4y/internship)
     private String sendgridApiKey;
 
     public void sendEmail(String recipient, String subject, String content) {
