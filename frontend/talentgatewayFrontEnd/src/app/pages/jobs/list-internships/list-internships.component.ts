@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 
 
 import {InternshipsService} from "../../../core/services/Internships/internships.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-list-internships',
@@ -30,7 +31,7 @@ export class ListInternshipsComponent implements OnInit {
 
   @ViewChild('content') content: TemplateRef<any>;
 
-  constructor(private internshipsService: InternshipsService,  private modalService: BsModalService, private formBuilder: FormBuilder) {}
+  constructor(private internshipsService: InternshipsService,  private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.getAllInternships();
@@ -103,12 +104,14 @@ export class ListInternshipsComponent implements OnInit {
         this.internships = data;
         this.totalRecords = this.internships.length;
         this.updatePagination();
+        console.log('Internships:', this.internships); // Check if data is populated
       },
       (error) => {
         console.error('Error fetching internships:', error);
       }
     );
   }
+
 
   deleteInternship(id: number): void {
     this.internshipsService.deleteInternship(id).subscribe(
@@ -164,6 +167,55 @@ export class ListInternshipsComponent implements OnInit {
   }
 
 
+  viewInternshipDetails(internshipId: number): void {
+    console.log('Internship ID:', internshipId);
+    // Navigate to the specific route with the internship ID
+    this.router.navigate(['internship-details', internshipId]);
+  }
 
 
+  updateInternship(internshipId: any) {
+    if (this.jobForm.valid) {
+      const internshipData = this.jobForm.value;
+      this.internshipsService.updateInternship(internshipData).subscribe(
+        (updatedInternship) => {
+          console.log('Internship updated successfully:', updatedInternship);
+          this.modalRef.hide(); // Close the modal
+          this.getAllInternships(); // Refresh the list of internships
+        },
+        (error) => {
+          console.error('Error updating internship:', error);
+          // Handle error if needed
+        }
+      );
+    } else {
+      console.log('Form is invalid.');
+      // Handle form validation errors if needed
+    }
+  }
+
+
+  editDataGet(internshipId: any, content: any) {
+    this.modalRef = this.modalService.show(content, { class: 'modal-md' });
+    const modelTitle = document.querySelector('.modal-title') as HTMLHeadingElement;
+    modelTitle.innerHTML = 'Edit Internship';
+    const updateBtn = document.getElementById('add-btn') as HTMLButtonElement;
+    updateBtn.innerHTML = 'Update';
+    const internshipData = this.internships.find((internship: { id: any; }) => internship.id === internshipId);
+    if (internshipData) {
+      this.jobForm.patchValue({
+        internshipId: internshipData.internshipId, // Corrected field name
+        title: internshipData.title,
+        company: internshipData.company,
+        description: internshipData.description,
+        responsibilities: internshipData.responsibilities,
+        qualifications: internshipData.qualifications,
+        skills: internshipData.skills,
+        location: internshipData.location,
+        duration: internshipData.duration,
+        startDate: internshipData.startDate,
+        type: internshipData.type,
+      });
+    }
+  }
 }
