@@ -24,5 +24,8 @@ public interface InternshipService {
 
     List<Internship> treeInternshipsByPostedDate();
 
+    void shareInternshipOnLinkedIn(Long internshipId);
+
+    List<Internship> getInternshipbyuser(String userId);
 
 }

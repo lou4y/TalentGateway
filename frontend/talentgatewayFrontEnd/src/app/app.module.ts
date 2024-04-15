@@ -33,6 +33,7 @@ if (environment.defaultauth === 'firebase') {
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 >>>>>>> origin/main
 
+
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -68,6 +69,7 @@ export function createTranslateLoader(http: HttpClient): any {
     ScrollToModule.forRoot(),
     ToastrModule.forRoot(),
     KeycloakAngularModule,
+
   ],
   bootstrap: [AppComponent],
   providers: [

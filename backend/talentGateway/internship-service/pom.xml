@@ -87,6 +87,13 @@
         </dependency>-->
 
         <dependency>
+            <groupId>nlp-service-group</groupId>
+            <artifactId>nlp-service-artifact</artifactId>
+            <version>1.1.1</version> <!-- Replace with the actual version number -->
+        </dependency>
+
+
+        <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-core</artifactId>
             <version>13.2.1</version>

@@ -7,6 +7,7 @@ import com.cloudcrafters.internshipservice.entites.Category;
 import com.cloudcrafters.internshipservice.entites.Internship;
 import com.cloudcrafters.internshipservice.services.InternshipService;
 
+import com.cloudcrafters.internshipservice.services.LinkedInService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class InternshipServiceImpl implements InternshipService {
+
+    private  LinkedInService linkedInService;
+
+    @Autowired
+    public void ShareInternshipService(LinkedInService linkedInService) {
+        this.linkedInService = linkedInService;
+    }
+
 
     @Autowired
     private InternshipDao InternshipDao;
@@ -119,6 +128,18 @@ public class InternshipServiceImpl implements InternshipService {
         List<Internship> internships = InternshipDao.findAll();
         internships.sort(Comparator.comparing(Internship::getIntershippostedDate));
         return internships;
+    }
+
+    @Override
+    public void shareInternshipOnLinkedIn(Long internshipId) {
+        // Call LinkedInService method to share the internship on LinkedIn
+        linkedInService.shareInternshipOnLinkedIn(internshipId);
+    }
+
+    @Override
+    public List<Internship> getInternshipbyuser(String userId) {
+        //list of internship for his user
+        return InternshipDao.findByUserId(userId);
     }
 
 }

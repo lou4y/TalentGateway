@@ -20,7 +20,6 @@ export class AuthenticationService {
           firstName: profile.firstName,
           lastName: profile.lastName,
           token: this.KeycloakService.getKeycloakInstance().token,
-
         };
         return user;
       });

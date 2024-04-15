@@ -128,4 +128,9 @@ public class InternshipController {
     }
 
 
+
+    @GetMapping("/user/{userId}")
+    public List<Internship> getInternshipsByUserId(@PathVariable String userId) {
+        return internshipService.getInternshipbyuser(userId);
+    }
 }
