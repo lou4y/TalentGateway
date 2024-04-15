@@ -32,13 +32,14 @@ public class Project implements Serializable {
     @Transient
     private User projectCreator;
     private String creatorId;
-
     @ManyToOne
     private Team team;
+    @JsonIgnore
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private Set<Comment> comments= new HashSet<>();
-
-
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    @JsonIgnore // Exclude likes from serialization
+    private Set<Like> likes = new HashSet<>();
 
 
 }

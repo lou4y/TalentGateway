@@ -17,7 +17,21 @@ import { CyptolandingComponent } from './cyptolanding/cyptolanding.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
+<<<<<<< HEAD
+import { HeaderFrontComponent } from './FrontOffice/header-front/header-front.component';
+import { ListprojectsComponent } from './FrontOffice/listprojects/listprojects.component';
+import { DetailProjectComponent } from './FrontOffice/projects/detail-project/detail-project.component';
+import { CommentsComponent } from './FrontOffice/projects/comments/comments.component';
+
+if (environment.defaultauth === 'firebase') {
+  initFirebaseBackend(environment.firebaseConfig);
+} else {
+  // tslint:disable-next-line: no-unused-expression
+  FakeBackendInterceptor;
+}
+=======
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+>>>>>>> origin/main
 
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -27,6 +41,10 @@ export function createTranslateLoader(http: HttpClient): any {
   declarations: [
     AppComponent,
     CyptolandingComponent,
+    HeaderFrontComponent,
+    ListprojectsComponent,
+    DetailProjectComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,22 +5,16 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
-
-
 @Entity
-@Table(name = "comments")
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder @ToString
-public class Comment implements Serializable {
+@Table(name = "likes")
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor @Builder
+public class Like implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long commentId;
-    private String commentContent;
+    private Long likeId;
     @ManyToOne
     private Project project;
-    @Temporal(TemporalType.DATE)
-    private Date commentDate;
     @Transient
     private User user;
     private String userId;
+    private Boolean isLiked;
 }
