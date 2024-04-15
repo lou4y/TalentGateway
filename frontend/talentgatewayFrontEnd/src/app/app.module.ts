@@ -31,6 +31,8 @@ import { FakeBackendInterceptor } from './core/helpers/fake-backend';
 import { ToastrModule } from 'ngx-toastr';
 import { HeaderFrontComponent } from './FrontOffice/header-front/header-front.component';
 import { ListprojectsComponent } from './FrontOffice/listprojects/listprojects.component';
+import { DetailProjectComponent } from './FrontOffice/projects/detail-project/detail-project.component';
+import { CommentsComponent } from './FrontOffice/projects/comments/comments.component';
 
 if (environment.defaultauth === 'firebase') {
   initFirebaseBackend(environment.firebaseConfig);
@@ -49,6 +51,8 @@ export function createTranslateLoader(http: HttpClient): any {
     CyptolandingComponent,
     HeaderFrontComponent,
     ListprojectsComponent,
+    DetailProjectComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,

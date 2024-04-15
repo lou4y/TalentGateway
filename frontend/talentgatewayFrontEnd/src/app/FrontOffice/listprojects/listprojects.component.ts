@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from 'src/app/services/project.service';
 import Swal from 'sweetalert2';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-listprojects',
   templateUrl: './listprojects.component.html',
@@ -12,7 +12,7 @@ export class ListprojectsComponent implements OnInit {
   userId = "abc";
   deleteInProgress: boolean = false;
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService,private router:Router) { }
 
   ngOnInit(): void {
     this.loadProjects();
@@ -31,6 +31,9 @@ export class ListprojectsComponent implements OnInit {
         console.error('Error fetching projects:', error);
       }
     );
+  }
+  showdetailProject(project:any){
+    this.router.navigate(['/detailProject',project.projectId]);
   }
 
   fetchNumberOfLikes() {

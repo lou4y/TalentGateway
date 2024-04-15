@@ -12,7 +12,7 @@
                     <h3 class="tp-event-3__title">{{ project.projectName }}</h3>
                 </div>
                 <div class="tp-evnet-2__btn p-relative z-index-11">
-                    <button class="tp-border-btn" style="border-radius: 5px; border-color: red;">
+                    <button class="tp-border-btn" style="border-radius: 5px; border-color: red;" (click)="showdetailProject(project)">
                         <span>Show details</span>
                     </button>
                     <button class="tp-delete-btn" *ngIf="userId === project.projectCreator.userId" (click)="deleteProject(project.projectId)">

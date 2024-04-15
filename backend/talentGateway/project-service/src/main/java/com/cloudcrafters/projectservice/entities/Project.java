@@ -34,6 +34,7 @@ public class Project implements Serializable {
     private String creatorId;
     @ManyToOne
     private Team team;
+    @JsonIgnore
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private Set<Comment> comments= new HashSet<>();
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
