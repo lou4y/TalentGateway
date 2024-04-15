@@ -44,6 +44,9 @@ public interface UserRestClient {
     @GetMapping("/profile/skills/{userId}")
     List<Skill> findSkillsByUserId(@PathVariable String userId);
 
+    @GetMapping("/keycloak/usersskills") // New endpoint for users with skills
+    List<User> getUsersWithSkills();
+
 
     // Default method for handling fallback for skill operations
     default Skill getDefaultSkill(Long id, Exception exception) {
@@ -53,4 +56,6 @@ public interface UserRestClient {
         skill.setSkillLevel(SkillLevel.BEGINNER); // Set default skill level
         return skill;
     }
+
+
 }

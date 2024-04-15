@@ -46,4 +46,5 @@ public class SkillController {
         return this.skillService.allSkills();
     }
 
+
 }

@@ -1,0 +1,166 @@
+<div class="container-fluid">
+  <app-page-title title="Internships Lists" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body border-bottom">
+          <div class="d-flex align-items-center">
+            <h5 class="mb-0 card-title flex-grow-1">Internship List</h5>
+            <div class="flex-shrink-0 d-flex gap-1">
+              <!--
+                            <a href="javascript:void(0);" class="btn btn-primary" (click)="openModal()">Add New Job</a>
+              -->
+              <div class="col-sm-auto">
+                <div class="text-sm-end">
+                  <a routerLink="/jobs/add-internships" class="btn btn-success btn-rounded" id="addInternship-btn">
+                    <i class="mdi mdi-plus me-1"></i> Add New Internship
+                  </a>
+                </div>
+              </div>
+
+              <a href="javascript:void(0);" class="btn btn-light"><i class="mdi mdi-refresh"></i></a>
+              <div class="dropdown d-inline-block" dropdown>
+                <button type="menu" class="btn btn-success" id="*dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" dropdownToggle><i class="mdi mdi-dots-vertical"></i></button>
+                <ul class="dropdown-menu dropdown-menu dropdown-menu-end show" aria-labelledby="*dropdownMenuButton1" *dropdownMenu>
+                  <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body border-bottom">
+          <div class="row g-3">
+            <div class="col-xxl-4 col-lg-6">
+              <input type="search" class="form-control" id="searchInput" placeholder="Search by title ..." [(ngModel)]="searchTerm">
+            </div>
+            <div class="col-xxl-2 col-lg-4">
+              <button type="button" class="btn btn-soft-secondary w-100" (click)="searchInternships()">
+                <i class="mdi mdi-filter-outline align-middle"></i> Filter
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table align-middle dt-responsive nowrap w-100 table-check" id="job-list">
+              <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Company</th>
+                <th scope="col">Description</th>
+                <th scope="col">Responsibilities</th>
+                <th scope="col">Qualifications</th>
+                <th scope="col">Skills</th>
+                <th scope="col">Location</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Posted Date</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">Type</th>
+                <th scope="col">Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let internship of getCurrentPageInternships()">
+                <td>{{ internship.intershipTitle }}</td>
+                <td>{{ internship.intershipCompany }}</td>
+                <td>{{ internship.intershipDescription }}</td>
+                <td>{{ internship.intershipResponsibilities }}</td>
+                <td>{{ internship.intershipQualifications }}</td>
+                <td>{{ internship.intershipSkills }}</td>
+                <td>{{ internship.intershipLocation }}</td>
+                <td>{{ internship.intershipDuration }}</td>
+                <td>{{ internship.intershippostedDate | date }}</td>
+                <td>{{ internship.intershipStartDate | date }}</td>
+                <td>{{ internship.intershipType }}</td>
+                <td>
+                  <ul class="list-unstyled hstack gap-1 mb-0">
+                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                      <a href="javascript:void(0);" class="btn btn-sm btn-soft-danger" (click)="deleteInternshipConfirmed(internship.intershipId)">
+                        <i class="mdi mdi-delete-outline"></i>
+                      </a>
+                    </li>
+
+                    <!-- View Button with Router Link and Parameter -->
+                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                      <a href="javascript:void(0);" class="btn btn-sm btn-soft-primary"
+                         (click)="viewInternshipDetails(internship.intershipId)">
+                        <i class="mdi mdi-eye-outline"></i>
+                      </a>
+                    </li>
+
+                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                      <a href="javascript:void(0);" class="btn btn-sm btn-soft-info" (click)="editDataGet(internship.internshipId, content)">
+                        <i class="mdi mdi-pencil-outline"></i>
+                      </a>
+                    </li>
+
+
+
+
+
+
+
+                  </ul>
+                </td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row justify-content-between align-items-center">
+            <div class="col-auto me-auto">
+              <p class="text-muted mb-0">Showing <b>{{startIndex}}</b> to <b>{{endIndex}}</b> of <b>{{totalRecords}}</b> entries</p>
+            </div>
+            <div class="col-auto">
+              <div class="text-md-right float-md-end pagination-rounded">
+                <ul class="pagination pagination-rounded justify-content-end mb-2">
+                  <pagination [totalItems]="totalRecords" [(ngModel)]="page" [itemsPerPage]="5" previousText="&lsaquo;" nextText="&rsaquo;" (pageChanged)="pageChanged($event)"></pagination>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Add New Internship Modal -->
+<ng-template #content let-modal>
+  <!-- Modal header -->
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Add New Internship</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modalRef?.hide()"></button>
+  </div>
+
+  <!-- Internship form -->
+  <form (ngSubmit)="saveJob()" [formGroup]="jobForm">
+    <div class="modal-body">
+      <!-- Title field -->
+      <div class="mb-3">
+        <label for="title-field" class="form-label">Title</label>
+        <input type="text" id="title-field" class="form-control" placeholder="Enter title" formControlName="title" />
+      </div>
+
+      <!-- Company field -->
+      <div class="mb-3">
+        <label for="company-field" class="form-label">Company</label>
+        <input type="text" id="company-field" class="form-control" placeholder="Enter company" formControlName="company" />
+      </div>
+
+      <!-- Add more form fields for internship details here -->
+    </div>
+
+    <!-- Modal footer with close and save buttons -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Close</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </form>
+</ng-template>
+

@@ -9,9 +9,13 @@ import { ListprojectsComponent } from './FrontOffice/listprojects/listprojects.c
 import { DetailProjectComponent } from './FrontOffice/projects/detail-project/detail-project.component';
 
 const routes: Routes = [
+<<<<<<< HEAD
   { path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule) },
   { path: 'listprojectsfrontoffice', component: ListprojectsComponent },
   {path: 'detailProject/:id', component: DetailProjectComponent},
+=======
+  // tslint:disable-next-line: max-line-length
+>>>>>>> origin/main
   { path: '', component: LayoutComponent, loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule), canActivate: [AuthGuard] },
   { path: 'pages', loadChildren: () => import('./extrapages/extrapages.module').then(m => m.ExtrapagesModule), canActivate: [AuthGuard] },
   { path: 'crypto-ico-landing', component: CyptolandingComponent },
