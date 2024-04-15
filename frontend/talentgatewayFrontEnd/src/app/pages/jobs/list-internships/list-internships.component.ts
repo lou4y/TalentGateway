@@ -12,6 +12,9 @@ import Swal from 'sweetalert2';
 
 import {InternshipsService} from "../../../core/services/Internships/internships.service";
 import {Router} from "@angular/router";
+import {User} from "../../../core/models/auth.models";
+import {AuthenticationService} from "../../../core/services/auth.service";
+import {Internship} from "../../../core/models/internship.model";
 
 @Component({
   selector: 'app-list-internships',
@@ -29,14 +32,22 @@ export class ListInternshipsComponent implements OnInit {
   modalRef: BsModalRef;
   jobForm: FormGroup;
 
+  user: User;
   @ViewChild('content') content: TemplateRef<any>;
 
-  constructor(private internshipsService: InternshipsService,  private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router) {}
-
-  ngOnInit(): void {
-    this.getAllInternships();
-    this.initJobForm();
+  constructor(private authService: AuthenticationService, private internshipsService: InternshipsService, private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router) {
   }
+
+  async ngOnInit(): Promise<void> {
+    /*this.getAllInternships();*/
+    this.initJobForm();
+
+    this.user = await this.authService.currentUser();
+    if (this.user) {
+      this.getInternshipsByUser(this.user.id.toString()); // Convert to string if needed
+    }
+  }
+
 
   openModal(): void {
     this.modalRef = this.modalService.show(this.content);
@@ -57,7 +68,7 @@ export class ListInternshipsComponent implements OnInit {
     });
   }
 
-  saveJob(): void {
+ /* saveJob(): void {
     if (this.jobForm.valid) {
       console.log('Form is valid. Submitting...');
 
@@ -76,9 +87,37 @@ export class ListInternshipsComponent implements OnInit {
       console.log('Form is invalid.');
       // Handle form validation errors
     }
+  }*/
+
+
+
+  /*saveJob(): void {
+    if (this.jobForm.valid) {
+      console.log('Form is valid. Submitting...');
+
+      // Get the user ID from the current user object
+      const userId = this.user.id; // Assuming user object has an 'id' property
+
+      // Add the user ID to the form data before creating the internship
+      const formData = { ...this.jobForm.value, userId };
+
+      this.internshipsService.createInternship(formData).subscribe(
+        () => {
+          console.log('Internship saved successfully.');
+          this.modalRef.hide(); // Close the modal
+          this.getAllInternships(); // Refresh the list of internships
+        },
+        (error) => {
+          console.error('Error creating internship:', error);
+          // Handle error if needed
+        }
+      );
+    } else {
+      console.log('Form is invalid.');
+      // Handle form validation errors
+    }
   }
-
-
+*/
 
 
   updatePagination(): void {
@@ -196,7 +235,7 @@ export class ListInternshipsComponent implements OnInit {
 
 
   editDataGet(internshipId: any, content: any) {
-    this.modalRef = this.modalService.show(content, { class: 'modal-md' });
+    this.modalRef = this.modalService.show(content, {class: 'modal-md'});
     const modelTitle = document.querySelector('.modal-title') as HTMLHeadingElement;
     modelTitle.innerHTML = 'Edit Internship';
     const updateBtn = document.getElementById('add-btn') as HTMLButtonElement;
@@ -217,5 +256,20 @@ export class ListInternshipsComponent implements OnInit {
         type: internshipData.type,
       });
     }
+  }
+
+
+  getInternshipsByUser(userId: string): void {
+    this.internshipsService.getInternshipsByUserId(userId).subscribe(
+      (data: Internship[]) => {
+        this.internships = data;
+        this.totalRecords = this.internships.length;
+        this.updatePagination();
+        console.log('Internships:', this.internships); // Check if data is populated
+      },
+      (error) => {
+        console.error('Error fetching internships:', error);
+      }
+    );
   }
 }

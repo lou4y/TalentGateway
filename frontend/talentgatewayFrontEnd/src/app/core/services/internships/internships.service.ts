@@ -30,4 +30,12 @@ export class InternshipsService {
   updateInternship(internship: Internship): Observable<Internship> {
     return this.httpClient.put<Internship>(`${this.API_URL}/${internship.intershipId}`, internship);
   }
+
+
+  // New method to get internships by user ID
+  getInternshipsByUserId(userId: string): Observable<Internship[]> {
+    return this.httpClient.get<Internship[]>(`${this.API_URL}/user/${userId}`);
+  }
+
+
 }
