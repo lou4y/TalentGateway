@@ -36,10 +36,19 @@
   padding: 0 0 15px 58px;
   color: #333;
 }
-
+.comment-box .user .name{
+  text-transform: uppercase;
+  font-weight: 500;
+  white-space: nowrap; /* Prevent line breaks */
+}
+.comment-box .user {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+}
 .comment-box{
   padding: 10px;
   overflow: hidden;
+  width: 650px;
 }
 .comment-box .user{
   display: flex;
