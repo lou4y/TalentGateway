@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="942c605b-6928-4781-99e0-369c0077e206" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;marwen69&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/lou4y/TalentGateway.git&quot;,
+    &quot;accountId&quot;: &quot;a384d6a8-9cd5-43ee-843d-d4cf25ba967b&quot;
+  }
+}</component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2eaM3sEtp4OttFGKUzwQ7WHzpt9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.GatewayServiceApplication.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/4arctic2/semestre2/springboot/pi/backend/talentGateway/user-service",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "spring.configuration.checksum": "8aac6404e04a940750965ea7c668e25f",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\4arctic2\semestre2\springboot\pi\backend\talentGateway\gateway-service" />
+      <recent name="D:\4arctic2\semestre2\springboot\pi\backend\talentGateway\config-service" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\4arctic2\semestre2\springboot\pi\backend\talentGateway\gateway-service\src\main\resources" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.cloudcrafters.gatewayservice" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ProjectServiceApplication">
+    <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="config-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.configservice.ConfigServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DiscoveryServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="discovery-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.discoveryservice.DiscoveryServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="gateway-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.gatewayservice.GatewayServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InternshipServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="internship-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.internshipservice.InternshipServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InterviewServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="interview-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.interviewservice.InterviewServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MessagingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="messaging-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.messagingservice.MessagingServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProjectServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="project-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.projectservice.ProjectServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="task-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.taskservice.TaskServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="user-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.userservice.UserServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="942c605b-6928-4781-99e0-369c0077e206" name="Changes" comment="" />
+      <created>1712138041351</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712138041351</updated>
+      <workItem from="1712138042854" duration="817000" />
+      <workItem from="1712139002196" duration="8446000" />
+      <workItem from="1712695130040" duration="17685000" />
+      <workItem from="1712741386228" duration="16999000" />
+      <workItem from="1712829630536" duration="835000" />
+      <workItem from="1712840004637" duration="5945000" />
+      <workItem from="1712871986528" duration="5091000" />
+      <workItem from="1712918861258" duration="15987000" />
+      <workItem from="1713113632895" duration="3369000" />
+      <workItem from="1713188873240" duration="1428000" />
+      <workItem from="1713203854585" duration="1108000" />
+      <workItem from="1713257307479" duration="85000" />
+      <workItem from="1713257409992" duration="5786000" />
+      <workItem from="1713293582230" duration="8448000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

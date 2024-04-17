@@ -34,6 +34,7 @@
                 <th scope="row">Posted Date</th>
                 <td>{{ internship.intershippostedDate }}</td>
               </tr>
+
               <tr>
                 <th scope="row">Start Date</th>
                 <td>{{ internship.intershipStartDate }}</td>
@@ -193,6 +194,7 @@
             <span class="badge badge-soft-warning">Bootstrap</span>
           </div>-->
 
+          <!-- Existing code -->
           <div class="mt-4">
             <ul class="list-inline mb-0">
               <li class="list-inline-item mt-1">
@@ -204,11 +206,21 @@
               <li class="list-inline-item mt-1">
                 <a href="javascript:void(0)" class="btn btn-outline-danger btn-hover"><i class="uil uil-google"></i> Google+</a>
               </li>
+              <!-- Add LinkedIn share button -->
               <li class="list-inline-item mt-1">
-                <a href="javascript:void(0)" class="btn btn-outline-success btn-hover"><i class="uil uil-linkedin-alt"></i> linkedin</a>
+                <button class="btn btn-outline-success btn-hover" (click)="shareOnLinkedIn()">
+                  <i class="uil uil-linkedin-alt"></i> LinkedIn
+                </button>
+
+
+
               </li>
+
+
+
             </ul>
           </div>
+
         </div>
       </div>
     </div><!--end col-->

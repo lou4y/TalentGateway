@@ -4,7 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ChatComponent } from './chat/chat.component';
 import { DefaultComponent } from './dashboards/default/default.component';
+
+import { ListprojectsComponent } from '../FrontOffice/listprojects/listprojects.component';
+
 import {InternshipDetailsComponent} from "./jobs/internship-details/internship-details.component";
+
 
 const routes: Routes = [
   // { path: '', redirectTo: 'dashboard' },
