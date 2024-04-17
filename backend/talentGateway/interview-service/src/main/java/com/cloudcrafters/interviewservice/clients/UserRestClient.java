@@ -25,9 +25,9 @@ public interface UserRestClient {
     default User getDefaultCreator(String id, Exception exception) {
         User user = new User();
 
-
-        user.setLastName("Not available");
         user.setFirstName("Not available");
+        user.setLastName("Not available");
+
         return user;
     }
 
