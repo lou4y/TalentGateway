@@ -1,19 +1,36 @@
 package com.cloudcrafters.interviewservice.clients;
 
-import org.springframework.cloud.openfeign.FeignClient;
-
-
-
+import com.cloudcrafters.interviewservice.entities.Offre;
+import com.cloudcrafters.interviewservice.entities.User;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "SERVICE-USERTEST")
+import java.util.List;
+
+
+@FeignClient(name = "USER-SERVICE", url = "http://localhost:8888/USER-SERVICE")
 public interface UserRestClient {
 
-    @GetMapping("/api/users/{userId}/name")
-    String getUserName(@PathVariable("userId") String userId);
+    @GetMapping("/keycloak/users/{id}")
+    @CircuitBreaker(name = "userService", fallbackMethod = "getDefaultUser")
+    User findUserById(@PathVariable String id);
+    @CircuitBreaker(name = "userService", fallbackMethod = "getDefaultCreator")
+    @GetMapping("/keycloak/users/")
+    List<User> getAllUsers();
+    // Methods for User entity
 
-    @GetMapping("/api/users/{userId}/lastname")
-    String getUserLastName(@PathVariable("userId") String userId);
+
+    default User getDefaultCreator(String id, Exception exception) {
+        User user = new User();
+
+
+        user.setLastName("Not available");
+        user.setFirstName("Not available");
+        return user;
+    }
+
+
 }
+
