@@ -141,8 +141,8 @@ public class ApplicationController {
 
 
 
-    ///////////////////http://localhost:8080/api/application/interviews/2////////
-    @GetMapping("/interviews/{userId}")
+    ///////////////////http://localhost:8080/api/application/myapp/2////////
+    @GetMapping("/myapp/{userId}")
     @ResponseStatus(HttpStatus.OK)
     public List<ApplicationResponse> getApplicationsByUserId(@PathVariable String userId) {
         List<ApplicationResponse> applicationResponses = applicationService.getApplicationsByUserId(userId);
@@ -152,11 +152,19 @@ public class ApplicationController {
             Offre offre = offreRestClient.findOffreById(applicationResponse.getOffreid());
             applicationResponse.setIntershipCompany(offre.getIntershipCompany());
             applicationResponse.setIntershipTitle(offre.getIntershipTitle());
+
+            // Récupérer l'utilisateur de l'application
+            User user = userRestClient.findUserById(applicationResponse.getUserid());
+
+            // Mettre à jour les champs username et lastname dans l'objet ApplicationResponse
+            applicationResponse.setFirstName(user.getFirstName());
+            applicationResponse.setLastname(user.getLastName());
         }
 
         // Retourner la liste mise à jour
         return applicationResponses;
     }
+
 
 
 
