@@ -7,23 +7,23 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class InterviewService {
-  private apiUrl = 'http://localhost:8080/api/application'; // Définissez l'URL de base ici
+  private apiUrl = 'http://localhost:8081/api/application'; // Définissez l'URL de base ici
   
 
   constructor(private http: HttpClient) { }
 
   getAllApplications(): Observable<any> {
-    return this.http.get('http://localhost:8080/api/application/all');
+    return this.http.get('http://localhost:8081/api/application/all');
   }
 
 
   getAllApplicationsByStatus(status: string): Observable<any> {
-    return this.http.get(`http://localhost:8080/api/application/all?status=${status}`);
+    return this.http.get(`http://localhost:8081/api/application/all?status=${status}`);
   }
 
   // Méthode pour rechercher les applications en fonction du terme spécifié
   searchApplications(searchTerm: string): Observable<any> {
-    return this.http.get(`http://localhost:8080/api/application/search?term=${searchTerm}`);
+    return this.http.get(`http://localhost:8081/api/application/search?term=${searchTerm}`);
 
   }
 
@@ -38,7 +38,7 @@ export class InterviewService {
 
 
   createInterview(applicationId: string, interviewData: any) {
-    return this.http.post<any>(`http://localhost:8080/api/interview/create/${applicationId}`, interviewData);
+    return this.http.post<any>(`http://localhost:8081/api/interview/create/${applicationId}`, interviewData);
   }
 
   
@@ -47,5 +47,13 @@ export class InterviewService {
   }
 
   
-  
+ // Nouvelle méthode pour récupérer les applications de l'utilisateur spécifié par userId
+ getUserApplications(userId: string): Observable<any[]> {
+  return this.http.get<any[]>('http://localhost:8081/api/application/myapp/' + userId);
+}
+// Méthode pour récupérer les données d'interview
+getInterviewData(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/interviews`);
+}
+
 }
