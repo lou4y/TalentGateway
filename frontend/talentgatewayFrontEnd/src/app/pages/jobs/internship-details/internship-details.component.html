@@ -7,6 +7,9 @@
         <div class="card-body">
           <h5 class="fw-semibold">Overview</h5>
 
+
+
+
           <div class="table-responsive">
             <table class="table">
               <tbody>
@@ -101,10 +104,13 @@
               </div>
             </li>
           </ul>
+
           <div class="mt-4">
 <!--
             <a href="javascript:void(0);" class="btn btn-soft-primary btn-hover w-100 rounded"><i class="mdi mdi-eye"></i> View Profile</a>
 -->
+
+
           </div>
         </div>
       </div>
@@ -171,20 +177,16 @@
               Ability to work in a team environment.
             </li>
           </ul>-->
-
           <h5 class="fw-semibold mb-3">Qualification:</h5>
           <ul class="vstack gap-3">
             {{ internship.intershipQualifications }}
           </ul>
-
           <h5 class="fw-semibold mb-3">Skill & Experience:</h5>
-
           <div class="mt-4 d-flex gap-1">
   <span class="badge badge-soft-warning custom-badge">
     <strong>{{ internship.intershipSkills }}</strong>
   </span>
           </div>
-
 
           <!--<div class="mt-4 d-flex gap-1">
             <span class="badge badge-soft-warning">PHP</span>
@@ -193,7 +195,6 @@
             <span class="badge badge-soft-warning">WordPress</span>
             <span class="badge badge-soft-warning">Bootstrap</span>
           </div>-->
-
           <!-- Existing code -->
           <div class="mt-4">
             <ul class="list-inline mb-0">
@@ -211,14 +212,33 @@
                 <button class="btn btn-outline-success btn-hover" (click)="shareOnLinkedIn()">
                   <i class="uil uil-linkedin-alt"></i> LinkedIn
                 </button>
-
-
-
               </li>
 
 
-
             </ul>
+          </div>
+
+          <div class="col-20">
+            <div class="card">
+              <div class="card-body">
+                <!-- Existing content -->
+
+                <!-- Rating input and submit button -->
+                <div class="row">
+                  <div class="col-xl-3 col-md-4 col-sm-6">
+                    <div class="p-4 text-center">
+                      <h5 class="font-size-15">Rate This Internship <strong> : {{internship.averageRating}} </strong></h5>
+
+                      <div class="rating-star d-flex align-items-center justify-content-center">
+                        <rating [(ngModel)]="rating" [readonly]="readonly" class="stars" [max]=5></rating>
+                        <span class="ratingnum badge bg-info align-middle ms-2">{{ rating }}</span>
+                      </div>
+                      <button class="btn btn-primary mt-3" (click)="rateInternship()">Submit Rating</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -226,4 +246,11 @@
     </div><!--end col-->
   </div><!--end row-->
 
+
+
+
 </div>
+
+
+
+

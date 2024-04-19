@@ -30,7 +30,7 @@ describe('InterviewService', () => {
       expect(data).toEqual(mockData);
     });
 
-    const request = httpMock.expectOne('http://localhost:8080/api/application/all');
+    const request = httpMock.expectOne('http://localhost:8081/api/application/all');
     expect(request.request.method).toBe('GET');
     request.flush(mockData);
   });

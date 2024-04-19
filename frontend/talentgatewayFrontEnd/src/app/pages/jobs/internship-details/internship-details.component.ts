@@ -6,6 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import {AuthenticationService} from "../../../core/services/auth.service";
 import {User} from "../../../core/models/auth.models";
+import {Observable, throwError} from "rxjs";
+import {LinkedInService} from "../../../core/services/internships/linked-in.service";
 
 
 @Component({
@@ -21,15 +23,35 @@ export class InternshipDetailsComponent  implements OnInit {
   shareUrl: string; // Define shareUrl variable
   user: User;
 
+
+  readonly: boolean = false;
+  currentRate: number = 0;
+  stepRate: number = 0;
+  readRate: number = 0;
+  hoverSelect: number = 0;
+  customColor: number = 0;
+  clearRate: number = 0;
+  stepHeart: number = 0;
+  x: number = 0;
+  y: number = 0;
+
+  intership: Internship | null = null; // Initialize internship as null
+
+  rating: number = 0; // Add a new variable for rating
+  intershipId: string = '';
+  internshipUrl: string = ''; // Initialize the property with an empty string
+
   constructor(
     private route: ActivatedRoute,
-    private internshipsService: InternshipsService ,// Inject your InternshipsService
+    private internshipsService: InternshipsService,// Inject your InternshipsService
     private http: HttpClient, // Inject HttpClient here
-    private authService: AuthenticationService
-) {}
+    private authService: AuthenticationService,
+    private linkedInService: LinkedInService
+  ) {
+  }
 
-  ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'Jobs' }, { label: 'Job Details', active: true }];
+  async ngOnInit(): Promise<void> {
+    this.breadCrumbItems = [{label: 'Jobs'}, {label: 'Job Details', active: true}];
 
 
     this.route.params.subscribe(params => {
@@ -41,7 +63,7 @@ export class InternshipDetailsComponent  implements OnInit {
       this.message = params['message'];
     });
 
-
+    this.user = await this.authService.currentUser()
 
   }
 
@@ -61,23 +83,46 @@ export class InternshipDetailsComponent  implements OnInit {
     window.open(`https://www.google.com/maps/search/?api=1&query=${location}`, '_blank');
   }
 
-// Add this function to share on LinkedIn using the LinkedIn Share API
-  shareOnLinkedIn(): void {
-    const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(this.shareUrl)}`;
 
-    // Construct headers with Content-Type as application/x-www-form-urlencoded
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded'
-    });
+  rateInternship(): void {
+    // Make sure the user is authenticated before allowing to rate
+    if (!this.user) {
+      console.error('User not authenticated');
+      return;
+    }
 
-    // Send a POST request to shareUrl with empty data and headers
-    this.http.post(shareUrl, {}, { headers }).subscribe(
+    // Assuming this.internshipId and this.rating are accessible within the component
+    // @ts-ignore
+    this.internshipsService.rateInternship(this.internshipId, this.rating, this.user.id).subscribe(
       (response) => {
-        console.log('Shared successfully:', response);
+        console.log('Rating submitted successfully:', response);
+        // Optionally, update the internship details after rating
+        this.getInternshipDetails();
       },
       (error) => {
-        console.error('Error sharing on LinkedIn:', error);
+        console.error('Error submitting rating:', error);
       }
     );
+  }
+
+
+ /* shareOnLinkedIn(): void {
+    if (!this.internship) {
+      console.error('Internship details not available');
+      return;
+    }
+    const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=http://localhost:4200/internship-details/${this.internshipId}`;
+
+    window.open(shareUrl, '_blank');
+  }
+*/
+
+  shareOnLinkedIn(): void {
+    // Assuming this.internshipId contains the ID of the internship
+    const id = this.internshipId; // Replace this with your actual ID variable
+console.log(id);
+    this.internshipUrl = `http://localhost:4200/internship-details/${id}`;
+
+    this.linkedInService.shareInternshipOnLinkedIn(this.internshipUrl);
   }
 }
