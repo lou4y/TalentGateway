@@ -1,12 +1,12 @@
 <div class="container-fluid">
-  <app-page-title title="All Application" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <app-page-title title="All Application List" [breadcrumbItems]="breadCrumbItems"></app-page-title>
 
   <div class="row">
     <div class="col-12">
       <div class="card">
         <div class="card-body border-bottom">
           <div class="d-flex align-items-center">
-            <h5 class="mb-0 card-title flex-grow-1">Application List</h5>
+            <h5 class="mb-0 card-title flex-grow-1">ALL Application List</h5>
           </div>
         </div>
         <div class="card-body border-bottom">
@@ -30,9 +30,9 @@
                   <th scope="col">Application Date</th>
                   <th scope="col">Acceptance Date</th>
                   <th scope="col">Status</th>
-                  <th scope="col">User ID</th>
-                  <th scope="col">Offer ID</th>
-                  <th scope="col">Interview ID</th>
+                  <th scope="col">lastName</th>
+                  <th scope="col">firstName</th>
+                  <!--<th scope="col">Interview ID</th>-->
                   <th scope="col">Interview Date</th>
                   <th scope="col">Interview Mode</th>
                   <th scope="col">Internship Company</th>
@@ -52,9 +52,9 @@
                       'bg-danger': data.status === 'REJECTED'
                     }">{{data.status}}</span>
                   </td>
-                  <td>{{ data.userid }}</td>
-                  <td>{{ data.offreid }}</td>
-                  <td>{{ data.interview?.id || 'No maintenance is planned at the moment' }}</td>
+                  <td>{{ data.lastName }}</td>
+                  <td>{{ data.firstName }}</td>
+                 <!-- <td>{{ data.interview?.id || 'No maintenance is planned at the moment' }}</td>-->
                   <td>{{ data.interview?.dateEntretien || 'No maintenance is planned at the moment' }}</td>
                   <td>{{ data.interview?.modaliteEntretien || 'No maintenance is planned at the moment' }}</td>
                   <td>{{ data.intershipCompany }}</td>
