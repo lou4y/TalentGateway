@@ -42,6 +42,7 @@ export function createTranslateLoader(http: HttpClient): any {
     ListprojectsComponent,
     DetailProjectComponent,
     CommentsComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -66,6 +67,7 @@ export function createTranslateLoader(http: HttpClient): any {
     ToastrModule.forRoot(),
     KeycloakAngularModule,
     FormsModule
+
 
   ],
   bootstrap: [AppComponent],

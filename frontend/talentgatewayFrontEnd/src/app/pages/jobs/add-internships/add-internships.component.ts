@@ -29,7 +29,16 @@ export class AddInternshipsComponent {
   ) {
     this.internshipForm = this.fb.group({
       intershipTitle: ['', Validators.required],
-      internshipDescription: ['', Validators.required],
+      intershipDescription: ['', Validators.required],
+      intershipCompany: ['', Validators.required],
+      intershipResponsibilities: ['', Validators.required],
+      intershipQualifications: ['', Validators.required],
+      intershipSkills: ['', Validators.required],
+      intershipLocation: ['', Validators.required],
+      intershipDuration: ['', Validators.required],
+      intershipStartDate: ['', Validators.required],
+      intershipType: ['', Validators.required],
+      intershippostedDate: [new Date().toISOString().slice(0, 10), Validators.required],
 
       categoryId: [null, Validators.required]
     });
