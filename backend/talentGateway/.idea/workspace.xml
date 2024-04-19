@@ -6,9 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="942c605b-6928-4781-99e0-369c0077e206" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/project-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/resources/application.yml" afterDir="false" />
+=======
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" afterDir="false" />
+>>>>>>> parent of df4ec28 (sms with twilio api backend)
+=======
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/projects/projectlist/projectlist.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" afterDir="false" />
+>>>>>>> parent of df4ec28 (sms with twilio api backend)
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,6 +221,17 @@
       <workItem from="1713257307479" duration="85000" />
       <workItem from="1713257409992" duration="5786000" />
       <workItem from="1713293582230" duration="8448000" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <workItem from="1713341555773" duration="3679000" />
+      <workItem from="1713428638296" duration="2888000" />
+      <workItem from="1713472342919" duration="4996000" />
+      <workItem from="1713477469618" duration="615000" />
+      <workItem from="1713478488282" duration="437000" />
+=======
+>>>>>>> parent of df4ec28 (sms with twilio api backend)
+=======
+>>>>>>> parent of df4ec28 (sms with twilio api backend)
     </task>
     <servers />
   </component>
