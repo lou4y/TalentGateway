@@ -54,70 +54,9 @@ export class ListInternshipsComponent implements OnInit {
   }
 
   initJobForm(): void {
-    this.jobForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      company: ['', Validators.required],
-      description: ['', Validators.required],
-      responsibilities: ['', Validators.required],
-      qualifications: ['', Validators.required],
-      skills: ['', Validators.required],
-      location: ['', Validators.required],
-      duration: ['', Validators.required],
-      startDate: ['', Validators.required],
-      type: ['', Validators.required],
-    });
+
   }
 
- /* saveJob(): void {
-    if (this.jobForm.valid) {
-      console.log('Form is valid. Submitting...');
-
-      this.internshipsService.createInternship(this.jobForm.value).subscribe(
-        () => {
-          console.log('Internship saved successfully.');
-          this.modalRef.hide(); // Close the modal
-          this.getAllInternships(); // Refresh the list of internships
-        },
-        (error) => {
-          console.error('Error creating internship:', error);
-          // Handle error if needed
-        }
-      );
-    } else {
-      console.log('Form is invalid.');
-      // Handle form validation errors
-    }
-  }*/
-
-
-
-  /*saveJob(): void {
-    if (this.jobForm.valid) {
-      console.log('Form is valid. Submitting...');
-
-      // Get the user ID from the current user object
-      const userId = this.user.id; // Assuming user object has an 'id' property
-
-      // Add the user ID to the form data before creating the internship
-      const formData = { ...this.jobForm.value, userId };
-
-      this.internshipsService.createInternship(formData).subscribe(
-        () => {
-          console.log('Internship saved successfully.');
-          this.modalRef.hide(); // Close the modal
-          this.getAllInternships(); // Refresh the list of internships
-        },
-        (error) => {
-          console.error('Error creating internship:', error);
-          // Handle error if needed
-        }
-      );
-    } else {
-      console.log('Form is invalid.');
-      // Handle form validation errors
-    }
-  }
-*/
 
 
   updatePagination(): void {
@@ -202,8 +141,20 @@ export class ListInternshipsComponent implements OnInit {
   }
 
   searchInternships() {
-
+    if (this.searchTerm.trim() !== '') {
+      const searchTermLowerCase = this.searchTerm.toLowerCase();
+      this.internships = this.internships.filter(internship => {
+        const title = internship.intershipTitle || '';
+        const company = internship.intershipCompany || '';
+        return title.toLowerCase().includes(searchTermLowerCase) ||
+          company.toLowerCase().includes(searchTermLowerCase);
+      });
+    } else {
+      // If search term is empty, reset the internships list
+      this.getAllInternships();
+    }
   }
+
 
 
   viewInternshipDetails(internshipId: number): void {
