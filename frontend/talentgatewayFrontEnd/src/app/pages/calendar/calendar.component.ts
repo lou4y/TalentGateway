@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { UntypedFormBuilder, Validators, UntypedFormGroup } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { InterviewService } from '../../services/interview.service'; // Importez le service InterviewService
 
 import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/core';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -83,8 +82,6 @@ export class CalendarComponent implements OnInit {
     });
     this._fetchData();
 
-    // Appel de la fonction fetchInterviewEvents lors de l'initialisation du composant
-    this.fetchInterviewEvents();
   }
 
   /**
@@ -111,8 +108,7 @@ export class CalendarComponent implements OnInit {
 
   constructor(
     private modalService: BsModalService,
-    private formBuilder: UntypedFormBuilder,
-    private interviewService: InterviewService // Injection du service InterviewService
+    private formBuilder: UntypedFormBuilder
   ) {}
 
   get form() {
@@ -242,23 +238,5 @@ export class CalendarComponent implements OnInit {
     this.submitted = false;
   }
 
-  /**
-   * Récupérer les événements d'interview depuis le service
-   * et les ajouter aux événements du calendrier
-   */
-  fetchInterviewEvents() {
-    this.interviewService.getInterviewData().subscribe((interviews: any[]) => {
-      // Transformez les données d'interview en format d'événement requis pour le calendrier
-      const interviewEvents = interviews.map(interview => ({
-        id: interview.id,
-        title: interview.title,
-        start: interview.date, // Supposons que la date de l'entretien soit stockée dans la propriété 'date'
-        className: 'interview-event' // Ajoutez une classe CSS personnalisée pour les événements d'entretien
-      }));
-      // Ajoutez les événements d'interview aux événements du calendrier
-      this.calendarEvents = [...this.calendarEvents, ...interviewEvents];
-      // Mettez à jour les événements dans le calendrier
-      this.calendarOptions.initialEvents = this.calendarEvents;
-    });
-  }
+
 }

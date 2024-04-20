@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InterviewService } from 'src/app/services/interview.service';
 import Swal from 'sweetalert2';
 import { AuthenticationService } from 'src/app/core/services/auth.service'; // Importez le service AuthenticationService ici
-
+ 
 @Component({
   selector: 'app-allapplication',
   templateUrl: './allapplication.component.html',
@@ -35,16 +35,24 @@ export class AllapplicationComponent implements OnInit {
   getAllApplications(): void {
     this.interviewService.getUserApplications(this.user.id).subscribe(
       (data: any[]) => {
-        this.lists = data;
+        this.lists = data.map(application => ({
+          ...application,
+          title: application.intershipTitle,
+          start: application.interview?.dateEntretien, // Assuming dateEntretien is the interview date field
+          classNames: ['interview-event'] // Add classNames for styling purposes
+        }));
         this.totalRecords = this.lists.length;
         this.updatePagination();
       },
       (error) => {
-        console.error('Erreur lors de la récupération des applications de l\'utilisateur :', error);
+        console.error('Error fetching user applications:', error);
       }
     );
   }
-
+  
+  
+   
+  
   // Méthode pour filtrer les applications en fonction du statut
   filterApplicationsByStatus(status: string): void {
     this.interviewService.getAllApplicationsByStatus(status).subscribe(
