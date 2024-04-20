@@ -1,17 +1,13 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { UntypedFormBuilder, Validators, UntypedFormGroup } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { InterviewService } from '../../services/interview.service'; // Importez le service InterviewService
-
-import { CalendarOptions, DateSelectArg, EventClickArg, EventApi } from '@fullcalendar/core';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
+import { CalendarOptions, EventApi } from '@fullcalendar/core';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
-
-import { category, calendarEvents, createEventId } from './data';
-
-import Swal from 'sweetalert2';
+import { InterviewService } from '../../services/interview.service';
 
 @Component({
   selector: 'app-calendar',
@@ -22,7 +18,6 @@ export class CalendarComponent implements OnInit {
 
   modalRef?: BsModalRef;
 
-  // bread crumb items
   breadCrumbItems: Array<{}>;
 
   @ViewChild('modalShow') modalShow: TemplateRef<any>;
@@ -33,10 +28,11 @@ export class CalendarComponent implements OnInit {
   category: any[];
   newEventDate: any;
   editEvent: any;
+  user: any;
   calendarEvents: any[];
-  // event form
+  private calendarApi: any;
   formData: UntypedFormGroup;
-
+  interviewDates: Date[] = [];
   calendarOptions: CalendarOptions = {
     plugins: [
       interactionPlugin,
@@ -51,214 +47,68 @@ export class CalendarComponent implements OnInit {
     },
     initialView: "dayGridMonth",
     themeSystem: "bootstrap",
-    initialEvents: calendarEvents,
+    events: [], // Assign calendarEvents to events property
     weekends: true,
     editable: true,
     selectable: true,
     selectMirror: true,
     dayMaxEvents: true,
-    dateClick: this.openModal.bind(this),
-    eventClick: this.handleEventClick.bind(this),
-    eventsSet: this.handleEvents.bind(this),
     eventTimeFormat: { // like '14:30:00'
       hour: '2-digit',
       minute: '2-digit',
       meridiem: false,
       hour12: true
-    }
+    },
   };
   currentEvents: EventApi[] = [];
-
-  ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'Skote' }, { label: 'Calendar', active: true }];
-
-    this.formData = this.formBuilder.group({
-      title: ['', [Validators.required]],
-      category: ['', [Validators.required]],
-    });
-
-    this.formEditData = this.formBuilder.group({
-      editTitle: ['', [Validators.required]],
-      editCategory: [],
-    });
-    this._fetchData();
-
-    // Appel de la fonction fetchInterviewEvents lors de l'initialisation du composant
-    this.fetchInterviewEvents();
-  }
-
-  /**
-   * Event click modal show
-   */
-  handleEventClick(clickInfo: EventClickArg) {
-    this.editEvent = clickInfo.event;
-    var category = clickInfo.event.classNames;
-    this.formEditData = this.formBuilder.group({
-      editTitle: clickInfo.event.title,
-      editCategory: category instanceof Array?clickInfo.event.classNames[0]:clickInfo.event.classNames,
-    });
-    this.modalRef = this.modalService.show(this.editmodalShow);
-  }
-
-  /**
-   * Events bind in calander
-   * @param events events
-   */
-  handleEvents(events: EventApi[]) {
-    this.currentEvents = events;
-  
-  }
 
   constructor(
     private modalService: BsModalService,
     private formBuilder: UntypedFormBuilder,
-    private interviewService: InterviewService // Injection du service InterviewService
+    private interviewService: InterviewService,
+    private authService: AuthenticationService
   ) {}
 
   get form() {
     return this.formData.controls;
   }
 
-  /**
-   * Delete-confirm
-   */
-  confirm() {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You won\'t be able to revert this!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#34c38f',
-      cancelButtonColor: '#f46a6a',
-      confirmButtonText: 'Yes, delete it!',
-    }).then((result) => {
-      if (result.value) {
-        this.deleteEventData();
-        Swal.fire('Deleted!', 'Event has been deleted.', 'success');
-      }
+  ngOnInit() {
+    this.getAllApplications();
+  }
+
+  transformInterviewDates(interviewDates: Date[]): any[] {
+    return interviewDates.map(date => {
+      const startDateTime = new Date(date);
+      const endDateTime = new Date(startDateTime.getTime() + (60 * 60 * 1000));
+      return {
+        title: 'Interview',
+        start: startDateTime.toISOString(),
+        end: endDateTime.toISOString()
+      };
     });
   }
 
-  position() {
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Event has been saved',
-      showConfirmButton: false,
-      timer: 1000,
-    });
-  }
-
-  /**
-   * Event add modal
-   */
-  openModal(event?: any) {
-    this.newEventDate = event;
-    this.modalRef = this.modalService.show(this.modalShow);
-  }
-
-  /**
-   * save edit event data
-   */
-  editEventSave() {
-    const editTitle = this.formEditData.get('editTitle').value;
-    const editCategory = this.formEditData.get('editCategory').value;
-
-    const editId = this.calendarEvents.findIndex(
-      (x) => x.id + '' === this.editEvent.id + ''
-    );
-
-    this.editEvent.setProp('title', editTitle);
-    this.editEvent.setProp('classNames', editCategory);
-
-    this.calendarEvents[editId] = {
-      ...this.editEvent,
-      title: editTitle,
-      id: this.editEvent.id,
-      classNames: editCategory + ' ' + 'text-white',
-    };
-
-    this.position();
-    this.formEditData = this.formBuilder.group({
-      editTitle: '',
-      editCategory: '',
-    });
-    this.modalService.hide();
-  }
-
-  /**
-   * Delete event
-   */
-  deleteEventData() {
-    this.editEvent.remove();
-    this.modalService.hide();
-  }
-
-  /**
-   * Close event modal
-   */
-  closeEventModal() {
-    this.formData = this.formBuilder.group({
-      title: '',
-      category: '',
-    });
-    this.modalService.hide();
-  }
-
-  /**
-   * Save the event
-   */
-  saveEvent() {
-    if (this.formData.valid) {
-      const title = this.formData.get('title').value;
-      const className = this.formData.get('category').value;
-      const calendarApi = this.newEventDate.view.calendar;
-      calendarApi.addEvent({
-        id: createEventId(),
-        title,
-        start: this.newEventDate.date,
-        end: this.newEventDate.date,
-        className: className + ' ' + 'text-white'
-      });
-      this.position();
-      this.formData = this.formBuilder.group({
-        title: '',
-        category: '',
-      });
-      this.modalService.hide();
-    }
-    this.submitted = true;
-  }
-
-  /**
-   * Fetches the data
-   */
-  private _fetchData() {
-    // Event category
-    this.category = category;
-    // Calender Event Data
-    this.calendarEvents = calendarEvents;
-    // form submit
-    this.submitted = false;
-  }
-
-  /**
-   * Récupérer les événements d'interview depuis le service
-   * et les ajouter aux événements du calendrier
-   */
-  fetchInterviewEvents() {
-    this.interviewService.getInterviewData().subscribe((interviews: any[]) => {
-      // Transformez les données d'interview en format d'événement requis pour le calendrier
-      const interviewEvents = interviews.map(interview => ({
-        id: interview.id,
-        title: interview.title,
-        start: interview.date, // Supposons que la date de l'entretien soit stockée dans la propriété 'date'
-        className: 'interview-event' // Ajoutez une classe CSS personnalisée pour les événements d'entretien
-      }));
-      // Ajoutez les événements d'interview aux événements du calendrier
-      this.calendarEvents = [...this.calendarEvents, ...interviewEvents];
-      // Mettez à jour les événements dans le calendrier
-      this.calendarOptions.initialEvents = this.calendarEvents;
+  getAllApplications(): void {
+    this.authService.currentUser().then(user => {
+      this.user = user;
+      this.interviewService.getUserApplications(this.user.id).subscribe(
+        (data: any[]) => {
+          this.interviewDates = data.map(application => application.interview?.dateEntretien || null).filter(date => date !== null);
+          if (this.interviewDates.length > 0) {
+            console.log('Dates d\'entretien récupérées :', this.interviewDates);
+            const transformedInterviewDates = this.transformInterviewDates(this.interviewDates);
+            console.log('Transformed Interview Dates:', transformedInterviewDates);
+            this.calendarEvents = transformedInterviewDates; // Assign transformed interview dates to calendarEvents array
+            this.calendarOptions.events = this.calendarEvents; // Assign calendarEvents to events property
+          } else {
+            console.log('Aucune date d\'entretien récupérée.');
+          }
+        },
+        (error) => {
+          console.error('Error fetching user applications:', error);
+        }
+      );
     });
   }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InterviewService } from 'src/app/services/interview.service';
 import Swal from 'sweetalert2';
 import { AuthenticationService } from 'src/app/core/services/auth.service'; // Importez le service AuthenticationService ici
-
+ 
 @Component({
   selector: 'app-allapplication',
   templateUrl: './allapplication.component.html',
@@ -18,7 +18,7 @@ export class AllapplicationComponent implements OnInit {
   endIndex: number = 0;
   user: any; // Ajoutez une propriété user pour stocker l'utilisateur connecté
   totalApplications: number = 0; 
-
+  interviewDates: Date[] = [];
   constructor(
     private interviewService: InterviewService,
     private authService: AuthenticationService // Injectez le service AuthenticationService ici
@@ -31,20 +31,40 @@ export class AllapplicationComponent implements OnInit {
     });
   }
 
+   
   // Méthode pour récupérer toutes les applications de l'utilisateur connecté
   getAllApplications(): void {
     this.interviewService.getUserApplications(this.user.id).subscribe(
       (data: any[]) => {
-        this.lists = data;
+        this.lists = data.map(application => ({
+          ...application,
+          title: application.intershipTitle,
+          start: application.interview?.dateEntretien,
+          classNames: ['interview-event']
+        }));
+        this.interviewDates = data.map(application => application.interview?.dateEntretien || null).filter(date => date !== null);
         this.totalRecords = this.lists.length;
+  
+        // Vérification des dates d'entretien récupérées
+        if (this.interviewDates.length > 0) {
+          console.log('Dates d\'entretien récupérées :', this.interviewDates);
+        } else {
+          console.log('Aucune date d\'entretien récupérée.');
+        }
+  
         this.updatePagination();
       },
       (error) => {
-        console.error('Erreur lors de la récupération des applications de l\'utilisateur :', error);
+        console.error('Error fetching user applications:', error);
       }
     );
   }
+  
 
+  
+  
+   
+  
   // Méthode pour filtrer les applications en fonction du statut
   filterApplicationsByStatus(status: string): void {
     this.interviewService.getAllApplicationsByStatus(status).subscribe(
