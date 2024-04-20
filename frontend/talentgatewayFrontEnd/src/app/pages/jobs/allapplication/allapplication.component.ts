@@ -18,7 +18,7 @@ export class AllapplicationComponent implements OnInit {
   endIndex: number = 0;
   user: any; // Ajoutez une propriété user pour stocker l'utilisateur connecté
   totalApplications: number = 0; 
-
+  interviewDates: Date[] = [];
   constructor(
     private interviewService: InterviewService,
     private authService: AuthenticationService // Injectez le service AuthenticationService ici
@@ -31,6 +31,7 @@ export class AllapplicationComponent implements OnInit {
     });
   }
 
+   
   // Méthode pour récupérer toutes les applications de l'utilisateur connecté
   getAllApplications(): void {
     this.interviewService.getUserApplications(this.user.id).subscribe(
@@ -38,10 +39,19 @@ export class AllapplicationComponent implements OnInit {
         this.lists = data.map(application => ({
           ...application,
           title: application.intershipTitle,
-          start: application.interview?.dateEntretien, // Assuming dateEntretien is the interview date field
-          classNames: ['interview-event'] // Add classNames for styling purposes
+          start: application.interview?.dateEntretien,
+          classNames: ['interview-event']
         }));
+        this.interviewDates = data.map(application => application.interview?.dateEntretien || null).filter(date => date !== null);
         this.totalRecords = this.lists.length;
+  
+        // Vérification des dates d'entretien récupérées
+        if (this.interviewDates.length > 0) {
+          console.log('Dates d\'entretien récupérées :', this.interviewDates);
+        } else {
+          console.log('Aucune date d\'entretien récupérée.');
+        }
+  
         this.updatePagination();
       },
       (error) => {
@@ -49,6 +59,8 @@ export class AllapplicationComponent implements OnInit {
       }
     );
   }
+  
+
   
   
    
