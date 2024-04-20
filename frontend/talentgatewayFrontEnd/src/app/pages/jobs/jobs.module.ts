@@ -23,6 +23,7 @@ import { ListInternshipsComponent } from './list-internships/list-internships.co
 import { AddInternshipsComponent } from './add-internships/add-internships.component';
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import { InternshipDetailsComponent } from './internship-details/internship-details.component';
+import {RatingModule} from "ngx-bootstrap/rating";
 
 @NgModule({
   declarations: [
@@ -39,18 +40,19 @@ import { InternshipDetailsComponent } from './internship-details/internship-deta
     AddInternshipsComponent,
     InternshipDetailsComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BsDatepickerModule.forRoot(),
-    PaginationModule.forRoot(),
-    BsDropdownModule.forRoot(),
-    CollapseModule.forRoot(),
-    UIModule,
-    JobsRoutingModule,
-    CKEditorModule,
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BsDatepickerModule.forRoot(),
+        PaginationModule.forRoot(),
+        BsDropdownModule.forRoot(),
+        CollapseModule.forRoot(),
+        UIModule,
+        JobsRoutingModule,
+        CKEditorModule,
+        RatingModule,
+    ]
 })
 
 export class JobsModule { }
