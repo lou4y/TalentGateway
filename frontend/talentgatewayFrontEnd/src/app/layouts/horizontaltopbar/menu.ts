@@ -772,25 +772,25 @@ export const MENU: MenuItem[] = [
                     {
                         id: 127,
                         label: 'MENUITEMS.AUTHENTICATION.LIST.EMAILVERIFICATION',
-                        link: '/pages/email-verification',
+                        link: '/pages/email-Confirmation',
                         parentId: 116
                     },
                     {
                         id: 128,
                         label: 'MENUITEMS.AUTHENTICATION.LIST.EMAILVERIFICATION2',
-                        link: '/pages/email-verification-2',
+                        link: '/pages/email-Confirmation-2',
                         parentId: 116
                     },
                     {
                         id: 129,
                         label: 'MENUITEMS.AUTHENTICATION.LIST.TWOSTEPVERIFICATION',
-                        link: '/pages/two-step-verification',
+                        link: '/pages/two-step-Confirmation',
                         parentId: 116
                     },
                     {
                         id: 130,
                         label: 'MENUITEMS.AUTHENTICATION.LIST.TWOSTEPVERIFICATION2',
-                        link: '/pages/two-step-verification-2',
+                        link: '/pages/two-step-Confirmation-2',
                         parentId: 116
                     }
                 ]
