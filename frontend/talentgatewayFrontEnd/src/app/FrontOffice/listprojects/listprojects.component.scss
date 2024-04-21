@@ -1,0 +1,54 @@
+.tp-event-3__title:hover {
+  color: #0d6efd;
+  cursor: pointer; /* Optional: Change cursor to pointer when hovering */
+}
+.btn{
+  background: transparent;
+  border: none;
+  margin-top:2px;
+  margin-left: -10px;
+  font-size: 20px;
+  outline: none;
+  color: grey;
+}
+.btn i:hover{
+  cursor: pointer;
+}
+.red {
+  color: red; /* Change to desired color */
+}
+.tp-event-3__item {
+  display: flex;
+  flex-direction: column;
+}
+
+.tp-event-3__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tp-evnet-2__btn {
+  display: flex;
+}
+
+.tp-delete-btn {
+  border: none;
+  border-radius: 5px;
+  background-color: red;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tp-delete-btn:hover {
+  background-color: darkred;
+}
+
+.trash-icon {
+  color: white;
+  font-size: 18px; /* Adjust the font size as needed */
+}
+
+
+

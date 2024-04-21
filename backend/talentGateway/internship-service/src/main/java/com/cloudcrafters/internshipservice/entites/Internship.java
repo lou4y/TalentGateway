@@ -7,10 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -38,6 +35,11 @@ public class Internship implements Serializable {
     private Date IntershipStartDate;
     @Enumerated(EnumType.STRING)
     private InternshipType intershipType;
+    private Double averageRating;
+
+    @OneToMany(mappedBy = "internship", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("internship") // Ignore the internship field in Rating to avoid recursion
+    private Set<Rating> ratings = new HashSet<>(); // Change from List<Rating> to Set<Rating>
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
@@ -62,5 +64,4 @@ public class Internship implements Serializable {
         this.userId = creator.getUserId();
     }
 }
-
 

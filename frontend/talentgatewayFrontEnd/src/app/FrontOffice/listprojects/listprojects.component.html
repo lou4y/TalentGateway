@@ -1,0 +1,37 @@
+<!-- listprojects.component.html -->
+<app-header-front></app-header-front>
+<div class="tp-event-3__section pt-120 pb-120 p-relative fix">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6" *ngFor="let project of projects">
+        <div class="tp-event-3__item mb-30">
+            <div class="tp-event-3__content d-md-flex justify-content-between align-items-center">
+                <div class="tp-event-3__info">
+                    <span><i class="fa-light fa-clock"></i> {{ project.startDate }}</span>
+                    <span><i class="fa-light fa-user"></i> {{ project.projectCreator?.firstName }} {{ project.projectCreator?.lastName }}</span>
+                    <h3 class="tp-event-3__title">{{ project.projectName }}</h3>
+                </div>
+                <div class="tp-evnet-2__btn p-relative z-index-11">
+                    <button class="tp-border-btn" style="border-radius: 5px; border-color: red;" (click)="showdetailProject(project)">
+                        <span>Show details</span>
+                    </button>
+                    <button class="tp-delete-btn" *ngIf="userId === project.projectCreator.userId" (click)="deleteProject(project.projectId)">
+                      <span class="trash-icon"><i class="fas fa-trash-alt"></i></span>
+                  </button>
+                </div>
+            </div>
+            <div class="tp-event-3__info">
+                <!-- Like/Dislike button -->
+                <button class="btn" (click)="toggleLike(project)">
+                    <i class="fas fa-heart" [class.red]="project.isLiked"></i>
+                </button>
+                <!-- Display number of likes -->
+                <span class="nblikes">{{ project.numberOfLikes }} Likes</span>
+            </div>
+            <div class="transition"></div>
+        </div>
+    </div>
+
+    </div>
+  </div>
+</div>

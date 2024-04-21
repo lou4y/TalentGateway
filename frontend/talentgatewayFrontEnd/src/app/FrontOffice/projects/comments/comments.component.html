@@ -1,0 +1,28 @@
+<div>
+  <div class="comment-session" *ngFor="let comment of comments">
+    <div class="post-comment">
+      <div class="user">
+        <div class="user-image">
+          <img src="assets/images/users/avatar-5.jpg" alt="image">
+        </div>
+        <div class="user-meta">
+          <div class="name">{{ comment.user?.firstName }} {{ comment.user?.lastName }}</div>
+          <div class="day">{{ comment.commentDate | date: 'dd MMMM yyyy' }}</div>
+          <br/>
+          <div class="comment-post">{{ comment.commentContent }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comment-box">
+    <div class="user">
+      <div class="user-image">
+        <img src="assets/images/users/avatar-5.jpg" alt="image">
+      </div>
+      <div class="name">{{currentuser.firstName}} {{currentuser.lastName}}</div>
+    </div>
+      <textarea name="comment" placeholder="Add a comment" [(ngModel)]="commentData.commentContent"></textarea>
+      <button class="comment-submit"(click)="addNewComment()">Comment</button>
+  </div>
+</div>

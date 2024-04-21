@@ -12,6 +12,8 @@ export interface Internship {
   intershipStartDate: Date;
   intershipType: string; // Assuming InternshipType is a string enum in the backend
   categoryId: number; // Add categoryId property
+  userId: string; // Add userId property
+  averageRating:number; // Add averageRating property
 
   // Additional properties if needed
 }

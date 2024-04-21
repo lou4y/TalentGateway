@@ -7,6 +7,8 @@ import {InternshipsService} from "../../../core/services/internships/internships
 import {CategorysService} from "../../../core/services/internships/categorys.service";
 import {Category} from "../../../core/models/categorys.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AuthenticationService} from "../../../core/services/auth.service";
+import {User} from "../../../core/models/auth.models";
 
 
 @Component({
@@ -17,23 +19,35 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class AddInternshipsComponent {
   internshipForm: FormGroup;
   categories: Category[] = [];
-
+  user: User;
   constructor(
     private fb: FormBuilder,
     private internshipsService: InternshipsService,
     private categoryService: CategorysService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService: AuthenticationService
   ) {
     this.internshipForm = this.fb.group({
       intershipTitle: ['', Validators.required],
-      internshipDescription: ['', Validators.required],
+      intershipDescription: ['', Validators.required],
+      intershipCompany: ['', Validators.required],
+      intershipResponsibilities: ['', Validators.required],
+      intershipQualifications: ['', Validators.required],
+      intershipSkills: ['', Validators.required],
+      intershipLocation: ['', Validators.required],
+      intershipDuration: ['', Validators.required],
+      intershipStartDate: ['', Validators.required],
+      intershipType: ['', Validators.required],
+      intershippostedDate: [new Date().toISOString().slice(0, 10), Validators.required],
 
       categoryId: [null, Validators.required]
     });
   }
 
-  ngOnInit(): void {
-    this.loadCategories();
+  async ngOnInit(): Promise<void>{
+  this.loadCategories();
+
+  this.user = await this.authService.currentUser();
   }
 
   loadCategories(): void {
@@ -49,8 +63,12 @@ export class AddInternshipsComponent {
   }
 
   createInternship(): void {
-    if (this.internshipForm.valid) {
-      const internshipData: Internship = this.internshipForm.value as Internship;
+    if (this.internshipForm.valid && this.user) {
+      const internshipData: Internship = {
+        ...this.internshipForm.value,
+        userId: this.user.id // Assuming 'id' is the property that holds the user ID
+      };
+
       this.internshipsService.createInternship(internshipData).subscribe(
         response => {
           console.log('Internship created successfully:', response);

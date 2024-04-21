@@ -5,6 +5,7 @@ import com.cloudcrafters.internshipservice.entites.Category;
 import com.cloudcrafters.internshipservice.entites.Internship;
 import com.cloudcrafters.internshipservice.services.CategoryService;
 import com.cloudcrafters.internshipservice.services.InternshipService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -126,6 +127,36 @@ public class InternshipController {
     public List<Internship> treeInternshipsByPostedDate() {
         return internshipService.treeInternshipsByPostedDate();
     }
+
+
+
+    @GetMapping("/user/{userId}")
+    public List<Internship> getInternshipsByUserId(@PathVariable String userId) {
+        return internshipService.getInternshipbyuser(userId);
+    }
+
+
+
+
+
+    @PostMapping("/{id}/rating")
+    public ResponseEntity<String> rateInternshipByUser(
+            @PathVariable Long id,
+            @RequestBody Map<String, Object> requestBody
+    ) {
+        try {
+            int rating = (int) requestBody.get("rating");
+            String userId = (String) requestBody.get("userId");
+
+            // Call the service method to update the rating
+            internshipService.rateInternshipByUser(id, rating, userId);
+
+            return ResponseEntity.ok("Internship rating updated successfully.");
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.badRequest().body("Internship not found with id: " + id);
+        }
+    }
+
 
 
 }

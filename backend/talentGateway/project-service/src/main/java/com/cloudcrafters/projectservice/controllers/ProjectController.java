@@ -48,6 +48,13 @@ public class ProjectController {
        Project project= projectService.getProjectById(id);
        User creator=userRestClient.findCreatorById(project.getCreatorId());
        project.setProjectCreator(creator);
+        Team team = project.getTeam();
+        if (team != null && team.getUsersWithRoles() != null) {
+            for (UserRoleInTeam userWithRole : team.getUsersWithRoles()) {
+                User user = userRestClient.findCreatorById(userWithRole.getUserId());
+                userWithRole.setUser(user);
+            }
+        }
        return project;
     }
     @PostMapping("/projects")

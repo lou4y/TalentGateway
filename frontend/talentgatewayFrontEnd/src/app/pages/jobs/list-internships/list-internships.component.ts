@@ -11,6 +11,10 @@ import Swal from 'sweetalert2';
 
 
 import {InternshipsService} from "../../../core/services/Internships/internships.service";
+import {Router} from "@angular/router";
+import {User} from "../../../core/models/auth.models";
+import {AuthenticationService} from "../../../core/services/auth.service";
+import {Internship} from "../../../core/models/internship.model";
 
 @Component({
   selector: 'app-list-internships',
@@ -28,55 +32,30 @@ export class ListInternshipsComponent implements OnInit {
   modalRef: BsModalRef;
   jobForm: FormGroup;
 
+  user: User;
   @ViewChild('content') content: TemplateRef<any>;
 
-  constructor(private internshipsService: InternshipsService,  private modalService: BsModalService, private formBuilder: FormBuilder) {}
-
-  ngOnInit(): void {
-    this.getAllInternships();
-    this.initJobForm();
+  constructor(private authService: AuthenticationService, private internshipsService: InternshipsService, private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router) {
   }
+
+  async ngOnInit(): Promise<void> {
+    /*this.getAllInternships();*/
+    this.initJobForm();
+
+    this.user = await this.authService.currentUser();
+    if (this.user) {
+      this.getInternshipsByUser(this.user.id.toString()); // Convert to string if needed
+    }
+  }
+
 
   openModal(): void {
     this.modalRef = this.modalService.show(this.content);
   }
 
   initJobForm(): void {
-    this.jobForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      company: ['', Validators.required],
-      description: ['', Validators.required],
-      responsibilities: ['', Validators.required],
-      qualifications: ['', Validators.required],
-      skills: ['', Validators.required],
-      location: ['', Validators.required],
-      duration: ['', Validators.required],
-      startDate: ['', Validators.required],
-      type: ['', Validators.required],
-    });
+
   }
-
-  saveJob(): void {
-    if (this.jobForm.valid) {
-      console.log('Form is valid. Submitting...');
-
-      this.internshipsService.createInternship(this.jobForm.value).subscribe(
-        () => {
-          console.log('Internship saved successfully.');
-          this.modalRef.hide(); // Close the modal
-          this.getAllInternships(); // Refresh the list of internships
-        },
-        (error) => {
-          console.error('Error creating internship:', error);
-          // Handle error if needed
-        }
-      );
-    } else {
-      console.log('Form is invalid.');
-      // Handle form validation errors
-    }
-  }
-
 
 
 
@@ -103,12 +82,14 @@ export class ListInternshipsComponent implements OnInit {
         this.internships = data;
         this.totalRecords = this.internships.length;
         this.updatePagination();
+        console.log('Internships:', this.internships); // Check if data is populated
       },
       (error) => {
         console.error('Error fetching internships:', error);
       }
     );
   }
+
 
   deleteInternship(id: number): void {
     this.internshipsService.deleteInternship(id).subscribe(
@@ -160,10 +141,86 @@ export class ListInternshipsComponent implements OnInit {
   }
 
   searchInternships() {
-
+    if (this.searchTerm.trim() !== '') {
+      const searchTermLowerCase = this.searchTerm.toLowerCase();
+      this.internships = this.internships.filter(internship => {
+        const title = internship.intershipTitle || '';
+        const company = internship.intershipCompany || '';
+        return title.toLowerCase().includes(searchTermLowerCase) ||
+          company.toLowerCase().includes(searchTermLowerCase);
+      });
+    } else {
+      // If search term is empty, reset the internships list
+      this.getAllInternships();
+    }
   }
 
 
 
+  viewInternshipDetails(internshipId: number): void {
+    console.log('Internship ID:', internshipId);
+    // Navigate to the specific route with the internship ID
+    this.router.navigate(['internship-details', internshipId]);
+  }
 
+
+  updateInternship(internshipId: any) {
+    if (this.jobForm.valid) {
+      const internshipData = this.jobForm.value;
+      this.internshipsService.updateInternship(internshipData).subscribe(
+        (updatedInternship) => {
+          console.log('Internship updated successfully:', updatedInternship);
+          this.modalRef.hide(); // Close the modal
+          this.getAllInternships(); // Refresh the list of internships
+        },
+        (error) => {
+          console.error('Error updating internship:', error);
+          // Handle error if needed
+        }
+      );
+    } else {
+      console.log('Form is invalid.');
+      // Handle form validation errors if needed
+    }
+  }
+
+
+  editDataGet(internshipId: any, content: any) {
+    this.modalRef = this.modalService.show(content, {class: 'modal-md'});
+    const modelTitle = document.querySelector('.modal-title') as HTMLHeadingElement;
+    modelTitle.innerHTML = 'Edit Internship';
+    const updateBtn = document.getElementById('add-btn') as HTMLButtonElement;
+    updateBtn.innerHTML = 'Update';
+    const internshipData = this.internships.find((internship: { id: any; }) => internship.id === internshipId);
+    if (internshipData) {
+      this.jobForm.patchValue({
+        internshipId: internshipData.internshipId, // Corrected field name
+        title: internshipData.title,
+        company: internshipData.company,
+        description: internshipData.description,
+        responsibilities: internshipData.responsibilities,
+        qualifications: internshipData.qualifications,
+        skills: internshipData.skills,
+        location: internshipData.location,
+        duration: internshipData.duration,
+        startDate: internshipData.startDate,
+        type: internshipData.type,
+      });
+    }
+  }
+
+
+  getInternshipsByUser(userId: string): void {
+    this.internshipsService.getInternshipsByUserId(userId).subscribe(
+      (data: Internship[]) => {
+        this.internships = data;
+        this.totalRecords = this.internships.length;
+        this.updatePagination();
+        console.log('Internships:', this.internships); // Check if data is populated
+      },
+      (error) => {
+        console.error('Error fetching internships:', error);
+      }
+    );
+  }
 }

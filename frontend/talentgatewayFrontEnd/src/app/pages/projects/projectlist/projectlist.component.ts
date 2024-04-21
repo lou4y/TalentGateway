@@ -21,6 +21,18 @@ export class ProjectlistComponent implements OnInit {
   ngOnInit(): void {
     this.loadProjects();
   }
+  getDescription(description: string): string {
+    if (description.length > 50) {
+      return this.insertLineBreaks(description, 50);
+    } else {
+      return description;
+    }
+  }
+
+  insertLineBreaks(str: string, maxLength: number): string {
+    const regex = new RegExp(`.{1,${maxLength}}`, 'g');
+    return str.match(regex)?.join('<br/>') || str;
+  }
 
   loadProjects() {
     this.projectService.getAllProjects().subscribe(
