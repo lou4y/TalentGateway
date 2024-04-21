@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConfirmmailComponent } from './confirmmail.component';
+import { ConfirmProfileDetailsComponent } from './confirm-profile-details.component';
 
 describe('ConfirmmailComponent', () => {
-  let component: ConfirmmailComponent;
-  let fixture: ComponentFixture<ConfirmmailComponent>;
+  let component: ConfirmProfileDetailsComponent;
+  let fixture: ComponentFixture<ConfirmProfileDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConfirmmailComponent ]
+      declarations: [ ConfirmProfileDetailsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConfirmmailComponent);
+    fixture = TestBed.createComponent(ConfirmProfileDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
