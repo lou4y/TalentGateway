@@ -4,6 +4,7 @@ import com.cloudcrafters.interviewservice.clients.UserRestClient;
 import com.cloudcrafters.interviewservice.dto.ApplicationRequest;
 import com.cloudcrafters.interviewservice.dto.ApplicationResponse;
 import com.cloudcrafters.interviewservice.entities.Offre;
+import com.cloudcrafters.interviewservice.entities.User;
 import com.cloudcrafters.interviewservice.model.Status;
 import com.cloudcrafters.interviewservice.service.ApplicationService;
 import lombok.RequiredArgsConstructor;
@@ -44,14 +45,24 @@ public class ApplicationController {
     @ResponseStatus(HttpStatus.OK)
     public ApplicationResponse getApplicationById(@PathVariable String id) {
         ApplicationResponse applicationResponse = applicationService.getApplicationById(id);
+
+        // Récupérer l'utilisateur de l'application
+        User user = userRestClient.findUserById(applicationResponse.getUserid());
+
+        // Mettre à jour les champs username et lastname dans l'objet ApplicationResponse
+        applicationResponse.setFirstName(user.getFirstName());
+        applicationResponse.setLastname(user.getLastName());
+
         // Récupérer l'offre de l'application
         Offre offre = offreRestClient.findOffreById(applicationResponse.getOffreid());
+
         // Mettre à jour uniquement le champ intershipCompany dans l'objet ApplicationResponse
         applicationResponse.setIntershipCompany(offre.getIntershipCompany());
         applicationResponse.setIntershipTitle(offre.getIntershipTitle());
 
         return applicationResponse;
     }
+
 
 /////////////////////////http://localhost:8080/api/application/all////////////////
  ////////////////  avec fonction avonce de recherche -->/http://localhost:8080/api/application/all?status=PENDING/////////////
@@ -74,6 +85,13 @@ public class ApplicationController {
             Offre offre = offreRestClient.findOffreById(applicationResponse.getOffreid());
             applicationResponse.setIntershipCompany(offre.getIntershipCompany());
             applicationResponse.setIntershipTitle(offre.getIntershipTitle());
+
+            // Récupérer l'utilisateur de l'application
+            User user = userRestClient.findUserById(applicationResponse.getUserid());
+
+            // Mettre à jour les champs username et lastname dans l'objet ApplicationResponse
+            applicationResponse.setFirstName(user.getFirstName());
+            applicationResponse.setLastname(user.getLastName());
         }
 
         return allApplications;
@@ -108,6 +126,13 @@ public class ApplicationController {
             Offre offre = offreRestClient.findOffreById(applicationResponse.getOffreid());
             applicationResponse.setIntershipCompany(offre.getIntershipCompany());
             applicationResponse.setIntershipTitle(offre.getIntershipTitle());
+
+            // Récupérer l'utilisateur de l'application
+            User user = userRestClient.findUserById(applicationResponse.getUserid());
+
+            // Mettre à jour les champs username et lastname dans l'objet ApplicationResponse
+            applicationResponse.setFirstName(user.getFirstName());
+            applicationResponse.setLastname(user.getLastName());
         }
 
         // Retourner la liste mise à jour des applications
@@ -115,8 +140,9 @@ public class ApplicationController {
     }
 
 
-///////////////////http://localhost:8080/api/application/interviews/2////////
-    @GetMapping("/interviews/{userId}")
+
+    ///////////////////http://localhost:8080/api/application/myapp/2////////
+    @GetMapping("/myapp/{userId}")
     @ResponseStatus(HttpStatus.OK)
     public List<ApplicationResponse> getApplicationsByUserId(@PathVariable String userId) {
         List<ApplicationResponse> applicationResponses = applicationService.getApplicationsByUserId(userId);
@@ -126,11 +152,19 @@ public class ApplicationController {
             Offre offre = offreRestClient.findOffreById(applicationResponse.getOffreid());
             applicationResponse.setIntershipCompany(offre.getIntershipCompany());
             applicationResponse.setIntershipTitle(offre.getIntershipTitle());
+
+            // Récupérer l'utilisateur de l'application
+            User user = userRestClient.findUserById(applicationResponse.getUserid());
+
+            // Mettre à jour les champs username et lastname dans l'objet ApplicationResponse
+            applicationResponse.setFirstName(user.getFirstName());
+            applicationResponse.setLastname(user.getLastName());
         }
 
         // Retourner la liste mise à jour
         return applicationResponses;
     }
+
 
 
 

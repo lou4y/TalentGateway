@@ -1,15 +1,12 @@
 <div class="container-fluid">
-  <app-page-title
-    title="All Application"
-    [breadcrumbItems]="breadCrumbItems"
-  ></app-page-title>
+  <app-page-title title="All Internship Applications" [breadcrumbItems]="breadCrumbItems"></app-page-title>
 
   <div class="row">
     <div class="col-12">
       <div class="card">
         <div class="card-body border-bottom">
           <div class="d-flex align-items-center">
-            <h5 class="mb-0 card-title flex-grow-1">Application List</h5>
+            <h5 class="mb-0 card-title flex-grow-1">  Internship Applications</h5>
           </div>
         </div>
         <div class="card-body border-bottom">
@@ -42,36 +39,25 @@
             >
               <thead>
                 <tr>
-                  <th scope="col">ID</th>
+                  <th scope="col">Application Number</th>
+                  <th scope="col">lastname</th>
+                  <th scope="col">firstName</th>
                   <th scope="col">Application Date</th>
-                  <th scope="col">Acceptance Date</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">User ID</th>
-                  <th scope="col">Offer ID</th>
                   <th scope="col">Interview Date</th>
                   <th scope="col">Interview Mode</th>
                   <th scope="col">Internship Company</th>
                   <th scope="col">Internship Title</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Acceptance Date</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let data of getCurrentPageApplications()">
-                  <td>{{ data.id }}</td>
+                <tr *ngFor="let data of getCurrentPageApplications(); let i = index">
+                  <td>{{ startIndex + i + 1 }}</td>
+                  <td>{{ data.lastname }}</td>
+                  <td>{{ data.firstName }}</td>
                   <td>{{ data.dateDePostulation }}</td>
-                  <td>{{ data.dateAcceptation }}</td>
-                  <td>
-                    <span
-                      class="badge"
-                      [ngClass]="{
-                        'bg-success': data.status === 'ACCEPTED',
-                        'bg-info': data.status === 'PENDING',
-                        'bg-danger': data.status === 'REJECTED'
-                      }"
-                    >{{ data.status }}</span>
-                  </td>
-                  <td>{{ data.userid }}</td>
-                  <td>{{ data.offreid }}</td>
                   <td>
                     {{
                       data.interview?.dateEntretien ||
@@ -86,6 +72,14 @@
                   </td>
                   <td>{{ data.intershipCompany }}</td>
                   <td>{{ data.intershipTitle }}</td>
+                  <td>
+                    <span class="badge" [ngClass]="{
+                      'bg-success': data.status === 'ACCEPTED',
+                      'bg-info': data.status === 'PENDING',
+                      'bg-danger': data.status === 'REJECTED'
+                    }">{{ data.status }}</span>
+                  </td>
+                  <td>{{ data.dateAcceptation }}</td>
                   <td>
                     <ul class="list-unstyled hstack gap-1 mb-0">
                       <li
@@ -115,8 +109,6 @@
                           <i class="mdi mdi-delete-outline"></i>
                         </a>
                       </li>
-
-                      <!-- Bouton pour éditer l'application -->
                       <li
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
@@ -160,26 +152,19 @@
               </div>
             </div>
           </div>
-          <!-- Ligne principale -->
         </div>
       </div>
     </div>
   </div>
 </div>
 
+
 <!-- Order Create Model -->
 
 <ng-template #content role="document" let-modal>
   <div class="modal-header">
     <h5 class="modal-title" id="exampleModalLabel">Add Interview</h5>
-    <button
-      type="button"
-      class="btn-close"
-      data-bs-dismiss="modal"
-      aria-label="Close"
-      id="close-modal"
-      (click)="modalRef?.hide()"
-    ></button>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal" (click)="modalRef?.hide()"></button>
   </div>
 
   <form (ngSubmit)="saveEdit(applicationId)" [formGroup]="jobListForm">
@@ -187,83 +172,30 @@
       <input type="hidden" name="id" value="" formControlName="ids" />
 
       <div class="mb-3">
-        <label for="interview-mode-field" class="form-label"
-          >Interview Mode</label
-        >
-        <select
-          id="interview-mode-field"
-          class="form-select"
-          formControlName="interviewMode"
-          required
-          [ngClass]="{
-            'is-invalid': submitted && jobListForm.get('interviewMode').errors
-          }"
-        >
+        <label for="interview-mode-field" class="form-label">Interview Mode</label>
+        <select id="interview-mode-field" class="form-select" formControlName="interviewMode" required [ngClass]="{'is-invalid': submitted && jobListForm.get('interviewMode').errors}">
           <option value="" disabled selected>Select Interview Mode</option>
-          <option value="FACETOFACE">FACETOFACE</option>
-          <option value="ONLINE">ONLINE</option>
+          <option value="FACETOFACE">Face-to-Face</option>
+          <option value="ONLINE">Online</option>
         </select>
-        <div
-          *ngIf="submitted && jobListForm.get('interviewMode').errors"
-          class="invalid-feedback"
-          align="left"
-        >
-          <div *ngIf="jobListForm.get('interviewMode').errors['required']">
-            Interview Mode is required
-          </div>
+        <div *ngIf="submitted && jobListForm.get('interviewMode').errors" class="invalid-feedback" align="left">
+          Interview Mode is required
         </div>
       </div>
 
-      <div class="mb-3">
-        <label for="interview-date-field" class="form-label"
-          >Interview Date</label
-        >
-        <div class="row">
-          <div class="col">
-            <input
-              type="date"
-              id="interview-date-field"
-              class="form-control"
-              placeholder="Select Date"
-              required
-              formControlName="interviewDate"
-              [ngClass]="{
-                'is-invalid':
-                  submitted && jobListForm.get('interviewDate').errors
-              }"
-            />
-            <div
-              *ngIf="submitted && jobListForm.get('interviewDate').errors"
-              class="invalid-feedback"
-              align="left"
-            >
-              <div *ngIf="jobListForm.get('interviewDate').errors['required']">
-                Interview Date is required
-              </div>
-            </div>
+      <div class="mb-3 d-flex">
+        <div class="flex-grow-1 me-2">
+          <label for="interview-date-field" class="form-label">Interview Date</label>
+          <input type="date" id="interview-date-field" class="form-control" placeholder="Select Date" required formControlName="interviewDate" [ngClass]="{'is-invalid': submitted && jobListForm.get('interviewDate').errors}" />
+          <div *ngIf="submitted && jobListForm.get('interviewDate').errors" class="invalid-feedback" align="left">
+            Interview Date is required
           </div>
-          <div class="col">
-            <label for="interview-time">Interview Time</label>
-            <input
-              type="time"
-              id="interview-time"
-              class="form-control"
-              required
-              formControlName="interviewTime"
-              [ngClass]="{
-                'is-invalid':
-                  submitted && jobListForm.get('interviewTime').errors
-              }"
-            />
-            <div
-              *ngIf="submitted && jobListForm.get('interviewTime').errors"
-              class="invalid-feedback"
-              align="left"
-            >
-              <div *ngIf="jobListForm.get('interviewTime').errors['required']">
-                Interview Time is required
-              </div>
-            </div>
+        </div>
+        <div class="flex-grow-1 ms-2">
+          <label for="interview-time">Interview Time</label>
+          <input type="time" id="interview-time" class="form-control" required formControlName="interviewTime" [ngClass]="{'is-invalid': submitted && jobListForm.get('interviewTime').errors}" />
+          <div *ngIf="submitted && jobListForm.get('interviewTime').errors" class="invalid-feedback" align="left">
+            Interview Time is required
           </div>
         </div>
       </div>
@@ -273,9 +205,8 @@
     </div>
   </form>
 </ng-template>
-<!-- End Modal -->
 
-<!-- Nouveau contenu pour l'édition de l'application -->
+<!-- Nouveau contenu pour l'édition de l'application --> 
 <ng-template #editApplicationContent>
   <div class="modal-header">
     <h5 class="modal-title" id="exampleModalLabel">Edit Application</h5>
@@ -287,6 +218,7 @@
       <div class="mb-3">
         <label for="status-field" class="form-label">Status</label>
         <select id="status-field" class="form-select" formControlName="status" required>
+          <option value="" disabled selected>Select Status</option>
           <option value="PENDING">PENDING</option>
           <option value="ACCEPTED">ACCEPTED</option>
           <option value="REJECTED">REJECTED</option>
@@ -294,7 +226,7 @@
       </div>
       <div class="mb-3">
         <label for="acceptance-date-field" class="form-label">Acceptance Date</label>
-        <input type="date" id="acceptance-date-field" class="form-control" formControlName="acceptanceDate">
+        <input type="date" id="acceptance-date-field" class="form-control" formControlName="acceptanceDate" placeholder="Select Acceptance Date">
       </div>
     </div>
     <div class="modal-footer">

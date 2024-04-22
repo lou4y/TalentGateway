@@ -1,37 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { InterviewService } from 'src/app/services/interview.service';
 import Swal from 'sweetalert2';
+import { AuthenticationService } from 'src/app/core/services/auth.service'; // Importez le service AuthenticationService ici
 
 @Component({
-  selector: 'app-allapplication', // Mise à jour du sélecteur
-  templateUrl: './allapplication.component.html', // Mise à jour du template URL
-  styleUrls: ['./allapplication.component.scss'], // Mise à jour du style URL
+  selector: 'app-allapplication',
+  templateUrl: './allapplication.component.html',
+  styleUrls: ['./allapplication.component.scss']
 })
-export class AllapplicationComponent implements OnInit { // Renommez ListComponent en AllapplicationComponent
+export class AllapplicationComponent implements OnInit {
   lists: any[] = [];
   totalRecords: number = 0;
   page: number = 1;
-  searchTerm: string = ''; // Déclarez et initialisez searchTerm ici
+  searchTerm: string = '';
   breadCrumbItems: any[] = [];
-  startIndex: number = 0; // Ajouter la propriété startIndex
-  endIndex: number = 0; // Ajouter la propriété endIndex
+  startIndex: number = 0;
+  endIndex: number = 0;
+  user: any; // Ajoutez une propriété user pour stocker l'utilisateur connecté
+  totalApplications: number = 0; 
 
-  constructor(private interviewService: InterviewService) { }
+  constructor(
+    private interviewService: InterviewService,
+    private authService: AuthenticationService // Injectez le service AuthenticationService ici
+  ) { }
 
   ngOnInit(): void {
-    this.getAllApplications();
+    this.authService.currentUser().then(user => {
+      this.user = user;
+      this.getAllApplications();
+    });
   }
 
-  // Méthode pour récupérer toutes les applications
+  // Méthode pour récupérer toutes les applications de l'utilisateur connecté
   getAllApplications(): void {
-    this.interviewService.getAllApplications().subscribe(
+    this.interviewService.getUserApplications(this.user.id).subscribe(
       (data: any[]) => {
         this.lists = data;
         this.totalRecords = this.lists.length;
-        this.updatePagination(); // Mettre à jour la pagination
+        this.updatePagination();
       },
       (error) => {
-        console.error('Erreur lors de la récupération des applications :', error);
+        console.error('Erreur lors de la récupération des applications de l\'utilisateur :', error);
       }
     );
   }
@@ -42,7 +51,7 @@ export class AllapplicationComponent implements OnInit { // Renommez ListCompone
       (data: any[]) => {
         this.lists = data;
         this.totalRecords = this.lists.length;
-        this.updatePagination(); // Mettre à jour la pagination
+        this.updatePagination();
       },
       (error) => {
         console.error('Erreur lors de la récupération des applications filtrées par statut :', error);
@@ -54,9 +63,9 @@ export class AllapplicationComponent implements OnInit { // Renommez ListCompone
   searchApplications(): void {
     const status = this.searchTerm.toUpperCase();
     if (status === 'ACCEPTED' || status === 'PENDING' || status === 'REJECTED') {
-      this.filterApplicationsByStatus(status); // Filtrer les applications par statut
+      this.filterApplicationsByStatus(status);
     } else {
-      // Gérer les autres cas (par exemple, si aucun des mots-clés n'est fourni)
+      // Gérer les autres cas
     }
   }
 

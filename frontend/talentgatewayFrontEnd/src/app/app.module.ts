@@ -17,6 +17,7 @@ import { CyptolandingComponent } from './cyptolanding/cyptolanding.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
 
 import { HeaderFrontComponent } from './FrontOffice/header-front/header-front.component';
 import { ListprojectsComponent } from './FrontOffice/listprojects/listprojects.component';
@@ -26,11 +27,6 @@ import { CommentsComponent } from './FrontOffice/projects/comments/comments.comp
 
 
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
-import { InternshipsComponent } from './FrontOffice/internships/internships.component';
-import { FooterComponent } from './FrontOffice/footer/footer.component';
-import { InternshipsDetailsComponent } from './FrontOffice/internships-details/internships-details.component';
-import {FormsModule} from "@angular/forms";
-import {RatingModule} from "ngx-bootstrap/rating";
 
 
 
@@ -46,9 +42,6 @@ export function createTranslateLoader(http: HttpClient): any {
     ListprojectsComponent,
     DetailProjectComponent,
     CommentsComponent,
-    InternshipsComponent,
-    FooterComponent,
-    InternshipsDetailsComponent,
 
   ],
   imports: [
@@ -73,8 +66,7 @@ export function createTranslateLoader(http: HttpClient): any {
     ScrollToModule.forRoot(),
     ToastrModule.forRoot(),
     KeycloakAngularModule,
-    FormsModule,
-    RatingModule,
+    FormsModule
 
 
   ],

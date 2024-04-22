@@ -12,13 +12,11 @@ import java.util.Date;
 
 @Controller
 public class PDFExportController {
-
     private final PDFGeneratorService pdfGeneratorService;
 
     public PDFExportController(PDFGeneratorService pdfGeneratorService) {
         this.pdfGeneratorService = pdfGeneratorService;
     }
-
     @GetMapping("/pdf/generate")
     public void generatePDF(HttpServletResponse response) throws IOException {
         response.setContentType("application/pdf");
