@@ -34,6 +34,11 @@ public class ScheduledTasks {
     @Autowired
     private EmailService emailService; // Inject EmailService
 
+
+    @Autowired
+    private LinkedInService linkedInService; // Inject LinkedInService
+
+
     @Scheduled(fixedRate = 10000) // Run every 10 seconds
     public void checkMatchingInternshipsScheduled() {
         List<Internship> internships = internshipService.getAllInternships();
@@ -47,6 +52,8 @@ public class ScheduledTasks {
                     boolean matchFound = checkSkillsMatch(internshipSkills, userSkills);
                     if (matchFound) {
                         sendNotificationEmail(user, internship);
+                        linkedInService.shareInternshipOnLinkedIn(internship); // Share internship on LinkedIn
+
                     }
                 }
             }

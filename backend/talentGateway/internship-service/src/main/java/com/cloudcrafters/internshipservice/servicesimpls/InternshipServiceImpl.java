@@ -8,7 +8,6 @@ import com.cloudcrafters.internshipservice.entites.Internship;
 import com.cloudcrafters.internshipservice.entites.Rating;
 import com.cloudcrafters.internshipservice.services.InternshipService;
 
-import com.cloudcrafters.internshipservice.services.LinkedInService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -173,10 +172,7 @@ public class InternshipServiceImpl implements InternshipService {
         }
     }
 
-    private  LinkedInService linkedInService;
-    @Override
-    public void shareInternshipOnLinkedIn(Long internshipId) {
-        linkedInService.shareInternshipOnLinkedIn(internshipId);
-    }
+
+
 
 }

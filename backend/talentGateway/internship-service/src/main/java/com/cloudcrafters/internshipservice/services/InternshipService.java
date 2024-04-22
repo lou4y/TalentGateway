@@ -31,5 +31,4 @@ public interface InternshipService {
 
     void rateInternshipByUser(Long internshipId, int rating, String userId) throws EntityNotFoundException, IllegalArgumentException;
 
-    void shareInternshipOnLinkedIn(Long id);
 }
