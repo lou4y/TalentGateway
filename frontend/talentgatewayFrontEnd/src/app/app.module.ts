@@ -26,6 +26,11 @@ import { CommentsComponent } from './FrontOffice/projects/comments/comments.comp
 
 
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import { InternshipsComponent } from './FrontOffice/internships/internships.component';
+import { FooterComponent } from './FrontOffice/footer/footer.component';
+import { InternshipsDetailsComponent } from './FrontOffice/internships-details/internships-details.component';
+import {FormsModule} from "@angular/forms";
+import {RatingModule} from "ngx-bootstrap/rating";
 
 
 
@@ -41,6 +46,9 @@ export function createTranslateLoader(http: HttpClient): any {
     ListprojectsComponent,
     DetailProjectComponent,
     CommentsComponent,
+    InternshipsComponent,
+    FooterComponent,
+    InternshipsDetailsComponent,
 
   ],
   imports: [
@@ -65,6 +73,8 @@ export function createTranslateLoader(http: HttpClient): any {
     ScrollToModule.forRoot(),
     ToastrModule.forRoot(),
     KeycloakAngularModule,
+    FormsModule,
+    RatingModule,
 
 
   ],
