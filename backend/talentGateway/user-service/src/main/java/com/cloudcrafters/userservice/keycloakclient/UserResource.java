@@ -45,7 +45,7 @@ public class UserResource {
 	}
 	
 	@PostMapping(value = "/user/signin")
-	public Response createUser(User user) {
+	public Response createUser(@RequestBody User user) {
 		UserRepresentation userRep = mapUserRep(user);
 		Keycloak keycloak = keycloakUtil.getKeycloakInstance();
 		Response res = keycloak.realm(realm).users().create(userRep);
@@ -53,7 +53,7 @@ public class UserResource {
 	}
 	
 	@PutMapping(value = "/user")
-	public Response updateUser(User user) {
+	public Response updateUser(@RequestBody User user) {
 		UserRepresentation userRep = mapUserRep(user);
 		Keycloak keycloak = keycloakUtil.getKeycloakInstance();
 		keycloak.realm(realm).users().get(user.getId()).update(userRep);

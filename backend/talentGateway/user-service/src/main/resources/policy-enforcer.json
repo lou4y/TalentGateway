@@ -18,7 +18,7 @@
 		"enforcement-mode": "DISABLED"
 	},{
 		"path": "/keycloak/users/{userId}",
-		"enforcement-mode": "ENFORCING",
+		"enforcement-mode": "DISABLED",
 		"claim-information-point": {
 			"claims": {
               "uri_claim": "{request.uri}"
@@ -29,7 +29,7 @@
 		  "enforcement-mode": "DISABLED"
 	  },{
 		"path": "/keycloak/*",
-		"enforcement-mode": "ENFORCING"
+		"enforcement-mode": "DISABLED"
 	}
 	]
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import { TeamService } from 'src/app/services/team.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-project',
@@ -85,25 +86,41 @@ export class UpdateProjectComponent implements OnInit {
 
     // If no fields have been modified, alert the user and return
     if (!isModified) {
-      alert('No changes detected.');
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "No changes detected.!"
+      });
       return;
     }
 
     // Make sure all required fields are provided
     if (!this.project.projectName || !this.project.projectDescription || !this.project.startDate || !this.project.endTime || !this.project.price) {
-      alert('Please provide all required project details');
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please provide all required project details. !"
+      });
       return;
     }
 
     // Make sure startDate is before endDate
     if (new Date(this.project.startDate) >= new Date(this.project.endTime)) {
-      alert('End Date must be after Start Date');
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "End Date must be after Start Date !"
+      });
       return;
     }
 
     // Make sure price is a positive number
     if (this.project.price <= 0) {
-      alert('Price must be a positive number');
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Price must be a positive number !"
+      });
       return;
     }
 
@@ -115,14 +132,20 @@ export class UpdateProjectComponent implements OnInit {
     // Send the updated project data to the server
     this.projectService.updateProject(this.project).subscribe(
       (response) => {
-        alert('Project updated successfully');
-        // Redirect to projects list or any other page as needed
+        Swal.fire({
+          title: "Good job!",
+          text: "Project updated successfully!",
+          icon: "success"
+        });
         this.router.navigate(['/projects/list']);
       },
       (error) => {
-        console.error('Error updating project:', error);
         // Show error message to user or handle error appropriately
-        alert('Failed to update project');
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Failed to update project !"
+        });
       }
     );
   }

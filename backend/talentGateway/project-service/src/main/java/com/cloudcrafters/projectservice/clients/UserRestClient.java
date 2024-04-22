@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "SERVICE-USERTEST")
+@FeignClient(name = "USERTEST-SERVICE")
 public interface UserRestClient {
     @GetMapping("/users/{id}")
     //handler d'exception /fallbackMethod: la méthode qui va appler en local si l'autre échoue
