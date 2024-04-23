@@ -35,7 +35,7 @@ public class ModuleController {
 
     // Create module
     @PostMapping
-    public ResponseEntity<Module> createModule(@RequestBody Module module) {
+    public ResponseEntity<Module> createModule (@RequestBody Module module) {
         Module createdModule = moduleService.createModule(module);
         return new ResponseEntity<>(createdModule, HttpStatus.CREATED);
     }
@@ -47,10 +47,7 @@ public class ModuleController {
     @ResponseStatus(HttpStatus.OK)
     public List<Module> getAllModules() {
         List <Module> modules = moduleService.getAllModules();
-        for (Module module : modules) {
-            Project project = projectRestClient.findProjectById(module.getProjectId());
-            module.setProject(project);
-        }
+
         return modules;
     }
 

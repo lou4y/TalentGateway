@@ -4,11 +4,12 @@ import com.cloudcrafters.taskservice.Dao.TaskDao;
 import com.cloudcrafters.taskservice.Entities.Task;
 import com.cloudcrafters.taskservice.dto.TaskResponse;
 import com.cloudcrafters.taskservice.Enums.Priority;
+import com.cloudcrafters.taskservice.models.User;
 
 import java.util.List;
 
 public interface TaskService {
-    Task createTask(Task task);
+    TaskResponse createTask(Task task);
     Task updateTask(Long taskId, Task taskDetails);
     List<TaskResponse> getAllTasks();
     TaskResponse getTaskById(Long taskId);
@@ -22,5 +23,7 @@ public interface TaskService {
 
     long countCompletedTasksByUserId(String userId);
     long countIncompleteTasksByUserId(String userId);
+
+
 
 }

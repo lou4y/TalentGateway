@@ -4,6 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+ 
+    <list default="true" id="b92eb469-ffe0-4c5c-968e-ca54bf378532" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+
     <list default="true" id="942c605b-6928-4781-99e0-369c0077e206" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 
@@ -52,6 +56,7 @@
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/myapplication/myapplication.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/myapplication/myapplication.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/services/interview.service.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/services/interview.service.spec.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/services/interview.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/services/interview.service.ts" afterDir="false" />
+
 
 
     </list>
@@ -254,6 +259,45 @@
       <created>1712138041351</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+
+      <updated>1711728599422</updated>
+      <workItem from="1711412712503" duration="85000" />
+      <workItem from="1711412952177" duration="821000" />
+      <workItem from="1711127557275" duration="46000" />
+      <workItem from="1711127715297" duration="10000" />
+      <workItem from="1711128757601" duration="1927000" />
+      <workItem from="1711134187112" duration="271000" />
+      <workItem from="1711134475115" duration="98000" />
+      <workItem from="1711134599681" duration="8464000" />
+      <workItem from="1711185227664" duration="13643000" />
+      <workItem from="1711199029157" duration="1305000" />
+      <workItem from="1711208479155" duration="1383000" />
+      <workItem from="1711220981293" duration="1038000" />
+      <workItem from="1711229535119" duration="1249000" />
+      <workItem from="1711362482303" duration="597000" />
+      <workItem from="1711363488084" duration="382000" />
+      <workItem from="1711379905363" duration="6216000" />
+      <workItem from="1711392082950" duration="10530000" />
+      <workItem from="1711448579958" duration="5002000" />
+      <workItem from="1711392082950" duration="9172000" />
+      <workItem from="1711459711501" duration="6974000" />
+      <workItem from="1711466751903" duration="10882000" />
+      <workItem from="1711548995109" duration="25000" />
+      <workItem from="1711557004599" duration="1108000" />
+      <workItem from="1711563878074" duration="1027000" />
+      <workItem from="1711719485110" duration="292000" />
+      <workItem from="1711794012585" duration="1021000" />
+      <workItem from="1711728603234" duration="123000" />
+      <workItem from="1711729540327" duration="708000" />
+      <workItem from="1711746820295" duration="11070000" />
+      <workItem from="1711800372333" duration="12050000" />
+      <workItem from="1711746820295" duration="5950000" />
+      <workItem from="1711815804583" duration="5854000" />
+      <workItem from="1711984975144" duration="3467000" />
+      <workItem from="1713038305507" duration="112000" />
+      <workItem from="1713045106980" duration="10000" />
+      <workItem from="1713870769172" duration="204000" />
+
       <updated>1712138041351</updated>
       <workItem from="1712138042854" duration="817000" />
       <workItem from="1712139002196" duration="8446000" />
@@ -290,6 +334,7 @@
       <workItem from="1713371401772" duration="1406000" />
       <workItem from="1713372837730" duration="1457000" />
       <workItem from="1713375000809" duration="3375000" />
+
 
     </task>
     <servers />

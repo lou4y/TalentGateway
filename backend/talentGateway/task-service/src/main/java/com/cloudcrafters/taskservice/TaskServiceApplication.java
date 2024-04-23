@@ -16,4 +16,15 @@ public class TaskServiceApplication {
         System.out.println("Task Service is up and running");
     }
 
+
+    @Configuration
+    public class PusherConfiguration {
+        @Bean
+        public Pusher pusher() {
+            Pusher pusher = new Pusher("1781423", "3867787e7fdcc8389321", "09d58b00f4dca81710e8");
+            pusher.setCluster("ap4");
+            pusher.setEncrypted(true);
+            return pusher;
+        }
+  
 }
