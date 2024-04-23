@@ -1,12 +1,15 @@
 <app-header-front></app-header-front>
 
-
-
-
-
 <!-- event details area start -->
 <section class="event__inner pb-110 pt-110">
   <div class="container">
+
+    <!-- Display User ID -->
+    <div class="user-details">
+      <p>User ID: {{ user.id }}</p>
+   </div>
+
+
     <div class="row">
       <div class="col-xxl-8 col-xl-8 col-lg-8">
         <h1 class="inner-tiitle mb-25">{{  internship?.intershipTitle }}
@@ -14,23 +17,38 @@
 
         </h1>
 
-        <div class="intership-rating">
+       <!-- <div class="intership-rating">
           <h5 class="font-size-15">Rate This Internship <strong> : {{ internship?.averageRating }} </strong></h5>
           <div class="rating-star d-flex align-items-center justify-content-center">
-            <!-- Listen to the ratingChange event emitted by the rating component -->
+            &lt;!&ndash; Listen to the ratingChange event emitted by the rating component &ndash;&gt;
             <rating [(ngModel)]="rating" [readonly]="false" class="stars" [max]="5"></rating>
             <span class="ratingnum badge bg-info align-middle ms-2">{{ rating }}</span>
           </div>
+        </div>-->
+
+        <div class="row">
+          <div class="col-xl-3 col-md-4 col-sm-6">
+            <div class="p-4 text-center">
+              <h5 class="font-size-15">Rate This Internship <strong> : {{internship?.averageRating}} </strong></h5>
+
+              <div class="rating-star d-flex align-items-center justify-content-center">
+                <rating [(ngModel)]="rating" [readonly]="false" class="stars" [max]="5"></rating>
+                <span class="ratingnum badge bg-info align-middle ms-2">{{ rating }}</span>
+              </div>
+              <button class="btn btn-primary mt-3" (click)="rateInternship()">Submit Rating</button>
+            </div>
+          </div>
         </div>
+
 
 
 
         <div class="course__meta-2 d-sm-flex">
           <div class="course__teacher-3 d-flex align-items-center mr-70 mb-30">
             <div class="course__teacher-thumb-3 mr-15">
-<!--
-              <img src="assets/img/courses/avata/course-avata-1.jpg" alt="">
--->
+              <!--
+                            <img src="assets/img/courses/avata/course-avata-1.jpg" alt="">
+              -->
             </div>
             <div class="course__teacher-info-3">
               <h5>Internship Type</h5>
@@ -102,10 +120,10 @@
           <div class="events__sidebar-widget white-bg mb-20">
             <div class="events__info">
               <div class="events__info-meta mb-25 d-flex align-items-center justify-content-between">
-              <!--  <div class="events__info-price">
-                  <h5>$76.<span>00</span> </h5>
-                  <h5 class="old-price">$142.00</h5>
-                </div>-->
+                <!--  <div class="events__info-price">
+                    <h5>$76.<span>00</span> </h5>
+                    <h5 class="old-price">$142.00</h5>
+                  </div>-->
                 <!--<div class="events__info-discount">
                   <span>68% OFF</span>
                 </div>-->
@@ -163,5 +181,5 @@
     </div>
   </div>
 </section>
-<!-- event details area end -->
-<app-footer></app-footer>
+
+<app-footer-front></app-footer-front>

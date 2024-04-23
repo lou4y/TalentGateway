@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
 import {Internship} from "../../core/models/internship.model";
+import {Observable} from "rxjs";
 import {InternshipsService} from "../../core/services/internships/internships.service";
 import {AuthenticationService} from "../../core/services/auth.service";
 

@@ -27,6 +27,10 @@ import { CommentsComponent } from './FrontOffice/projects/comments/comments.comp
 
 
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import { InternshipsComponent } from './FrontOffice/internships/internships.component';
+import { FooterFrontComponent } from './FrontOffice/footer-front/footer-front.component';
+import { InternshipsDetailComponent } from './FrontOffice/internships-detail/internships-detail.component';
+import {RatingModule} from "ngx-bootstrap/rating";
 
 
 
@@ -35,15 +39,18 @@ export function createTranslateLoader(http: HttpClient): any {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CyptolandingComponent,
-    HeaderFrontComponent,
-    ListprojectsComponent,
-    DetailProjectComponent,
-    CommentsComponent,
+    declarations: [
+        AppComponent,
+        CyptolandingComponent,
+        HeaderFrontComponent,
+        ListprojectsComponent,
+        DetailProjectComponent,
+        CommentsComponent,
+        InternshipsComponent,
+        FooterFrontComponent,
+        InternshipsDetailComponent,
 
-  ],
+    ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -66,16 +73,22 @@ export function createTranslateLoader(http: HttpClient): any {
     ScrollToModule.forRoot(),
     ToastrModule.forRoot(),
     KeycloakAngularModule,
-    FormsModule
+    FormsModule,
+    RatingModule
 
 
   ],
-  bootstrap: [AppComponent],
-  providers: [
-    { provide: APP_INITIALIZER,
-      useFactory: initializeKeycloak,
-      multi: true,
-      deps: [KeycloakService]}
-  ],
+    bootstrap: [AppComponent],
+    providers: [
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initializeKeycloak,
+            multi: true,
+            deps: [KeycloakService]
+        }
+    ],
+    exports: [
+        HeaderFrontComponent
+    ]
 })
 export class AppModule { }
