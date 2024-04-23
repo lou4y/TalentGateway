@@ -1,7 +1,7 @@
 // Lightbox
 @import "~ngx-lightbox/lightbox.css";
 
-// Select 2 
+// Select 2
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
 // Date Picker
@@ -143,7 +143,7 @@
 }
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
-    background-color: var(--#{$prefix}custom-white);
+    background-color: white;
     color: var(--#{$prefix}body-color);
 }
 

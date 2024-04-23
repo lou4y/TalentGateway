@@ -27,12 +27,18 @@ public class TeamController {
         return teamService.getAllTeams();
     }
     @GetMapping("/teams/{id}")
-    public Team getTeamById(@PathVariable Long id){
-        Team team=teamService.getTeamById(id);
-        //User teamMember=userRestClient.findCreatorById()
+    public Team getTeamById(@PathVariable Long id) {
+        Team team = teamService.getTeamById(id);
+
+        // Fetching user details for each team member
+        for (UserRoleInTeam userRole : team.getUsersWithRoles()) {
+            User user = userRestClient.findCreatorById(userRole.getUserId());
+            userRole.setUser(user);
+        }
 
         return team;
     }
+
     @PostMapping("/teams")
     public Team addNewTeam(@RequestBody Team team){return  teamService.addTeam(team);}
     @PutMapping("/teams/{id}")

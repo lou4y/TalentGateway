@@ -27,9 +27,9 @@ import { CommentsComponent } from './FrontOffice/projects/comments/comments.comp
 
 
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
-import { InternshipsComponent } from './FrontOffice/internships/internships.component';
-import { FooterFrontComponent } from './FrontOffice/footer-front/footer-front.component';
-import { InternshipsDetailComponent } from './FrontOffice/internships-detail/internships-detail.component';
+import {InternshipsDetailComponent} from "./FrontOffice/internships-detail/internships-detail.component";
+import {InternshipsComponent} from "./FrontOffice/internships/internships.component";
+import {FooterFrontComponent} from "./FrontOffice/footer-front/footer-front.component";
 import {RatingModule} from "ngx-bootstrap/rating";
 
 
@@ -39,18 +39,18 @@ export function createTranslateLoader(http: HttpClient): any {
 }
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        CyptolandingComponent,
-        HeaderFrontComponent,
-        ListprojectsComponent,
-        DetailProjectComponent,
-        CommentsComponent,
-        InternshipsComponent,
-        FooterFrontComponent,
-        InternshipsDetailComponent,
+  declarations: [
+    AppComponent,
+    CyptolandingComponent,
+    HeaderFrontComponent,
+    FooterFrontComponent,
+    ListprojectsComponent,
+    DetailProjectComponent,
+    CommentsComponent,
+    InternshipsDetailComponent,
+    InternshipsComponent
 
-    ],
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -74,21 +74,16 @@ export function createTranslateLoader(http: HttpClient): any {
     ToastrModule.forRoot(),
     KeycloakAngularModule,
     FormsModule,
-    RatingModule
+    RatingModule,
 
 
   ],
-    bootstrap: [AppComponent],
-    providers: [
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initializeKeycloak,
-            multi: true,
-            deps: [KeycloakService]
-        }
-    ],
-    exports: [
-        HeaderFrontComponent
-    ]
+  bootstrap: [AppComponent],
+  providers: [
+    { provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService]}
+  ],
 })
 export class AppModule { }
