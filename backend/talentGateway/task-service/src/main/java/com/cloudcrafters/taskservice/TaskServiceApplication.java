@@ -19,7 +19,6 @@ public class TaskServiceApplication {
         System.out.println("Task Service is up and running");
     }
 
-
     @Configuration
     public class PusherConfiguration {
         @Bean
