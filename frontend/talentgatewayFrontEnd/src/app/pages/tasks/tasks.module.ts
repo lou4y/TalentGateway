@@ -10,6 +10,8 @@ import { DndModule } from 'ngx-drag-drop';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TasksRoutingModule } from './tasks-routing.module';
 import { UIModule } from '../../shared/ui/ui.module';
@@ -26,6 +28,7 @@ import { CreatetaskComponent } from './createtask/createtask.component';
     ReactiveFormsModule,
     TasksRoutingModule,
     UIModule,
+    PaginationModule.forRoot(),
     NgApexchartsModule,
     BsDatepickerModule.forRoot(),
     ModalModule.forRoot(),

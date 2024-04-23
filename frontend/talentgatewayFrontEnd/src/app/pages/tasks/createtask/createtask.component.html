@@ -1,87 +1,139 @@
 <div class="container-fluid">
 
   <!-- start page title -->
-  <app-page-title title="Create Task" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <app-page-title title="Create Task / Module" [breadcrumbItems]="breadCrumbItems"></app-page-title>
   <!-- end page title -->
 
   <div class="row">
-    <div class="col-lg-12">
+    <!-- Left Column: Create Task -->
+    <div class="col-lg-8">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-4">Createaaa New Task</h4>
-          <form class="outer-repeater">
-            <div data-repeater-list="outer-group" class="outer">
-              <div data-repeater-item class="outer">
-                <div class="row mb-4">
-                  <label for="taskname" class="col-form-label col-lg-2">Task Name</label>
-                  <div class="col-lg-10">
-                    <input id="taskname" name="taskname" type="text" class="form-control" placeholder="Enter Task Name...">
-                  </div>
-                </div>
-                <div class="row mb-4">
-                  <label class="col-form-label col-lg-2">Task Description</label>
-                  <div class="col-lg-10">
-                    <ckeditor [editor]="Editor" data="<p>Content of the editor.</p>"></ckeditor>
-                  </div>
-                </div>
+          <h4 class="card-title mb-4">Create New Task</h4>
+          <form [formGroup]="taskForm" (ngSubmit)="createTask()">
 
-                <div class="form-group row mb-4">
-                  <label class="col-form-label col-lg-2">Task Date</label>
-                  <div class="col-lg-10">
-                    <div class="input-daterange input-group">
-                      <input type="text" class="form-control" (click)="hidden=!hidden" placeholder="Start Date" name="start" [(ngModel)]="selected" bsDatepicker />
-                      <input type="text" class="form-control" (click)="hidden=!hidden" placeholder="End Date" name="end" [(ngModel)]="selected" bsDatepicker />
-                    </div>
-                  </div>
-                </div>
+            <!-- Task Name -->
+            <div class="form-group row mb-4">
+              <label for="taskname" class="col-form-label col-lg-2">Task Name</label>
+              <div class="col-lg-10">
+                <input id="taskname" name="taskname" type="text" formControlName="taskName" class="form-control" placeholder="Enter Task Name...">
+              </div>
+            </div>
 
-                <div class="inner-repeater mb-4">
-                  <form [formGroup]="form">
-                    <div class="inner mb-0 row" formArrayName="member">
-                      <label class="col-form-label col-lg-2">Add Team Member</label>
-                      <div class="inner col-lg-10 ms-md-auto" *ngFor="let data of member.controls; index as i;">
-                        <div class="mb-3 row align-items-center">
-                          <div class="col-md-6">
-                            <input type="text" [formControlName]="i" class="inner form-control" placeholder="Enter Name..." />
-                          </div>
-                          <div class="col-md-4">
-                            <div class="mt-4 mt-md-0">
-                              <input class="form-control" type="file">
-                            </div>
-                          </div>
-                          <div class="col-md-2">
-                            <div class="mt-2 mt-md-0 d-grid">
-                              <input type="button" class="btn btn-primary inner" value="Delete" (click)="deleteMember(i)" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                  <div class="row justify-content-end">
-                    <div class="col-lg-10">
-                      <input data-repeater-create type="button" class="btn btn-success inner" value="Add Member" (click)="addMember()" />
-                    </div>
-                  </div>
-                </div>
-                <div class="row mb-4">
-                  <label for="taskbudget" class="col-form-label col-lg-2">Budget</label>
-                  <div class="col-lg-10">
-                    <input id="taskbudget" name="taskbudget" type="text" placeholder="Enter Task Budget..." class="form-control">
-                  </div>
+            <!-- Task Description -->
+            <div class="form-group row mb-4">
+              <label class="col-form-label col-lg-2">Task Description</label>
+              <div class="col-lg-10">
+                <textarea rows="3" placeholder="Enter your Task Description..." formControlName="taskDescription" class="form-control"></textarea>
+              </div>
+            </div>
+
+            <!-- Task Date -->
+            <div class="form-group row mb-4">
+              <label class="col-form-label col-lg-2">Task Date</label>
+              <div class="col-lg-10">
+                <div class="input-daterange input-group">
+                  <input type="text" class="form-control" (click)="hidden=!hidden" placeholder="Start Date" name="start" formControlName="startDate" [(ngModel)]="selectedStartDate" bsDatepicker />
+                  <input type="text" class="form-control" (click)="hidden=!hidden" placeholder="End Date" name="end" formControlName="endDate" [(ngModel)]="selectedEndtDate" bsDatepicker />
                 </div>
               </div>
             </div>
-          </form>
-          <div class="row justify-content-end">
-            <div class="col-lg-10">
-              <button type="submit" class="btn btn-primary">Create Task</button>
+
+           
+             <!-- User Name -->
+             <div class="mb-3">
+              <label for="firstName" class="form-label">Team Member</label>
+              <select class="form-control" id="firstName" formControlName="firstName">
+                <option value="" selected>Choose..</option>
+                <option *ngFor="let user of users" [value]="user.firstName" class="firstName-item">{{ user.firstName }}</option>
+              </select>
             </div>
-          </div>
+           
+
+            <!-- statut -->
+            <div class="mb-3">
+              <label for="statut" class="form-label">statut</label>
+              <select class="form-control" id="statut" formControlName="statut">
+                <option value="" selected>Choose..</option>
+                <option value="In_Progress">In_Progress</option>
+                <option value="Finished">Finished</option>
+                <option value="To_do">To_do</option>
+              </select>
+            </div>
+
+            <!-- Statut -->
+            <div class="mb-3">
+              <label for="priority" class="form-label">Priority</label>
+              <select class="form-control" id="priority" formControlName="priority">
+                <option value="" selected>Choose..</option>
+                <option value="HIGH">HIGH</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="LOW">LOW</option>
+              </select>
+            </div>
+
+            <!-- Module Name -->
+            <div class="mb-3">
+              <label for="moduleName" class="form-label">Module Name</label>
+              <select class="form-control" id="moduleName" formControlName="moduleName">
+                <option *ngFor="let module of modules" (click)="selectModule(module)" class="module-item">{{ module.moduleName }}</option>
+              </select>
+            </div>
+
+            <!-- Create Task Button -->
+            <div class="row justify-content-end">
+              <div class="col">
+                <button type="button" class="btn btn-primary" (click)="createTask()">Create Task</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Create Module -->
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-3">Create Module </h5>
+
+          <form [formGroup]="moduleForm" (ngSubmit)="createModule()">
+            <!-- Module Name -->
+            <div class="mb-3">
+              <label for="moduleName" class="form-label">Module Name</label>
+              <input id="moduleName" type="text" formControlName="moduleName" class="form-control" placeholder="Enter module Name...">
+            </div>
+          
+            <!-- Module Description -->
+            <div class="mb-3">
+              <label class="form-label">Module Description</label>
+              <textarea rows="3" placeholder="Enter your Module Description..." formControlName="moduleDescription" class="form-control"></textarea>
+            </div>
+          
+            <!-- Project -->
+            <div class="mb-3">
+              <label for="projectName" class="form-label">Project Name</label>
+              <select class="form-control" id="projectName" formControlName="projectName">
+                <option value="" selected>Choose..</option>
+                <option *ngFor="let project of projects" [value]="project.projectName">{{ project.projectName }}</option>
+              </select>
+            </div>
+          
+            <!-- Create Module Button -->
+            <div class="row justify-content-end">
+              <div class="col">
+                <button type="button" class="btn btn-primary" (click)="createModule()">Create Module</button>
+              </div>
+            </div>
+          </form>
+          
+
 
         </div>
       </div>
     </div>
+
   </div>
   <!-- end row -->
 
