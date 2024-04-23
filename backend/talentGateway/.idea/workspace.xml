@@ -5,21 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7544509-7f96-49b3-bb9c-a000362fba01" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/internship-service/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo" beforeDir="false" afterPath="$PROJECT_DIR$/config-repo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/gateway-service.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/internship-service.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/project-service-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/project-service-prod.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/project-service.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/talent-gateway-config-repo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/task-service.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/usertest-service.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose-ons.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose-ons.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/clients/UserRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/clients/UserRestClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/PDFExportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/PDFExportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/PDFGeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/PDFGeneratorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/TaskServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/TaskServiceApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/services/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/services/TaskService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/TaskServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/footer/footer.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/footer/footer.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/footer/footer.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/footer/footer.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships-details/internships-details.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships-details/internships-details.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships-details/internships-details.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships-details/internships-details.component.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/app-routing.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,20 +71,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;internship&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Merging interview-service",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -152,6 +158,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.ConfigServiceApplication" />
+      <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
+      <item itemvalue="Spring Boot.GatewayServiceApplication" />
+      <item itemvalue="Spring Boot.InternshipServiceApplication" />
+      <item itemvalue="Spring Boot.InterviewServiceApplication" />
+      <item itemvalue="Spring Boot.MessagingServiceApplication" />
+      <item itemvalue="Spring Boot.ProjectServiceApplication" />
+      <item itemvalue="Spring Boot.TaskServiceApplication" />
+      <item itemvalue="Spring Boot.UserServiceApplication" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
