@@ -1,5 +1,5 @@
 import { EventInput } from '@fullcalendar/core';
-
+import { InterviewService } from '../../services/interview.service';
 let eventGuid = 0;
 export function createEventId() {
     return String(eventGuid++);
@@ -32,34 +32,13 @@ const category = [
     },
 ];
 
-const calendarEvents: EventInput[] = [
-    {
-        id: createEventId(),
-        title: 'Meeting',
-        start: new Date().setDate(new Date().getDate() + 1),
-        end: new Date().setDate(new Date().getDate() + 2),
-        className: 'bg-warning text-white',
-    },
-    {
-        id: createEventId(),
-        title: 'Lunch',
-        start: new Date(),
-        end: new Date(),
-        className: 'bg-success text-white',
-    },
-    {
-        id: createEventId(),
-        title: 'Birthday - party',
-        start: new Date().setDate(new Date().getDate() + 8),
-        className: 'bg-info text-white',
-    },
-    {
-        id: createEventId(),
-        title: 'Long Event',
-        start: new Date().setDate(new Date().getDate() + 7),
-        end: new Date().setDate(new Date().getDate() + 8),
-        className: 'bg-primary text-white'
-    }
-];
+ 
+// Supprimez les crochets d'exportation de cette constante, elle doit être exportée seule
+const calendarEvents: EventInput[] = [  {
+    title: 'Interview 2',
+    start: '2024-04-15 03:10',
+    end: '2024-04-15 04:10'
+},];
 
-export { category, calendarEvents };
+// Exportez calendarEvents et category
+export { calendarEvents, category };

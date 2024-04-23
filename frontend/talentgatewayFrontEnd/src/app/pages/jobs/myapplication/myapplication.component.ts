@@ -1,4 +1,4 @@
-import { Component, OnInit , ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -95,13 +95,12 @@ export class MyapplicationComponent implements OnInit {
 
   pageChanged(event: any): void {
     this.page = event.page;
+    this.updatePagination();
   }
 
   updatePagination(): void {
-    const startIndex = (this.page - 1) * 5;
-    const endIndex = Math.min(startIndex + 5, this.totalRecords);
-    this.startIndex = startIndex;
-    this.endIndex = endIndex;
+    this.startIndex = (this.page - 1) * 5;
+    this.endIndex = Math.min(this.startIndex + 5, this.totalRecords);
   }
 
   deleteApplication(id: string): void {
@@ -223,5 +222,15 @@ export class MyapplicationComponent implements OnInit {
       }
     );
   }
-    
+
+  getStatusPercentage(status: string): number {
+    const totalApplications = this.lists.length;
+    const statusCount = this.lists.filter(app => app.status === status).length;
+    return (statusCount / totalApplications) * 100;
+  }
+   
+  calculateApplicationNumber(index: number): number {
+    return this.startIndex + index + 1;
+  }
+  
 }

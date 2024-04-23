@@ -1,0 +1,17 @@
+.image-cropper{
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: fit-content;
+  max-height: 550px;
+  margin-bottom:  10px;
+}
+.crop-actions{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: -2px;
+}
+

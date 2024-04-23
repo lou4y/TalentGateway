@@ -2,11 +2,10 @@ import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { AuthenticationService } from '../../core/services/auth.service';
-import { AuthfakeauthenticationService } from '../../core/services/authfake.service';
-import { environment } from '../../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { LanguageService } from '../../core/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
+import {User} from "../../core/models/auth.models";
 
 @Component({
   selector: 'app-topbar',
@@ -19,14 +18,14 @@ import { TranslateService } from '@ngx-translate/core';
  */
 export class TopbarComponent implements OnInit {
 
+
   element:any;
   cookieValue:any;
   flagvalue:any;
   countryName:any;
   valueset:any;
-
+  user: User;
   constructor(@Inject(DOCUMENT) private document: any, private router: Router, private authService: AuthenticationService,
-              private authFackservice: AuthfakeauthenticationService,
               public languageService: LanguageService,
               public translate: TranslateService,
               public _cookiesService: CookieService) {
@@ -45,18 +44,20 @@ export class TopbarComponent implements OnInit {
   @Output() settingsButtonClicked = new EventEmitter();
   @Output() mobileMenuButtonClicked = new EventEmitter();
 
-  ngOnInit() {
+  async ngOnInit() {
     this.openMobileMenu = false;
     this.element = document.documentElement;
-
     this.cookieValue = this._cookiesService.get('lang');
     const val = this.listLang.filter(x => x.lang === this.cookieValue);
     this.countryName = val.map(element => element.text);
     if (val.length === 0) {
-      if (this.flagvalue === undefined) { this.valueset = 'assets/images/flags/us.jpg'; }
+      if (this.flagvalue === undefined) {
+        this.valueset = 'assets/images/flags/us.jpg';
+      }
     } else {
       this.flagvalue = val.map(element => element.flag);
     }
+    this.user = await this.authService.currentUser();
   }
 
     setLanguage(text: string, lang: string, flag: string) {
@@ -85,12 +86,7 @@ export class TopbarComponent implements OnInit {
    * Logout the user
    */
   logout() {
-    if (environment.defaultauth === 'firebase') {
-      this.authService.logout();
-    } else {
-      this.authFackservice.logout();
-    }
-    this.router.navigate(['/account/login']);
+    this.authService.logout();
   }
 
   /**
@@ -128,4 +124,6 @@ export class TopbarComponent implements OnInit {
       }
     }
   }
+
+  protected readonly User = User;
 }

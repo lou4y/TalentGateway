@@ -3,7 +3,6 @@ package com.cloudcrafters.taskservice.Controller;
 import com.cloudcrafters.taskservice.Clients.ProjectRestClient;
 import com.cloudcrafters.taskservice.Clients.UserRestClient;
 import com.cloudcrafters.taskservice.Entities.Task;
-import com.cloudcrafters.taskservice.Enums.Statut;
 import com.cloudcrafters.taskservice.dto.TaskResponse;
 import com.cloudcrafters.taskservice.Enums.Priority;
 import com.cloudcrafters.taskservice.models.Project;
@@ -94,16 +93,6 @@ public class TaskController {
     @GetMapping("/ByPriority/{priority}")
     public ResponseEntity<List<TaskResponse>> getTasksByPriority(@PathVariable Priority priority) {
         List<TaskResponse> tasks = taskService.findTasksByPriority(priority);
-        if (tasks.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok(tasks);
-    }
-
-    // Get tasks by status
-    @GetMapping("/ByStatus/{status}")
-    public ResponseEntity<List<TaskResponse>> findTasksByStatus(@PathVariable Statut status) {
-        List<TaskResponse> tasks = taskService.findTasksByStatus(status);
         if (tasks.isEmpty()) {
             return ResponseEntity.noContent().build();
         }

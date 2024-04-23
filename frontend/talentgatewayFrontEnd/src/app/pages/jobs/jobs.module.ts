@@ -18,7 +18,12 @@ import { CategoriesComponent } from './categories/categories.component';
 import { CandidateListComponent } from './candidate-list/candidate-list.component';
 import { CandidateOverviewComponent } from './candidate-overview/candidate-overview.component';
 import { AllapplicationComponent } from './allapplication/allapplication.component';
-import { MyapplicationComponent } from './myapplication/myapplication.component'; 
+import { MyapplicationComponent } from './myapplication/myapplication.component';
+import { ListInternshipsComponent } from './list-internships/list-internships.component';
+import { AddInternshipsComponent } from './add-internships/add-internships.component';
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import { InternshipDetailsComponent } from './internship-details/internship-details.component';
+import {RatingModule} from "ngx-bootstrap/rating";
 
 @NgModule({
   declarations: [
@@ -30,19 +35,24 @@ import { MyapplicationComponent } from './myapplication/myapplication.component'
     CandidateListComponent,
     CandidateOverviewComponent,
     AllapplicationComponent,
-    MyapplicationComponent
+    MyapplicationComponent,
+    ListInternshipsComponent,
+    AddInternshipsComponent,
+    InternshipDetailsComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BsDatepickerModule.forRoot(),
-    PaginationModule.forRoot(),
-    BsDropdownModule.forRoot(),
-    CollapseModule.forRoot(),
-    UIModule,
-    JobsRoutingModule,
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BsDatepickerModule.forRoot(),
+        PaginationModule.forRoot(),
+        BsDropdownModule.forRoot(),
+        CollapseModule.forRoot(),
+        UIModule,
+        JobsRoutingModule,
+        CKEditorModule,
+        RatingModule,
+    ]
 })
 
 export class JobsModule { }

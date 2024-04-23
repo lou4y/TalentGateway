@@ -1,7 +1,0 @@
-{
-  "timestamp": "2024-03-29T16:53:35.653+00:00",
-  "path": "/PROJECT_SERVICE/actuator/refresh",
-  "status": 404,
-  "error": "Not Found",
-  "requestId": "021657d5-12"
-}

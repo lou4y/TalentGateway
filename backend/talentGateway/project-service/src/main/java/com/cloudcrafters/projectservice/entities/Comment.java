@@ -1,9 +1,11 @@
 package com.cloudcrafters.projectservice.entities;
 
+import com.cloudcrafters.projectservice.models.User;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 
@@ -16,4 +18,9 @@ public class Comment implements Serializable {
     private String commentContent;
     @ManyToOne
     private Project project;
+    @Temporal(TemporalType.DATE)
+    private Date commentDate;
+    @Transient
+    private User user;
+    private String userId;
 }

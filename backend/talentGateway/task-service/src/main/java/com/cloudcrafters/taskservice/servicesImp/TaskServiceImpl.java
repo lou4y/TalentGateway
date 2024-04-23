@@ -11,13 +11,11 @@ import com.cloudcrafters.taskservice.dto.TaskResponse;
 import com.cloudcrafters.taskservice.models.User;
 import com.cloudcrafters.taskservice.services.ModuleService;
 import com.cloudcrafters.taskservice.services.TaskService;
-import com.pusher.rest.Pusher;
 import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,6 +29,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Resource
     private final ModuleService moduleService;
+
 
     @Autowired
     private Pusher pusher;
@@ -59,13 +58,27 @@ public class TaskServiceImpl implements TaskService {
         task.setUserId(user.getId());  // Set the user ID based on the found user
 
         // Module handling based on module name
+
+    @Override
+    public Task createTask(Task task) {
+
         if (task.getModule() != null && task.getModule().getModuleName() != null) {
+            // Fetch the module from the database
             Module module = moduleService.getModuleByName(task.getModule().getModuleName())
+ 
                     .orElseThrow(() -> new RuntimeException("Module Name does not exist or is ambiguous"));
             task.setModule(module);  // Associate the found or created module with the task
+
+                    .orElse(null);
+            if (module == null) {
+                throw new RuntimeException("Module Name does not exist");
+            }
+            task.setModule(module);
+
         } else {
             throw new RuntimeException("Task must have a valid module associated with it.");
         }
+
 
         // Saving the task
         Task savedTask = taskDao.save(task);
@@ -80,6 +93,9 @@ public class TaskServiceImpl implements TaskService {
         }
 
         return mapToTaskResponse(savedTask);
+
+        return taskDao.save(task);
+
     }
 
 //    @Override
@@ -108,7 +124,6 @@ public class TaskServiceImpl implements TaskService {
 //
 //        return savedTask;
 //    }
-
 
 
     @Override
@@ -174,12 +189,6 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskResponse> findTasksByPriority(Priority priority) {
         List<Task> tasks = taskDao.findByPriority(priority);
-        return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
-    }
-
-    @Override
-    public List<TaskResponse> findTasksByStatus(Statut statut) {
-        List<Task> tasks = taskDao.findByStatut(statut);
         return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
     }
 

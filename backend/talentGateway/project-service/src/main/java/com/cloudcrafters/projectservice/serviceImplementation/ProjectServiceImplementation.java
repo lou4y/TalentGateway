@@ -2,6 +2,7 @@ package com.cloudcrafters.projectservice.serviceImplementation;
 
 import com.cloudcrafters.projectservice.daos.ProjectDao;
 import com.cloudcrafters.projectservice.entities.Project;
+import com.cloudcrafters.projectservice.enums.ProjectStatus;
 import com.cloudcrafters.projectservice.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,4 +46,10 @@ public class ProjectServiceImplementation implements ProjectService {
         projectDao.delete(p);
 
     }
+    @Override
+    public List<Project> searchProjects(String searchCriteria) {
+        // Implement your search logic here
+        return projectDao.searchProjects(searchCriteria);
+    }
+
 }

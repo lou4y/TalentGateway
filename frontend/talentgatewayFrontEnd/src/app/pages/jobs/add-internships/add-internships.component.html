@@ -1,0 +1,176 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">Create New Internship</h4>
+          <form (submit)="createInternship()" [formGroup]="internshipForm" class="outer-repeater">
+                <!-- Internship Title -->
+                <div class="row mb-4">
+                  <label for="intershipTitle" class="col-form-label col-lg-2">Internship Title</label>
+                  <div class="col-lg-10">
+                    <input id="intershipTitle" name="intershipTitle" type="text" class="form-control" placeholder="Enter Internship Title..." formControlName="intershipTitle">
+                    <div *ngIf="internshipForm.get('intershipTitle').invalid && internshipForm.get('intershipTitle').touched" class="text-danger">
+                      Please enter a valid Title.
+                    </div>
+                  </div>
+                </div>
+
+            <!-- Internship Description -->
+            <div class="row mb-4">
+              <label for="intershipDescription" class="col-form-label col-lg-2">Internship Description</label>
+              <div class="col-lg-10">
+                <textarea id="intershipDescription" name="intershipDescription" class="form-control" rows="5" placeholder="Enter Internship Description..." formControlName="intershipDescription"></textarea>
+                <div *ngIf="internshipForm.get('intershipDescription').invalid && internshipForm.get('intershipDescription').touched" class="text-danger">
+                  Please enter a valid Description.
+                </div>
+              </div>
+            </div>
+
+
+
+            <!-- Internship Company -->
+            <div class="row mb-4">
+              <label for="intershipCompany" class="col-form-label col-lg-2">Internship Company</label>
+              <div class="col-lg-10">
+                <input id="intershipCompany" name="intershipCompany" type="text" class="form-control" placeholder="Enter Internship Company..." formControlName="intershipCompany">
+                <div *ngIf="internshipForm.get('intershipCompany').invalid && internshipForm.get('intershipCompany').touched" class="text-danger">
+                  Please enter a valid Company.
+                </div>
+              </div>
+            </div>
+
+            <!-- Internship Responsibilities -->
+            <div class="row mb-4">
+              <label for="intershipResponsibilities" class="col-form-label col-lg-2">Internship Responsibilities</label>
+              <div class="col-lg-10">
+                <input id="intershipResponsibilities" name="intershipResponsibilities" type="text" class="form-control" placeholder="Enter Internship Responsibilities..." formControlName="intershipResponsibilities">
+                <div *ngIf="internshipForm.get('intershipResponsibilities').invalid && internshipForm.get('intershipResponsibilities').touched" class="text-danger">
+                  Please enter a valid Responsibilities.
+                </div>
+              </div>
+            </div>
+
+
+
+            <!-- Internship Qualifications -->
+            <div class="row mb-4">
+              <label for="intershipQualifications" class="col-form-label col-lg-2">Internship Qualifications</label>
+              <div class="col-lg-10">
+                <textarea id="intershipQualifications" name="intershipQualifications" class="form-control" rows="5" placeholder="Enter Internship Qualifications..." formControlName="intershipQualifications"></textarea>
+                <div *ngIf="internshipForm.get('intershipQualifications').invalid && internshipForm.get('intershipQualifications').touched" class="text-danger">
+                  Please enter a valid Qualifications.
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Internship Skills -->
+            <div class="row mb-4">
+              <label for="intershipSkills" class="col-form-label col-lg-2">Internship Skills</label>
+              <div class="col-lg-10">
+                <textarea id="intershipSkills" name="intershipSkills" class="form-control" rows="5" placeholder="Enter Internship Skills..." formControlName="intershipSkills"></textarea>
+                <div *ngIf="internshipForm.get('intershipSkills').invalid && internshipForm.get('intershipSkills').touched" class="text-danger">
+                  Please enter a valid Skills.
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Internship Location -->
+            <div class="row mb-4">
+              <label for="intershipLocation" class="col-form-label col-lg-2">Internship Location</label>
+              <div class="col-lg-10">
+                <textarea id="intershipLocation" name="intershipLocation" class="form-control" rows="5" placeholder="Enter Internship Location..." formControlName="intershipLocation"></textarea>
+                <div *ngIf="internshipForm.get('intershipLocation').invalid && internshipForm.get('intershipLocation').touched" class="text-danger">
+                  Please enter a valid description.
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+            <!-- Internship Posted Date -->
+            <div class="row mb-4">
+              <label for="intershippostedDate" class="col-form-label col-lg-2">Posted Date</label>
+              <div class="col-lg-10">
+                <input id="intershippostedDate" name="intershippostedDate" type="date" class="form-control" formControlName="intershippostedDate">
+                <div *ngIf="internshipForm.get('intershippostedDate').invalid && internshipForm.get('intershippostedDate').touched" class="text-danger">
+                  Please enter a valid posted date.
+                </div>
+              </div>
+            </div>
+
+            <!-- Internship Start Date -->
+            <div class="row mb-4">
+              <label for="intershipStartDate" class="col-form-label col-lg-2">Start Date</label>
+              <div class="col-lg-10">
+                <input id="intershipStartDate" name="intershipStartDate" type="date" class="form-control" formControlName="intershipStartDate">
+                <div *ngIf="internshipForm.get('intershipStartDate').invalid && internshipForm.get('intershipStartDate').touched" class="text-danger">
+                  Please enter a valid start date.
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Internship Duration-->
+            <div class="row mb-4">
+              <label for="intershipDuration" class="col-form-label col-lg-2">Duration</label>
+              <div class="col-lg-10">
+                <input id="intershipDuration" name="intershipDuration" type="text" class="form-control" formControlName="intershipDuration">
+                <div *ngIf="internshipForm.get('intershipDuration').invalid && internshipForm.get('intershipDuration').touched" class="text-danger">
+                  Please enter a valid start date.
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Internship Type -->
+            <div class="row mb-4">
+              <label for="intershipType" class="col-form-label col-lg-2">Internship Type</label>
+              <div class="col-lg-10">
+                <select id="intershipType" name="intershipType" class="form-control" formControlName="intershipType">
+                  <option value="FULL_TIME">Full Time</option>
+                  <option value="PART_TIME">Part Time</option>
+                  <option value="REMOTE">Remote</option>
+                  <option value="CONTRACT">Contract</option>
+                  <option value="TEMPORARY">Temporary</option>
+                  <option value="INTERNSHIP">Internship</option>
+                </select>
+                <div *ngIf="internshipForm.get('intershipType').invalid && internshipForm.get('intershipType').touched" class="text-danger">
+                  Please select a valid internship type.
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <!-- Category Dropdown -->
+                <div class="row mb-4">
+                  <label for="categoryId" class="col-form-label col-lg-2">Category</label>
+                  <div class="col-lg-10">
+                    <select id="categoryId" name="categoryId" class="form-control" formControlName="categoryId">
+                      <option *ngFor="let category of categories" [value]="category.categoryId">{{ category.categoryName }}</option>
+                    </select>
+                    <div *ngIf="internshipForm.get('categoryId').invalid && internshipForm.get('categoryId').touched" class="text-danger">
+                      Please select a category.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="row justify-content-end">
+                  <div class="col-lg-10">
+                    <button type="submit" class="btn btn-primary">Create Internship</button>
+                  </div>
+                </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,5 @@
+
+
 package com.cloudcrafters.internshipservice.services;
 
 import com.sendgrid.Method;
@@ -39,3 +41,4 @@ public class EmailService {
         }
     }
 }
+

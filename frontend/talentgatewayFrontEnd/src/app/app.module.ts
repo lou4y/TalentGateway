@@ -1,43 +1,38 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
-
-import { environment } from '../environments/environment';
-
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
-
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
-
-
 import { SharedModule } from './cyptolanding/shared/shared.module';
-
 import { ExtrapagesModule } from './extrapages/extrapages.module';
-
 import { LayoutsModule } from './layouts/layouts.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { initFirebaseBackend } from './authUtils';
+import { initializeKeycloak } from './authUtils';
 import { CyptolandingComponent } from './cyptolanding/cyptolanding.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
-import { ErrorInterceptor } from './core/helpers/error.interceptor';
-import { JwtInterceptor } from './core/helpers/jwt.interceptor';
-import { FakeBackendInterceptor } from './core/helpers/fake-backend';
 import { ToastrModule } from 'ngx-toastr';
-import { DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-if (environment.defaultauth === 'firebase') {
-  initFirebaseBackend(environment.firebaseConfig);
-} else {
-  // tslint:disable-next-line: no-unused-expression
-  FakeBackendInterceptor;
-}
+import { HeaderFrontComponent } from './FrontOffice/header-front/header-front.component';
+import { ListprojectsComponent } from './FrontOffice/listprojects/listprojects.component';
+import { DetailProjectComponent } from './FrontOffice/projects/detail-project/detail-project.component';
+import { CommentsComponent } from './FrontOffice/projects/comments/comments.component';
 
+
+
+import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+
+import { environment } from '../environments/environment';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import {AngularFireModule} from "@angular/fire/compat";
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -46,8 +41,17 @@ export function createTranslateLoader(http: HttpClient): any {
   declarations: [
     AppComponent,
     CyptolandingComponent,
+    HeaderFrontComponent,
+    ListprojectsComponent,
+    DetailProjectComponent,
+    CommentsComponent,
+
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -68,15 +72,19 @@ export function createTranslateLoader(http: HttpClient): any {
     SharedModule,
     ScrollToModule.forRoot(),
     ToastrModule.forRoot(),
+    KeycloakAngularModule,
+    FormsModule
+
+
   ],
   bootstrap: [AppComponent],
   providers: [
-    DatePipe,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: FakeBackendInterceptor, multi: true },
-    // LoaderService,
-    // { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true },
+
+
+    { provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService]}
   ],
 })
 export class AppModule { }

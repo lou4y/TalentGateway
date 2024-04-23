@@ -6,6 +6,7 @@ import { ProjectlistComponent } from './projectlist/projectlist.component';
 import { OverviewComponent } from './overview/overview.component';
 import { CreateComponent } from './create/create.component';
 import { UpdateProjectComponent } from './update-project/update-project.component';
+import { ListprojectsComponent } from 'src/app/FrontOffice/listprojects/listprojects.component';
 
 const routes: Routes = [
     {
