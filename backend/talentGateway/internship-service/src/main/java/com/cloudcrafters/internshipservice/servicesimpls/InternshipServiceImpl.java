@@ -173,6 +173,9 @@ public class InternshipServiceImpl implements InternshipService {
     }
 
 
-
+    @Override
+    public long getTotalInternshipsCount() {
+        return InternshipDao.count(); // Assuming InternshipDao has a count method
+    }
 
 }

@@ -31,4 +31,8 @@ public interface InternshipService {
 
     void rateInternshipByUser(Long internshipId, int rating, String userId) throws EntityNotFoundException, IllegalArgumentException;
 
+
+
+    long getTotalInternshipsCount();
+
 }
