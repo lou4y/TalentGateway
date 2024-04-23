@@ -11,7 +11,7 @@ import {InternshipsComponent} from "./FrontOffice/internships/internships.compon
 
 import {InternshipsDetailComponent} from "./FrontOffice/internships-detail/internships-detail.component";
 
-import {InternshipsDetailsComponent} from "./FrontOffice/internships-details/internships-details.component";
+//import {InternshipsDetailsComponent} from "./FrontOffice/internships-details/internships-details.component";
 
 
 const routes: Routes = [
@@ -22,7 +22,7 @@ const routes: Routes = [
 
   {path: 'internshipslist', component: InternshipsComponent , canActivate: [AuthGuard]},
   {path: 'details/:id', component: InternshipsDetailComponent, canActivate: [AuthGuard] },
-
+  
 
   // tslint:disable-next-line: max-line-length
   { path: '', component: LayoutComponent, loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule), canActivate: [AuthGuard] },

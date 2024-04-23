@@ -5673,11 +5673,6 @@
     "pify" "^2.0.0"
     "pinkie-promise" "^2.0.0"
 
-"google-libphonenumber@^3.2.34":
-  "integrity" "sha512-CLwkp0lZvMywh6dCh0T3Fm8XsfJhLAupc8AECwYkJNQBPW8wQPrv/tV0oFKCs8FMw+pTQyNPZoycgBzYjqtTZQ=="
-  "resolved" "https://registry.npmjs.org/google-libphonenumber/-/google-libphonenumber-3.2.34.tgz"
-  "version" "3.2.34"
-
 "graceful-fs@^4.1.2", "graceful-fs@^4.1.6", "graceful-fs@^4.2.0", "graceful-fs@^4.2.4", "graceful-fs@^4.2.6", "graceful-fs@^4.2.9":
   "integrity" "sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA=="
   "resolved" "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.10.tgz"
@@ -6051,11 +6046,6 @@
     "strip-ansi" "^6.0.0"
     "through" "^2.3.6"
     "wrap-ansi" "^7.0.0"
-
-"intl-tel-input@^17.0.3":
-  "integrity" "sha512-vfO5yIddrkNKaJYqGySuT6lyovWZoBLU/vyGA2A4VdKIZasknpd9/emTJYIPqFzjkguFfEDUiERKFih3k9Yj3Q=="
-  "resolved" "https://registry.npmjs.org/intl-tel-input/-/intl-tel-input-17.0.3.tgz"
-  "version" "17.0.3"
 
 "ip@^2.0.0":
   "integrity" "sha512-lJUL9imLTNi1ZfXT+DU6rBBdbiKGBuay9B6xGSPVjUeQwaH1RIGqef8RZkUtHioLmSNpPR5M4HVKJGm1j8FWVQ=="
@@ -7151,13 +7141,6 @@
   "integrity" "sha512-Aij3z0bGZ1Em+P1nSOKskEwlTKCS2X4MVTTz9uNFZdyZbT91Xrz2tChgGc9d++w2sUsEhGnM2jP3RKNpZq9lsg=="
   "resolved" "https://registry.npmjs.org/ngx-image-cropper/-/ngx-image-cropper-7.0.1.tgz"
   "version" "7.0.1"
-  dependencies:
-    "tslib" "^2.3.0"
-
-"ngx-intl-tel-input@^3.2.0":
-  "integrity" "sha512-TM3R0Az+F63eNCBj+NpR6UzJYg4FkHxDrS2hfeFoHJymMc4+DlqB581g4tPil4IkMetlR+jaAtEcqKiqmYGYlw=="
-  "resolved" "https://registry.npmjs.org/ngx-intl-tel-input/-/ngx-intl-tel-input-3.2.0.tgz"
-  "version" "3.2.0"
   dependencies:
     "tslib" "^2.3.0"
 
