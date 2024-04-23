@@ -157,6 +157,11 @@ public class InternshipController {
         }
     }
 
-
+    // Get statistics for the number of internships
+    @GetMapping("/statistics/total")
+    public ResponseEntity<Long> getTotalInternshipsCount() {
+        long totalInternships = internshipService.getTotalInternshipsCount();
+        return ResponseEntity.ok(totalInternships);
+    }
 
 }
