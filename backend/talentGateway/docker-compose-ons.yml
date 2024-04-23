@@ -11,6 +11,7 @@ services:
       test: [ "CMD", "curl", "-f", "http://localhost:8761/actuator/health" ]
       interval: 20s
       retries: 4
+
   usertest-service:
     build: D:/4arctic2/semestre2/springboot/test/usertest-service
     ports:

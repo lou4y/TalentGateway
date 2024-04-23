@@ -11,7 +11,10 @@ import {InternshipsComponent} from "./FrontOffice/internships/internships.compon
 
 import {InternshipsDetailComponent} from "./FrontOffice/internships-detail/internships-detail.component";
 
+<<<<<<< HEAD
 //import {InternshipsDetailsComponent} from "./FrontOffice/internships-details/internships-details.component";
+=======
+>>>>>>> 0a4f26ad1219a34fc0f0e0b0cfbca98c12c03589
 
 
 const routes: Routes = [
