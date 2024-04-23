@@ -20,12 +20,16 @@
           <div class="tp-event-3__info">
             <span><i class="fa-light fa-clock"></i> {{ internship.intershipStartDate }}</span>
             <span><i class="fa-light fa-location-dot"></i> {{ internship.intershipLocation }}</span>
-            <h3 class="tp-event-3__title"><a [routerLink]="['/internship-details', internship.intershipId]">{{ internship.intershipTitle }}</a></h3>
+
+            <h3 class="tp-event-3__title"><a [routerLink]="['/details', internship.intershipId]">{{ internship.intershipTitle }}</a></h3>
+
             <p>{{ internship.intershipDescription }}</p>
           </div>
 
           <div class="tp-evnet-2__btn p-relative z-index-11">
-            <a [routerLink]="['/internship-details', internship.intershipId]" class="tp-border-btn">
+
+            <a [routerLink]="['/details', internship.intershipId]" class="tp-border-btn">
+
               <span>Details</span>
               <div class="transition"></div>
             </a>
@@ -33,7 +37,9 @@
 
           <!-- Apply button -->
           <div class="tp-evnet-2__btn p-relative z-index-11" *ngIf="!isInternshipStartDatePassed(internship.intershipStartDate)">
-            <a [routerLink]="['/Internshipsdetail', internship.intershipId]" class="tp-border-btn">
+
+            <a [routerLink]="['/details', internship.intershipId]" class="tp-border-btn">
+
               <span>Apply</span>
               <div class="transition"></div>
             </a>
@@ -46,4 +52,6 @@
 <!-- Internships Section End -->
 
 
-<app-footer></app-footer>
+
+<app-footer-front></app-footer-front>
+

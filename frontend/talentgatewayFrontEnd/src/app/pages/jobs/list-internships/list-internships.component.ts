@@ -224,4 +224,8 @@ export class ListInternshipsComponent implements OnInit {
       }
     );
   }
+
+  saveJob() {
+
+  }
 }

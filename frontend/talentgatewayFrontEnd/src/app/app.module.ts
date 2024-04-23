@@ -27,6 +27,10 @@ import { CommentsComponent } from './FrontOffice/projects/comments/comments.comp
 
 
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import {InternshipsDetailComponent} from "./FrontOffice/internships-detail/internships-detail.component";
+import {InternshipsComponent} from "./FrontOffice/internships/internships.component";
+import {FooterFrontComponent} from "./FrontOffice/footer-front/footer-front.component";
+import {RatingModule} from "ngx-bootstrap/rating";
 
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
@@ -42,9 +46,12 @@ export function createTranslateLoader(http: HttpClient): any {
     AppComponent,
     CyptolandingComponent,
     HeaderFrontComponent,
+    FooterFrontComponent,
     ListprojectsComponent,
     DetailProjectComponent,
     CommentsComponent,
+    InternshipsDetailComponent,
+    InternshipsComponent
 
   ],
   imports: [
@@ -73,7 +80,8 @@ export function createTranslateLoader(http: HttpClient): any {
     ScrollToModule.forRoot(),
     ToastrModule.forRoot(),
     KeycloakAngularModule,
-    FormsModule
+    FormsModule,
+    RatingModule,
 
 
   ],
