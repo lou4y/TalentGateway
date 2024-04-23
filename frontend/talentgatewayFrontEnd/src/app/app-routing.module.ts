@@ -8,14 +8,21 @@ import { Page404Component } from './extrapages/page404/page404.component';
 import { ListprojectsComponent } from './FrontOffice/listprojects/listprojects.component';
 import { DetailProjectComponent } from './FrontOffice/projects/detail-project/detail-project.component';
 import {InternshipsComponent} from "./FrontOffice/internships/internships.component";
+
 import {InternshipsDetailComponent} from "./FrontOffice/internships-detail/internships-detail.component";
+
+import {InternshipsDetailsComponent} from "./FrontOffice/internships-details/internships-details.component";
+
 
 const routes: Routes = [
 
   { path: 'listprojectsfrontoffice', component: ListprojectsComponent },
+  { path: 'Internships', component: InternshipsComponent },
   {path: 'detailProject/:id', component: DetailProjectComponent},
+
   {path: 'internshipslist', component: InternshipsComponent , canActivate: [AuthGuard]},
   {path: 'details/:id', component: InternshipsDetailComponent, canActivate: [AuthGuard] },
+
 
   // tslint:disable-next-line: max-line-length
   { path: '', component: LayoutComponent, loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule), canActivate: [AuthGuard] },
