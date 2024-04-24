@@ -32,6 +32,15 @@ public class ChatRoomService {
     }
 
     private String createChatId(String senderId, String recipientId) {
+        // Check if the chat room already exists
+        Optional<ChatRoom> existingChatRoom = chatRoomRepository.findBySenderIdAndRecipientId(senderId, recipientId);
+
+        // If the chat room already exists, return its chatId
+        if (existingChatRoom.isPresent()) {
+            return existingChatRoom.get().getChatId();
+        }
+
+        // If the chat room doesn't exist, create a new one
         var chatId = String.format("%s_%s", senderId, recipientId);
 
         ChatRoom senderRecipient = ChatRoom
@@ -53,4 +62,5 @@ public class ChatRoomService {
 
         return chatId;
     }
+
 }
