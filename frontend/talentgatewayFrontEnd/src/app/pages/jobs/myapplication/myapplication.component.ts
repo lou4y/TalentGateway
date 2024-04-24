@@ -44,6 +44,8 @@ export class MyapplicationComponent implements OnInit {
      //  this.id_offer = params.offerId;
      // console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",this.id_offer); // You can do whatever you want with the offerId here
     //});
+
+    
     this.getAllApplications();
     this.initForm();
 
