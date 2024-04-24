@@ -1,9 +1,14 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, Validators, UntypedFormGroup } from '@angular/forms';
 
-import { ChatUser, ChatMessage } from './chat.model';
+import { ChatUser, ChatMessage, ConnectedUser, Chat } from './chat.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import {AuthenticationService} from "../../core/services/auth.service";
 import { chatData, chatMessagesData } from './data';
+import {Router} from "@angular/router";
+import {User} from "../../core/models/auth.models";
+import {co} from "@fullcalendar/core/internal-common";
 
 @Component({
   selector: 'app-chat',
@@ -15,7 +20,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   @ViewChild('scrollEle') scrollEle;
   @ViewChild('scrollRef') scrollRef;
 
-  username = 'Steven Franklin';
+
 
   // bread crumb items
   breadCrumbItems: Array<{}>;
@@ -27,20 +32,137 @@ export class ChatComponent implements OnInit, AfterViewInit {
   usermessage: string;
   emoji:any = '';
 
-  constructor(public formBuilder: UntypedFormBuilder) {
+  connectedUser: ConnectedUser[] | undefined | null;
+  userChats: any[] = [];
+  chatMessages: ChatMessage[];
+  chat: { chatId: string, recipientId?: string};
+  currentUserId: any ;
+  auth: AuthenticationService;
+
+  constructor(public formBuilder: UntypedFormBuilder, private router:Router, private http: HttpClient, private authService: AuthenticationService) {
+    this.auth = authService;
   }
 
-  ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Skote' }, { label: 'Chat', active: true }];
+  async ngOnInit() {
+    this.breadCrumbItems = [{label: 'Skote'}, {label: 'Chat', active: true}];
 
     this.formData = this.formBuilder.group({
       message: ['', [Validators.required]],
     });
-
+    const user: User = await this.auth.currentUser();
     this.onListScroll();
-
     this._fetchData();
+    this.fetchConnectedUser();
+    this.fetchUserChats(user.username)
+
+
+    this.currentUserId = user.username;
+
+
+    console.log('Current user ID:', this.currentUserId);
   }
+
+  fetchConnectedUser() {
+    this.http.get<ConnectedUser[]>('http://localhost:8088/api/connected-users')
+      .subscribe(
+        (data) => {
+          this.connectedUser = data; // Assign fetched data to connectedUser variable
+        },
+        (error) => {
+          console.error('Error fetching connected user:', error);
+        }
+      );
+  }
+  fetchChatMessages(chatId: string) {
+    this.http.get<ChatMessage[]>(`http://localhost:8088/api/chat-messages/${chatId}`)
+      .subscribe(
+        (data) => {
+          this.chatMessages = data;
+        },
+        (error) => {
+          console.error('Error fetching chat messages:', error);
+        }
+      );
+  }
+
+
+
+  fetchUserChats(userId: string) {
+    this.http.get<ChatMessage[]>(`http://localhost:8088/api/user-chats/${userId}`)
+      .subscribe(
+        (data) => {
+          // Flatten the chat messages to include both sender and recipient IDs
+          const userChats = data.map(chat => ({
+            chatId: chat.chatId,
+            recipientId: chat.recipientId === userId ? chat.senderId : chat.recipientId
+          }));
+          // Remove duplicates based on recipientId
+          this.userChats = this.removeDuplicates(userChats, 'recipientId');
+
+          // Remove the current user's chats from the list
+          this.userChats = this.userChats.filter(chat => chat.recipientId !== userId);
+        },
+        (error) => {
+          console.error('Error fetching user chats:', error);
+        }
+      );
+  }
+
+
+// Function to remove duplicates from an array of objects based on a specified key
+  removeDuplicates(array: any[], key: string) {
+    return array.filter((item, index, self) =>
+        index === self.findIndex((t) => (
+          t[key] === item[key]
+        ))
+    );
+  }
+
+
+
+  // Function to handle click on the image icon
+  handleImageClick() {
+    // Implement your logic here, for example, open a file picker for images
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = (event) => {
+      const files = (event.target as HTMLInputElement).files;
+      console.log('Selected image files:', files);
+      // Add your logic to handle the selected image files
+    };
+    input.click();
+  }
+
+  // Function to handle click on the add files icon
+  handleAddFilesClick() {
+    // Implement your logic here, for example, open a file picker for all files
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = (event) => {
+      const files = (event.target as HTMLInputElement).files;
+      console.log('Selected files:', files);
+      // Add your logic to handle the selected files
+    };
+    input.click();
+  }
+
+
+  openChat(chat: Chat) {
+    // Fetch chat messages based on the current user and the recipient
+    this.fetchChatMessages(chat.chatId);
+
+    // Fetch user chats based on the current user
+    this.fetchUserChats(this.currentUserId);
+
+    // Log the recipientId for debugging purposes
+    console.log("recipientId", chat.recipientId);
+
+    // Assign the chat details to the chat variable
+    this.chat = { chatId: chat.chatId, recipientId: chat.recipientId };
+  }
+
+
 
   ngAfterViewInit() {
     this.scrollEle.SimpleBar.getScrollElement().scrollTop = 100;
@@ -68,44 +190,41 @@ export class ChatComponent implements OnInit, AfterViewInit {
     }
   }
 
-  chatUsername(name) {
-    this.username = name;
-    this.usermessage = 'Hello';
-    this.chatMessagesData = [];
-    const currentDate = new Date();
 
-    this.chatMessagesData.push({
-      name: this.username,
-      message: this.usermessage,
-      time: currentDate.getHours() + ':' + currentDate.getMinutes()
-    });
-
-  }
 
   /**
    * Save the message in chat
    */
-  messageSave() {
-    const message = this.formData.get('message').value;
-    const currentDate = new Date();
-    if (this.formData.valid && message) {
-      // Message Push in Chat
-      this.chatMessagesData.push({
-        align: 'right',
-        name: 'Henry Wells',
-        message,
-        time: currentDate.getHours() + ':' + currentDate.getMinutes()
-      });
-      this.onListScroll();
 
-      // Set Form Data Reset
-      this.formData = this.formBuilder.group({
-        message: null
-      });
+  messageSave(recipientId: string) {
+    console.log('recipientId:', recipientId);
+    const messageContent = this.formData.get('message').value;
+    if (messageContent) {
+      const messageData = {
+        senderId: this.currentUserId,
+        recipientId: recipientId, // Use the recipientId passed as a parameter
+        content: messageContent,
+        timestamp: new Date()
+      };
+
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post<any>('http://localhost:8088/api/send-message', messageData, { headers })
+        .toPromise()
+        .then(() => {
+          console.log('Message sent successfully');
+          this.fetchChatMessages(recipientId); // Fetch chat messages with the correct recipient ID
+        })
+        .catch((error) => {
+          console.error('Error sending message:', error);
+        });
+
+      this.formData.patchValue({ message: '' });
     }
-
-    this.chatSubmit = true;
   }
+
+
+
 
   // Delete Message
   deleteMessage(event: any) {
@@ -164,7 +283,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
     document.querySelector('.replyCard')?.classList.remove('show');
   }
 
-  // Contact Search
+  // keep
   ContactSearch() {
     var input: any, filter: any, ul: any, li: any, a: any | undefined, i: any, txtValue: any;
     input = document.getElementById("searchContact") as HTMLAreaElement;
@@ -183,5 +302,11 @@ export class ChatComponent implements OnInit, AfterViewInit {
       }
     })
   }
+
+  openMeeting(): void {
+    // Navigate to the '/meeting' route
+    this.router.navigate(['/meeting']);
+  }
+
 
 }

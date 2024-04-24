@@ -10,4 +10,7 @@ import java.util.*;
 public interface ChatMessageRepository extends MongoRepository<ChatMessage, String>{
 
     List<ChatMessage> findByChatId(String s);
+    List<ChatMessage> findBySenderIdOrRecipientId(String senderId, String recipientId);
+
+
 }
