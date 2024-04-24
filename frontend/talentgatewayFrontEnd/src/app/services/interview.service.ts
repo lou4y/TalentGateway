@@ -55,5 +55,8 @@ getInterviewData(userId: string): Observable<any[]> {
   return this.http.get<any[]>(`${this.apiUrl}/myapp/${userId}`);
 }
 
-
+// Méthode pour récupérer les applications par ID d'offre
+getApplicationsByOffreId(offreId: string): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/offre/${offreId}`);
+}
 }
