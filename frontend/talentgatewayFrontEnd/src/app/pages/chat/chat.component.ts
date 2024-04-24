@@ -4,10 +4,11 @@ import { UntypedFormBuilder, Validators, UntypedFormGroup } from '@angular/forms
 import { ChatUser, ChatMessage, ConnectedUser, Chat } from './chat.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import {AuthenticationService} from "../../core/services/auth.service";
 import { chatData, chatMessagesData } from './data';
 import {Router} from "@angular/router";
 import {User} from "../../core/models/auth.models";
+import {AuthenticationService} from "../../core/services/auth.service";
+
 import {co} from "@fullcalendar/core/internal-common";
 
 @Component({
@@ -305,7 +306,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
   openMeeting(): void {
     // Navigate to the '/meeting' route
-    this.router.navigate(['/meeting']);
+    this.router.navigate(['meeting']);
   }
 
 
