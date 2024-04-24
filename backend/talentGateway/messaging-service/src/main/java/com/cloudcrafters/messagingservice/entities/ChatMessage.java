@@ -3,6 +3,7 @@ package com.cloudcrafters.messagingservice.entities;
 import lombok.*;
 import org.springframework.data.annotation.*;
 import org.springframework.data.mongodb.core.mapping.*;
+
 import javax.crypto.*;
 import javax.crypto.spec.*;
 import java.security.*;
@@ -74,6 +75,4 @@ public class ChatMessage {
         random.nextBytes(iv);
         return new IvParameterSpec(iv);
     }
-
 }
-
