@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef , Input} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
+import { ActivatedRoute } from '@angular/router';
 import { InterviewService } from 'src/app/services/interview.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import Swal from 'sweetalert2';
@@ -24,20 +24,32 @@ export class MyapplicationComponent implements OnInit {
   jobListForm: FormGroup;
   applicationId: any;
   applicationForm: FormGroup;
-
+  offerId: string | null = null;
+@Input() id_offer:any;
   @ViewChild('editApplicationContent') editApplicationContent!: TemplateRef<any>;
 
   constructor(
     private interviewService: InterviewService,
     private modalService: BsModalService,
     private formBuilder: FormBuilder,
-    private http: HttpClient // Injection du service HttpClient
+    private http: HttpClient,
+    private route: ActivatedRoute // Injecter ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    let id=parseInt(this.route.snapshot.params['offerId']);
+    this.id_offer = id;
+    console.log('Offer ID:', this.offerId);
+   // this.route.queryParams.subscribe(params => {
+     //  this.id_offer = params.offerId;
+     // console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",this.id_offer); // You can do whatever you want with the offerId here
+    //});
     this.getAllApplications();
     this.initForm();
+
   }
+  
+  
 
   initForm(): void {
     this.jobListForm = this.formBuilder.group({
@@ -53,7 +65,7 @@ export class MyapplicationComponent implements OnInit {
   }
 
   getAllApplications(): void {
-    this.interviewService.getAllApplications().subscribe(
+    this.interviewService.getApplicationsByOffreId(this.id_offer).subscribe(
       (data: any[]) => {
         this.lists = data;
         this.totalRecords = this.lists.length;
@@ -64,6 +76,10 @@ export class MyapplicationComponent implements OnInit {
       }
     );
   }
+
+   
+
+
 
   filterApplicationsByStatus(status: string): void {
     this.interviewService.getAllApplicationsByStatus(status).subscribe(
