@@ -1,3 +1,5 @@
+
+
 package com.cloudcrafters.internshipservice.services;
 
 
@@ -30,26 +32,34 @@ public class ScheduledTasks {
     private UserRestClient userRestClient;
 
     @Autowired
-   private EmailService emailService; // Inject EmailService
-/*
+    private EmailService emailService; // Inject EmailService
+
+
+    @Autowired
+    private LinkedInService linkedInService; // Inject LinkedInService
+
+
     @Scheduled(fixedRate = 10000) // Run every 10 seconds
-    public void getRandomInternshipScheduled() {
+    public void checkMatchingInternshipsScheduled() {
         List<Internship> internships = internshipService.getAllInternships();
-        if (!internships.isEmpty()) {
+        List<User> usersWithSkills = userRestClient.getUsersWithSkills();
+
+        if (!internships.isEmpty() && !usersWithSkills.isEmpty()) {
             for (Internship internship : internships) {
                 String internshipSkills = internship.getIntershipSkills();
-                List<Skill> userSkills = userRestClient.findSkillsByUserId("5db6b347-d4eb-4255-b08d-7dd9549b1377");
-                boolean matchFound = checkSkillsMatch(internshipSkills, userSkills);
-                if (matchFound) {
-                    User user = userRestClient.findUserById("5db6b347-d4eb-4255-b08d-7dd9549b1377");
-                    if (user != null && user.getEmail() != null) {
-                        emailService.sendEmail(user.getEmail(), "Internship Match", "Match found for Internship: " + internship.getIntershipTitle());
+                for (User user : usersWithSkills) {
+                    List<Skill> userSkills = user.getSkills();
+                    boolean matchFound = checkSkillsMatch(internshipSkills, userSkills);
+                    if (matchFound) {
+                        sendNotificationEmail(user, internship);
+                        linkedInService.shareInternshipOnLinkedIn(internship); // Share internship on LinkedIn
+
                     }
                 }
             }
         }
     }
-*/
+
     private boolean checkSkillsMatch(String internshipSkills, List<Skill> userSkills) {
         if (internshipSkills != null && !internshipSkills.isEmpty() && userSkills != null && !userSkills.isEmpty()) {
             String[] internshipSkillsArray = internshipSkills.split(", ");
@@ -64,4 +74,19 @@ public class ScheduledTasks {
         return false;
     }
 
+    private void sendNotificationEmail(User user, Internship internship) {
+        String recipientEmail = user.getEmail();
+        String subject = "Internship Match Notification";
+        String content = "Hello " + user.getFirstName() + ",\n\n"
+                + "We found an internship that matches your skills:\n\n"
+                + "Internship Title: " + internship.getIntershipTitle() + "\n"
+                + "Internship Description: " + internship.getIntershipDescription() + "\n"
+                + "Internship URL: http://localhost:4200/internship-details/" + internship.getIntershipId() + "\n\n"
+                + "Best regards,\nInternship Service";
+
+        emailService.sendEmail(recipientEmail, subject, content);
+    }
+
 }
+
+

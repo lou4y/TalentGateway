@@ -1,0 +1,196 @@
+<div class="account-pages my-5 pt-sm-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="text-center mb-5 text-muted">
+                  <input type="button" class="btn btn-success inner" value="show data" (click)="Showdata()">
+                    <a routerLink="/" class="d-block auth-logo">
+                        <img src="assets/images/logo-dark.png" alt="" height="20" class="auth-logo-dark mx-auto">
+                        <img src="assets/images/logo-light.png" alt="" height="20" class="auth-logo-light mx-auto">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+        <div class="row justify-content-center">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-body">
+                  <div id="basic-example">
+                    <ng-stepper #cdkStepper [linear]="true" class="wizard">
+                      <cdk-step [optional]="false">
+                        <ng-template cdkStepLabel>
+                          <span class="number">1</span>
+                          <span>Profile Picture</span>
+                        </ng-template>
+                        <section *ngIf="cdkStepper.selectedIndex === 0">
+                          <div class="d-flex justify-content-center">
+                            <div class="avatar-container">
+                              <div class="image-container" *ngIf="file; else placeholder"
+                                   [ngClass]="{'box-shadow-avatar': !!file}"
+                                   [ngStyle]="{backgroundImage: 'url(' + file + ')'}">
+                              </div>
+
+                              <ng-template #placeholder>
+                                <div class="image-container avatar-placeholder">
+                                </div>
+                              </ng-template>
+
+                              <label for="avatar-input-file">
+                                <div class="icon-wrapper">
+                                  <input type="file" id="avatar-input-file" accept="image/*" (change)="onFileChange($event)"/>
+                                  <mat-icon class="icon" fontIcon="edit"></mat-icon>
+                                </div>
+                              </label>
+
+                            </div>
+                          </div>
+                          <ul class="list-inline wizard d-flex justify-content-end mb-0">
+                            <li class="next list-inline-item" aria-disabled="false"><button class="btn btn-primary" cdkStepperNext>Next</button></li>
+                          </ul>
+
+                        </section>
+                      </cdk-step>
+
+                      <cdk-step [optional]="true">
+                        <ng-template cdkStepLabel>
+                          <span class="number">2.</span>
+                          <span>Personal Details</span>
+                        </ng-template>
+                        <section *ngIf="cdkStepper.selectedIndex === 1">
+                          <div class="mb-3">
+                            <label class="d-block mb-3">Gender :</label>
+
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                     value="option1">
+                              <label class="form-check-label" for="inlineRadio1">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                     value="option2">
+                              <label class="form-check-label" for="inlineRadio2">Female</label>
+                            </div>
+                          </div>
+                          <div>
+                            <div class="form-floating mb-3">
+                              <input bsDatepicker class="form-control" id="BirthdateInput"  placeholder="" >
+                              <label for="BirthdateInput">Date of Birth</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                              <input type="text" class="form-control" id="AddressInput" placeholder="" >
+                              <label for="AddressInput">Address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                              <input type="text" class="form-control" id="CityInput" placeholder="" >
+                              <label for="CityInput">City</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                              <select  class="form-control" id="StateInput" >
+                                <option *ngFor="let state of tunisiaStates" [value]="state">{{ state }}</option>
+                              </select>
+                              <label for="StateInput">State</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                              <input type="tel" class="form-control" id="MobileInput" placeholder="Enter Phone Number" >
+                              <label for="MobileInput">Phone Numebr</label>
+                            </div>
+                            <ul class="list-inline wizard d-flex justify-content-end mb-0">
+                            <li class="previous list-inline-item" aria-disabled="true"><button class="btn btn-primary" cdkStepperPrevious>Previous</button></li>
+                            <li class="next list-inline-item" aria-disabled="false"><button class="btn btn-primary" cdkStepperNext>Next</button></li>
+                          </ul>
+                          </div>
+                        </section>
+                      </cdk-step>
+
+                      <cdk-step [optional]="true">
+                        <ng-template cdkStepLabel>
+                          <span class="number">3.</span>
+                          <span>Profile Details</span>
+                        </ng-template>
+                        <section *ngIf="cdkStepper.selectedIndex === 2">
+                          <div>
+                            <p >Write a short description about yourself.
+                            </p>
+                            <form>
+                              <div class="row">
+                                <div class="col-lg-12 mb-3">
+                                  <textarea class="form-control" rows="5"></textarea>
+                                </div>
+                              </div>
+                            </form>
+
+                            <div class="mb-4">
+                              <div class="mb-3" [formGroup]="skillData">
+                                <div formArrayName="skillValue">
+                                  <label>Skills :</label>
+                                  <div class="inner mb-3 row" *ngFor="let data1 of  skilldata().controls; let i=index;"
+                                       [formGroupName]="i">
+                                    <div class="col-md-10 col-8">
+                                      <input type="text" class="inner form-control" formControlName="skillname"
+                                             placeholder="Enter your Skill name">
+                                    </div>
+                                    <div class="col-md-2 col-4">
+                                      <div class="d-grid">
+                                        <input type="button" class="btn btn-primary inner" value="Delete" (click)="deleteskill(i)">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <input type="button" class="btn btn-success inner" value="Add Skill" (click)="addSkill()">
+                            </div>
+                            <p >Upload your resume in PDF format.  </p>
+                            <div class="mb-3">
+                              <input type="file" class="form-control" id="formrow-resume-input" placeholder="Upload Resume">
+                            </div>
+                          </div>
+
+                          <ul class="list-inline wizard d-flex justify-content-end mb-0">
+                            <li class="previous list-inline-item" aria-disabled="true"><button class="btn btn-primary" cdkStepperPrevious>Previous</button></li>
+                            <li class="next list-inline-item" aria-disabled="false"><button class="btn btn-primary" cdkStepperNext>Next</button></li>
+                          </ul>
+                        </section>
+                      </cdk-step>
+
+                      <cdk-step [optional]="true">
+                        <ng-template cdkStepLabel>
+                          <span class="number">4.</span>
+                          <span>Confirm Detail</span>
+                        </ng-template>
+                        <section *ngIf="cdkStepper.selectedIndex === 3">
+                          <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                              <div class="text-center">
+                                <div class="mb-4">
+                                  <i class="mdi mdi-check-circle-outline text-success display-4"></i>
+                                </div>
+                                <div>
+                                  <h5>Confirm Detail</h5>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <ul class="list-inline wizard d-flex justify-content-end mb-0">
+                            <li class="previous list-inline-item" aria-disabled="true"><button class="btn btn-primary" cdkStepperPrevious>Previous</button></li>
+                            <li class="next list-inline-item" aria-disabled="false"><button class="btn btn-primary" cdkStepperNext>Finish</button></li>
+                          </ul>
+                        </section>
+                      </cdk-step>
+
+                    </ng-stepper>
+                  </div>
+
+                </div>
+                <!-- end card body -->
+              </div>
+              <!-- end card -->
+            </div>
+            <!-- end col -->
+          </div>
+        </div>
+    </div>
+</div>
+

@@ -4,8 +4,11 @@ import { UntypedFormBuilder, Validators, UntypedFormGroup } from '@angular/forms
 import { ChatUser, ChatMessage, ConnectedUser, Chat } from './chat.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import {AuthenticationService} from "../../core/services/auth.service";
 import { chatData, chatMessagesData } from './data';
 import {Router} from "@angular/router";
+import {User} from "../../core/models/auth.models";
+import {co} from "@fullcalendar/core/internal-common";
 
 @Component({
   selector: 'app-chat',
@@ -17,7 +20,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   @ViewChild('scrollEle') scrollEle;
   @ViewChild('scrollRef') scrollRef;
 
-  username = 'Steven Franklin';
+
 
   // bread crumb items
   breadCrumbItems: Array<{}>;
@@ -32,24 +35,31 @@ export class ChatComponent implements OnInit, AfterViewInit {
   connectedUser: ConnectedUser[] | undefined | null;
   userChats: any[] = [];
   chatMessages: ChatMessage[];
-  chat: { chatId: string };
+  chat: { chatId: string, recipientId?: string};
+  currentUserId: any ;
+  auth: AuthenticationService;
 
-  constructor(public formBuilder: UntypedFormBuilder, private router:Router, private http: HttpClient) {
+  constructor(public formBuilder: UntypedFormBuilder, private router:Router, private http: HttpClient, private authService: AuthenticationService) {
+    this.auth = authService;
   }
 
-  ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Skote' }, { label: 'Chat', active: true }];
+  async ngOnInit() {
+    this.breadCrumbItems = [{label: 'Skote'}, {label: 'Chat', active: true}];
 
     this.formData = this.formBuilder.group({
       message: ['', [Validators.required]],
     });
-
+    const user: User = await this.auth.currentUser();
     this.onListScroll();
-
     this._fetchData();
     this.fetchConnectedUser();
-    this.fetchUserChats('userId');
-    this.chat = { chatId: 'dummyChatId' };
+    this.fetchUserChats(user.username)
+
+
+    this.currentUserId = user.username;
+
+
+    console.log('Current user ID:', this.currentUserId);
   }
 
   fetchConnectedUser() {
@@ -78,17 +88,26 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
 
   fetchUserChats(userId: string) {
-    this.http.get<Chat[]>(`http://localhost:8088/api/user-chats/med`)
+    this.http.get<ChatMessage[]>(`http://localhost:8088/api/user-chats/${userId}`)
       .subscribe(
         (data) => {
-          // Remove duplicates from userChats based on recipientId
-          this.userChats = this.removeDuplicates(data, 'recipientId');
+          // Flatten the chat messages to include both sender and recipient IDs
+          const userChats = data.map(chat => ({
+            chatId: chat.chatId,
+            recipientId: chat.recipientId === userId ? chat.senderId : chat.recipientId
+          }));
+          // Remove duplicates based on recipientId
+          this.userChats = this.removeDuplicates(userChats, 'recipientId');
+
+          // Remove the current user's chats from the list
+          this.userChats = this.userChats.filter(chat => chat.recipientId !== userId);
         },
         (error) => {
           console.error('Error fetching user chats:', error);
         }
       );
   }
+
 
 // Function to remove duplicates from an array of objects based on a specified key
   removeDuplicates(array: any[], key: string) {
@@ -98,6 +117,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
         ))
     );
   }
+
 
 
   // Function to handle click on the image icon
@@ -129,8 +149,20 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
 
   openChat(chat: Chat) {
+    // Fetch chat messages based on the current user and the recipient
     this.fetchChatMessages(chat.chatId);
+
+    // Fetch user chats based on the current user
+    this.fetchUserChats(this.currentUserId);
+
+    // Log the recipientId for debugging purposes
+    console.log("recipientId", chat.recipientId);
+
+    // Assign the chat details to the chat variable
+    this.chat = { chatId: chat.chatId, recipientId: chat.recipientId };
   }
+
+
 
   ngAfterViewInit() {
     this.scrollEle.SimpleBar.getScrollElement().scrollTop = 100;
@@ -164,35 +196,33 @@ export class ChatComponent implements OnInit, AfterViewInit {
    * Save the message in chat
    */
 
-  messageSave(chatId: string) {
+  messageSave(recipientId: string) {
+    console.log('recipientId:', recipientId);
     const messageContent = this.formData.get('message').value;
     if (messageContent) {
       const messageData = {
-        senderId: this.username, // Assuming this.username contains the sender's ID
-        recipientId: chatId, // Use the chatId passed as a parameter
+        senderId: this.currentUserId,
+        recipientId: recipientId, // Use the recipientId passed as a parameter
         content: messageContent,
         timestamp: new Date()
       };
 
-      // Make sure to import HttpHeaders
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
       this.http.post<any>('http://localhost:8088/api/send-message', messageData, { headers })
-        .toPromise() // Convert Observable to Promise
+        .toPromise()
         .then(() => {
           console.log('Message sent successfully');
-          // Optionally, you can fetch chat messages here to update the UI immediately
-          this.fetchChatMessages(chatId);
+          this.fetchChatMessages(recipientId); // Fetch chat messages with the correct recipient ID
         })
         .catch((error) => {
           console.error('Error sending message:', error);
-          // Handle error if needed
         });
 
-      // Clear message input field after sending
       this.formData.patchValue({ message: '' });
     }
   }
+
 
 
 

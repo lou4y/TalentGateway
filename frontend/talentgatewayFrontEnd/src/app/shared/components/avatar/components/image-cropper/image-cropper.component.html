@@ -1,0 +1,21 @@
+<div class="image-cropper">
+  <image-cropper
+    style="width: 380px;
+    max-height: 500px"
+    [imageURL]="image"
+    [maintainAspectRatio]="true"
+    [roundCropper]="true"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded($event)"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+
+  ></image-cropper>
+
+  <div class="crop-actions">
+    <button style="width: 92%" (click)="crop()" color="primary" mat-flat-button  >
+      save
+    </button>
+  </div>
+</div>

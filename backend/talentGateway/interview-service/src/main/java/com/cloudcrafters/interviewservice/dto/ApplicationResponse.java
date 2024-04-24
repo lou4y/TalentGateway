@@ -28,6 +28,8 @@ public class ApplicationResponse {
     private InterviewResponse interview;
     private String intershipCompany;
     private String IntershipTitle;
+    private String lastname;
+    private String firstName;
 
 
 }

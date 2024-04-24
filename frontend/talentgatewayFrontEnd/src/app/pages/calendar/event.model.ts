@@ -1,5 +1,5 @@
 // Event Data
 export interface Event {
-    name: string;
-    value: string;
-}
+    title: string; // Titre de l'interview
+    date: Date; // Date de l'interview
+  }

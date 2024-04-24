@@ -1,20 +1,25 @@
 package com.cloudcrafters.taskservice.servicesImp;
 
+import com.cloudcrafters.taskservice.Clients.UserRestClient;
 import com.cloudcrafters.taskservice.Dao.TaskDao;
 import com.cloudcrafters.taskservice.Entities.Module;
 import com.cloudcrafters.taskservice.Entities.Task;
 import com.cloudcrafters.taskservice.Enums.Statut;
 import com.cloudcrafters.taskservice.dto.ModuleResponse;
-import com.cloudcrafters.taskservice.dto.TaskResponse;
 import com.cloudcrafters.taskservice.Enums.Priority;
+import com.cloudcrafters.taskservice.dto.TaskResponse;
+import com.cloudcrafters.taskservice.models.User;
 import com.cloudcrafters.taskservice.services.ModuleService;
 import com.cloudcrafters.taskservice.services.TaskService;
+import com.pusher.rest.Pusher;
 import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -27,21 +32,83 @@ public class TaskServiceImpl implements TaskService {
     @Resource
     private final ModuleService moduleService;
 
+    @Autowired
+    private Pusher pusher;
+
+    @Autowired
+    private UserRestClient userRestClient;
+
+
     @Override
-    public Task createTask(Task task) {
-        if (task.getModule() != null && task.getModule().getModuleName() != null) {
-            // Fetch the module from the database
-            Module module = moduleService.getModuleByName(task.getModule().getModuleName())
-                    .orElse(null);
-            if (module == null) {
-                throw new RuntimeException("Module Name does not exist");
-            }
-            task.setModule(module);
+    public TaskResponse createTask(Task task) {
+        // Fetching user based on first name and setting user details
+        List<User> users = userRestClient.getAllUsers();
+        Optional<User> optionalUser = userRestClient.getAllUsers().stream()
+                .filter(user -> user.getFirstName().equalsIgnoreCase(task.getFirstName()))
+                .findFirst();
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            task.setUser(user);  // Make sure this is part of your Task object
         } else {
-            throw new RuntimeException("Task must have a valid module");
+            throw new RuntimeException("User not found with firstName: " + task.getFirstName());
         }
-        return taskDao.save(task);
+
+
+        User user = optionalUser.get();
+        task.setUserId(user.getId());  // Set the user ID based on the found user
+
+        // Module handling based on module name
+        if (task.getModule() != null && task.getModule().getModuleName() != null) {
+            Module module = moduleService.getModuleByName(task.getModule().getModuleName())
+                    .orElseThrow(() -> new RuntimeException("Module Name does not exist or is ambiguous"));
+            task.setModule(module);  // Associate the found or created module with the task
+        } else {
+            throw new RuntimeException("Task must have a valid module associated with it.");
+        }
+
+        // Saving the task
+        Task savedTask = taskDao.save(task);
+
+        // Trigger any notifications
+        if (savedTask.getModule() != null && savedTask.getModule().getProjectId() != null) {
+            //  pusher.trigger("project-" + savedTask.getModule().getProjectId(), "new-task", Collections.singletonMap("message", "A new task has been created: " + savedTask.getTaskName()));
+            pusher.trigger("tasks", "new-task", Collections.singletonMap("message", "A new task has been created with this Name: " + savedTask.getTaskName() + " To " + savedTask.getFirstName()+ " in " + savedTask.getModule().getModuleName() + " module"));
+
+        } else {
+            System.out.println("Project ID not available for this task");
+        }
+
+        return mapToTaskResponse(savedTask);
     }
+
+//    @Override
+//    public Task createTask(Task task) {
+//        // Validation et association du module
+//        if (task.getModule() != null && task.getModule().getModuleName() != null) {
+//            Module module = moduleService.getModuleByName(task.getModule().getModuleName())
+//                    .orElseThrow(() -> new RuntimeException("Module Name does not exist"));
+//            task.setModule(module);
+//        } else {
+//            throw new RuntimeException("Task must have a valid module");
+//        }
+//
+//        // Sauvegarde de la tâche
+//        Task savedTask = taskDao.save(task);
+//
+//        // Assurez-vous que task.getModule() et getModule().getProjectId() sont correctement définis
+//        Long projectId = task.getModule().getProjectId(); // Ceci suppose que votre Module a un getProjectId()
+//        if (projectId != null) {
+//            // Envoi de la notification via Pusher
+//            pusher.trigger("project-" + projectId, "new-task", Collections.singletonMap("message", "Une nouvelle tâche a été créée : " + task.getTaskName()));
+//        } else {
+//            // Gérer le cas où l'ID du projet n'est pas disponible
+//            System.out.println("Project ID not available for this task");
+//        }
+//
+//        return savedTask;
+//    }
+
 
 
     @Override
@@ -110,6 +177,12 @@ public class TaskServiceImpl implements TaskService {
         return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
     }
 
+    @Override
+    public List<TaskResponse> findTasksByStatus(Statut statut) {
+        List<Task> tasks = taskDao.findByStatut(statut);
+        return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
+    }
+
     // Test userId
     @Override
     public List<TaskResponse> findTasksByUserId(String userId) {
@@ -135,21 +208,22 @@ public class TaskServiceImpl implements TaskService {
             moduleResponse.setModuleName(task.getModule().getModuleName());
             moduleResponse.setModuleDescription(task.getModule().getModuleDescription());
         }
+        String firstName = (task.getUser() != null) ? task.getUser().getFirstName() : "Unknown";
+
         return TaskResponse.builder()
                 .id(task.getId())
-                .startDate(task.getStartDate())
                 .taskName(task.getTaskName())
                 .taskDescription(task.getTaskDescription())
+                .startDate(task.getStartDate())
                 .endDate(task.getEndDate())
                 .duration(task.getDuration())
                 .statut(task.getStatut())
                 .priority(task.getPriority())
-                .module(moduleResponse) //  sets a ModuleResponse
+                .module(moduleResponse)
                 .userId(task.getUserId())
-                .firstName(task.getFirstName())
+                .firstName(firstName)
                 .build();
     }
-
 
     public List<TaskResponse> findTasksSortedByStartDate() {
         List<Task> tasks = taskDao.findByOrderByStartDateAsc();
@@ -169,4 +243,5 @@ public class TaskServiceImpl implements TaskService {
         return taskDao.countByUserIdAndStatut(userId, Statut.To_do) +
                 taskDao.countByUserIdAndStatut(userId, Statut.In_Progress);
     }
+
 }

@@ -6,12 +6,7 @@ export interface ChatUser {
     color: string;
 }
 
-export interface ChatMessage {
-    align?: string;
-    name?: string;
-    message: string;
-    time: string;
-}
+
 
 export interface ChatMessage {
   _id: string;

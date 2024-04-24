@@ -10,7 +10,7 @@
               <img src="assets/images/users/avatar-1.jpg" class="avatar-xs rounded-circle" alt="">
             </div>
             <div class="flex-grow-1">
-              <h5 class="font-size-15 mb-1">Henry Wells</h5>
+              <h5 class="font-size-15 mb-1"> {{currentUserId}}</h5>
               <p class="text-muted mb-0"><i class="mdi mdi-circle text-success align-middle me-1"></i> Active</p>
             </div>
 
@@ -61,6 +61,7 @@
 
 
 
+
             <tab heading="Groups" class="py-4 tab-content">
               <h5 class="font-size-14 mb-3">Groups</h5>
               <ul class="list-unstyled chat-list">
@@ -102,7 +103,7 @@
         <div class="p-4 border-bottom">
           <div class="row">
             <div class="col-md-4 col-9">
-              <h5 class="font-size-15 mb-1">{{username}}</h5>
+              <h5 class="font-size-15 mb-1">user</h5>
               <p class="text-muted mb-0"><i class="mdi mdi-circle text-success align-middle me-1"></i> Active now</p>
             </div>
             <div class="col-md-8 col-3">
@@ -182,7 +183,7 @@
                     <span class="title">Today</span>
                   </div>
                 </li>
-                <li *ngFor="let message of chatMessages" [ngClass]="{'right': message.align === 'right'}">
+                <li *ngFor="let message of chatMessages" [ngClass]="{ 'right': message.senderId === currentUserId, 'left': message.senderId !== currentUserId }">
                   <div class="conversation-list">
                     <div class="dropdown" dropdown>
                       <a class="dropdown-toggle" href="javascript:void(0);" role="button" dropdownToggle>
@@ -204,10 +205,11 @@
                 </li>
               </ul>
             </ngx-simplebar>
+
           </div>
           <div class="p-3 chat-input-section">
             <!-- Your existing form for sending messages -->
-            <form (ngSubmit)="messageSave(chat.chatId)" [formGroup]="formData" class="row">
+            <form (ngSubmit)="messageSave(chat.recipientId)" [formGroup]="formData" class="row">
               <div class="col">
                 <div class="position-relative">
                   <input type="text" class="form-control chat-input" placeholder="Enter Message..."

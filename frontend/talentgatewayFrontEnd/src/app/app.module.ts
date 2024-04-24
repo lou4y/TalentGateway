@@ -17,9 +17,28 @@ import { CyptolandingComponent } from './cyptolanding/cyptolanding.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
-import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import { VideoConferenceComponent } from './chatComponents/video-conference/video-conference.component';
 
+import { HeaderFrontComponent } from './FrontOffice/header-front/header-front.component';
+import { ListprojectsComponent } from './FrontOffice/listprojects/listprojects.component';
+import { DetailProjectComponent } from './FrontOffice/projects/detail-project/detail-project.component';
+import { CommentsComponent } from './FrontOffice/projects/comments/comments.component';
+
+
+
+import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import {InternshipsDetailComponent} from "./FrontOffice/internships-detail/internships-detail.component";
+import {InternshipsComponent} from "./FrontOffice/internships/internships.component";
+import {FooterFrontComponent} from "./FrontOffice/footer-front/footer-front.component";
+import {RatingModule} from "ngx-bootstrap/rating";
+
+import { environment } from '../environments/environment';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import {AngularFireModule} from "@angular/fire/compat";
+import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -29,9 +48,20 @@ export function createTranslateLoader(http: HttpClient): any {
     AppComponent,
     CyptolandingComponent,
     VideoConferenceComponent,
+    HeaderFrontComponent,
+    FooterFrontComponent,
+    ListprojectsComponent,
+    DetailProjectComponent,
+    CommentsComponent,
+    InternshipsDetailComponent,
+    InternshipsComponent
 
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -53,13 +83,22 @@ export function createTranslateLoader(http: HttpClient): any {
     ScrollToModule.forRoot(),
     ToastrModule.forRoot(),
     KeycloakAngularModule,
+    FormsModule,
+    RatingModule,
+
+
   ],
   bootstrap: [AppComponent],
   providers: [
+
+
     { provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,
-      deps: [KeycloakService]}
+      deps: [KeycloakService]},
+      DatePipe
   ],
 })
 export class AppModule { }
+
+// Path: talentgatewayFrontEnd/src/app/pages/pages.module.ts
