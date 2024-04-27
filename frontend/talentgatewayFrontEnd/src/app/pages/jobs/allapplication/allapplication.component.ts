@@ -16,6 +16,11 @@ export class AllapplicationComponent implements OnInit {
   breadCrumbItems: any[] = [];
   startIndex: number = 0;
   endIndex: number = 0;
+
+  pendingCount: number = 0;
+  rejectedCount: number = 0;
+  acceptedCount: number = 0;
+
   user: any; // Ajoutez une propriété user pour stocker l'utilisateur connecté
   totalApplications: number = 0; 
   interviewDates: Date[] = [];
@@ -44,14 +49,11 @@ export class AllapplicationComponent implements OnInit {
         }));
         this.interviewDates = data.map(application => application.interview?.dateEntretien || null).filter(date => date !== null);
         this.totalRecords = this.lists.length;
-  
-        // Vérification des dates d'entretien récupérées
-        if (this.interviewDates.length > 0) {
-          console.log('Dates d\'entretien récupérées :', this.interviewDates);
-        } else {
-          console.log('Aucune date d\'entretien récupérée.');
-        }
-  
+
+        // Appel à la fonction pour calculer les pourcentages
+        this.calculateStatusPercentage();
+
+        // Autres actions nécessaires après la récupération des applications
         this.updatePagination();
       },
       (error) => {
@@ -161,4 +163,32 @@ export class AllapplicationComponent implements OnInit {
         }
       });
   }
+
+
+
+
+
+
+
+
+  calculateStatusPercentage(): void {
+    const total = this.totalRecords;
+  
+    if (total > 0) {
+      this.acceptedCount = (this.lists.filter(app => app.status === 'ACCEPTED').length / total) * 100;
+      this.pendingCount = (this.lists.filter(app => app.status === 'PENDING').length / total) * 100;
+      this.rejectedCount = (this.lists.filter(app => app.status === 'REJECTED').length / total) * 100;
+    } else {
+      // Gérer le cas où total est égal à zéro (éviter les divisions par zéro)
+      this.acceptedCount = 0;
+      this.pendingCount = 0;
+      this.rejectedCount = 0;
+    }
+  }
+  
+
+
+
+
+
 }
