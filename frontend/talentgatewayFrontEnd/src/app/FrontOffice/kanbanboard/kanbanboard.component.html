@@ -1,0 +1,203 @@
+<div>
+  
+  <app-header-front></app-header-front>
+  <div class="breadcrumb__area include-bg pt-200 pb-150 breadcrumb__overlay"
+  data-background="../../../assets/images/esprit/espritbg1.jpg">
+  <div class="container">
+     <div class="row">
+        <div class="col-xxl-12">
+           <div class="breadcrumb__content p-relative z-index-1">
+              <h3 class="breadcrumb__title">Task Board</h3>
+              <div class="breadcrumb__list">
+                 <span><a href="#">Board</a></span>
+                 <span class="dvdr"><i class="fa-regular fa-angle-right"></i></span>
+                 <span>Boffrard</span>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+  <div class="container-fluid">
+      <div style="display: flex; align-items: center;">
+            <!-- Title -->
+            <app-page-title title="TASK Board" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  
+            <!-- Button Stat -->
+            <a href="javascript:void(0);" (click)="showStatsModal()" class="btn btn-primary me-6 btn-rounded" aria-controls="collapseExample" style="margin-left: auto; margin-bottom: 15px; margin-top: 15px;">
+              <i class="bx bx-bar-chart-alt align-middle"></i> My Stat
+            </a>
+            
+    
+    <!-- Statistics Modal -->
+    <div bsModal #statsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-xl"> <!-- Increased modal size -->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Your Task Statistics</h5>
+            <button type="button" class="btn-close" (click)="statsModal?.hide()" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Text information centered -->
+            <div class="row text-center mb-4">
+              <div class="col-12">
+                <div class="p-3 border rounded">
+                  <p class="mb-2">Completed Tasks: {{ taskStats.completedTasks }}</p>
+                  <p>Incomplete Tasks: {{ taskStats.incompleteTasks }}</p>
+                </div>
+              </div>
+            </div>
+            <!-- Charts -->
+            <div class="row mt-4">
+              <div class="col-lg-6" >
+                <!-- Line chart container -->
+                <apx-chart [series]="taskChart.series" [chart]="taskChart.chart"
+                  [xaxis]="taskChart.xaxis" [yaxis]="taskChart.yaxis" [dataLabels]="taskChart.dataLabels"
+                  [stroke]="taskChart.stroke" [title]="taskChart.title" [labels]="taskChart.labels">
+                </apx-chart>
+              </div>
+              <div class="col-lg-6" style="padding-left: 50px;">
+                <!-- Pie chart container -->
+                <div echarts [options]="pieChartOptions" class="demo-chart" style="height: 400px;"></div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      </div>
+    
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title mb-4">To Do</h4>
+              <div id="upcoming-task" class="pb-1 task-list" dndDropzone dndEffectAllowed="move" (dndDrop)="onDrop($event, upcomingTasks, 'To_do')">
+                <div class="dndPlaceholder" dndPlaceholderRef></div>
+                <ng-container *ngFor="let task of upcomingTasks; let i = index">
+                  <div [dndDraggable]="task" dndEffectAllowed="move" (dndMoved)="onDragged(task, upcomingTasks)">
+                    <ng-template [ngTemplateOutlet]="TaskContent" [ngTemplateOutletContext]="{task: task, index: i}"></ng-template>
+                  </div>
+                </ng-container>
+                <div class="text-center d-grid">
+                  <a href="javascript:void(0);" class="btn btn-primary" (click)="addnewTask('upcoming')" routerLink="/tasks/create" ><i class="mdi mdi-plus me-1"></i>Add New Task</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        
+    
+        
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title mb-4">In Progress</h4>
+              <div id="Progress-task" class="pb-1 task-list" dndDropzone dndEffectAllowed="move" (dndDrop)="onDrop($event, inprogressTasks, 'In_Progress')">
+                <div class="dndPlaceholder" dndPlaceholderRef></div>
+                <ng-container *ngFor="let task of inprogressTasks; let i = index">
+                  <div [dndDraggable]="task" dndEffectAllowed="move" (dndMoved)="onDragged(task, inprogressTasks)">
+                    <ng-template [ngTemplateOutlet]="TaskContent" [ngTemplateOutletContext]="{task: task, index: i}"></ng-template>
+                  </div>
+                </ng-container>
+                <div class="text-center d-grid">
+                  <a href="javascript:void(0);" class="btn btn-primary" (click)="addnewTask('inprogress')" routerLink="/tasks/create" ><i class="mdi mdi-plus me-1" ></i>Add New Task</a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+    
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title mb-4">Finished</h4>
+              <div id="completed-task" class="pb-1 task-list" dndDropzone dndEffectAllowed="move" (dndDrop)="onDrop($event, completedTasks, 'Finished')">
+                <div class="dndPlaceholder" dndPlaceholderRef></div>
+                <ng-container *ngFor="let task of completedTasks; let i = index">
+                  <div [dndDraggable]="task" dndEffectAllowed="move" (dndMoved)="onDragged(task, completedTasks)">
+                    <ng-template [ngTemplateOutlet]="TaskContent" [ngTemplateOutletContext]="{task: task, index: i}"></ng-template>
+                  </div>
+                </ng-container>
+                <div class="text-center d-grid">
+                  <a href="javascript:void(0);" class="btn btn-primary" (click)="addnewTask('completed')" routerLink="/tasks/create" ><i class="mdi mdi-plus me-1"></i>Add New Task</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Task Template -->
+    <ng-template #TaskContent let-task='task' let-i='index'>
+      <div class="card task-box">
+        <div class="card-body">
+          <div class="dropdown float-end" dropdown>
+            <a href="javascript:void(0);" class="dropdown-toggle arrow-none" data-bs-toggle="dropdown" aria-expanded="false" dropdownToggle>
+              <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end" *dropdownMenu>
+              <a class="dropdown-item edittask-details" href="javascript:void(0);" id="taskedit" data-id="#uptask-2" (click)="updateTask(i)">Edit</a>
+              <a class="dropdown-item deletetask" href="javascript:void(0);" (click)="delete($event, task.id)">Delete</a>
+              
+            </div>
+          </div>
+          <div class="float-end ms-2">
+            <span class="badge rounded-pill" [ngClass]="{
+              'badge-soft-secondary': task.statut === 'To_do',
+              'badge-soft-primary': task.statut === 'In_Progress',
+              'badge-soft-success': task.statut === 'Finished'
+            }">{{ task.statut }}</span>
+          </div>
+          <h5 class="font-size-15"><a href="javascript:void(0);" class="text-dark">{{ task.taskName }}</a></h5>
+          <p class="text-muted mb-4">{{ task.endDate }}</p>
+        </div>
+      </div>
+    </ng-template>
+    <!-- Modal Form for Adding/Updating Tasks -->
+    <div bsModal #modalForm="bs-modal" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add/Update Task</h5>
+            <button type="button" class="btn-close" (click)="modalForm?.hide()" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Make sure the form is correctly linked to the formGroup -->
+            <form [formGroup]="taskForm" (ngSubmit)="createTask()">
+              <div class="mb-3">
+                <label for="taskName" class="form-label">Task Name</label>
+                <input type="text" id="taskName" class="form-control" formControlName="taskName" placeholder="Enter Task Name">
+              </div>
+              <div class="mb-3">
+                <label for="taskDescription" class="form-label">Task Description</label>
+                <textarea id="taskDescription" class="form-control" formControlName="taskDescription" placeholder="Enter Task Description"></textarea>
+              </div>
+              <div formGroupName="module">
+                <div class="mb-3">
+                  <label for="moduleName" class="form-label">Module Name</label>
+                  <select id="moduleName" class="form-select" formControlName="moduleName">
+                    <option *ngFor="let module of modules" [ngValue]="module">{{ module.moduleName }}</option>
+                  </select>
+                </div>
+              </div>
+              
+              <button type="submit" class="btn btn-primary">Create Task</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  <app-footer-front></app-footer-front>
+  
+  
+</div>

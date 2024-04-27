@@ -1,28 +1,24 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { DndDropEvent } from 'ngx-drag-drop';
-import {TaskKanban} from './kanabn.model'; 
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ModalDirective } from 'ngx-bootstrap/modal';
-import { TasksService } from 'src/app/services/tasks.service';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, ViewChild } from '@angular/core';
+import { TaskKanban } from './kanabn.model';
 import { Module } from 'src/app/core/models/module.model';
-import Swal from 'sweetalert2';
-import { AuthenticationService } from 'src/app/core/services/auth.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { User } from 'src/app/core/models/auth.models';
 import { ChartType } from './kanabn.model';
 import { EChartsOption } from 'echarts';
+import Swal from 'sweetalert2';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
+import { TasksService } from 'src/app/services/tasks.service';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { DndDropEvent } from 'ngx-drag-drop';
 
 @Component({
   selector: 'app-kanbanboard',
   templateUrl: './kanbanboard.component.html',
   styleUrls: ['./kanbanboard.component.scss']
 })
-
-/**
- * Kanbanboard Component
- */
-export class KanbanboardComponent implements OnInit {
+export class KanbanboardComponent {
 
   upcomingTasks: TaskKanban[] = [];
   inprogressTasks: TaskKanban[] = [];
@@ -35,8 +31,8 @@ export class KanbanboardComponent implements OnInit {
   modalRef?: BsModalRef;
 
   // bread crumb items
-  breadCrumbItems: Array<{}>;
-  taskForm!: UntypedFormGroup;
+ breadCrumbItems: Array<{}>;
+ taskForm!: UntypedFormGroup;
 
   user: User;
 

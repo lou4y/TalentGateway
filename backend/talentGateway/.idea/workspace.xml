@@ -5,28 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7544509-7f96-49b3-bb9c-a000362fba01" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/internship-service/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo" beforeDir="false" afterPath="$PROJECT_DIR$/config-repo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/gateway-service.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/internship-service.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/project-service-dev.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/project-service-prod.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/project-service.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/talent-gateway-config-repo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/task-service.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-repo/usertest-service.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose-ons.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose-ons.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/clients/UserRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/clients/UserRestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/PDFExportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/PDFExportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/PDFGeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/PDFGeneratorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/TaskServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/TaskServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/services/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/services/TaskService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/TaskServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Dao/TaskDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Dao/TaskDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/tasks/kanbanboard/kanbanboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/tasks/kanbanboard/kanbanboard.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/tasks/list/list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/tasks/list/list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,20 +61,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging interview-service",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.configurations.included.in.services": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Amine/OneDrive/4ARTIC/S2/Spring-boot/Exams/Condidat/Exam-Condidat&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -94,7 +91,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ConfigServiceApplication">
+  <component name="RunManager" selected="Spring Boot.ProjectServiceApplication">
     <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.configservice.ConfigServiceApplication" />
@@ -159,8 +156,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.ConfigServiceApplication" />
       <item itemvalue="Spring Boot.DiscoveryServiceApplication" />
+      <item itemvalue="Spring Boot.ConfigServiceApplication" />
       <item itemvalue="Spring Boot.GatewayServiceApplication" />
       <item itemvalue="Spring Boot.InternshipServiceApplication" />
       <item itemvalue="Spring Boot.InterviewServiceApplication" />
@@ -187,6 +184,11 @@
       <option name="presentableId" value="Default" />
       <updated>1713877015560</updated>
       <workItem from="1713877018828" duration="9037000" />
+      <workItem from="1713910753322" duration="1834000" />
+      <workItem from="1713946589375" duration="3944000" />
+      <workItem from="1713990809093" duration="1336000" />
+      <workItem from="1714033673824" duration="4758000" />
+      <workItem from="1714210600001" duration="5738000" />
     </task>
     <servers />
   </component>
