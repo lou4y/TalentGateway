@@ -324,7 +324,6 @@
         this.ngOnInit();
 
       }
-      
     }
 
     delete(event: any, taskId: number): void {

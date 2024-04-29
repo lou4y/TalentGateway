@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule , CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
@@ -17,7 +17,8 @@ import { CyptolandingComponent } from './cyptolanding/cyptolanding.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
-import { VideoConferenceComponent } from './chatComponents/video-conference/video-conference.component';
+import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 import { HeaderFrontComponent } from './FrontOffice/header-front/header-front.component';
 import { ListprojectsComponent } from './FrontOffice/listprojects/listprojects.component';
@@ -37,12 +38,17 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {AngularFireModule} from "@angular/fire/compat";
+import { KanbanboardComponent } from './FrontOffice/kanbanboard/kanbanboard.component';
 
-import { HeaderBackComponent } from './cyptolanding/header-back/header-back.component';
-import { FooterBackComponent } from './cyptolanding/footer-back/footer-back.component';
 
-import { FormsModule } from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { DndModule } from 'ngx-drag-drop';
+import {HeaderBackComponent} from "./cyptolanding/header-back/header-back.component";
+
 
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -52,7 +58,6 @@ export function createTranslateLoader(http: HttpClient): any {
   declarations: [
     AppComponent,
     CyptolandingComponent,
-    VideoConferenceComponent,
     HeaderFrontComponent,
     FooterFrontComponent,
     ListprojectsComponent,
@@ -60,11 +65,18 @@ export function createTranslateLoader(http: HttpClient): any {
     CommentsComponent,
     InternshipsDetailComponent,
     InternshipsComponent,
-    HeaderBackComponent,
-    FooterBackComponent
-
+    KanbanboardComponent,
+    KanbanboardComponent,
+    HeaderBackComponent
   ],
   imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ModalModule.forRoot(),
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
+    NgApexchartsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
@@ -92,29 +104,19 @@ export function createTranslateLoader(http: HttpClient): any {
     KeycloakAngularModule,
     FormsModule,
     RatingModule,
-
+    DndModule
 
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
   providers: [
 
 
-    {
-      provide: APP_INITIALIZER,
+    { provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,
-
-      deps: [KeycloakService]
-    }
-
       deps: [KeycloakService]},
       DatePipe
-
   ],
-  exports: [
-    HeaderBackComponent
-  ]
 })
 export class AppModule { }
-
-// Path: talentgatewayFrontEnd/src/app/pages/pages.module.ts
