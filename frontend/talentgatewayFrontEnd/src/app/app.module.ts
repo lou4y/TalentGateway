@@ -17,7 +17,7 @@ import { CyptolandingComponent } from './cyptolanding/cyptolanding.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
-import { FormsModule } from '@angular/forms';
+import { VideoConferenceComponent } from './chatComponents/video-conference/video-conference.component';
 
 import { HeaderFrontComponent } from './FrontOffice/header-front/header-front.component';
 import { ListprojectsComponent } from './FrontOffice/listprojects/listprojects.component';
@@ -37,8 +37,13 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {AngularFireModule} from "@angular/fire/compat";
+
 import { HeaderBackComponent } from './cyptolanding/header-back/header-back.component';
 import { FooterBackComponent } from './cyptolanding/footer-back/footer-back.component';
+
+import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -47,6 +52,7 @@ export function createTranslateLoader(http: HttpClient): any {
   declarations: [
     AppComponent,
     CyptolandingComponent,
+    VideoConferenceComponent,
     HeaderFrontComponent,
     FooterFrontComponent,
     ListprojectsComponent,
@@ -97,11 +103,18 @@ export function createTranslateLoader(http: HttpClient): any {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,
+
       deps: [KeycloakService]
     }
+
+      deps: [KeycloakService]},
+      DatePipe
+
   ],
   exports: [
     HeaderBackComponent
   ]
 })
 export class AppModule { }
+
+// Path: talentgatewayFrontEnd/src/app/pages/pages.module.ts

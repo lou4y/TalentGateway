@@ -9,7 +9,7 @@ import java.io.IOException;
 
 @Service
 public class PDFGeneratorService {
-    public void export(HttpServletResponse response, String candidateName) throws IOException {
+    public void export(HttpServletResponse response, String lastName, String firstName) throws IOException {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, response.getOutputStream());
 
@@ -23,7 +23,7 @@ public class PDFGeneratorService {
         Font fontContent = FontFactory.getFont(FontFactory.HELVETICA);
         fontContent.setSize(12);
 
-        Paragraph message = new Paragraph("Dear " + candidateName + ",\n\n"
+        Paragraph message = new Paragraph("Dear " + firstName + " " + lastName + ",\n\n"
                 + "Thank you for applying for the position. We are pleased to invite you for an interview. "
                 + "Please find attached the details of the interview schedule.\n\n"
                 + "Best regards,\n"
@@ -34,4 +34,5 @@ public class PDFGeneratorService {
         document.add(message);
         document.close();
     }
+
 }

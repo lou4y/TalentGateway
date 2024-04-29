@@ -5,6 +5,7 @@ import { ListComponent } from './list/list.component';
 import { KanbanboardComponent } from './kanbanboard/kanbanboard.component';
 import { CreatetaskComponent } from './createtask/createtask.component';
 
+
 const routes: Routes = [
     {
         path: 'list',
