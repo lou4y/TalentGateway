@@ -57,11 +57,9 @@ services:
     ports:
       - "8087:8087"
     environment:
-      DISCOVERY_SERVICE_URL: "http://discovery-service:8761/eureka"
-      CONFIG_SERVICE_URL: "http://config-service:9999"
-      DATABASE_URL: "jdbc:mysql://mysqldb2:3306/internship_db"
-      DATABASE_USER: "root"
-      DATABASE_PASSWORD: "root"
+      - DISCOVERY_SERVICE_URL=http://enset-talentgateway-discovery-service:8761/eureka
+      - CONFIG_SERVICE_URL=http://enset-talentgateway-config-service:9999
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/5ra1?createDatabaseIfNotExist=true
     networks:
       - my-network
     healthcheck:
@@ -70,15 +68,14 @@ services:
     depends_on:
       - config-service
 
-  mysqldb2:
+  mysqldb:
     image: mysql:8.0.13
-    container_name: mysqldb2
+    container_name: mysqldb
     ports:
       - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=task_db
-      - MYSQL_DATABASE=internship_db
+      - MYSQL_DATABASE=5ra1
     networks:
       - my-network
     volumes:
@@ -87,5 +84,6 @@ services:
 networks:
   my-network:
     driver: bridge
+
 volumes:
   my-datavolume:
