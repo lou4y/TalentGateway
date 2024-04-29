@@ -99,6 +99,16 @@ public class TaskController {
         return ResponseEntity.ok(tasks);
     }
 
+    // Get tasks by status
+    @GetMapping("/ByStatus/{status}")
+    public ResponseEntity<List<TaskResponse>> findTasksByStatus(@PathVariable Statut status) {
+        List<TaskResponse> tasks = taskService.findTasksByStatus(status);
+        if (tasks.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(tasks);
+    }
+
     // Get tasks by user id
     @GetMapping("/ByUserId/{userId}")
     public ResponseEntity<List<TaskResponse>> getTasksByUserId(@PathVariable String userId) {
