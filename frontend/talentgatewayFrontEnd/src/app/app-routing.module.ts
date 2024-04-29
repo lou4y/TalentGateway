@@ -10,11 +10,7 @@ import { DetailProjectComponent } from './FrontOffice/projects/detail-project/de
 import {InternshipsComponent} from "./FrontOffice/internships/internships.component";
 
 import {InternshipsDetailComponent} from "./FrontOffice/internships-detail/internships-detail.component";
-
-<<<<<<< HEAD
-//import {InternshipsDetailsComponent} from "./FrontOffice/internships-details/internships-details.component";
-=======
->>>>>>> 0a4f26ad1219a34fc0f0e0b0cfbca98c12c03589
+import { KanbanboardComponent } from './FrontOffice/kanbanboard/kanbanboard.component';
 
 
 const routes: Routes = [
@@ -25,14 +21,15 @@ const routes: Routes = [
 
   {path: 'internshipslist', component: InternshipsComponent , canActivate: [AuthGuard]},
   {path: 'details/:id', component: InternshipsDetailComponent, canActivate: [AuthGuard] },
-
+  {path: 'boardtask', component: KanbanboardComponent , canActivate: [AuthGuard]},
 
   // tslint:disable-next-line: max-line-length
   { path: '', component: LayoutComponent, loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule), canActivate: [AuthGuard] },
   { path: 'pages', loadChildren: () => import('./extrapages/extrapages.module').then(m => m.ExtrapagesModule), canActivate: [AuthGuard] },
   { path: 'crypto-ico-landing', component: CyptolandingComponent },
-  { path: '**', component: Page404Component },
+  { path: '**', component: Page404Component }
 
+  
 
 ];
 

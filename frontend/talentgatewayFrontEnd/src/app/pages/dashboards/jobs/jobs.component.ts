@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ChartType } from './jobs.model';
 
 
-import Unsplash, { Language, OrderBy, createApi } from 'unsplash-js'; // Import Unsplash and its exports
 
 
 

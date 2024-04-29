@@ -1,6 +1,7 @@
+<app-header-back></app-header-back>
+
 <div>
-  
-  <app-header-front></app-header-front>
+  <!-- <app-header-front></app-header-front>-->
   <div class="breadcrumb__area include-bg pt-200 pb-150 breadcrumb__overlay"
   data-background="../../../assets/images/esprit/espritbg1.jpg">
   <div class="container">
@@ -22,13 +23,13 @@
       <div style="display: flex; align-items: center;">
             <!-- Title -->
             <app-page-title title="TASK Board" [breadcrumbItems]="breadCrumbItems"></app-page-title>
-  
+
             <!-- Button Stat -->
             <a href="javascript:void(0);" (click)="showStatsModal()" class="btn btn-primary me-6 btn-rounded" aria-controls="collapseExample" style="margin-left: auto; margin-bottom: 15px; margin-top: 15px;">
               <i class="bx bx-bar-chart-alt align-middle"></i> My Stat
             </a>
-            
-    
+
+
     <!-- Statistics Modal -->
     <div bsModal #statsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-xl"> <!-- Increased modal size -->
@@ -61,16 +62,16 @@
                 <div echarts [options]="pieChartOptions" class="demo-chart" style="height: 400px;"></div>
               </div>
             </div>
-            
+
           </div>
         </div>
       </div>
     </div>
-    
-    
-    
+
+
+
       </div>
-    
+
       <div class="row">
         <div class="col-lg-4">
           <div class="card">
@@ -90,10 +91,10 @@
             </div>
           </div>
         </div>
-    
-        
-    
-        
+
+
+
+
         <div class="col-lg-4">
           <div class="card">
             <div class="card-body">
@@ -109,11 +110,11 @@
                   <a href="javascript:void(0);" class="btn btn-primary" (click)="addnewTask('inprogress')" routerLink="/tasks/create" ><i class="mdi mdi-plus me-1" ></i>Add New Task</a>
                 </div>
               </div>
-              
+
             </div>
           </div>
         </div>
-    
+
         <div class="col-lg-4">
           <div class="card">
             <div class="card-body">
@@ -134,7 +135,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Task Template -->
     <ng-template #TaskContent let-task='task' let-i='index'>
       <div class="card task-box">
@@ -146,7 +147,7 @@
             <div class="dropdown-menu dropdown-menu-end" *dropdownMenu>
               <a class="dropdown-item edittask-details" href="javascript:void(0);" id="taskedit" data-id="#uptask-2" (click)="updateTask(i)">Edit</a>
               <a class="dropdown-item deletetask" href="javascript:void(0);" (click)="delete($event, task.id)">Delete</a>
-              
+
             </div>
           </div>
           <div class="float-end ms-2">
@@ -188,16 +189,16 @@
                   </select>
                 </div>
               </div>
-              
+
               <button type="submit" class="btn btn-primary">Create Task</button>
             </form>
           </div>
         </div>
       </div>
     </div>
-    
-    
+
+
   <app-footer-front></app-footer-front>
-  
-  
+
+
 </div>

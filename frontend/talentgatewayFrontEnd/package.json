@@ -39,6 +39,7 @@
     "@ngx-translate/http-loader": "^8.0.0",
     "@nicky-lenaers/ngx-scroll-to": "^14.0.0",
     "@popperjs/core": "^2.11.8",
+    "@zegocloud/zego-uikit-prebuilt": "^2.0.1",
     "angular-ng-stepper": "^2.0.0",
     "angularx-flatpickr": "^7.3.0",
     "apexcharts": "^3.41.0",
@@ -81,6 +82,7 @@
     "simplebar-angular": "^3.2.4",
     "sweetalert2": "^11.6.13",
     "tslib": "^2.6.0",
+    "unsplash-js": "^7.0.19",
     "zone.js": "^0.13.1"
   },
   "devDependencies": {
