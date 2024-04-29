@@ -10,9 +10,9 @@ import {VideoConferenceComponent} from "./chatComponents/video-conference/video-
 
 import { ListprojectsComponent } from './FrontOffice/listprojects/listprojects.component';
 import { DetailProjectComponent } from './FrontOffice/projects/detail-project/detail-project.component';
-import {InternshipsComponent} from "./FrontOffice/internships/internships.component";
 
 import {InternshipsDetailComponent} from "./FrontOffice/internships-detail/internships-detail.component";
+import {InternshipsComponent} from "./FrontOffice/internships/internships.component";
 
  
 
@@ -25,7 +25,6 @@ import {InternshipsDetailComponent} from "./FrontOffice/internships-detail/inter
 const routes: Routes = [
 
   { path: 'listprojectsfrontoffice', component: ListprojectsComponent },
-  { path: 'Internships', component: InternshipsComponent },
   {path: 'detailProject/:id', component: DetailProjectComponent},
 
   {path: 'internshipslist', component: InternshipsComponent , canActivate: [AuthGuard]},
@@ -36,7 +35,9 @@ const routes: Routes = [
   { path: '', component: LayoutComponent, loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule), canActivate: [AuthGuard] },
   { path: 'pages', loadChildren: () => import('./extrapages/extrapages.module').then(m => m.ExtrapagesModule), canActivate: [AuthGuard] },
   { path: 'crypto-ico-landing', component: CyptolandingComponent },
+
   {path:'meeting', component:VideoConferenceComponent},
+
   { path: '**', component: Page404Component },
 
 
