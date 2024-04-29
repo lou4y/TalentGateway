@@ -52,7 +52,6 @@ public class ScheduledTasks {
                     boolean matchFound = checkSkillsMatch(internshipSkills, userSkills);
                     if (matchFound) {
                         sendNotificationEmail(user, internship);
-                        linkedInService.shareInternshipOnLinkedIn(internship); // Share internship on LinkedIn
 
                     }
                 }

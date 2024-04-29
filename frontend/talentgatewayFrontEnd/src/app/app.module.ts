@@ -37,6 +37,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {AngularFireModule} from "@angular/fire/compat";
+import { HeaderBackComponent } from './cyptolanding/header-back/header-back.component';
+import { FooterBackComponent } from './cyptolanding/footer-back/footer-back.component';
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -51,7 +53,9 @@ export function createTranslateLoader(http: HttpClient): any {
     DetailProjectComponent,
     CommentsComponent,
     InternshipsDetailComponent,
-    InternshipsComponent
+    InternshipsComponent,
+    HeaderBackComponent,
+    FooterBackComponent
 
   ],
   imports: [
@@ -89,10 +93,15 @@ export function createTranslateLoader(http: HttpClient): any {
   providers: [
 
 
-    { provide: APP_INITIALIZER,
+    {
+      provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,
-      deps: [KeycloakService]}
+      deps: [KeycloakService]
+    }
   ],
+  exports: [
+    HeaderBackComponent
+  ]
 })
 export class AppModule { }

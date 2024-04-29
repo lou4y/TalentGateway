@@ -1,3 +1,4 @@
+<!--
 <nav class="navbar navbar-expand-lg navigation fixed-top sticky" (window:scroll)="windowScroll()" id="navbar">
     <div class="container">
         <a class="navbar-logo" routerLink="/">
@@ -49,6 +50,8 @@
         </div>
     </div>
 </nav>
+-->
+<app-header-back></app-header-back>
 
 <div appScrollspy [spiedTags]="['SECTION']" (sectionChange)="onSectionChange($event)">
     <!-- hero section start -->
@@ -1021,7 +1024,7 @@
                                                 <accordion [closeOthers]="true" activeIds="static-1"
                                                     class="custom-accordion">
                                                     <accordion-group id="static-1" heading="Where can I get some ?"
-                                                         #faq8 class="accordion-list p-0"> 
+                                                         #faq8 class="accordion-list p-0">
                                                         <span accordion-heading class="float-end">
                                                             <i class="mdi"
                                                                 [ngClass]="!faq8?.isOpen ? 'mdi mdi-plus accor-plus-icon': 'mdi mdi-minus accor-plus-icon'"></i>
@@ -1105,8 +1108,8 @@
     </section>
     <!-- Faqs end -->
 
-    <!-- Footer start -->
-    <footer class="landing-footer">
+
+   <!-- <footer class="landing-footer">
         <div class="container">
 
             <div class="row">
@@ -1163,7 +1166,7 @@
                     </div>
                 </div>
             </div>
-            <!-- end row -->
+             end row
 
             <hr class="footer-border my-5">
 
@@ -1180,8 +1183,8 @@
 
             </div>
         </div>
-        <!-- end container -->
-    </footer>
-    <!-- Footer end -->
+         end container
+    </footer>-->
 
+<app-footer-back></app-footer-back>
 </div>

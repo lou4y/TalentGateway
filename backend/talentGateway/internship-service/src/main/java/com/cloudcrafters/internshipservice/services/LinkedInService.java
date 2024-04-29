@@ -1,59 +1,59 @@
 package com.cloudcrafters.internshipservice.services;
 
-import com.cloudcrafters.internshipservice.entites.Internship;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.json.JSONObject;
 
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class LinkedInService {
-
-    @Value("${linkedin.api.base-url}")
-    private String apiUrl; // LinkedIn API base URL
-
-    @Value("${linkedin.api.client-secret}")
-    private String accessToken; // Access token obtained during OAuth 2.0 flow
+    @Value("${linkedin.accessToken}")
+    private String accessToken; // Inject access token from properties file or environment variables
 
     private final RestTemplate restTemplate;
 
-    @Autowired
     public LinkedInService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    // Method to share internship information on LinkedIn
-    public void shareInternshipOnLinkedIn(Internship internship) {
-        String shareUrl = apiUrl + "/v2/shares"; // LinkedIn API endpoint for sharing content
+    public void shareInternship(String internshipTitle, String internshipDescription) {
+        // Construct the LinkedIn post data
+        String postContent = "Check out this exciting internship opportunity!\n"
+                + "Title: " + internshipTitle + "\n"
+                + "Description: " + internshipDescription + "\n";
 
-        // Create a LinkedIn post payload
-        String postContent = "New Internship Opportunity: " + internship.getIntershipTitle()
-                + "\nCompany: " + internship.getIntershipCompany()
-                + "\nDescription: " + internship.getIntershipDescription()
-                + "\nLocation: " + internship.getIntershipLocation();
 
         // Set up the request headers with the access token
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(accessToken);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        // Create the request body
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("content", Collections.singletonMap("text", postContent));
+        // Set up the request body with the post content
+        JSONObject postData = new JSONObject();
+        postData.put("author", "urn:li:person:" ); // Assuming userId is in LinkedIn format
+        postData.put("lifecycleState", "PUBLISHED");
+        postData.put("specificContent", Collections.singletonMap("com.linkedin.ugc.ShareContent",
+                Collections.singletonMap("shareCommentary",
+                        Collections.singletonList(Collections.singletonMap("text", postContent)))));
 
-        // Make a POST request to share the content on LinkedIn
-        HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
-        ResponseEntity<String> response = restTemplate.exchange(shareUrl, HttpMethod.POST, requestEntity, String.class);
+        HttpEntity<String> requestEntity = new HttpEntity<>(postData.toString(), headers);
 
-        if (response.getStatusCode() == HttpStatus.CREATED) {
-            System.out.println("Internship shared successfully on LinkedIn!");
+        // Send the request to LinkedIn API to create a post
+        ResponseEntity<String> responseEntity = restTemplate.exchange(
+                "https://api.linkedin.com/v2/shares",
+                HttpMethod.POST,
+                requestEntity,
+                String.class);
+
+        // Check the response status and handle accordingly
+        if (responseEntity.getStatusCode() == HttpStatus.CREATED) {
+            System.out.println("Internship shared on LinkedIn successfully!");
         } else {
-            System.err.println("Failed to share internship on LinkedIn. Status code: " + response.getStatusCodeValue());
+            System.out.println("Failed to share internship on LinkedIn. Status code: " + responseEntity.getStatusCode());
+            System.out.println("Response: " + responseEntity.getBody());
         }
     }
 }
