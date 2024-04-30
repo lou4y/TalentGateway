@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProjectService } from 'src/app/services/project.service';
 import Swal from 'sweetalert2';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-projectlist',
@@ -125,5 +126,17 @@ export class ProjectlistComponent implements OnInit {
         // Handle error (e.g., show error message to user)
       }
     );
+  }
+  //excel
+  fileName="excelSheet.xlsx";
+  exportexcel(){
+    //passing table id
+    let data= document.getElementById("projectList-table");
+    const ws:XLSX.WorkSheet= XLSX.utils.table_to_sheet(data);
+    //generate workbook and add the worksheet
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb,ws,'Sheet1');
+    //save to file
+    XLSX.writeFile(wb,this.fileName);
   }
 }

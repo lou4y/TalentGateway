@@ -18,4 +18,5 @@ public class User {
     private Date birthDate;
     @Lob
     private String imageData;
+    private String phoneNumber;
 }

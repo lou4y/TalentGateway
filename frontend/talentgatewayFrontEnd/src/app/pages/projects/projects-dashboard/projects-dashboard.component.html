@@ -1,0 +1,116 @@
+<div>
+  <h2>Projects Dashboard</h2>
+    <div class="row">
+      <div class="col-xl-12"> <!-- Changé de col-xl-8 à col-xl-12 -->
+        <div class="row">
+          <div class="col-lg-3"> <!-- Utiliser col-lg-3 pour 4 cartes sur une ligne -->
+            <div class="card mini-stats-wid">
+              <div class="card-body">
+                <div class="d-flex flex-wrap">
+                  <div class="mr-4">
+                    <p class="text-muted mb-2">Total Projects</p>
+                    <h5 class="mb-0">{{ totalProjects }}</h5>
+                  </div>
+                  <div class="avatar-sm ms-auto">
+                    <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
+                      <i class="bx bxs-book-bookmark"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="card blog-stats-wid">
+              <div class="card-body">
+                <div class="d-flex flex-wrap">
+                  <div class="me-4">
+                    <p class="text-muted mb-2">Total Teams</p>
+                    <h5 class="mb-0">{{ totalTeams }}</h5>
+                  </div>
+                  <div class="avatar-sm ms-auto">
+                    <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
+                      <i class="bx bxs-user"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="card blog-stats-wid">
+              <div class="card-body">
+                <div class="d-flex flex-wrap">
+                  <div class="me-4">
+                    <p class="text-muted mb-2">Likes</p>
+                    <h5 class="mb-0">{{ totalLikes }}</h5>
+                  </div>
+                  <div class="avatar-sm ms-auto">
+                    <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
+                      <i class="bx bxs-like"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3"> <!-- Changé à col-lg-3 -->
+            <div class="card blog-stats-wid">
+              <div class="card-body">
+                <div class="d-flex flex-wrap">
+                  <div class="mr-4">
+                    <p class="text-muted mb-2">Comments</p>
+                    <h5 class="mb-0">{{ totalComments }}</h5>
+                  </div>
+                  <div class="avatar-sm ms-auto">
+                    <div class="avatar-title bg-light rounded-circle text-primary font-size-20">
+                      <i class="bx bxs-message-square-dots"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end row -->
+      </div>
+    </div>
+    <!-- end col -->
+
+    <div>
+      <h3>Projects by Month</h3>
+      <apx-chart
+        [series]="barChartOptions.series"
+        [chart]="barChartOptions.chart"
+        [xaxis]="barChartOptions.xaxis"
+        [title]="barChartOptions.title"
+      ></apx-chart>
+    </div>
+    <div class="row">
+      <!-- Pie chart pour les projets par statut -->
+      <div class="col-md-6"> <!-- 50% de la largeur -->
+        <h3>Projects by Status</h3>
+        <apx-chart
+          [series]="pieChartOptions.series"
+          [chart]="pieChartOptions.chart"
+          [labels]="pieChartOptions.labels"
+          [title]="pieChartOptions.title"
+        ></apx-chart>
+      </div>
+      <!-- Horizontal bar chart pour les 4 projets les plus aimés -->
+      <div class="col-md-6"> <!-- 50% de la largeur -->
+        <h3>Top 4 Most Liked Projects</h3>
+        <apx-chart
+          [series]="horizontalBarChartOptions.series"
+          [chart]="horizontalBarChartOptions.chart"
+          [xaxis]="horizontalBarChartOptions.xaxis"
+          [plotOptions]="horizontalBarChartOptions.plotOptions"
+        ></apx-chart>
+      </div>
+    </div>
+
+
+</div>
