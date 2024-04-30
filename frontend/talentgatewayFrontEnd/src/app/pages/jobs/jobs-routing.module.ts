@@ -59,9 +59,12 @@ const routes: Routes = [
   {
     path:"add-internships",
     component:AddInternshipsComponent
+  },
+
+  {
+    path: 'myapplication/:offerId',
+    component: MyapplicationComponent
   }
-
-
 
 ];
 

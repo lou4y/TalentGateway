@@ -8,7 +8,6 @@ import com.cloudcrafters.internshipservice.entites.Internship;
 import com.cloudcrafters.internshipservice.entites.Rating;
 import com.cloudcrafters.internshipservice.services.InternshipService;
 
-import com.cloudcrafters.internshipservice.services.LinkedInService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -173,10 +172,29 @@ public class InternshipServiceImpl implements InternshipService {
         }
     }
 
-    private  LinkedInService linkedInService;
+
     @Override
-    public void shareInternshipOnLinkedIn(Long internshipId) {
-        linkedInService.shareInternshipOnLinkedIn(internshipId);
+    public long getTotalInternshipsCount() {
+        return InternshipDao.count(); // Assuming InternshipDao has a count method
+    }
+
+    @Override
+    public double getAverageRatingOfInternships() {
+        List<Internship> internships = InternshipDao.findAll();
+        double totalRating = 0;
+        int totalInternships = 0;
+        for (Internship internship : internships) {
+            if (internship.getAverageRating() != null) {
+                totalRating += internship.getAverageRating();
+                totalInternships++;
+            }
+        }
+        return totalInternships > 0 ? totalRating / totalInternships : 0;
+    }
+
+    @Override
+    public long getTotalInternshipsCountByUser(String userId) {
+        return InternshipDao.countByUserId(userId); // Assuming InternshipDao has a countByUserId method
     }
 
 }

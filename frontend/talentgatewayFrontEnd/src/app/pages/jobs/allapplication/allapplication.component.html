@@ -2,28 +2,22 @@
   <app-page-title title="My Application Details" [breadcrumbItems]="breadCrumbItems"></app-page-title>
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-md-8">
       <div class="card">
-        <div class="card-body border-bottom">
-          <div class="d-flex align-items-center">
-            <h5 class="mb-0 card-title flex-grow-1">Application Details</h5>
-          </div>
-        </div>
-        <div class="card-body border-bottom">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Application Details</h5>
           <div class="row g-3">
-            <div class="col-xxl-4 col-lg-6">
+            <div class="col-md-6">
               <input type="search" class="form-control" id="searchInput" placeholder="Search by status ..." [(ngModel)]="searchTerm">
             </div>
-            <div class="col-xxl-2 col-lg-4">
-              <button type="button" class="btn btn-soft-secondary w-100" (click)="searchApplications()">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-primary w-100" (click)="searchApplications()">
                 <i class="mdi mdi-filter-outline align-middle"></i> Filter
               </button>
             </div>
           </div>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table align-middle dt-responsive nowrap w-100 table-check" id="job-list">
+          <div class="table-responsive mt-4">
+            <table class="table table-hover">
               <thead>
                 <tr>
                   <th scope="col">Application Number</th>
@@ -39,55 +33,79 @@
               </thead>
               <tbody>
                 <tr *ngFor="let data of getCurrentPageApplications(); let i = index">
-                  <td>{{ startIndex + i + 1 }}</td> <!-- Affichage du numéro de l'application -->
+                  <td>{{ startIndex + i + 1 }}</td>
                   <td>{{ data.dateDePostulation }}</td>
                   <td>{{ data.intershipCompany }}</td>
                   <td>{{ data.intershipTitle }}</td>
-                  <td>
-                    {{
-                      data.interview?.dateEntretien ||
-                        "No maintenance is planned at the moment"
-                    }}
-                  </td>
-                  <td>
-                    {{
-                      data.interview?.modaliteEntretien ||
-                        "No maintenance is planned at the moment"
-                    }}
-                  </td>
+                  <td>{{ data.interview?.dateEntretien || "No interview date" }}</td>
+                  <td>{{ data.interview?.modaliteEntretien || "No interview mode" }}</td>
                   <td>{{ data.dateAcceptation }}</td>
                   <td>
-                    <span class="badge" [ngClass]="{
-                      'bg-success': data.status === 'ACCEPTED',
-                      'bg-info': data.status === 'PENDING',
-                      'bg-danger': data.status === 'REJECTED'
-                    }">{{ data.status }}</span>
+                    <span class="badge bg-success" *ngIf="data.status === 'ACCEPTED'">ACCEPTED</span>
+                    <span class="badge bg-info" *ngIf="data.status === 'PENDING'">PENDING</span>
+                    <span class="badge bg-danger" *ngIf="data.status === 'REJECTED'">REJECTED</span>
                   </td>
                   <td>
-                    <ul class="list-unstyled hstack gap-1 mb-0">
-                      <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                        <a href="javascript:void(0);" class="btn btn-sm btn-soft-danger" (click)="deleteApplicationConfirmed(data.id)">
-                          <i class="mdi mdi-delete-outline"></i>
-                        </a>
-                      </li>
-                    </ul>
+                    <button type="button" class="btn btn-sm btn-danger" (click)="deleteApplicationConfirmed(data.id)">
+                      <i class="mdi mdi-delete-outline"></i> Delete
+                    </button>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div class="row justify-content-between align-items-center">
-            <div class="col-auto me-auto">
+          <div class="row justify-content-between align-items-center mt-4">
+            <div class="col-auto">
               <p class="text-muted mb-0">Showing <b>{{ startIndex }}</b> to <b>{{ endIndex }}</b> of <b>{{ totalRecords }}</b> entries</p>
             </div>
             <div class="col-auto">
-              <div class="text-md-right float-md-end pagination-rounded">
-                <ul class="pagination pagination-rounded justify-content-end mb-2">
-                  <pagination [totalItems]="totalRecords" [(ngModel)]="page" [itemsPerPage]="5" previousText="&lsaquo;" nextText="&rsaquo;" (pageChanged)="pageChanged($event)"></pagination>
-                </ul>
-              </div>
+              <pagination [totalItems]="totalRecords" [(ngModel)]="page" [itemsPerPage]="5" previousText="&lsaquo;" nextText="&rsaquo;" (pageChanged)="pageChanged($event)"></pagination>
             </div>
-          </div> <!-- Ligne principale -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Status Analytics</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              PENDING
+              <span class="badge bg-primary rounded-pill">{{ pendingCount.toFixed(2) }}%</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              REJECTED
+              <span class="badge bg-warning rounded-pill">{{ rejectedCount.toFixed(2) }}%</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              ACCEPTED
+              <span class="badge bg-success rounded-pill">{{ acceptedCount.toFixed(2) }}%</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Activity</h5>
+          <ul class="verti-timeline list-unstyled">
+            <li class="event-list" *ngFor="let interviewDate of interviewDates">
+              <div class="event-timeline-dot">
+                <i class="bx bx-right-arrow-circle font-size-18"></i>
+              </div>
+              <div class="d-flex">
+                <div class="flex-shrink-0 me-3">
+                  <h5 class="font-size-14">{{ interviewDate | date:'dd MMM' }}</h5>
+                </div>
+                <div class="flex-grow-1">
+                  <div>Interview Date</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+           
         </div>
       </div>
     </div>

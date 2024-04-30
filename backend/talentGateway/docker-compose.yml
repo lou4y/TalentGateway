@@ -1,25 +1,89 @@
-  services:
-    talentgateway-discovery-service:
-      build: ./discovery-service
-      container_name: discovery-service
-      ports:
-        - '8761:8761'
-      expose:
-        - '8761'
-      healthcheck:
-        test: [ "CMD", "curl", "-f", "http://localhost:8761/actuator/health" ]
-        interval: 10s
-        retries: 4
+version: '3.8'
+services:
+  discovery-service:
+    build:
+      context: ./discovery-service
+    container_name: discovery-service
+    ports:
+      - '8761:8761'
+    expose:
+      - '8761'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+      interval: 10s
+      retries: 5
 
+  config-service:
+    build:
+      context: ./config-service
+    container_name: config-service
+    ports:
+      - '9999:9999'
+    expose:
+      - '9999'
+    environment:
+      - DISCOVERY_SERVICE_URL=http://discovery-service:8761/eureka
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9999/actuator/health"]
+      interval: 10s
+    depends_on:
+      - discovery-service
 
+  task-service:
+    build:
+      context: ./task-service
+    container_name: task-service
+    ports:
+      - "8015:8015"
+    expose:
+      - "8015"
+    environment:
+      DISCOVERY_SERVICE_URL: "http://discovery-service:8761/eureka"
+      CONFIG_SERVICE_URL: "http://config-service:9999"
+      DATABASE_URL: "jdbc:mysql://mysqldb2:3306/task_db"
+      DATABASE_USER: "root"
+      DATABASE_PASSWORD: "root"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8015/actuator/health" ]
+      interval: 10s
+      retries: 4
+    depends_on:
+      - config-service
+    networks:
+      - my-network
 
-    internship-service:
-      build: ./internship-service
-      container_name: internship-service
-      ports:
-        - "8087:8087"
-      expose:
-        - "8087"
-      healthcheck:
-        test: [ "CMD", "curl", "-f", "http://localhost:8087/actuator/health" ]
-        interval: 10s
+  internship-service:
+    build: ./internship-service
+    ports:
+      - "8087:8087"
+    environment:
+      - DISCOVERY_SERVICE_URL=http://enset-talentgateway-discovery-service:8761/eureka
+      - CONFIG_SERVICE_URL=http://enset-talentgateway-config-service:9999
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/5ra1?createDatabaseIfNotExist=true
+    networks:
+      - my-network
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8087/actuator/health" ]
+      interval: 10s
+    depends_on:
+      - config-service
+
+  mysqldb:
+    image: mysql:8.0.13
+    container_name: mysqldb
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=5ra1
+    networks:
+      - my-network
+    volumes:
+      - my-datavolume:/var/lib/mysql
+
+networks:
+  my-network:
+    driver: bridge
+
+volumes:
+  my-datavolume:

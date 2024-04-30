@@ -1,0 +1,26 @@
+.filter-container > div {
+    margin-right: 10px; /* Ajustez cette valeur pour l'espace désiré */
+  }
+  
+  /* Supprimez la marge du dernier élément */
+  .filter-container > div:last-child {
+    margin-right: 0;
+    
+  }
+  
+  .filter-container select {
+    height: 30px; /* Ajustez cette valeur pour la hauteur souhaitée */
+  }
+
+  
+  /* Alignement de la checkbox avec le label */
+.d-flex.align-items-center {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Espacement entre la checkbox et le label */
+  .form-check-label {
+    margin-left: 0.5rem; /* Ajustez cette valeur pour l'espace désiré */
+  }
+  

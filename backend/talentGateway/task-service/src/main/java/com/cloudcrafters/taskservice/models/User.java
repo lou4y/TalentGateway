@@ -12,7 +12,7 @@ import java.util.Date;
 @Setter
 @ToString
 public class User {
-    private String userId;
+    private String id;
     private String firstName;
     private String LastName;
     private String email;

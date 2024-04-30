@@ -6,7 +6,7 @@
             <div class="d-flex align-items-center">
                 <img src="assets/images/users/avatar-1.jpg" alt="" class="avatar-sm rounded">
                 <div class="ms-3 flex-grow-1">
-                    <h5 class="mb-2 card-title">Hello, Henry Franklin</h5>
+                    <h5 class="mb-2 card-title">Hello, {{ user.username }}</h5>
                     <p class="text-muted mb-0">Ready to jump back in?</p>
                 </div>
                 <div>
@@ -18,30 +18,36 @@
     </div><!--end row-->
 
     <div class="row">
-        <div class="col-lg-3">
-            <div class="card mini-stats-wid">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <p class="text-muted fw-medium">Job View</p>
-                            <h4 class="mb-0">14,487</h4>
-                        </div>
 
-                        <div class="flex-shrink-0 align-self-center">
-                            <apx-chart class="apex-charts" dir="ltr" [series]="jobViewChart.series"
-                                [chart]="jobViewChart.chart" [stroke]="jobViewChart.stroke"
-                                [colors]="jobViewChart.colors" [fill]="jobViewChart.fill"
-                                [tooltip]="jobViewChart.tooltip"></apx-chart>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body border-top py-3">
-                    <p class="mb-0"> <span class="badge badge-soft-success me-1"><i
-                                class="bx bx-trending-up align-bottom me-1"></i> 18.89%</span> Increase last month</p>
-                </div>
+
+      <div class="col-lg-3">
+        <div class="card mini-stats-wid">
+          <div class="card-body">
+            <div class="d-flex">
+              <div class="flex-grow-1">
+                <p class="text-muted fw-medium">Internships</p>
+                <h4 class="mb-0">{{ jobViews }}</h4> <!-- Bind jobViews from component -->
+              </div>
+              <div class="flex-shrink-0 align-self-center">
+                <!-- Your chart component here -->
+                <!-- Assuming jobViewChart is used for chart display -->
+                <apx-chart class="apex-charts" dir="ltr" [series]="jobViewChart.series"
+                           [chart]="jobViewChart.chart" [stroke]="jobViewChart.stroke"
+                           [colors]="jobViewChart.colors" [fill]="jobViewChart.fill"
+                           [tooltip]="jobViewChart.tooltip"></apx-chart>
+              </div>
             </div>
-        </div><!--end col-->
-        <div class="col-lg-3">
+          </div>
+          <div class="card-body border-top py-3">
+            <p class="mb-0"> <span class="badge badge-soft-success me-1">
+        <i class="bx bx-trending-up align-bottom me-1"></i> {{ increase }}%
+      </span> Increase last month</p>
+          </div>
+        </div>
+      </div><!--end col-->
+
+
+   <!--   <div class="col-lg-3">
             <div class="card mini-stats-wid">
                 <div class="card-body">
                     <div class="d-flex">
@@ -63,8 +69,8 @@
                                 class="bx bx-trending-up align-bottom me-1"></i> 24.07%</span> Increase last month</p>
                 </div>
             </div>
-        </div><!--end col-->
-        <div class="col-lg-3">
+        </div>&lt;!&ndash;end col&ndash;&gt;-->
+       <!-- <div class="col-lg-3">
             <div class="card mini-stats-wid">
                 <div class="card-body">
                     <div class="d-flex">
@@ -86,8 +92,8 @@
                                 class="bx bx-trending-up align-bottom me-1"></i> 8.41%</span> Increase last month</p>
                 </div>
             </div>
-        </div><!--end col-->
-        <div class="col-lg-3">
+        </div>&lt;!&ndash;end col&ndash;&gt;-->
+        <!--<div class="col-lg-3">
             <div class="card mini-stats-wid">
                 <div class="card-body">
                     <div class="d-flex">
@@ -109,7 +115,8 @@
                                 class="bx bx-trending-down align-bottom me-1"></i> 20.63%</span> Decrease last month</p>
                 </div>
             </div>
-        </div><!--end col-->
+        </div>&lt;!&ndash;end col&ndash;&gt;-->
+
     </div><!--end row-->
 
     <div class="row">
@@ -224,27 +231,28 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="d-flex">
-                <h4 class="card-title mb-4 flex-grow-1">New Job Vacancy</h4>
+                <h4 class="card-title mb-4 flex-grow-1">New Internship </h4>
                 <div>
                     <a routerLink="/jobs/list" class="btn btn-primary btn-sm">View All <i
                             class="bx bx-right-arrow-alt"></i></a>
                 </div>
             </div>
         </div><!--end col-->
-        <div class="col-lg-2" *ngFor="let data of vacancyData">
+        <div class="col-lg-2"  *ngFor="let internship of internships">
             <div class="card">
                 <div class="card-body p-4">
                     <div class="text-center mb-3">
-                        <img src="{{data.image}}" alt="" class="avatar-sm">
+                      <!-- Use Angular data binding to dynamically set the src attribute of the img tag -->
+                      <img [src]="internship.image" alt="Internship Image" class="avatar-sm">
                         <a routerLink="/jobs/details" class="text-body">
-                            <h5 class="mt-4 mb-2 font-size-15">{{data.title}}</h5>
+                            <h5 class="mt-4 mb-2 font-size-15">{{internship.intershipTitle}}</h5>
                         </a>
-                        <p class="mb-0 text-muted">{{data.brand}}</p>
+                        <p class="mb-0 text-muted"></p>
                     </div>
 
                     <div class="d-flex">
-                        <p class="mb-0 flex-grow-1 text-muted"><i class="bx bx-map text-body"></i> {{data.location}}</p>
-                        <p class="mb-0 text-muted"><b>{{data.vacancy}}</b> Vacancy</p>
+                        <p class="mb-0 flex-grow-1 text-muted"><i class="bx bx-map text-body"></i></p>
+                        <p class="mb-0 text-muted"><b></b> </p>
                     </div>
                 </div>
             </div><!--end card-->

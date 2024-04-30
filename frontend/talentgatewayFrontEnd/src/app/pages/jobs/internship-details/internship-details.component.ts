@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Internship} from "../../../core/models/internship.model";
+// @ts-ignore
 import {InternshipsService} from "../../../core/services/Internships/internships.service";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -65,9 +66,11 @@ export class InternshipDetailsComponent  implements OnInit {
 
     this.user = await this.authService.currentUser()
 
+    // Auto-rate the internship when the component initializes
+    this.rateInternship();
   }
 
-  getInternshipDetails(): void {
+  /*getInternshipDetails(): void {
     this.internshipsService.getInternshipById(+this.internshipId).subscribe(
       (internship: Internship) => {
         this.internship = internship; // Assign fetched internship data to variable
@@ -76,6 +79,62 @@ export class InternshipDetailsComponent  implements OnInit {
         console.error('Error fetching internship details:', error);
       }
     );
+  }
+*/
+
+  /*getInternshipDetails(): void {
+    this.internshipsService.getInternshipById(+this.internshipId).subscribe(
+      (internship: Internship) => {
+        this.internship = internship;
+        sessionStorage.setItem('currentInternship', JSON.stringify(this.internship)); // Save internship to sessionStorage
+      },
+      (error) => {
+        console.error('Error fetching internship details:', error);
+      }
+    );
+  }*/
+
+
+  getInternshipDetails(): void {
+    this.internshipsService.getInternshipById(+this.internshipId).subscribe(
+      (internship: Internship) => {
+        this.internship = internship; // Assign fetched internship data to variable
+        // Set Open Graph meta tags dynamically based on internship details
+        this.setOpenGraphMetaTags();
+      },
+      (error) => {
+        console.error('Error fetching internship details:', error);
+      }
+    );
+  }
+
+  setOpenGraphMetaTags(): void {
+    if (this.internship) {
+      const title = this.internship.intershipTitle;
+      const description = this.internship.intershipDescription;
+      const imageUrl = this.internship.intershipResponsibilities;
+
+      // Remove existing Open Graph meta tags
+      const head = document.getElementsByTagName('head')[0];
+      const existingTags = head.querySelectorAll('meta[property^="og:"]');
+      existingTags.forEach(tag => head.removeChild(tag));
+
+      // Create and append new Open Graph meta tags
+      const metaTitle = document.createElement('meta');
+      metaTitle.setAttribute('property', 'og:title');
+      metaTitle.content = title;
+      head.appendChild(metaTitle);
+
+      const metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('property', 'og:description');
+      metaDescription.content = description;
+      head.appendChild(metaDescription);
+
+      const metaImageUrl = document.createElement('meta');
+      metaImageUrl.setAttribute('property', 'og:image');
+      metaImageUrl.content = imageUrl;
+      head.appendChild(metaImageUrl);
+    }
   }
 
   openGoogleMaps(): void {
@@ -90,13 +149,12 @@ export class InternshipDetailsComponent  implements OnInit {
       console.error('User not authenticated');
       return;
     }
-
     // Assuming this.internshipId and this.rating are accessible within the component
     // @ts-ignore
     this.internshipsService.rateInternship(this.internshipId, this.rating, this.user.id).subscribe(
       (response) => {
         console.log('Rating submitted successfully:', response);
-        // Optionally, update the internship details after rating
+        // Reload the internship details after rating
         this.getInternshipDetails();
       },
       (error) => {
@@ -106,23 +164,10 @@ export class InternshipDetailsComponent  implements OnInit {
   }
 
 
- /* shareOnLinkedIn(): void {
-    if (!this.internship) {
-      console.error('Internship details not available');
-      return;
-    }
-    const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=http://localhost:4200/internship-details/${this.internshipId}`;
-
-    window.open(shareUrl, '_blank');
-  }
-*/
 
   shareOnLinkedIn(): void {
-    // Assuming this.internshipId contains the ID of the internship
-    const id = this.internshipId; // Replace this with your actual ID variable
-console.log(id);
+    const id = this.internshipId;
     this.internshipUrl = `http://localhost:4200/internship-details/${id}`;
-
     this.linkedInService.shareInternshipOnLinkedIn(this.internshipUrl);
   }
 }

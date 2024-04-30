@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface InternshipDao extends JpaRepository<Internship, Long> {
 
     List<Internship> findByUserId(String userId);
+
+    long countByUserId(String userId);
 }
