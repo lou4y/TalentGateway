@@ -12,4 +12,6 @@ public interface TeamService {
     Team updateTeam(Team t);
     void deleteTeam(Team t);
     //Team getTeamDetail(Long teamId);
+    void addTeamMemberToProject(Long projectId, String userId, String memberRole);
+    boolean removeTeamMember(Long teamId, String userId);
 }

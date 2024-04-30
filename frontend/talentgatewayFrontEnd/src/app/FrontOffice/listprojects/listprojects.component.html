@@ -1,37 +1,110 @@
 <!-- listprojects.component.html -->
 <app-header-front></app-header-front>
 <div class="tp-event-3__section pt-120 pb-120 p-relative fix">
+
   <div class="container">
+    <app-project-filter (filterChange)="onFilterChange($event)"></app-project-filter>
+
     <div class="row">
-      <div class="col-lg-6" *ngFor="let project of projects">
+      <div class="d-flex justify-content-end">
+        <a routerLink="/projects/create" class="btn btn-success btn-rounded" id="addProject-btn">
+          <p class="addproject"><i class="mdi mdi-plus me-1"></i> Add New Project</p>
+        </a>&nbsp;
+      </div>
+      <div class="col-lg-6" *ngFor="let project of filteredProjects">
         <div class="tp-event-3__item mb-30">
-            <div class="tp-event-3__content d-md-flex justify-content-between align-items-center">
-                <div class="tp-event-3__info">
-                    <span><i class="fa-light fa-clock"></i> {{ project.startDate }}</span>
-                    <span><i class="fa-light fa-user"></i> {{ project.projectCreator?.firstName }} {{ project.projectCreator?.lastName }}</span>
-                    <h3 class="tp-event-3__title">{{ project.projectName }}</h3>
+          <!-- Card Body -->
+          <div class="card-body d-flex justify-content-between align-items-center">
+            <!-- Left section with project name and avatar -->
+            <div class="d-flex flex-grow-1 overflow-hidden">
+              <div class="flex-shrink-0 me-4">
+                <div class="avatar-md">
+                  <span class="avatar-title rounded-circle bg-light text-danger font-size-16">
+                    <img src="../../../assets/images/esprit/esprit.jpg" alt height="30" />
+                  </span>
                 </div>
-                <div class="tp-evnet-2__btn p-relative z-index-11">
-                    <button class="tp-border-btn" style="border-radius: 5px; border-color: red;" (click)="showdetailProject(project)">
-                        <span>Show details</span>
-                    </button>
-                    <button class="tp-delete-btn" *ngIf="userId === project.projectCreator.userId" (click)="deleteProject(project.projectId)">
-                      <span class="trash-icon"><i class="fas fa-trash-alt"></i></span>
-                  </button>
-                </div>
+              </div>
+              <div class="flex-grow-1 overflow-hidden">
+                <h5 class="text-truncate font-size-15">
+                  <a href="javascript: void(0);" class="text-dark">{{ project.projectName }}</a>
+                </h5>
+                <span>
+                  <i class="fa-light fa-user"></i> {{ project.projectCreator?.firstName }} {{ project.projectCreator?.lastName }}
+                </span>
+              </div>
             </div>
-            <div class="tp-event-3__info">
-                <!-- Like/Dislike button -->
-                <button class="btn" (click)="toggleLike(project)">
-                    <i class="fas fa-heart" [class.red]="project.isLiked"></i>
-                </button>
-                <!-- Display number of likes -->
-                <span class="nblikes">{{ project.numberOfLikes }} Likes</span>
+
+            <!-- Right section with buttons -->
+            <div class="d-flex align-items-center">
+              <button
+                class="button-blue-border"
+                (click)="showDetailProject(project)">
+                <span>Show details</span>
+              </button> &nbsp;&nbsp;
+              <button
+                class="tp-delete-btn"
+                *ngIf="userId === project.creatorId"
+                (click)="deleteProject(project.projectId)">
+                <span class="trash-icon"><i class="fas fa-trash-alt"></i></span>
+              </button>
             </div>
-            <div class="transition"></div>
+          </div>
+
+          <!-- Bottom section with additional information -->
+          <div class="px-4 py-3">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item me-3">
+                <span class="badge" [ngClass]="{
+                  'bg-success': project.projectStatus === 'COMPLETED',
+                  'bg-warning': project.projectStatus === 'IN_PROGRESS' ||
+                                project.projectStatus === 'PLANNING' ||
+                                project.projectStatus === 'ON_HOLD',
+                  'bg-danger': project.projectStatus === 'CANCELED'
+                }">{{ project.projectStatus }}</span>
+              </li>
+              <li class="list-inline-item me-3" title="Due Date" tooltip="Due Date">
+                <i class="bx bx-calendar me-1"></i> {{project.startDate}}
+              </li>
+              <li class="list-inline-item me-3" title="Price" tooltip="Price">
+                <i class="bx bx-dollar me-1"></i>
+                {{ project.price }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="px-4 border-top">
+            <!-- Like/Dislike button -->
+            <button class="btn" (click)="toggleLike(project)">
+              <i class="fas fa-heart" [class.red]="project.isLiked"></i>
+            </button>
+            <!-- Display number of likes -->
+            <span class="nblikes">{{ project.numberOfLikes }} Likes</span>
+          </div>
+
+          <div class="transition"></div>
         </div>
-    </div>
+      </div>
+
 
     </div>
+     <!-- Pagination Controls -->
+     <div class="pagination-controls d-flex justify-content-between mb-3">
+      <button
+        class="btn btn-primary"
+        (click)="goToPage(currentPage - 1)"
+        [disabled]="currentPage <= 1"
+      >
+      <i class="fa-solid fa-circle-chevron-left" style="color:#0d6efd"></i>
+      </button>
+
+      <button
+        class="btn btn-primary"
+        (click)="goToPage(currentPage + 1)"
+        [disabled]="currentPage * pageSize >= projects.length"
+      >
+      <i class="fa-solid fa-circle-chevron-right" style="color:#0d6efd"></i>
+      </button>
+    </div>
+
   </div>
 </div>

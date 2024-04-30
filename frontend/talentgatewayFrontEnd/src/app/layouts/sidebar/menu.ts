@@ -132,8 +132,8 @@ export const MENU: MenuItem[] = [
       },
       {
         id: 33,
-        label: 'MENUITEMS.PROJECTS.LIST.OVERVIEW',
-        link: '/projects/overview',
+        label: 'dasboard project',
+        link: '/projects/dashboardprojects',
         parentId: 30
       },
       {

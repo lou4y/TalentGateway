@@ -8,6 +8,8 @@ import com.cloudcrafters.projectservice.services.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LikeServiceImpl implements LikeService {
 
@@ -45,6 +47,12 @@ public class LikeServiceImpl implements LikeService {
     public int getNumberOfLikes(Long projectId) {
         return likeRepository.countByProject_ProjectIdAndIsLiked(projectId, true);
     }
+
+    @Override
+    public List<Like> getAllLikes() {
+        return likeRepository.findAll();
+    }
+
     @Override
     public boolean isUserLikedProject(Long projectId, String userId) {
         return likeRepository.existsByProject_ProjectIdAndUserIdAndIsLiked(projectId, userId, true);

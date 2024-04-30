@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
@@ -18,16 +18,24 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
-
 import { HeaderFrontComponent } from './FrontOffice/header-front/header-front.component';
 import { ListprojectsComponent } from './FrontOffice/listprojects/listprojects.component';
 import { DetailProjectComponent } from './FrontOffice/projects/detail-project/detail-project.component';
 import { CommentsComponent } from './FrontOffice/projects/comments/comments.component';
-
-
-
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
-
+import { AddTeamComponent } from './FrontOffice/projects/add-team/add-team.component';
+import { MatSelectModule } from '@angular/material/select'; // Required for mat-select and mat-option
+import { MatInputModule } from '@angular/material/input';  // Required for mat-input
+import { MatDialogModule } from '@angular/material/dialog'; // Required for dialogs
+import { MatIconModule } from '@angular/material/icon'; // Required for mat-icon
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSnackBarModule } from '@angular/material/snack-bar';//toast
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { ProjectFilterComponent } from './FrontOffice/projects/project-filter/project-filter.component';
+import { NgxSliderModule } from 'ngx-slider-v2';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 export function createTranslateLoader(http: HttpClient): any {
@@ -42,6 +50,8 @@ export function createTranslateLoader(http: HttpClient): any {
     ListprojectsComponent,
     DetailProjectComponent,
     CommentsComponent,
+    AddTeamComponent,
+    ProjectFilterComponent,
 
   ],
   imports: [
@@ -66,8 +76,18 @@ export function createTranslateLoader(http: HttpClient): any {
     ScrollToModule.forRoot(),
     ToastrModule.forRoot(),
     KeycloakAngularModule,
-    FormsModule
-
+    FormsModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatInputModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatSnackBarModule,
+    NgApexchartsModule,
+    NgxSliderModule,
+    NgSelectModule,
+    MatCheckboxModule
 
   ],
   bootstrap: [AppComponent],
@@ -77,5 +97,6 @@ export function createTranslateLoader(http: HttpClient): any {
       multi: true,
       deps: [KeycloakService]}
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

@@ -7,6 +7,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { CreateComponent } from './create/create.component';
 import { UpdateProjectComponent } from './update-project/update-project.component';
 import { ListprojectsComponent } from 'src/app/FrontOffice/listprojects/listprojects.component';
+import { ProjectsDashboardComponent } from './projects-dashboard/projects-dashboard.component';
 
 const routes: Routes = [
     {
@@ -28,7 +29,11 @@ const routes: Routes = [
     {
         path: 'updateProject/:id',
         component: UpdateProjectComponent
-    }
+    },
+    {
+      path: 'dashboardprojects',
+      component: ProjectsDashboardComponent
+  },
 ];
 
 @NgModule({

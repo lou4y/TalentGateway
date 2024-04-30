@@ -6,14 +6,18 @@ import com.cloudcrafters.projectservice.entities.Team;
 import com.cloudcrafters.projectservice.entities.UserRoleInTeam;
 import com.cloudcrafters.projectservice.enums.ProjectStatus;
 import com.cloudcrafters.projectservice.models.User;
+import com.cloudcrafters.projectservice.serviceImplementation.CloudinaryService;
 import com.cloudcrafters.projectservice.services.ProjectService;
 import jakarta.ws.rs.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -23,6 +27,8 @@ public class ProjectController {
     ProjectService projectService;
     @Autowired
     UserRestClient userRestClient;
+    @Autowired
+    CloudinaryService cloudinaryService;
 
     @GetMapping("/projects")
     public List<Project> getAllProjects() {
@@ -61,6 +67,7 @@ public class ProjectController {
     public Project addNewProject(@RequestBody Project p){
         return projectService.addProject(p);
     }
+
     @PutMapping("projects/{id}")
     public Project updateProject(@PathVariable Long id,@RequestBody Project p){
         p.setProjectId(id);

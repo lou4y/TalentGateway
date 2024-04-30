@@ -44,7 +44,7 @@ import { ChatComponent } from './chat/chat.component';
     DashboardsModule,
     EmailModule,
     HttpClientModule,
-    ProjectsModule,
+    //ProjectsModule,
     UIModule,
     TasksModule,
     ContactsModule,

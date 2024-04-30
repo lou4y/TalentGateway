@@ -27,7 +27,7 @@ export class CommentsComponent implements OnInit {
     this.badWordsFilter = new BadWordsFilter();
     this.projectId=id;
     this.currentuser = await this.authService.currentUser();
-    console.log("current user:",this.currentuser.firstName);
+    console.log("current user:",this.currentuser);
     this.getCommentByProjectId();
 
   }
