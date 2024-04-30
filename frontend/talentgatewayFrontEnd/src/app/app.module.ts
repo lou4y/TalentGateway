@@ -9,6 +9,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { SharedModule } from './cyptolanding/shared/shared.module';
 import { ExtrapagesModule } from './extrapages/extrapages.module';
+import {ConfirmpagesModule} from './confirmpages/confirmpages.module';
 import { LayoutsModule } from './layouts/layouts.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,28 +20,21 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-
 import { HeaderFrontComponent } from './FrontOffice/header-front/header-front.component';
 import { ListprojectsComponent } from './FrontOffice/listprojects/listprojects.component';
 import { DetailProjectComponent } from './FrontOffice/projects/detail-project/detail-project.component';
 import { CommentsComponent } from './FrontOffice/projects/comments/comments.component';
-
-
-
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
 import {InternshipsDetailComponent} from "./FrontOffice/internships-detail/internships-detail.component";
 import {InternshipsComponent} from "./FrontOffice/internships/internships.component";
 import {FooterFrontComponent} from "./FrontOffice/footer-front/footer-front.component";
 import {RatingModule} from "ngx-bootstrap/rating";
-
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {AngularFireModule} from "@angular/fire/compat";
 import { KanbanboardComponent } from './FrontOffice/kanbanboard/kanbanboard.component';
-
-
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -68,6 +62,7 @@ export function createTranslateLoader(http: HttpClient): any {
     KanbanboardComponent,
     KanbanboardComponent,
     HeaderBackComponent
+
   ],
   imports: [
     CommonModule,
@@ -94,6 +89,7 @@ export function createTranslateLoader(http: HttpClient): any {
     LayoutsModule,
     AppRoutingModule,
     ExtrapagesModule,
+    ConfirmpagesModule,
     CarouselModule,
     AccordionModule.forRoot(),
     TabsModule.forRoot(),
@@ -110,8 +106,6 @@ export function createTranslateLoader(http: HttpClient): any {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
   providers: [
-
-
     { provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,

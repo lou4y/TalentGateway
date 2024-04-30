@@ -28,9 +28,11 @@
 
                                 <div class="p-2 mt-4">
                                     <h4>Please confirm your affiliation</h4>
-                                      <ng-select [items]="selectValue"></ng-select>
+                                  <select  class="form-control" id="StateInput" [(ngModel)]="Affiliation"  >
+                                    <option *ngFor="let aff of selectValue" [value]="aff">{{ aff }}</option>
+                                  </select>
                                     <div class="mt-4">
-                                        <a routerLink="/" class="btn btn-success w-md">Confirm</a>
+                                        <a class="btn btn-success w-md " (click)="save()" >Confirm</a>
                                     </div>
                                 </div>
                             </div>
