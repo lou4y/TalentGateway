@@ -22,7 +22,7 @@ $accent-color-darken: darken($accent-color, 15%);
   background-size: cover;
 
   &.avatar-placeholder{
-    background-image: url('~src/assets/images/avatar-placeholder.png');
+    background-image: url('~../../../assets/images/avatar-placeholder.png');
   }
 }
 
