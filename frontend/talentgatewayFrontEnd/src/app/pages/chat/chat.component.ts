@@ -8,8 +8,11 @@ import { chatData, chatMessagesData } from './data';
 import {Router} from "@angular/router";
 import {User} from "../../core/models/auth.models";
 import {AuthenticationService} from "../../core/services/auth.service";
+import {VideoConferenceUrlService} from "../../chatComponents/video-conference/VideoConferenceUrl.service";
 
-import {co} from "@fullcalendar/core/internal-common";
+import { interval, Subscription } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-chat',
@@ -30,7 +33,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
   formData: UntypedFormGroup;
   // Form submit
   chatSubmit: boolean;
-  usermessage: string;
   emoji:any = '';
 
   connectedUser: ConnectedUser[] | undefined | null;
@@ -39,8 +41,10 @@ export class ChatComponent implements OnInit, AfterViewInit {
   chat: { chatId: string, recipientId?: string};
   currentUserId: any ;
   auth: AuthenticationService;
+  private refreshSubscription: Subscription;
 
-  constructor(public formBuilder: UntypedFormBuilder, private router:Router, private http: HttpClient, private authService: AuthenticationService) {
+
+  constructor(public formBuilder: UntypedFormBuilder, private router:Router, private http: HttpClient, private authService: AuthenticationService, private conferenceUrlService: VideoConferenceUrlService) {
     this.auth = authService;
   }
 
@@ -59,9 +63,18 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
     this.currentUserId = user.username;
 
+    this.refreshSubscription = interval(10) // Adjust the interval time as needed (5000 milliseconds = 5 seconds)
+      .subscribe(() => {
+        // Fetch chat messages periodically
+        if (this.chat && this.chat.chatId) {
+          this.fetchChatMessages(this.chat.chatId);
+        }
+      });
 
     console.log('Current user ID:', this.currentUserId);
   }
+
+
 
   fetchConnectedUser() {
     this.http.get<ConnectedUser[]>('http://localhost:8088/api/connected-users')
@@ -74,6 +87,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
         }
       );
   }
+
+
   fetchChatMessages(chatId: string) {
     this.http.get<ChatMessage[]>(`http://localhost:8088/api/chat-messages/${chatId}`)
       .subscribe(
@@ -85,7 +100,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
         }
       );
   }
-
 
 
   fetchUserChats(userId: string) {
@@ -148,7 +162,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
     input.click();
   }
 
-
   openChat(chat: Chat) {
     // Fetch chat messages based on the current user and the recipient
     this.fetchChatMessages(chat.chatId);
@@ -161,7 +174,22 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
     // Assign the chat details to the chat variable
     this.chat = { chatId: chat.chatId, recipientId: chat.recipientId };
+
+    // Scroll to the bottom of the chat window after the messages are fetched
+    setTimeout(() => {
+      this.scrollChatToBottom();
+    }, 100); // Adjust the delay if needed
   }
+
+
+  private scrollChatToBottom() {
+    if (this.scrollRef !== undefined) {
+      this.scrollRef.SimpleBar.getScrollElement().scrollTop =
+        this.scrollRef.SimpleBar.getScrollElement().scrollHeight;
+    }
+  }
+
+
 
 
 
@@ -197,13 +225,13 @@ export class ChatComponent implements OnInit, AfterViewInit {
    * Save the message in chat
    */
 
-  messageSave(recipientId: string) {
+  messageSend(recipientId: string) {
     console.log('recipientId:', recipientId);
     const messageContent = this.formData.get('message').value;
     if (messageContent) {
       const messageData = {
         senderId: this.currentUserId,
-        recipientId: recipientId, // Use the recipientId passed as a parameter
+        recipientId: recipientId,
         content: messageContent,
         timestamp: new Date()
       };
@@ -214,13 +242,18 @@ export class ChatComponent implements OnInit, AfterViewInit {
         .toPromise()
         .then(() => {
           console.log('Message sent successfully');
-          this.fetchChatMessages(recipientId); // Fetch chat messages with the correct recipient ID
+          // Clear input field
+          this.formData.patchValue({ message: '' });
+          // Fetch chat messages with the correct recipient ID
+          this.fetchChatMessages(recipientId);
+          // Scroll to the bottom after sending the message
+          setTimeout(() => {
+            this.scrollChatToBottom();
+          }, 100);
         })
         .catch((error) => {
           console.error('Error sending message:', error);
         });
-
-      this.formData.patchValue({ message: '' });
     }
   }
 
@@ -280,9 +313,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   onBlur() {
   }
 
-  closeReplay() {
-    document.querySelector('.replyCard')?.classList.remove('show');
-  }
+
 
   // keep
   ContactSearch() {
@@ -304,10 +335,45 @@ export class ChatComponent implements OnInit, AfterViewInit {
     })
   }
 
-  openMeeting(): void {
-    // Navigate to the '/meeting' route
+  sendMeetingUrl(messageData: any): void {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.post<any>('http://localhost:8088/api/send-message', messageData, { headers })
+      .toPromise()
+      .then(() => {
+        console.log('Message sent successfully');
+
+      })
+      .catch((error) => {
+        console.error('Error sending message:', error);
+      });
+  }
+  openMeeting(recipientId: string): void {
+    // Retrieve the video conference URL from the VideoConferenceUrlService
+    const videoConferenceUrl = this.conferenceUrlService.getConferenceUrl();
+
+    if (videoConferenceUrl) {
+      // Prepare the message content containing the URL
+      const messageContent = `Hey, let's meet here: <a href="${videoConferenceUrl}" target="_blank">${videoConferenceUrl}</a>`;
+
+      // Prepare the message data
+      const messageData = {
+        senderId: this.currentUserId,
+        recipientId: recipientId,
+        content: messageContent,
+        timestamp: new Date()
+      };
+
+      // Send the message to the recipient
+      this.sendMeetingUrl(messageData);
+      console.log('Meeting URL sent successfully:', messageContent);
+      this.router.navigate(['meeting']);
+    } else {
+      console.error('Video conference URL not available.');
+    }
     this.router.navigate(['meeting']);
   }
+
 
 
 }

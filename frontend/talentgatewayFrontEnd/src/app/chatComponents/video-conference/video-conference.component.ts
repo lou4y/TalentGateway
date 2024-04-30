@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from "../../core/services/auth.service";
+import { AuthenticationService } from "../../core/services/auth.service";
+import { Router } from "@angular/router";
+
+import { VideoConferenceUrlService } from "./VideoConferenceUrl.service";
 
 declare var ZegoUIKitPrebuilt: any;
 
@@ -10,7 +13,7 @@ declare var ZegoUIKitPrebuilt: any;
 })
 export class VideoConferenceComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService) { } // Inject the AuthenticationService
+  constructor(private authService: AuthenticationService, private router: Router, private conferenceUrlService: VideoConferenceUrlService) { }
 
   ngOnInit(): void {
     this.setupVideoConference();
@@ -51,6 +54,12 @@ export class VideoConferenceComponent implements OnInit {
         layout: "Auto",
         showLayoutButton: false,
       });
+
+      const conferenceUrl = window.location.protocol + '//' + window.location.host + window.location.pathname + '?roomID=' + roomID;
+      this.conferenceUrlService.setConferenceUrl(conferenceUrl); // Set the conference URL
+
+      // Print URL in console when meeting is generated or opened
+      console.log('Meeting URL:', conferenceUrl);
     }).catch(error => {
       console.error('Error fetching current user:', error);
     });
