@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 
 
 
+// @ts-ignore
 import {InternshipsService} from "../../../core/services/Internships/internships.service";
 import {Router} from "@angular/router";
 import {User} from "../../../core/models/auth.models";
@@ -222,5 +223,9 @@ export class ListInternshipsComponent implements OnInit {
         console.error('Error fetching internships:', error);
       }
     );
+  }
+
+  saveJob() {
+
   }
 }

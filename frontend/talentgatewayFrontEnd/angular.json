@@ -45,9 +45,11 @@
               "src/assets/scss/app.scss",
               "src/assets/scss/icons.scss",
               "./node_modules/ngx-toastr/toastr.css",
-              "./node_modules/ngx-toastr/toastr-old.css"
+              "./node_modules/ngx-toastr/toastr-old.css",
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@zegocloud/zego-uikit-prebuilt/zego-uikit-prebuilt.js"
+            ]
           },
           "configurations": {
             "production": {

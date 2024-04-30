@@ -4,16 +4,14 @@
 
 export const environment = {
   production: false,
-  defaultauth: 'fackbackend',
    firebaseConfig: {
-    apiKey: '',
-    authDomain: '',
-    databaseURL: '',
-    projectId: '',
-    storageBucket: '',
-    messagingSenderId: '',
-    appId: '',
-    measurementId: ''
+     apiKey: "AIzaSyAQwUO6oDeVHiZELB5woi6DrUIG0-cF3Bg",
+     authDomain: "talentgateway-870d7.firebaseapp.com",
+     projectId: "talentgateway-870d7",
+     storageBucket: "talentgateway-870d7.appspot.com",
+     messagingSenderId: "88335655239",
+     appId: "1:88335655239:web:f94086d869a8c8ccad2c62",
+     measurementId: "G-KMCN9BN6PP"
   }
 };
 

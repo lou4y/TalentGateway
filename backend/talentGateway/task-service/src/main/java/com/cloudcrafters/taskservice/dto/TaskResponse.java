@@ -28,9 +28,8 @@ public class TaskResponse {
 
 
     // for other MS
-    private String userId;
-    private String firstName;
-
+    private String userId;  // User's ID
+    private String firstName;  // User's first name
 
 }
 

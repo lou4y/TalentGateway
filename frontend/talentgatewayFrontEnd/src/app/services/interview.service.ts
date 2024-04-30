@@ -51,9 +51,12 @@ export class InterviewService {
  getUserApplications(userId: string): Observable<any[]> {
   return this.http.get<any[]>('http://localhost:8081/api/application/myapp/' + userId);
 }
-// Méthode pour récupérer les données d'interview
-getInterviewData(): Observable<any[]> {
-  return this.http.get<any[]>(`${this.apiUrl}/interviews`);
+getInterviewData(userId: string): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/myapp/${userId}`);
 }
 
+// Méthode pour récupérer les applications par ID d'offre
+getApplicationsByOffreId(offreId: string): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/offre/${offreId}`);
+}
 }

@@ -51,4 +51,20 @@ export class InternshipsService {
     return this.httpClient.post<any>(`${this.API_URL}/${id}/share-linkedin`, {});
   }
 
+
+// New method to get total number of internships
+  getTotalInternshipsCount(): Observable<number> {
+    return this.httpClient.get<number>(`${this.API_URL}/statistics/total`);
+  }
+
+  // New method to get average rating of internships
+  getAverageRatingOfInternships(): Observable<number> {
+    return this.httpClient.get<number>(`${this.API_URL}/statistics/average-rating`);
+  }
+
+  // New method to get total number of internships by user ID
+  getTotalInternshipsCountByUser(userId: string): Observable<number> {
+    return this.httpClient.get<number>(`${this.API_URL}/statistics/total-by-user/${userId}`);
+  }
+
 }

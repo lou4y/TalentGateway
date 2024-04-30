@@ -1,10 +1,12 @@
 package com.cloudcrafters.taskservice.Controller;
 
 import com.cloudcrafters.taskservice.Clients.ProjectRestClient;
+import com.cloudcrafters.taskservice.Clients.UserRestClient;
 import com.cloudcrafters.taskservice.Entities.Task;
 import com.cloudcrafters.taskservice.dto.TaskResponse;
 import com.cloudcrafters.taskservice.Enums.Priority;
 import com.cloudcrafters.taskservice.models.Project;
+import com.cloudcrafters.taskservice.models.User;
 import com.cloudcrafters.taskservice.services.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +27,29 @@ public class TaskController {
     @Autowired
     private final TaskService taskService;
 
+    @Autowired
+    private UserRestClient userRestClient;
     private ProjectRestClient projectRestClient;
 
     // Create task
+//    @PostMapping("/CreateTask")
+//    public ResponseEntity<?> createTask(@RequestBody Task task) {
+//        try {
+//            Task newTask = taskService.createTask(task);
+//            return new ResponseEntity<>(newTask, HttpStatus.CREATED);
+//        } catch (RuntimeException ex) {
+//            return ResponseEntity
+//                    .status(HttpStatus.BAD_REQUEST)
+//                    .body("We can't create this task: " + ex.getMessage());
+//        }
+//    }
+
     @PostMapping("/CreateTask")
-    public ResponseEntity<?> createTask(@RequestBody Task task) {
-        try {
-            Task newTask = taskService.createTask(task);
-            return new ResponseEntity<>(newTask, HttpStatus.CREATED);
-        } catch (RuntimeException ex) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body("We can't create this task: " + ex.getMessage());
-        }
+    public ResponseEntity<TaskResponse> createTask(@RequestBody Task task) {
+        TaskResponse response = taskService.createTask(task);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
 
     // Get all tasks
     @GetMapping( "/GetAllTasks")
@@ -88,6 +99,16 @@ public class TaskController {
         return ResponseEntity.ok(tasks);
     }
 
+    // Get tasks by status
+    @GetMapping("/ByStatus/{status}")
+    public ResponseEntity<List<TaskResponse>> findTasksByStatus(@PathVariable Statut status) {
+        List<TaskResponse> tasks = taskService.findTasksByStatus(status);
+        if (tasks.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(tasks);
+    }
+
     // Get tasks by user id
     @GetMapping("/ByUserId/{userId}")
     public ResponseEntity<List<TaskResponse>> getTasksByUserId(@PathVariable String userId) {
@@ -124,4 +145,5 @@ public class TaskController {
         long incompleteTasks = taskService.countIncompleteTasksByUserId(userId);
         return ResponseEntity.ok(Map.of("completedTasks", completedTasks, "incompleteTasks", incompleteTasks));
     }
+
 }

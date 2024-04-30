@@ -5,6 +5,7 @@ import com.cloudcrafters.internshipservice.entites.Category;
 import com.cloudcrafters.internshipservice.entites.Internship;
 import com.cloudcrafters.internshipservice.services.CategoryService;
 import com.cloudcrafters.internshipservice.services.InternshipService;
+import com.cloudcrafters.internshipservice.services.LinkedInService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,8 @@ public class InternshipController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private LinkedInService linkedInService;
 
     //create internship
 
@@ -157,6 +160,34 @@ public class InternshipController {
         }
     }
 
+    // Get statistics for the number of internships
+    @GetMapping("/statistics/total")
+    public ResponseEntity<Long> getTotalInternshipsCount() {
+        long totalInternships = internshipService.getTotalInternshipsCount();
+        return ResponseEntity.ok(totalInternships);
+    }
+
+    @GetMapping("/statistics/average-rating")
+    public ResponseEntity<Double> getAverageRatingOfInternships() {
+        double averageRating = internshipService.getAverageRatingOfInternships();
+        return ResponseEntity.ok(averageRating);
+    }
 
 
+    @GetMapping("/statistics/total-by-user/{userId}")
+    public ResponseEntity<Long> getTotalInternshipsCountByUser(@PathVariable String userId) {
+        long totalInternships = internshipService.getTotalInternshipsCountByUser(userId);
+        return ResponseEntity.ok(totalInternships);
+    }
+
+
+
+    @PostMapping("/share-internship")
+    public void shareInternshipOnLinkedIn(
+            @RequestParam String internshipTitle,
+            @RequestParam String internshipDescription
+
+    ) {
+        linkedInService.shareInternship(internshipTitle, internshipDescription);
+    }
 }

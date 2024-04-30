@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navigation fixed-top sticky" (window:scroll)="windowScroll()" id="navbar">
+  <div class="container">
+    <a class="navbar-logo" routerLink="/">
+      <img src="assets/images/logo-dark.png" alt="" height="19" class="logo logo-dark">
+      <img src="assets/images/logo-light.png" alt="" height="19" class="logo logo-light">
+    </a>
+
+    <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item" data-toggle="collapse"
+            data-target="#topnav-menu-content" (click)="toggleMenu()">
+      <i class="fa fa-fw fa-bars"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="topnav-menu-content">
+      <ul class="navbar-nav ms-auto" id="topnav-menu">
+        <li class="nav-item">
+          <a class="nav-link" href="javascript: void(0);" [ngxScrollTo]="'home'"
+             [ngClass]="{'active':currentSection === 'home'}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript: void(0);" [ngxScrollTo]="'about'"
+             [ngClass]="{'active':currentSection === 'about'}">About</a>
+        </li>
+        <li class="nav-item"><a  class="nav-link" href="internshipslist">Internships</a></li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="boardtask">Board Task</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript: void(0);" [ngxScrollTo]="'roadmap'" [ngxScrollToOffset]="5"
+             [ngClass]="{'active':currentSection === 'roadmap'}">Roadmap</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript: void(0);" [ngxScrollTo]="'team'" [ngxScrollToOffset]="5"
+             [ngClass]="{'active':currentSection === 'team'}">Team</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript: void(0);" [ngxScrollTo]="'news'" [ngxScrollToOffset]="5"
+             [ngClass]="{'active':currentSection === 'news'}">News</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="javascript: void(0);" [ngxScrollTo]="'faqs'"
+             [ngClass]="{'active':currentSection === 'faqs'}">FAQs</a>
+        </li>
+
+      </ul>
+
+      <div class="my-2 ms-lg-2">
+        <a href="javascript: void(0);" class="btn btn-outline-success w-xs">Sign in</a>
+      </div>
+    </div>
+  </div>
+</nav>

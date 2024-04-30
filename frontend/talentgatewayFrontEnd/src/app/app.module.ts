@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {APP_INITIALIZER, NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {APP_INITIALIZER, NgModule , CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
@@ -9,6 +9,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { SharedModule } from './cyptolanding/shared/shared.module';
 import { ExtrapagesModule } from './extrapages/extrapages.module';
+import {ConfirmpagesModule} from './confirmpages/confirmpages.module';
 import { LayoutsModule } from './layouts/layouts.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,24 +19,29 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 import { HeaderFrontComponent } from './FrontOffice/header-front/header-front.component';
 import { ListprojectsComponent } from './FrontOffice/listprojects/listprojects.component';
 import { DetailProjectComponent } from './FrontOffice/projects/detail-project/detail-project.component';
 import { CommentsComponent } from './FrontOffice/projects/comments/comments.component';
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
-import { AddTeamComponent } from './FrontOffice/projects/add-team/add-team.component';
-import { MatSelectModule } from '@angular/material/select'; // Required for mat-select and mat-option
-import { MatInputModule } from '@angular/material/input';  // Required for mat-input
-import { MatDialogModule } from '@angular/material/dialog'; // Required for dialogs
-import { MatIconModule } from '@angular/material/icon'; // Required for mat-icon
+import {InternshipsDetailComponent} from "./FrontOffice/internships-detail/internships-detail.component";
+import {InternshipsComponent} from "./FrontOffice/internships/internships.component";
+import {FooterFrontComponent} from "./FrontOffice/footer-front/footer-front.component";
+import {RatingModule} from "ngx-bootstrap/rating";
+import { environment } from '../environments/environment';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import {AngularFireModule} from "@angular/fire/compat";
+import { KanbanboardComponent } from './FrontOffice/kanbanboard/kanbanboard.component';
+import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatSnackBarModule } from '@angular/material/snack-bar';//toast
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxEchartsModule } from 'ngx-echarts';
 import { NgApexchartsModule } from 'ng-apexcharts';
-import { ProjectFilterComponent } from './FrontOffice/projects/project-filter/project-filter.component';
-import { NgxSliderModule } from 'ngx-slider-v2';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DndModule } from 'ngx-drag-drop';
+import {HeaderBackComponent} from "./cyptolanding/header-back/header-back.component";
 
 
 export function createTranslateLoader(http: HttpClient): any {
@@ -47,14 +53,29 @@ export function createTranslateLoader(http: HttpClient): any {
     AppComponent,
     CyptolandingComponent,
     HeaderFrontComponent,
+    FooterFrontComponent,
     ListprojectsComponent,
     DetailProjectComponent,
     CommentsComponent,
-    AddTeamComponent,
-    ProjectFilterComponent,
+    InternshipsDetailComponent,
+    InternshipsComponent,
+    KanbanboardComponent,
+    KanbanboardComponent,
+    HeaderBackComponent
 
   ],
   imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ModalModule.forRoot(),
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
+    NgApexchartsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -68,6 +89,7 @@ export function createTranslateLoader(http: HttpClient): any {
     LayoutsModule,
     AppRoutingModule,
     ExtrapagesModule,
+    ConfirmpagesModule,
     CarouselModule,
     AccordionModule.forRoot(),
     TabsModule.forRoot(),
@@ -77,26 +99,18 @@ export function createTranslateLoader(http: HttpClient): any {
     ToastrModule.forRoot(),
     KeycloakAngularModule,
     FormsModule,
-    MatDialogModule,
-    MatSelectModule,
-    MatInputModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatSnackBarModule,
-    NgApexchartsModule,
-    NgxSliderModule,
-    NgSelectModule,
-    MatCheckboxModule
+    RatingModule,
+    DndModule
 
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
   providers: [
     { provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,
-      deps: [KeycloakService]}
+      deps: [KeycloakService]},
+      DatePipe
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }
