@@ -1,15 +1,15 @@
 <!-- listprojects.component.html -->
-<app-header-front></app-header-front>
-<div class="tp-event-3__section pt-120 pb-120 p-relative fix">
+<app-header-back></app-header-back>
+<div class="tp-event-3__section pt-120 pb-120 p-relative fix" style="margin-top:50px;">
 
   <div class="container">
     <app-project-filter (filterChange)="onFilterChange($event)"></app-project-filter>
 
     <div class="row">
       <div class="d-flex justify-content-end">
-        <a routerLink="/projects/create" class="btn btn-success btn-rounded" id="addProject-btn">
-          <p class="addproject"><i class="mdi mdi-plus me-1"></i> Add New Project</p>
-        </a>&nbsp;
+        <button (click)="openAddProjectDialog()" class="btn btn-success btn-rounded" id="addProject-btn">
+          <i class="mdi mdi-plus me-1"></i> Add New Project
+        </button>&nbsp;
       </div>
       <div class="col-lg-6" *ngFor="let project of filteredProjects">
         <div class="tp-event-3__item mb-30">

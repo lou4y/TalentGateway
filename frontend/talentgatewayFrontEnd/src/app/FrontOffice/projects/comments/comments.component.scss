@@ -86,6 +86,23 @@
 .comment-box .comment-submit:hover{
   background-color: #0077ff;
 }
+/* CSS pour les émoticônes */
+.sentiment-icon {
+  font-size: 24px; /* Taille de l'icône plus grande */
+}
+
+.sentiment-positive {
+  color: green; /* Couleur pour les commentaires positifs */
+}
+
+.sentiment-neutral {
+  color: orange; /* Couleur pour les commentaires neutres */
+}
+
+.sentiment-negative {
+  color: red; /* Couleur pour les commentaires négatifs */
+}
+
 @media screen and (max-width: 665px){
   .comment-session{
     width: 100%;

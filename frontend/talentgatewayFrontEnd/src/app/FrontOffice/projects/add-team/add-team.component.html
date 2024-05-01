@@ -1,7 +1,8 @@
 <!-- Formulaire d'ajout d'un membre d'équipe -->
 <form (ngSubmit)="onSubmit()" class="form-container">
   <div class="d-flex align-items-center justify-content-between" style="margin-top: 40px;">
-    <div class="input-group">
+    <div class="input-group" style="margin-top: 20px;">
+      <br/><br/>
       <span class="input-group-text">@</span>
       <input
         type="text"
@@ -13,13 +14,14 @@
 
     <!-- Champ de saisie pour sélectionner un membre d'équipe -->
     <mat-form-field style="width: 50%; color:white;" [color]="colorControl.value">
-      <mat-label>Sélectionner un membre d'équipe</mat-label>
+      <mat-label style="color:black;">Sélectionner un membre d'équipe</mat-label>
       <input
         type="text"
         matInput
         [formControl]="searchControl"
         [matAutocomplete]="auto"
-        placeholder="Rechercher par nom ou prénom"
+        class="form-control"
+        placeholder="Rechercher par nom ou prénom" style="width:200px;height:40px;border-radius:5%"
       />
       <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onUserSelected($event)">
         <mat-option *ngFor="let user of filteredUsers" [value]="user.userId">

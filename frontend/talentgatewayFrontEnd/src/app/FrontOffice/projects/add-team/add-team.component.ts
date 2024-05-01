@@ -97,9 +97,14 @@ export class AddTeamComponent implements OnInit {
 
     this.teamService.addTeamMemberToProject(this.projectId, userId, memberRole).subscribe(
         (response) => {
-          
+          Swal.fire({
+            title: "Good job!",
+            text: "Team member added successfully.",
+            icon: "success"
+          }),
 
-            this.teamService.sendSms(phoneNumber, message).subscribe(
+
+            /*this.teamService.sendSms(phoneNumber, message).subscribe(
                 () =>Swal.fire({
             title: "Good job!",
             text: "Team member added successfully.",
@@ -110,7 +115,7 @@ export class AddTeamComponent implements OnInit {
                   title: "Oops...",
                   text: "error to send sms"
                 })
-            );
+            );*/
 
             this.dialogRef.close(); // Fermer le dialogue après succès
         },
@@ -122,7 +127,7 @@ export class AddTeamComponent implements OnInit {
                 title: "Oops...",
                 text: "The user is already a member of the team."
               });
-              
+
             }
             Swal.fire({
               icon: "error",

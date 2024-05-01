@@ -1,0 +1,19 @@
+/* stepper.component.css */
+
+.container {
+  padding: 20px; // Padding for the container
+}
+
+.form-group {
+  margin-bottom: 15px; // Space between form fields
+}
+// Change the tick (checkmark) color to green
+.green-tick-checkbox {
+  .mat-checkbox-inner-container {
+    .mat-checkbox-checkmark {
+      stroke: green; // This sets the color of the checkmark
+    }
+  }
+}
+
+

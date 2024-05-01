@@ -1,28 +1,77 @@
-<div>
-  <div class="comment-session" *ngFor="let comment of comments">
+
+  <!-- Display Comments with Sentiment Icons -->
+  <div *ngFor="let comment of filteredComments" class="comment-session">
     <div class="post-comment">
       <div class="user">
         <div class="user-image">
-          <img src="assets/images/users/avatar-5.jpg" alt="image">
+          <img src="assets/images/users/avatar-5.jpg" alt="User Image" />
         </div>
         <div class="user-meta">
-          <div class="name">{{ comment.user?.firstName }} {{ comment.user?.lastName }}</div>
+          <div class="user-meta d-flex align-items-center"> <!-- Alignement des éléments -->
+            <div class="name" style="margin-right: 30px;">
+              {{ comment.user?.firstName }} {{ comment.user?.lastName }}
+            </div>
+            <div class="sentiment-icon"> <!-- Icônes de Sentiment -->
+              <i
+                *ngIf="comment.sentiment === 'positive'"
+                class="fas fa-smile sentiment-positive"
+              ></i>
+              <i
+                *ngIf="comment.sentiment === 'neutral'"
+                class="fas fa-meh sentiment-neutral"
+              ></i>
+              <i
+                *ngIf="comment.sentiment === 'negative'"
+                class="fas fa-frown sentiment-negative"
+              ></i>
+            </div>
+          </div>
           <div class="day">{{ comment.commentDate | date: 'dd MMMM yyyy' }}</div>
-          <br/>
+          <!-- Sentiment Icon with Custom Style -->
+
+          <br />
           <div class="comment-post">{{ comment.commentContent }}</div>
         </div>
       </div>
     </div>
   </div>
+  <div class="pagination-controls d-flex justify-content-between mb-3">
+    <button
+      class="btn btn-primary"
+      (click)="goToPage(currentPage - 1)"
+      [disabled]="currentPage <= 1"
+    >
+      <i class="fas fa-arrow-left"></i>
+    </button>
 
+    <button
+      class="btn btn-primary"
+      (click)="goToPage(currentPage + 1)"
+      [disabled]="currentPage * pageSize >= comments.length" style="margin-left:600px;"
+    >
+      <i class="fas fa-arrow-right" ></i>
+    </button>
+  </div>
+
+
+
+  <!-- Comment Box for Adding New Comments -->
   <div class="comment-box">
     <div class="user">
       <div class="user-image">
-        <img src="assets/images/users/avatar-5.jpg" alt="image">
+        <img src="assets/images/users/avatar-5.jpg" alt="User Image" />
       </div>
-      <div class="name">{{currentuser.firstName}} {{currentuser.lastName}}</div>
+      <div class="name">{{ currentUser?.firstName }} {{ currentUser?.lastName }}</div>
     </div>
-      <textarea name="comment" placeholder="Add a comment" [(ngModel)]="commentData.commentContent"></textarea>
-      <button class="comment-submit"(click)="addNewComment()">Comment</button>
+    <textarea
+      name="comment"
+      placeholder="Add a comment"
+      [(ngModel)]="commentData.commentContent"
+    ></textarea>
+    <button
+      class="comment-submit"
+      (click)="addNewComment()"
+    >
+      Comment
+    </button>
   </div>
-</div>

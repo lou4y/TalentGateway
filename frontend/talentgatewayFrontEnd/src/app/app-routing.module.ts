@@ -14,6 +14,7 @@ import {ConfirmProfileDetailsComponent} from "./confirmpages/confirmProfileDetai
 import {InternshipsComponent} from "./FrontOffice/internships/internships.component";
 import {InternshipsDetailComponent} from "./FrontOffice/internships-detail/internships-detail.component";
 import { KanbanboardComponent } from './FrontOffice/kanbanboard/kanbanboard.component';
+import { AddprojectWithTeamComponent } from './FrontOffice/projects/addproject-with-team/addproject-with-team.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'listprojectsfrontoffice', component: ListprojectsComponent },
   { path: 'Internships', component: InternshipsComponent },
   {path: 'detailProject/:id', component: DetailProjectComponent},
+  {path: 'addprojectwithteam', component: AddprojectWithTeamComponent},
   { path: '', component: LayoutComponent, loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule), canActivate: [AuthGuard,UserVerificationGuard] },
   {path :'confirmation',component: VerificationComponent,canActivate: [AuthGuard]},
   { path: 'confirm-profile-details', component:ConfirmProfileDetailsComponent, canActivate: [AuthGuard]},
@@ -35,7 +37,7 @@ const routes: Routes = [
   { path: 'crypto-ico-landing', component: CyptolandingComponent },
   { path: '**', component: Page404Component }
 
-  
+
 
 ];
 
