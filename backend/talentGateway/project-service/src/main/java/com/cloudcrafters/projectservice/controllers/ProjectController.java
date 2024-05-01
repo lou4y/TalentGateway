@@ -8,6 +8,7 @@ import com.cloudcrafters.projectservice.enums.ProjectStatus;
 import com.cloudcrafters.projectservice.models.User;
 import com.cloudcrafters.projectservice.serviceImplementation.CloudinaryService;
 import com.cloudcrafters.projectservice.services.ProjectService;
+import com.cloudcrafters.projectservice.services.TeamService;
 import jakarta.ws.rs.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -29,6 +31,8 @@ public class ProjectController {
     UserRestClient userRestClient;
     @Autowired
     CloudinaryService cloudinaryService;
+    @Autowired
+    TeamService teamService;
 
     @GetMapping("/projects")
     public List<Project> getAllProjects() {
@@ -64,9 +68,35 @@ public class ProjectController {
        return project;
     }
     @PostMapping("/projects")
-    public Project addNewProject(@RequestBody Project p){
-        return projectService.addProject(p);
+    public ResponseEntity<Project> addNewProject(@RequestBody Project project) {
+        try {
+            // Handle team creation or association
+            if (project.getTeam() != null) {
+                Team team = project.getTeam();
+                if (team.getTeamId() == null) {
+                    // New team, persist it first
+                    team = teamService.addTeam(team); // Save the team
+                    project.setTeam(team); // Associate the persisted team with the project
+                }
+
+                // Ensure that each user in the team has a proper reference to the team
+                Set<UserRoleInTeam> usersWithRoles = team.getUsersWithRoles();
+                if (usersWithRoles != null) {
+                    for (UserRoleInTeam userRole : usersWithRoles) {
+                        userRole.setTeam(team); // Link UserRoleInTeam to the team
+                    }
+                }
+            }
+
+            // Save the project
+            Project newProject = projectService.addProject(project);
+            return ResponseEntity.ok(newProject); // Return the new project
+        } catch (Exception e) {
+            // Handle errors and return a proper response
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
+
 
     @PutMapping("projects/{id}")
     public Project updateProject(@PathVariable Long id,@RequestBody Project p){

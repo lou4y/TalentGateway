@@ -5,6 +5,8 @@ import { AuthenticationService } from 'src/app/core/services/auth.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/auth.models';
+import { AddprojectWithTeamComponent } from '../projects/addproject-with-team/addproject-with-team.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-listprojects',
@@ -24,7 +26,8 @@ export class ListprojectsComponent implements OnInit {
     private projectService: ProjectService,
     private commentsService: CommentsService,
     private authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog,
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -38,6 +41,8 @@ export class ListprojectsComponent implements OnInit {
       (projects: any[]) => {
         this.projects = projects;
         this.filteredProjects = this.paginateProjects(this.projects, this.currentPage, this.pageSize);
+        this.fetchNumberOfLikes();
+        this.loadLikesForProjects();
       },
       (error) => {
         console.error('Error fetching projects:', error);
@@ -191,6 +196,12 @@ export class ListprojectsComponent implements OnInit {
     ).add(() => {
       this.deleteInProgress = false;
       this.loadProjects(); // Refresh the list after deletion
+    });
+  }
+
+  openAddProjectDialog() {
+    this.dialog.open(AddprojectWithTeamComponent, {
+      width: '1150px', // Taille du dialogue
     });
   }
 }

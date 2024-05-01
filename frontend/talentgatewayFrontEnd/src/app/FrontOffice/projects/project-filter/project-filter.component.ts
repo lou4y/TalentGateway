@@ -7,32 +7,31 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class ProjectFilterComponent {
   @Output() filterChange = new EventEmitter<any>();
+  selectedFilter: string;
+  value: number = 0;
+  highValue: number = 100;
+  options: any = {
+    floor: 0,
+    ceil: 100,
+    step: 1
+  };
 
-  // Ajoutez la propriété `filterOptions` avec des options de filtre appropriées
   filterOptions = [
     { value: '', label: 'Select Filter' },
     { value: 'mostLikes', label: 'Most Likes' },
     { value: 'topPositiveComments', label: 'Top Positive Comments' },
-    { value: 'bestPrices', label: 'Best Prices' },
   ];
 
-  // Initialisation du slider pour la plage de prix
-  value: number = 40;
-  highValue: number = 60;
-  options = {
-    floor: 0,
-    ceil: 100,
-    step: 1,
-  };
+  constructor() { }
 
-  onFilterChange(filter: string) {
-    console.log('Selected Filter:', filter); // Log du filtre sélectionné
-    this.filterChange.emit({ type: 'general', value: filter });
+  onFilterChange(event: any) {
+    console.log('Selected Filter:', event.value);
+    this.filterChange.emit({ type: 'general', value: event.value });
   }
 
   onPriceChange(event: any) {
     const priceRange = { min: event.value, max: event.highValue };
-    console.log('Price range:', priceRange); // Log de la fourchette de prix
+    console.log('Price range:', priceRange);
     this.filterChange.emit({ type: 'price', value: priceRange });
   }
 

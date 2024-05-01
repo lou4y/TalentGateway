@@ -42,7 +42,21 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { DndModule } from 'ngx-drag-drop';
 import {HeaderBackComponent} from "./cyptolanding/header-back/header-back.component";
-
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSnackBarModule } from '@angular/material/snack-bar';//toast
+import { ProjectFilterComponent } from './FrontOffice/projects/project-filter/project-filter.component';
+import { NgxSliderModule } from 'ngx-slider-v2';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AddTeamComponent } from './FrontOffice/projects/add-team/add-team.component';
+import { AddprojectWithTeamComponent } from './FrontOffice/projects/addproject-with-team/addproject-with-team.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import { NgStepperModule } from 'angular-ng-stepper';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { UiSwitchModule } from 'ngx-ui-switch';
 
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -61,7 +75,10 @@ export function createTranslateLoader(http: HttpClient): any {
     InternshipsComponent,
     KanbanboardComponent,
     KanbanboardComponent,
-    HeaderBackComponent
+    HeaderBackComponent,
+    AddTeamComponent,
+    ProjectFilterComponent,
+    AddprojectWithTeamComponent,
 
   ],
   imports: [
@@ -100,7 +117,22 @@ export function createTranslateLoader(http: HttpClient): any {
     KeycloakAngularModule,
     FormsModule,
     RatingModule,
-    DndModule
+    DndModule,
+    MatAutocompleteModule,
+    MatSnackBarModule,
+    NgApexchartsModule,
+    NgxSliderModule,
+    NgSelectModule,
+    MatCheckboxModule,
+    CollapseModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    CKEditorModule,
+    NgStepperModule,
+    CdkStepperModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
+    NgSelectModule,
+    UiSwitchModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
