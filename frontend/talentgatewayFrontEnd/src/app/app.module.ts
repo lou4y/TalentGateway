@@ -57,7 +57,9 @@ import {CdkStepperModule} from '@angular/cdk/stepper';
 import { NgStepperModule } from 'angular-ng-stepper';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { UiSwitchModule } from 'ngx-ui-switch';
-
+import { UploadfilefirebaseComponent } from './FrontOffice/projects/uploadfiles/uploadfilefirebase/uploadfilefirebase.component';
+import { firebaseenvir } from 'src/environments/firebaseenvir';
+import { NgxFileDropModule } from 'ngx-file-drop';
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -79,6 +81,7 @@ export function createTranslateLoader(http: HttpClient): any {
     AddTeamComponent,
     ProjectFilterComponent,
     AddprojectWithTeamComponent,
+    UploadfilefirebaseComponent,
 
   ],
   imports: [
@@ -89,7 +92,7 @@ export function createTranslateLoader(http: HttpClient): any {
       echarts: () => import('echarts'),
     }),
     NgApexchartsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(firebaseenvir.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
@@ -132,7 +135,8 @@ export function createTranslateLoader(http: HttpClient): any {
     NgxMaskDirective,
     NgxMaskPipe,
     NgSelectModule,
-    UiSwitchModule
+    UiSwitchModule,
+    NgxFileDropModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

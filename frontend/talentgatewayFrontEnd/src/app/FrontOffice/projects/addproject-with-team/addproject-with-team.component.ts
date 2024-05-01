@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { CdkStepper } from '@angular/cdk/stepper';
 import { ProjectService } from 'src/app/services/project.service';
@@ -7,13 +7,15 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/core/models/auth.models';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { MatDialogRef } from '@angular/material/dialog';
-
+import { AngularFireStorage } from "@angular/fire/compat/storage";
+import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-addproject-with-team',
   templateUrl: './addproject-with-team.component.html',
   styleUrls: ['./addproject-with-team.component.scss']
 })
-export class AddprojectWithTeamComponent implements OnInit {
+export class AddprojectWithTeamComponent implements OnInit, AfterViewInit {
   @ViewChild('cdkStepper', { static: true }) cdkStepper: CdkStepper;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -22,16 +24,24 @@ export class AddprojectWithTeamComponent implements OnInit {
   currentUser: User;
   users: any[] = [];
   filteredUsers: any[] = [];
+  url: any;
   // Updated structure to include first and last name
   selectedTeamMembers: { userId: string; firstName: string; lastName: string; memberRole: string }[] = [];
-
+  selectedFileName: string | null = null;
+  @ViewChild('fileInput') fileInputRef!: ElementRef;
   constructor(
     public dialogRef: MatDialogRef<AddprojectWithTeamComponent>,
     private formBuilder: FormBuilder,
     private projectService: ProjectService,
     private testuserService: TestuserService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private fireStorage: AngularFireStorage
   ) {}
+  ngAfterViewInit() {
+    if (!this.fileInputRef) {
+      console.error("fileInputRef is not initialized");
+    }
+  }
 
   async ngOnInit(): Promise<void> {
     //récupérer ll'utilisateur connecté
@@ -88,6 +98,10 @@ export class AddprojectWithTeamComponent implements OnInit {
   }
 
   submitProject(): void {
+    if (this.fileInputRef && this.fileInputRef.nativeElement.files.length > 0) {
+      this.uploadFile(this.fileInputRef.nativeElement.files[0]);
+    }
+
     if (this.firstFormGroup.valid && this.secondFormGroup.valid && this.thirdFormGroup.valid) {
       const projectData = {
         projectName: this.firstFormGroup.controls['projectName'].value,
@@ -97,6 +111,7 @@ export class AddprojectWithTeamComponent implements OnInit {
         price: this.secondFormGroup.controls['price'].value,
         projectStatus: "PLANNING", // Default status
         creatorId: this.currentUser.id,
+        projectFile: this.url,
         team: {
           name: this.thirdFormGroup.controls['teamName'].value,
           usersWithRoles: this.selectedTeamMembers.map(member => ({
@@ -108,11 +123,18 @@ export class AddprojectWithTeamComponent implements OnInit {
 
       this.projectService.addProject(projectData).subscribe(
         (response) => {
-          console.log("Project added:", response);
-          // Handle success
+          Swal.fire({
+            title: "Good job!",
+            text: "Your Project added successfully!",
+            icon: "success"
+          });
         },
         (error) => {
-          console.error("Error adding project:", error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "There is a problem to add the project!"
+          });
           // Handle error
         }
       );
@@ -123,5 +145,39 @@ export class AddprojectWithTeamComponent implements OnInit {
   //close dialog
   onCancel() {
     this.dialogRef.close(); // Fermer le dialogue sans soumission
+  }
+  triggerFileInput(): void {
+    if (this.fileInputRef) {
+      this.fileInputRef.nativeElement.click(); // Triggers the hidden file input
+    }
+  }
+
+  onFileChange(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      this.uploadFile(file); // Handles the file upload
+    }
+  }
+
+
+
+  onFileDrop(droppedFiles: NgxFileDropEntry[]): void {
+    const fileEntry = droppedFiles[0]?.fileEntry as FileSystemFileEntry;
+    if (fileEntry) {
+      fileEntry.file((file: File) => {
+        this.uploadFile(file);
+      });
+    }
+  }
+
+  async uploadFile(file: File): Promise<void> {
+    const path = `projectfiles/${file.name}`;
+    const uploadTask = await this.fireStorage.upload(path, file);
+    const fileUrl = await uploadTask.ref.getDownloadURL();
+    console.log("File uploaded:", fileUrl);
+
+    // Assign the file URL to a property for later use
+    this.url = fileUrl;
+    this.selectedFileName = file.name;
   }
 }

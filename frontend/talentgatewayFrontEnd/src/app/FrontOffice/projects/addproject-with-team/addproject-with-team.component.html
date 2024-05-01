@@ -94,6 +94,29 @@
                         Price is required.
                       </div>
                     </div>
+                    <div>
+                      <!-- Ngx File Drop Component -->
+                      <ngx-file-drop
+                        dropZoneLabel="Drop your files here"
+                        (onFileDrop)="onFileDrop($event)">
+                      </ngx-file-drop>
+
+                      <!-- Button for selecting a file -->
+                      <button (click)="triggerFileInput()" class="btn btn-primary">Select a file</button>
+
+                      <!-- Hidden file input for manual file selection -->
+                      <input
+                        type="file"
+                        (change)="onFileChange($event)"
+                        style="display: none;"
+                        id="fileInput"
+                        #fileInput
+                      />
+
+                      <!-- Display selected file name -->
+                      <div *ngIf="selectedFileName">Selected file: {{ selectedFileName }}</div>
+                    </div>
+
 
                     <ul class="list-inline wizard d-flex justify-content-end">
                       <li class="previous list-inline-item"><button class="btn btn-primary" cdkStepperPrevious>Previous</button></li>
@@ -166,7 +189,9 @@
                 <ng-template cdkStepLabel>
                   <span class="number">4.</span>
                   <span>Confirmation</span>
+
                 </ng-template>
+
                 <section *ngIf="cdkStepper.selectedIndex === 3">
                   <ul class="list-inline wizard d-flex justify-content-end">
                     <li class="previous list-inline-item"><button class="btn btn-primary" cdkStepperPrevious>Previous</button></li>

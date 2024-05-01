@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/auth.models';
 import { AddprojectWithTeamComponent } from '../projects/addproject-with-team/addproject-with-team.component';
 import { MatDialog } from '@angular/material/dialog';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-listprojects',
@@ -170,34 +171,39 @@ export class ListprojectsComponent implements OnInit {
   }
 
   deleteProject(id: number) {
-    if (this.deleteInProgress) {
-      return; // Exit if delete operation is in progress
-    }
-
-    this.deleteInProgress = true;
-
     this.projectService.deleteProject(id).subscribe(
-      () => {
-        this.projects = this.projects.filter((project) => project.projectId !== id);
+      (response: HttpResponse<any>) => { // Spécifiez le type de la réponse
+        console.log('Delete project response:', response);
+        if (response.ok) { // Utilisez 'ok' pour vérifier si le statut est entre 200-299
+          this.projects = this.projects.filter((project) => project.projectId !== id);
+          Swal.fire({
+            title: 'Good job!',
+            text: 'Your project was deleted successfully!',
+            icon: 'success'
+          });
+        } else {
+          // Si la réponse ne montre pas le succès, affichez un message d'erreur
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Failed to delete your project',
+            footer: '<a href="#">Why do I have this issue?</a>'
+          });
+        }
+      },
+      (error) => {
         Swal.fire({
           title: 'Good job!',
           text: 'Your project was deleted successfully!',
           icon: 'success'
         });
       },
-      (error) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Failed to delete your project',
-          footer: '<a href="#">Why do I have this issue?</a>'
-        });
+      () => {
+        this.loadProjects(); // Rafraîchissez la liste après la suppression
       }
-    ).add(() => {
-      this.deleteInProgress = false;
-      this.loadProjects(); // Refresh the list after deletion
-    });
-  }
+    );
+}
+
 
   openAddProjectDialog() {
     this.dialog.open(AddprojectWithTeamComponent, {
