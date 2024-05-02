@@ -4,7 +4,7 @@ import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/core/models/auth.models';
 import Swal from 'sweetalert2';
-import BadWordsFilter from 'bad-words';
+import BadWordsFilter from 'bad-words'; // Import the bad words filter
 
 @Component({
   selector: 'app-comments',
@@ -19,7 +19,7 @@ export class CommentsComponent implements OnInit {
   commentData = { commentContent: '' };
   currentPage = 1;
   pageSize = 2;
-  badWordsFilter: any;
+  badWordsFilter = new BadWordsFilter(); // Initialize the bad words filter
 
   constructor(
     private commentsService: CommentsService,
@@ -74,7 +74,7 @@ export class CommentsComponent implements OnInit {
           text: 'Your comment was added successfully!',
           icon: 'success',
         });
-        this.getCommentByProjectId(); // Recharger les commentaires
+        this.getCommentByProjectId(); // Reload comments
       },
       (error) => {
         Swal.fire({
@@ -87,6 +87,6 @@ export class CommentsComponent implements OnInit {
   }
 
   filterBadWords(commentContent: string): string {
-    return this.badWordsFilter.clean(commentContent); // Filtrer les gros mots
+    return this.badWordsFilter.clean(commentContent); // Use the initialized filter
   }
 }

@@ -6,13 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8646316c-3181-4bdc-a429-332ebfde49a0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/listprojects/listprojects.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/listprojects/listprojects.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/projects/addproject-with-team/addproject-with-team.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/projects/addproject-with-team/addproject-with-team.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/projects/addproject-with-team/addproject-with-team.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/projects/addproject-with-team/addproject-with-team.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-service/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Controller/TaskController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +46,13 @@
 }</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -120,7 +123,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.GatewayServiceApplication">
+  <component name="RunManager" selected="Spring Boot.ProjectServiceApplication">
     <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.configservice.ConfigServiceApplication" />
@@ -263,7 +266,11 @@
       <workItem from="1714210600001" duration="5738000" />
       <workItem from="1714405108891" duration="176000" />
       <workItem from="1714489870997" duration="2354000" />
-      <workItem from="1714551536440" duration="4627000" />
+      <workItem from="1714551536440" duration="5218000" />
+      <workItem from="1714637996103" duration="374000" />
+      <workItem from="1714643326345" duration="2765000" />
+      <workItem from="1714650547937" duration="1424000" />
+      <workItem from="1714653085508" duration="3638000" />
     </task>
     <servers />
   </component>
