@@ -7222,10 +7222,24 @@
   dependencies:
     "tslib" "^2.3.0"
 
+
 "ngx-image-cropper@^7.0.1":
   "integrity" "sha512-Aij3z0bGZ1Em+P1nSOKskEwlTKCS2X4MVTTz9uNFZdyZbT91Xrz2tChgGc9d++w2sUsEhGnM2jP3RKNpZq9lsg=="
   "resolved" "https://registry.npmjs.org/ngx-image-cropper/-/ngx-image-cropper-7.0.1.tgz"
   "version" "7.0.1"
+
+ngx-file-drop@^16.0.0:
+  version "16.0.0"
+  resolved "https://registry.npmjs.org/ngx-file-drop/-/ngx-file-drop-16.0.0.tgz"
+  integrity sha512-33RPoZBAiMkV110Rzu3iOrzGcG5M20S4sAiwLzNylfJobu9qVw5XR83FhUelSeqJRoaDxXBRKAozYCSnUf2CNw==
+  dependencies:
+    tslib "^2.3.0"
+
+ngx-filesaver@14.0.0:
+  version "14.0.0"
+  resolved "https://registry.npmjs.org/ngx-filesaver/-/ngx-filesaver-14.0.0.tgz"
+  integrity sha512-YnSbruOprSpcXZiuhnJ+AannRnSqRWiL0HIlDdwPd48DZYpuU0BTvSNmFj5oFbwLA0RFoOv2EkgedW4k2DEpYA==
+
   dependencies:
     "tslib" "^2.3.0"
 
