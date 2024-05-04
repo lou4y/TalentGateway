@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,10 +15,11 @@ export class ProjectService {
   getAllProjects(): Observable<any[]> {
     return this.httpClient.get<any[]>(this.API_URL + this.ENDPOINT_Projects);
   }
-  deleteTeamMember(teamId: number, userId: string): Observable<void> {
-    return this.httpClient.delete<void>(
-      `${this.API_URL + this.ENDPOINT_Teams}/${teamId}/members/${userId}`
-    );
+
+  deleteTeamMember(teamId: number, userId: string): Observable<HttpResponse<any>> {
+    return this.httpClient.delete<HttpResponse<any>>(`${this.API_URL + this.ENDPOINT_Teams}/${teamId}/members/${userId}`, {
+      observe: 'response', // Configurer pour observer la réponse complète
+    });
   }
 
   addProject(project: any): Observable<any> {

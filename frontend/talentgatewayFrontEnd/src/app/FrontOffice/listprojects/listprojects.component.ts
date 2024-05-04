@@ -55,15 +55,22 @@ export class ListprojectsComponent implements OnInit {
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     return projects.slice(startIndex, endIndex); // Return only projects for the current page
+
   }
 
   goToPage(page: number) {
+    console.log("Going to page:", page); // Ajoutez des logs pour comprendre le comportement
+
     const totalPages = Math.ceil(this.projects.length / this.pageSize);
     if (page >= 1 && page <= totalPages) {
       this.currentPage = page;
       this.filteredProjects = this.paginateProjects(this.projects, this.currentPage, this.pageSize);
+
+      console.log("Projects on this page:", this.filteredProjects); // Vérifiez les projets
+      this.fetchNumberOfLikes(); // Assurez-vous de recharger les "likes"
     }
   }
+
 
   async onFilterChange(filterEvent: any) {
     // Apply the desired filtering logic

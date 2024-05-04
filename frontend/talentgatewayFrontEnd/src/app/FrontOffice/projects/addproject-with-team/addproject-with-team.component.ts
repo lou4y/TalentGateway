@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ValidationErrors, AbstractControl } from '@angular/forms';
 import { CdkStepper } from '@angular/cdk/stepper';
 import { ProjectService } from 'src/app/services/project.service';
 import { TestuserService } from 'src/app/services/testuser.service';
@@ -10,6 +10,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { AngularFireStorage } from "@angular/fire/compat/storage";
 import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
 import Swal from 'sweetalert2';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 @Component({
   selector: 'app-addproject-with-team',
   templateUrl: './addproject-with-team.component.html',
@@ -20,13 +21,13 @@ export class AddprojectWithTeamComponent implements OnInit, AfterViewInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
-  searchControl = new FormControl('');
   currentUser: User;
   users: any[] = [];
   filteredUsers: any[] = [];
   url: any;
   // Updated structure to include first and last name
-  selectedTeamMembers: { userId: string; firstName: string; lastName: string; memberRole: string }[] = [];
+  selectedTeamMembers: { id: string; firstName: string; lastName: string; memberRole: string }[] = [];
+  searchControl = new FormControl('');
   selectedFileName: string | null = null;
   @ViewChild('fileInput') fileInputRef!: ElementRef;
   constructor(
@@ -44,54 +45,81 @@ export class AddprojectWithTeamComponent implements OnInit, AfterViewInit {
   }
 
   async ngOnInit(): Promise<void> {
-    //récupérer ll'utilisateur connecté
     this.currentUser = await this.authService.currentUser();
-    // Initialize form groups with required fields
+    this.searchControl.valueChanges.subscribe((value) => {
+      this.filterUsers(value); // Filtrage des utilisateurs
+    });
+
+    // Initialiser les formulaires
     this.firstFormGroup = this.formBuilder.group({
-      projectName: ['', Validators.required],
-      projectDescription: ['', Validators.required],
+      projectName: ['', [Validators.required, Validators.maxLength(20)]],
+      projectDescription: ['', [Validators.required, Validators.maxLength(400)]],
     });
 
     this.secondFormGroup = this.formBuilder.group({
       startDate: ['', Validators.required],
       endTime: ['', Validators.required],
-      price: ['', Validators.required],
-    });
+      price: ['', [Validators.required, Validators.min(0.01)]],
+    }, { validators: this.validateDateRange });
 
     this.thirdFormGroup = this.formBuilder.group({
-      teamName: ['', Validators.required], // Required field for team name
+      teamName: ['', [Validators.required, Validators.maxLength(20)]],
     });
 
-    // Load users for autocomplete
-    this.loadUsers();
+    this.loadUsers(); // Charger les utilisateurs pour l'autocomplétion
   }
+
+  validateDateRange(control: AbstractControl): ValidationErrors | null {
+    const startDate = control.get('startDate')?.value;
+    const endTime = control.get('endTime')?.value;
+
+    if (startDate && endTime && new Date(startDate) > new Date(endTime)) {
+      return { invalidDateRange: true };
+    }
+
+    return null;
+  }
+
 
   loadUsers(): void {
     this.testuserService.getUsers().subscribe(users => {
       this.users = users;
-      this.filteredUsers = users;
+      console.log("Loaded Users:", this.users); // Afficher la liste des utilisateurs
+      //this.filteredUsers = users;
+      this.filterUsers('');
     });
   }
 
-  onUserSelected(event: any): void {
-    const selectedUserId = event.option.value;
-    const selectedUser = this.users.find(user => user.userId === selectedUserId);
 
-    if (selectedUser && !this.selectedTeamMembers.some(member => member.userId === selectedUserId)) {
-      // Add user to the selected team with additional details
+  onUserSelected(event: MatAutocompleteSelectedEvent): void {
+    const selectedUserId = event.option.value; // Assurez-vous que c'est le bon ID
+    const selectedUser = this.users.find(user => user.id === selectedUserId);
+
+    if (selectedUser && !this.selectedTeamMembers.some(member => member.id === selectedUserId)) {
       this.selectedTeamMembers.push({
-        userId: selectedUserId,
+        id: selectedUser.id,
         firstName: selectedUser.firstName,
         lastName: selectedUser.lastName,
-        memberRole: '', // Default role to be updated later
+        memberRole: '', // Rôle par défaut
       });
 
-      this.searchControl.setValue(''); // Clear the search control
+      this.searchControl.setValue(''); // Effacer le champ de recherche
     }
   }
 
+
+
+  filterUsers(query: string) {
+    this.filteredUsers = this.users
+      .filter(user => {
+        const fullName = `${user.firstName?.toLowerCase()} ${user.lastName?.toLowerCase()}`;
+        return fullName.includes(query.toLowerCase());
+      })
+      .slice(0, 3); // Limiter le nombre de résultats
+  }
+
   updateTeamMemberRole(userId: string, role: string): void {
-    const teamMember = this.selectedTeamMembers.find(member => member.userId === userId);
+    const teamMember = this.selectedTeamMembers.find(member => member.id === userId);
     if (teamMember) {
       teamMember.memberRole = role; // Update the member's role
     }
@@ -115,7 +143,7 @@ export class AddprojectWithTeamComponent implements OnInit, AfterViewInit {
         team: {
           name: this.thirdFormGroup.controls['teamName'].value,
           usersWithRoles: this.selectedTeamMembers.map(member => ({
-            userId: member.userId,
+            userId: member.id,
             memberRole: member.memberRole,
           })),
         },
@@ -128,6 +156,7 @@ export class AddprojectWithTeamComponent implements OnInit, AfterViewInit {
             text: "Your Project added successfully!",
             icon: "success"
           });
+          this.dialogRef.close();
         },
         (error) => {
           Swal.fire({
@@ -142,6 +171,7 @@ export class AddprojectWithTeamComponent implements OnInit, AfterViewInit {
       console.warn("Form is invalid");
     }
   }
+
   //close dialog
   onCancel() {
     this.dialogRef.close(); // Fermer le dialogue sans soumission
