@@ -142,7 +142,7 @@
     padding: 0;
   }
 
-  .stepper-body{ 
+  .stepper-body{
     margin-bottom: 0 !important;
   }
 }
@@ -161,7 +161,7 @@
         padding: 0;
 
         .step {
-          min-width: 390px;
+          min-width: 250px;
           display: block;
           padding: 0.5rem 1rem;
           color: var(--#{$prefix}gray-600);

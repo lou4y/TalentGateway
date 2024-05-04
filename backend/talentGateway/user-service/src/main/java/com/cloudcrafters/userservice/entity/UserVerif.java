@@ -11,6 +11,7 @@ import lombok.Setter;
 public class UserVerif {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String userId;
     private boolean isRoleVerified = false;
     private boolean isDataVerified  = false;

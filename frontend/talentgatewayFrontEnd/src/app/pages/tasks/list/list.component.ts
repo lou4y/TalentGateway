@@ -1,7 +1,5 @@
 
- import { Component, OnInit } from '@angular/core';
- import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
- import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+  import { Component, OnInit } from '@angular/core';
   import { FormBuilder, FormGroup } from '@angular/forms';
   import { map, catchError, distinctUntilChanged, debounceTime, switchMap, startWith } from 'rxjs/operators';
   import { Observable, throwError } from 'rxjs';
@@ -18,7 +16,7 @@
   import { ToastrService } from 'ngx-toastr';
 
   import { Router, ActivatedRoute , NavigationEnd  } from '@angular/router';
-  
+
   import { filter } from 'rxjs/operators';
 
   import { Subscription } from 'rxjs';
@@ -69,7 +67,7 @@
       private fb: FormBuilder,
       private router: Router,
       private route: ActivatedRoute
-  
+
     ){}
 
     ngOnInit(): void {
@@ -98,7 +96,7 @@
       cluster: 'ap4',
       forceTLS: true
     });
-  
+
     const channel = this.pusher.subscribe('tasks');
     channel.bind('new-task', (data: any) => {
       const message = `${data.message}`;
@@ -118,9 +116,9 @@
       }
     });
   }
-  
-  
-  
+
+
+
 
   displayStoredNotification() {
     const message = JSON.parse(localStorage.getItem('latestTaskNotification') || 'null');
@@ -142,8 +140,8 @@
       this.pusher.unsubscribe('tasks');
     }
   }
-    
-    
+
+
     fetchModules(): void {
       this.taskService.getModules().subscribe(
         modules => {
@@ -160,7 +158,7 @@
         }
       );
     }
-    
+
 
   selectModule(event: any): void {
     const selectedModuleName = event.target.value;
@@ -176,7 +174,7 @@
     }
   }
 
-  
+
     RealTimeSearch(): void {
       this.tasks$ = this.searchFormGroup.get('keyword')!.valueChanges.pipe(
         startWith(''),  // Start with an empty string to load all tasks initially
@@ -225,7 +223,7 @@
         this.filterTasksByPriority();
       } else if (this.selectedPriority === 'ALL' && this.selectedStatus !== 'ALL') {
         this.filterTasksByStatus();
-      } 
+      }
 
       if (this.sortByDate) {
         this.sortTasksByDate();
@@ -234,7 +232,7 @@
 
     toggleSortByDate(event: any): void {
       this.sortByDate = event.target.checked;
-      
+
       if (this.showQualificationList) {
         this.toggleQualificationList();
       } else {
@@ -282,9 +280,9 @@
       }
     }
 
-    
 
-    
+
+
 
     edit(task: Tasks): void {
       this.selectedTask = { ...task };
@@ -310,7 +308,7 @@
             moduleDescription: this.selectedTask.module?.moduleDescription
           }
         };
-    
+
         this.taskService.updateTask(this.selectedTask.id!, updatedTask).subscribe(
           () => {
             this.isEditMode = false;
@@ -320,9 +318,9 @@
           (error) => {
             console.error('Error updating task:', error);  //             console.error('Error updating task:', error);
             Swal.fire('Success', 'Task updated successfully', 'success');   // Swal.fire('Error', 'Failed to update task', 'error');
-            
+
           }
-          
+
         );
         this.ngOnInit();
 
@@ -337,7 +335,7 @@
         },
         buttonsStyling: false
       });
-    
+
       swalWithBootstrapButtons
         .fire({
           title: 'Are you sure?',
@@ -359,14 +357,14 @@
                   );
                   event.target.closest('tr')?.remove();
                 },
-              
+
               );
             swalWithBootstrapButtons.fire(
               'Deleted!',
               'Your file has been deleted.',
               'success'
             );
-            
+
             event.target.closest('tr')?.remove();
           } else if (
             /* Read more about handling dismissals below */

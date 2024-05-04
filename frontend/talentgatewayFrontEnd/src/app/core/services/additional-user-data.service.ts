@@ -6,7 +6,7 @@ import { AdditionalUserData } from "../models/additional-user-data.model";
 @Injectable({
   providedIn: 'root'
 })
-export class AdditionalUserDataServiceService {
+export class AdditionalUserDataService {
 
   private baseUrl = 'http://localhost:8089/profile/additionalUserData';
 
@@ -23,8 +23,8 @@ export class AdditionalUserDataServiceService {
   }
 
   // PUT method to update additional user data by userId
-  updateAdditionalUserData(userId: string, additionalUserData: AdditionalUserData): Observable<AdditionalUserData> {
-    return this.http.put<AdditionalUserData>(`${this.baseUrl}/Edit/${userId}`, additionalUserData); // Updated endpoint
+  updateAdditionalUserData(additionalUserData: AdditionalUserData): Observable<AdditionalUserData> {
+    return this.http.put<AdditionalUserData>(`http://localhost:8089/profile/additionalUserData/Edit`, additionalUserData); // Updated endpoint
   }
 
   // DELETE method to delete additional user data by userId

@@ -177,19 +177,19 @@ export const MENU: MenuItem[] = [
       {
         id: 40,
         label: 'MENUITEMS.CONTACTS.LIST.USERGRID',
-        link: '/contacts/grid',
+        link: '/profile/grid',
         parentId: 39
       },
       {
         id: 41,
         label: 'MENUITEMS.CONTACTS.LIST.USERLIST',
-        link: '/contacts/list',
+        link: '/profile/list',
         parentId: 39
       },
       {
         id: 42,
         label: 'MENUITEMS.CONTACTS.LIST.PROFILE',
-        link: '/contacts/profile',
+        link: '/profile/view',
         parentId: 39
       }
     ]
@@ -274,6 +274,11 @@ export const MENU: MenuItem[] = [
             }
         ]
     },
-
+  {
+    id: 10,
+    label: 'Edit Profile',
+    icon: 'bx-edit',
+    link: '/profile/Settings',
+  },
 ];
 
