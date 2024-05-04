@@ -24,7 +24,7 @@
         placeholder="Rechercher par nom ou prénom" style="width:200px;height:40px;border-radius:5%"
       />
       <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onUserSelected($event)">
-        <mat-option *ngFor="let user of filteredUsers" [value]="user.userId">
+        <mat-option *ngFor="let user of filteredUsers" [value]="user.id">
           {{ user.firstName }} {{ user.lastName }}
         </mat-option>
       </mat-autocomplete>
@@ -32,7 +32,7 @@
   </div>
 
   <div class="d-flex justify-content-center mt-3">
-    <button type="submit" class="btn btn-primary">Ajouter un membre d'équipe</button>
+    <button type="submit"  class="btn btn-primary">Ajouter un membre d'équipe</button>
   </div>
 
   <button type="button" (click)="onCancel()" class="close-btn">

@@ -74,6 +74,7 @@ export class CommentsComponent implements OnInit {
           text: 'Your comment was added successfully!',
           icon: 'success',
         });
+        this.commentData.commentContent = ''; // Clear the comment content
         this.getCommentByProjectId(); // Reload comments
       },
       (error) => {
