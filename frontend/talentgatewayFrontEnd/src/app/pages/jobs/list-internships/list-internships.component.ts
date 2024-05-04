@@ -10,12 +10,15 @@ import Swal from 'sweetalert2';
 
 
 
-// @ts-ignore
-import {InternshipsService} from "../../../core/services/Internships/internships.service";
+
 import {Router} from "@angular/router";
 import {User} from "../../../core/models/auth.models";
 import {AuthenticationService} from "../../../core/services/auth.service";
 import {Internship} from "../../../core/models/internship.model";
+import {InternshipsService} from "../../../core/services/internships/internships.service";
+import {AddTeamComponent} from "../../../FrontOffice/projects/add-team/add-team.component";
+import {UpdateInternshipComponent} from "../update-internship/update-internship.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-list-internships',
@@ -32,11 +35,14 @@ export class ListInternshipsComponent implements OnInit {
   endIndex: number = 0;
   modalRef: BsModalRef;
   jobForm: FormGroup;
+  isEditMode = false;
+  selectedinternships: Internship | null = null;
+  internshipData: Internship | null = null; // For storing the currently edited internship
 
   user: User;
   @ViewChild('content') content: TemplateRef<any>;
 
-  constructor(private authService: AuthenticationService, private internshipsService: InternshipsService, private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(private authService: AuthenticationService, private internshipsService: InternshipsService, private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router, private dialog: MatDialog) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -45,7 +51,11 @@ export class ListInternshipsComponent implements OnInit {
 
     this.user = await this.authService.currentUser();
     if (this.user) {
-      this.getInternshipsByUser(this.user.id.toString()); // Convert to string if needed
+      if (this.user.role.includes('admin')) {
+        this.getAllInternships();
+      } else if (this.user.role.includes('company')) {
+        this.getInternshipsByUser(this.user.id.toString());
+      }
     }
   }
 
@@ -152,7 +162,7 @@ export class ListInternshipsComponent implements OnInit {
       });
     } else {
       // If search term is empty, reset the internships list
-      this.getAllInternships();
+      this.getInternshipsByUser(this.user.id.toString());
     }
   }
 
@@ -165,50 +175,10 @@ export class ListInternshipsComponent implements OnInit {
   }
 
 
-  updateInternship(internshipId: any) {
-    if (this.jobForm.valid) {
-      const internshipData = this.jobForm.value;
-      this.internshipsService.updateInternship(internshipData).subscribe(
-        (updatedInternship) => {
-          console.log('Internship updated successfully:', updatedInternship);
-          this.modalRef.hide(); // Close the modal
-          this.getAllInternships(); // Refresh the list of internships
-        },
-        (error) => {
-          console.error('Error updating internship:', error);
-          // Handle error if needed
-        }
-      );
-    } else {
-      console.log('Form is invalid.');
-      // Handle form validation errors if needed
-    }
-  }
 
 
-  editDataGet(internshipId: any, content: any) {
-    this.modalRef = this.modalService.show(content, {class: 'modal-md'});
-    const modelTitle = document.querySelector('.modal-title') as HTMLHeadingElement;
-    modelTitle.innerHTML = 'Edit Internship';
-    const updateBtn = document.getElementById('add-btn') as HTMLButtonElement;
-    updateBtn.innerHTML = 'Update';
-    const internshipData = this.internships.find((internship: { id: any; }) => internship.id === internshipId);
-    if (internshipData) {
-      this.jobForm.patchValue({
-        internshipId: internshipData.internshipId, // Corrected field name
-        title: internshipData.title,
-        company: internshipData.company,
-        description: internshipData.description,
-        responsibilities: internshipData.responsibilities,
-        qualifications: internshipData.qualifications,
-        skills: internshipData.skills,
-        location: internshipData.location,
-        duration: internshipData.duration,
-        startDate: internshipData.startDate,
-        type: internshipData.type,
-      });
-    }
-  }
+
+
 
 
   getInternshipsByUser(userId: string): void {
@@ -227,5 +197,52 @@ export class ListInternshipsComponent implements OnInit {
 
   saveJob() {
 
+  }
+
+  edit(internship: Internship): void {
+    this.selectedinternships = { ...internship };
+    this.isEditMode = true;
+  }
+//edit
+  openUpdateInternshipDialog(internshipId: number): void {
+    this.dialog.open(UpdateInternshipComponent, {
+      width: '550px',
+      data: { internshipId } // Pass the internshipId to the dialog component
+    });
+  }
+  editDataGet(internshipId: any, content: any) {
+    console.log('Editing Internship ID:', internshipId);
+    this.modalRef = this.modalService.show(content, {class: 'modal-md'});
+    const modelTitle = document.querySelector('.modal-title') as HTMLHeadingElement;
+    modelTitle.innerHTML = 'Edit Internship';
+    const updateBtn = document.getElementById('add-btn') as HTMLButtonElement;
+    updateBtn.innerHTML = 'Update';
+    // Log the internshipId to check if it's correctly passed
+    console.log('Editing Internship ID:', internshipId);
+
+    const internshipData = this.internships.find((internship: { internshipId: any; }) => internship.internshipId === internshipId);
+    if (internshipData) {
+      this.internshipData = { ...internshipData }; // Make a copy to avoid modifying the original data
+
+      // Assuming you have a function to open a modal or form, handle the form submission
+      // When the user updates and saves the changes in the modal/form, call updateInternship
+
+      // Example function to handle form submission
+      this.handleFormSubmission();
+    }
+  }
+
+  handleFormSubmission() {
+    if (this.internshipData) {
+      // Call updateInternship from the service with the edited internship data
+      this.internshipsService.updateInternship(this.internshipData).subscribe((updatedData) => {
+        console.log('Internship updated successfully:', updatedData);
+        // Optionally, update the displayed list of internships or perform any other action
+        // Example: this.fetchInternships(); // Assuming you have a function to fetch internships
+      }, (error) => {
+        console.error('Error updating internship:', error);
+        // Handle error, e.g., display error message
+      });
+    }
   }
 }
