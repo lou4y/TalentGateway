@@ -47,6 +47,9 @@ public class UserResource {
 		List<UserRepresentation> userRepresentations =
 				keycloak.realm(realm).users().list();
 		List <User> users = mapUsers(userRepresentations);
+		for (User user: users) {
+			user.setSkills(skillService.getAllSkillsByUser(user.getId()));
+		}
 		return users;
 	}
 	
