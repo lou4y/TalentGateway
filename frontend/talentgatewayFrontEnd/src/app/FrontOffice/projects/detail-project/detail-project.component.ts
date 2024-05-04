@@ -8,6 +8,8 @@ import { AddTeamComponent } from '../add-team/add-team.component';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { HttpResponse } from '@angular/common/http';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
+import { User } from 'src/app/core/models/auth.models';
 
 @Component({
   selector: 'app-detail-project',
@@ -23,10 +25,16 @@ export class DetailProjectComponent {
   projectId: any;
   overviewBarChart: ChartType;
   numberOfLikes: any;
+  currentUser: User;
 
-  constructor(private dialog: MatDialog, private activatedroute: ActivatedRoute, private projectservice: ProjectService,private router: Router) { }
+  constructor(private dialog: MatDialog, private activatedroute: ActivatedRoute,
+     private projectservice: ProjectService,private router: Router,
+     private authService: AuthenticationService,
+    ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.currentUser = await this.authService.currentUser();
+    
     this.breadCrumbItems = [{ label: 'Projects' }, { label: 'Projects Overview', active: true }];
     this.overviewBarChart = overviewBarChart;
     this.getNumberOfLikes();
