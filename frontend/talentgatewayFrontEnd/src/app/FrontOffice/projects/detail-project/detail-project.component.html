@@ -67,7 +67,7 @@
         <div class="card-body">
           <div class="d-flex justify-content-start align-items-center">
             <h4 class="card-title" style="margin-right: 10px;">Team Members</h4>
-            <button *ngIf="currentUser.id === project.creatorId" (click)="openAddTeamDialog()" class="btn btn-primary" style="margin-left: 200px;">Add Team Member</button>
+            <button (click)="openAddTeamDialog()" class="btn btn-primary" style="margin-left: 200px;">Add Team Member</button>
           </div>
           <div class="table-responsive">
             <table class="table align-middle table-nowrap">
@@ -86,7 +86,7 @@
                   </td>
                   <!-- Dans la section des membres de l'équipe -->
                   <td>
-                    <button  *ngIf="currentUser.id === project.creatorId" (click)="deleteTeamMember(user.userId)" class="btn btn-danger btn-sm">
+                    <button (click)="deleteTeamMember(user.userId)" class="btn btn-danger btn-sm">
                       <i class="fas fa-trash-alt"></i> <!-- Icône de suppression -->
                     </button>
                   </td>
