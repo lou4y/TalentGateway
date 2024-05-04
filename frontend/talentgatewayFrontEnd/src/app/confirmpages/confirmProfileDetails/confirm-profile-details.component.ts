@@ -11,6 +11,14 @@ import {
 } from "@angular/forms";
 import {FileService} from "../../core/services/file.service";
 import {AdditionalUserData} from "../../core/models/additional-user-data.model";
+import {AuthenticationService} from "../../core/services/auth.service";
+import {User} from "../../core/models/auth.models";
+import {AdditionalUserDataService} from "../../core/services/additional-user-data.service";
+import {Skill} from "../../core/models/skill.model";
+import {SkillsService} from "../../core/services/skills.service";
+import {ProfileVerificationService} from "../../core/services/profile-verification.service";
+import {UserVerif} from "../../core/models/UserVerificationData.model";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-confirm-profile-details',
   templateUrl: './confirm-profile-details.component.html',
@@ -57,15 +65,18 @@ export class ConfirmProfileDetailsComponent implements OnInit,ControlValueAccess
   fileError: boolean = false;
   phoneNumberError: boolean = false;
   disabled: boolean = false;
-
-  constructor(public dialog: MatDialog,private fb: UntypedFormBuilder,private fbl: FormBuilder,private fileService: FileService) {
+   user: User;
+  constructor(public dialog: MatDialog,private authService: AuthenticationService,private dataservice:AdditionalUserDataService,private userverif: ProfileVerificationService,private Skillservice: SkillsService,private fb: UntypedFormBuilder,private fbl: FormBuilder,private fileService: FileService, private authservice: AuthenticationService,private router: Router) {
     this.skillData = this.fb.group({
       skillValue: this.fb.array([]),
     });
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.skilldata().push(this.skill());
+    await this.authService.currentUser().then((user) => {
+      this.user = user;
+    });
   }
   skilldata(): UntypedFormArray {
     return this.skillData.get('skillValue') as UntypedFormArray;
@@ -142,21 +153,6 @@ export class ConfirmProfileDetailsComponent implements OnInit,ControlValueAccess
   }
 
 
-  showData() {
-    console.log("Image: :" + this.Image);
-    console.log("Selected Gender:", this.selectedGender);
-    console.log("Birthdate: ", this.Birthdate);
-    console.log("Address: :" + this.Address);
-    console.log("City: :" + this.City);
-    console.log("State :"+ this.State)
-    console.log("phone number "+ this.phoneNumber);
-    console.log("Description: "+ this.description);
-    console.log(this.skillData.value)
-    console.log("PDF File: ", this.PDFfile);
-
-
-  }
-
   onFileSelected(event: any) {
     const selectedFile: File = event.target.files[0];
 
@@ -183,24 +179,26 @@ export class ConfirmProfileDetailsComponent implements OnInit,ControlValueAccess
   }
 
   async saveData() {
+    var user : User = await this.authservice.currentUser();
+    var imageUrl = this.Image;
     try {
-      let imageUrl = this.Image; // Assuming this.Image contains the URL of the image
-
-      // Check if this.Image is a base64 string, if so, upload it to Firebase Storage
-      if (imageUrl.startsWith('data:image')) {
-        // Convert the base64 string to a Blob
-        const imageBlob = this.dataURItoBlob(imageUrl);
-
-        // Upload the Blob to Firebase Storage
-        imageUrl = await this.fileService.uploadImageBlob(imageBlob);
+      if (imageUrl.startsWith('blob:')) {
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+        const reader = new FileReader();
+        imageUrl = await new Promise<string>((resolve, reject) => {
+          reader.onload = async () => {
+            const base64String = reader.result as string;
+            const imageBlob = this.dataURItoBlob(base64String);
+            const uploadedImageUrl = await this.fileService.uploadImageBlob(imageBlob);
+            resolve(uploadedImageUrl);
+          };
+          reader.readAsDataURL(blob);
+        });
       }
-
-      const pdfUrl = await this.fileService.uploadPDF(this.PDFfile); // Replace this with your PDF file property
-
-      await this.fileService.saveFileMetadataToFirestore(imageUrl, pdfUrl);
-
+      const pdfUrl = await this.fileService.uploadPDF(this.PDFfile);
       const userData: AdditionalUserData = {
-        userId: 'user_id_here',
+        userId: user.id ,
         address: this.Address,
         city: this.City,
         state: this.State,
@@ -212,9 +210,28 @@ export class ConfirmProfileDetailsComponent implements OnInit,ControlValueAccess
         birthdate: this.Birthdate
       };
 
-      // Now, you can send this userData object to your API to save in the database
-      // Example: this.apiService.saveUserData(userData);
+      for (let i = 0; i < this.skilldata().length; i++) {
+        const skill = this.skilldata().at(i) as UntypedFormGroup;
+        let savedskill :Skill= {
+          id: '',
+          skillName: skill.get('skillname')?.value,
+          skillLevel: skill.get('skilllevel')?.value,
+          userId: user.id
+        }
+        this.Skillservice.createSkill(savedskill).subscribe();
+        console.log('Skill saved successfully.');
 
+      }
+
+      let userVerificationData: UserVerif = await this.userverif.getUserVerification(this.user.id.toString()).toPromise();
+      userVerificationData.dataVerified = true;
+      this.userverif.updateUserVerification(userVerificationData).subscribe(() => {
+        console.log('User verification data updated successfully.');
+        this.router.navigate(['/']);
+      });
+
+      console.log(userData);
+      this.dataservice.createAdditionalUserData(userData).subscribe();
       console.log('Data saved successfully.');
     } catch (error) {
       console.error('Error saving data:', error);

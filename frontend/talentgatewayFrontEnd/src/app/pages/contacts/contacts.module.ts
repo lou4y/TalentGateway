@@ -17,9 +17,14 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { UsergridComponent } from './usergrid/usergrid.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
+import {NgStepperModule} from "angular-ng-stepper";
+import {CdkStepperModule} from "@angular/cdk/stepper";
+import {MatIconModule} from "@angular/material/icon";
+import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 
 @NgModule({
-  declarations: [UsergridComponent, UserlistComponent, ProfileComponent],
+  declarations: [UsergridComponent, UserlistComponent, ProfileComponent, ProfileSettingsComponent],
   imports: [
     CommonModule,
     ContactsRoutingModule,
@@ -27,12 +32,16 @@ import { ProfileComponent } from './profile/profile.component';
     UIModule,
     NgSelectModule,
     NgApexchartsModule,
-    FormsModule, 
-    ReactiveFormsModule ,
+    FormsModule,
+    ReactiveFormsModule,
     TooltipModule.forRoot(),
     PaginationModule.forRoot(),
     BsDropdownModule,
-    ModalModule
+    ModalModule,
+    NgStepperModule,
+    CdkStepperModule,
+    MatIconModule,
+    BsDatepickerModule
   ]
 })
 export class ContactsModule { }

@@ -1,7 +1,5 @@
 
- import { Component, OnInit } from '@angular/core';
- import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
- import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+  import { Component, OnInit } from '@angular/core';
   import { FormBuilder, FormGroup } from '@angular/forms';
   import { map, catchError, distinctUntilChanged, debounceTime, switchMap, startWith } from 'rxjs/operators';
   import { Observable, throwError } from 'rxjs';

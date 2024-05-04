@@ -29,7 +29,7 @@ export class UserlistComponent implements OnInit {
   total: Observable<number>;
   createContactForm!: UntypedFormGroup;
   submitted = false;
-  contacts: any;
+  Profile: any;
   files: File[] = [];
 
   @ViewChildren(NgbdUserListSortableHeader) headers!: QueryList<NgbdUserListSortableHeader>;
@@ -49,7 +49,7 @@ export class UserlistComponent implements OnInit {
 
     setTimeout(() => {
       this.contactsList.subscribe(x => {
-        this.contacts = Object.assign([], x);
+        this.Profile = Object.assign([], x);
       });
       document.getElementById('elmLoader')?.classList.add('d-none')
     }, 1200);
@@ -117,7 +117,7 @@ export class UserlistComponent implements OnInit {
     var updateBtn = document.getElementById('addContact-btn') as HTMLAreaElement;
     updateBtn.innerHTML = "Update";
 
-    var listData = this.contacts[id];
+    var listData = this.Profile[id];
 
     this.createContactForm.controls['id'].setValue(listData.id);
     this.createContactForm.controls['name'].setValue(listData.name);

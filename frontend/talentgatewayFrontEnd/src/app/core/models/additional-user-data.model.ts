@@ -8,5 +8,5 @@ export interface AdditionalUserData {
   gender: string ;
   profilePicture: string;
   pdfFile: string;
-  birthdate: Date;
+  birthdate: string;
 }

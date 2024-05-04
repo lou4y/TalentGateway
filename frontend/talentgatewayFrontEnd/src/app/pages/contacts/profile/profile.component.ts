@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 import { revenueBarChart, statData } from './data';
-
+import {AuthenticationService} from "../../../core/services/auth.service";
 import { ChartType } from './profile.model';
+import {User} from "../../../core/models/auth.models";
+import {AdditionalUserData} from "../../../core/models/additional-user-data.model";
+import {AdditionalUserDataService} from "../../../core/services/additional-user-data.service";
+import {SkillsService} from "../../../core/services/skills.service";
+import {Skill} from "../../../core/models/skill.model";
+import {FileService} from "../../../core/services/file.service";
+
 
 @Component({
   selector: 'app-profile',
@@ -16,17 +23,26 @@ import { ChartType } from './profile.model';
 export class ProfileComponent implements OnInit {
   // bread crumb items
   breadCrumbItems: Array<{}>;
-
   revenueBarChart: ChartType;
   statData:any;
-  constructor() { }
-
-  ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Contacts' }, { label: 'Profile', active: true }];
-
-    // fetches the data
-    this._fetchData();
+  user:User;
+  userData:AdditionalUserData;
+  skills:Skill[];
+ Image: string;
+  constructor( private authService: AuthenticationService, private fileService: FileService,private userDataService: AdditionalUserDataService,private skillsService:SkillsService) {
   }
+
+   async ngOnInit() {
+     this.breadCrumbItems = [{label: 'Profile'}, {label: 'Profile', active: true}];
+     this.user = await this.authService.currentUser();
+     this.userData = await this.userDataService.getAdditionalUserData(this.user.id).toPromise();
+      this.skills = await this.skillsService.getUserSkills(this.user.id).toPromise();
+     this.Image=await this.fileService.getImageFromFirestore(this.userData.profilePicture);
+
+     // fetches the data
+     this._fetchData();
+     console.log(this.skills);
+   }
 
   /**
    * Fetches the data

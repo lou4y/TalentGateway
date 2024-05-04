@@ -10,7 +10,6 @@
             <div class="col-7">
               <div class="text-primary p-3">
                 <h5 class="text-primary">Welcome Back !</h5>
-                <p>It will seem like simplified</p>
               </div>
             </div>
             <div class="col-5 align-self-end">
@@ -20,32 +19,11 @@
         </div>
         <div class="card-body pt-0">
           <div class="row">
-            <div class="col-sm-4">
+            <div >
               <div class="avatar-md profile-user-wid mb-4">
-                <img src="assets/images/users/avatar-1.jpg" alt="" class="img-thumbnail rounded-circle">
+                <img src="{{Image}}" alt="" class="img-thumbnail rounded-circle">
               </div>
-              <h5 class="font-size-15 text-truncate">Cynthia Price</h5>
-              <p class="text-muted mb-0 text-truncate">UI/UX Designer</p>
-            </div>
-
-            <div class="col-sm-8">
-              <div class="pt-4">
-
-                <div class="row">
-                  <div class="col-6">
-                    <h5 class="font-size-15">125</h5>
-                    <p class="text-muted mb-0">Projects</p>
-                  </div>
-                  <div class="col-6">
-                    <h5 class="font-size-15">$1245</h5>
-                    <p class="text-muted mb-0">Revenue</p>
-                  </div>
-                </div>
-                <div class="mt-4">
-                  <a href="javascript: void(0);" class="btn btn-primary btn-sm">View Profile <i
-                      class="mdi mdi-arrow-right ms-1"></i></a>
-                </div>
-              </div>
+              <h5 class="font-size-15 text-truncate">{{ user.firstName }} {{ user.lastName }}</h5>
             </div>
           </div>
         </div>
@@ -55,27 +33,31 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title mb-4">Personal Information</h4>
-
-          <p class="text-muted mb-4">Hi I'm Cynthia Price,has been the industry's standard dummy text To an English
-            person, it will seem like simplified English, as a skeptical Cambridge.</p>
+          <p class="text-muted mb-4">{{
+              userData.description
+            }}</p>
           <div class="table-responsive">
             <table class="table table-nowrap mb-0">
               <tbody>
                 <tr>
                   <th scope="row">Full Name :</th>
-                  <td>Cynthia Price</td>
+                  <td>{{ user.firstName }} {{ user.lastName }}</td>
                 </tr>
                 <tr>
                   <th scope="row">Mobile :</th>
-                  <td>(123) 123 1234</td>
+                  <td>{{ userData.phoneNumber }}</td>
                 </tr>
                 <tr>
                   <th scope="row">E-mail :</th>
-                  <td>cynthiaskote@gmail.com</td>
+                  <td>{{ user.email }}</td>
                 </tr>
                 <tr>
                   <th scope="row">Location :</th>
-                  <td>California, United States</td>
+                  <td>{{ userData.state }}, {{ userData.city }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Address :</th>
+                  <td>{{ userData.address }}</td>
                 </tr>
               </tbody>
             </table>
@@ -86,26 +68,10 @@
 
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-5">Experience</h4>
+          <h4 class="card-title mb-5">Skills</h4>
           <div class="">
             <ul class="verti-timeline list-unstyled">
-              <li class="event-list active">
-                <div class="event-timeline-dot">
-                  <i class="bx bx-right-arrow-circle bx-fade-right"></i>
-                </div>
-                <div class="d-flex">
-                  <div class="flex-shrink-0 me-3">
-                    <i class="bx bx-server h4 text-primary"></i>
-                  </div>
-                  <div class="flex-grow-1">
-                    <div>
-                      <h5 class="font-size-15"><a href="javascript: void(0);" class="text-dark">Back end Developer</a></h5>
-                      <span class="text-primary">2016 - 19</span>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="event-list">
+              <li class="event-list" *ngFor="let skill of skills">
                 <div class="event-timeline-dot">
                   <i class="bx bx-right-arrow-circle"></i>
                 </div>
@@ -115,24 +81,8 @@
                   </div>
                   <div class="flex-grow-1">
                     <div>
-                      <h5 class="font-size-15"><a href="javascript: void(0);" class="text-dark">Front end Developer</a></h5>
-                      <span class="text-primary">2013 - 16</span>
-                    </div>
-                  </div>
-                </div>
-              </li>
-              <li class="event-list">
-                <div class="event-timeline-dot">
-                  <i class="bx bx-right-arrow-circle"></i>
-                </div>
-                <div class="d-flex">
-                  <div class="flex-shrink-0 me-3">
-                    <i class="bx bx-edit h4 text-primary"></i>
-                  </div>
-                  <div class="flex-grow-1">
-                    <div>
-                      <h5 class="font-size-15"><a href="javascript: void(0);" class="text-dark">UI /UX Designer</a></h5>
-                      <span class="text-primary">2011 - 13</span>
+                      <h5 class="font-size-15"><a href="javascript: void(0);" class="text-dark">{{ skill.skillName }}</a></h5>
+                      <span class="text-primary">{{ skill.skillLevel }}</span>
                     </div>
                   </div>
                 </div>
