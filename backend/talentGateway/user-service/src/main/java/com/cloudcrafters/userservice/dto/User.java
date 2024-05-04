@@ -24,6 +24,7 @@ public class User {
 
 	private Boolean isEmailVerified = false;
 
+	private List<Skill> skills;
 
 
 	
