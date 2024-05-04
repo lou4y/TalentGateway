@@ -57,6 +57,7 @@ export class InternshipDetailsComponent  implements OnInit {
 
     this.route.params.subscribe(params => {
       this.internshipId = params['id'];
+      this.internshipUrl = `http://localhost:4200/internship-details/${this.internshipId}`;
       this.getInternshipDetails(); // Call method to fetch internship details
     });
 
@@ -66,33 +67,10 @@ export class InternshipDetailsComponent  implements OnInit {
 
     this.user = await this.authService.currentUser()
 
-    // Auto-rate the internship when the component initializes
-    this.rateInternship();
+
   }
 
-  /*getInternshipDetails(): void {
-    this.internshipsService.getInternshipById(+this.internshipId).subscribe(
-      (internship: Internship) => {
-        this.internship = internship; // Assign fetched internship data to variable
-      },
-      (error) => {
-        console.error('Error fetching internship details:', error);
-      }
-    );
-  }
-*/
 
-  /*getInternshipDetails(): void {
-    this.internshipsService.getInternshipById(+this.internshipId).subscribe(
-      (internship: Internship) => {
-        this.internship = internship;
-        sessionStorage.setItem('currentInternship', JSON.stringify(this.internship)); // Save internship to sessionStorage
-      },
-      (error) => {
-        console.error('Error fetching internship details:', error);
-      }
-    );
-  }*/
 
 
   getInternshipDetails(): void {
@@ -170,4 +148,25 @@ export class InternshipDetailsComponent  implements OnInit {
     this.internshipUrl = `http://localhost:4200/internship-details/${id}`;
     this.linkedInService.shareInternshipOnLinkedIn(this.internshipUrl);
   }
+
+  updateRating(): void {
+    // Make sure the user is authenticated before allowing to rate
+    if (!this.user) {
+      console.error('User not authenticated');
+      return;
+    }
+
+    // Call the rateInternship method when the rating changes
+    this.internshipsService.rateInternship(this.internshipId.toString(), this.rating, this.user.id.toString()).subscribe(
+      (response) => {
+        console.log('Rating updated successfully:', response);
+        // Reload the internship details after updating the rating
+        this.getInternshipDetails();
+      },
+      (error) => {
+        console.error('Error updating rating:', error);
+      }
+    );
+  }
+
 }

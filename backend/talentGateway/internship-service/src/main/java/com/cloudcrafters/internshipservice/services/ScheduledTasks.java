@@ -39,16 +39,22 @@ public class ScheduledTasks {
     private LinkedInService linkedInService; // Inject LinkedInService
 
 
+
+
+
     @Scheduled(fixedRate = 10000) // Run every 10 seconds
     public void checkMatchingInternshipsScheduled() {
         List<Internship> internships = internshipService.getAllInternships();
         List<User> usersWithSkills = userRestClient.getUsersWithSkills();
 
         if (!internships.isEmpty() && !usersWithSkills.isEmpty()) {
+
             for (Internship internship : internships) {
                 String internshipSkills = internship.getIntershipSkills();
+
                 for (User user : usersWithSkills) {
                     List<Skill> userSkills = user.getSkills();
+
                     boolean matchFound = checkSkillsMatch(internshipSkills, userSkills);
                     if (matchFound) {
                         sendNotificationEmail(user, internship);

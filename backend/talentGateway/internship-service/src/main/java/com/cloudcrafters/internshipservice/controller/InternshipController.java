@@ -4,6 +4,7 @@ package com.cloudcrafters.internshipservice.controller;
 import com.cloudcrafters.internshipservice.entites.Category;
 import com.cloudcrafters.internshipservice.entites.Internship;
 import com.cloudcrafters.internshipservice.services.CategoryService;
+import com.cloudcrafters.internshipservice.services.EmailService;
 import com.cloudcrafters.internshipservice.services.InternshipService;
 import com.cloudcrafters.internshipservice.services.LinkedInService;
 import jakarta.persistence.EntityNotFoundException;
@@ -82,7 +83,6 @@ public class InternshipController {
     }
 
 
-
     //get internship by id
     @GetMapping("/{id}")
     @ResponseBody
@@ -93,6 +93,7 @@ public class InternshipController {
         } else {
             return ResponseEntity.notFound().build();
         }
+
     }
 
     //delete internship by id
