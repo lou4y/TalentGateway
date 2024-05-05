@@ -98,7 +98,7 @@ export function createTranslateLoader(http: HttpClient): any {
             echarts: () => import('echarts'),
         }),
         NgApexchartsModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireModule.initializeApp(firebaseenvir.firebaseConfig),
         AngularFireDatabaseModule,
         AngularFirestoreModule,
         AngularFireStorageModule,

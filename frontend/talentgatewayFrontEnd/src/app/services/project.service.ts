@@ -96,5 +96,8 @@ addProjectWithFile(projectData: any, file: File): Observable<any> {
   getAllLikes(): Observable<any[]> {
     return this.httpClient.get<any[]>(this.API_URL+ this.ENDPOINT_Likes + '/all');
   }
+  getProjectByCreatorId(id: any): Observable<any> {
+    return this.httpClient.get<any[]>(this.API_URL + this.ENDPOINT_Projects + '/creator/' + id);
+  }
 
 }

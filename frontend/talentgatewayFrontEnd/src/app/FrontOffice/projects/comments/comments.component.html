@@ -4,7 +4,7 @@
     <div class="post-comment">
       <div class="user">
         <div class="user-image">
-          <img src="assets/images/users/avatar-5.jpg" alt="User Image" />
+          <img src={{comment.userImage}} alt="User Image" />
         </div>
         <div class="user-meta">
           <div class="user-meta d-flex align-items-center"> <!-- Alignement des éléments -->
@@ -59,7 +59,7 @@
   <div class="comment-box">
     <div class="user">
       <div class="user-image">
-        <img src="assets/images/users/avatar-5.jpg" alt="User Image" />
+        <img src={{userData.profilePicture}} alt="User Image" width="100px" height="100px" />
       </div>
       <div class="name">{{ currentUser?.firstName }} {{ currentUser?.lastName }}</div>
     </div>

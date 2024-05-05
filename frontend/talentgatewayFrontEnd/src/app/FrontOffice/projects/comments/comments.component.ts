@@ -5,6 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/core/models/auth.models';
 import Swal from 'sweetalert2';
 import BadWordsFilter from 'bad-words'; // Import the bad words filter
+import { AdditionalUserData } from 'src/app/core/models/additional-user-data.model';
+import { AdditionalUserDataService } from 'src/app/core/services/additional-user-data.service';
+import { Base64 } from 'js-base64';
 
 @Component({
   selector: 'app-comments',
@@ -20,32 +23,47 @@ export class CommentsComponent implements OnInit {
   currentPage = 1;
   pageSize = 2;
   badWordsFilter = new BadWordsFilter(); // Initialize the bad words filter
+  userData: AdditionalUserData;
 
   constructor(
     private commentsService: CommentsService,
     private activatedRoute: ActivatedRoute,
     private authService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private userDataService: AdditionalUserDataService
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.projectId = parseInt(this.activatedRoute.snapshot.params['id']);
+    const encodedId = this.activatedRoute.snapshot.params['id'];
+
+    // Décode l'identifiant avec Base64
+    const decodedId = parseInt(Base64.decode(encodedId));
+    this.projectId = decodedId;
     this.currentUser = await this.authService.currentUser();
+    this.userData = await this.userDataService.getAdditionalUserData(this.currentUser.id).toPromise();
+
     this.getCommentByProjectId();
   }
 
-  getCommentByProjectId() {
+  async getCommentByProjectId() {
     this.commentsService.getCommentById(this.projectId).subscribe(
-      (comments: any[]) => {
+      async (comments: any[]) => {
+        // Loop through comments to get additional data for each user
+        for (const comment of comments) {
+          const userData = await this.userDataService
+            .getAdditionalUserData(comment.userId) // Assuming userId is available in comment
+            .toPromise();
+          comment.userImage = userData.profilePicture; // Add user profile picture to the comment
+        }
+
         this.comments = comments;
         this.filteredComments = this.paginateComments(this.comments, this.currentPage, this.pageSize);
       },
       (error) => {
-        console.error('Error fetching comments:', error);
+        console.error('Error fetching comments:');
       }
     );
   }
-
   paginateComments(comments: any[], currentPage: number, pageSize: number): any[] {
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;

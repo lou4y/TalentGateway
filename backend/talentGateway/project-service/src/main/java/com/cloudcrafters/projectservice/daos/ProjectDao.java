@@ -18,6 +18,7 @@ public interface ProjectDao extends JpaRepository<Project,Long> {
                 "LOWER(p.projectDescription) LIKE %:searchCriteria% OR " +
                 "LOWER(p.projectStatus) LIKE %:searchCriteria%))")
         List<Project> searchProjects(@Param("searchCriteria") String searchCriteria);
+        List<Project> findByCreatorId(String creatorId);
 
 
 }

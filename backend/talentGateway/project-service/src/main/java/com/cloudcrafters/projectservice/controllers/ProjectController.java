@@ -6,7 +6,6 @@ import com.cloudcrafters.projectservice.entities.Team;
 import com.cloudcrafters.projectservice.entities.UserRoleInTeam;
 import com.cloudcrafters.projectservice.enums.ProjectStatus;
 import com.cloudcrafters.projectservice.models.User;
-import com.cloudcrafters.projectservice.serviceImplementation.CloudinaryService;
 import com.cloudcrafters.projectservice.services.ProjectService;
 import com.cloudcrafters.projectservice.services.TeamService;
 import jakarta.ws.rs.PathParam;
@@ -29,8 +28,6 @@ public class ProjectController {
     ProjectService projectService;
     @Autowired
     UserRestClient userRestClient;
-    @Autowired
-    CloudinaryService cloudinaryService;
     @Autowired
     TeamService teamService;
 
@@ -131,5 +128,14 @@ public class ProjectController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Project not found");
         }
     }
+    @GetMapping("/projects/creator/{creatorId}")
+    public ResponseEntity<List<Project>> getProjectsByCreatorId(@PathVariable String creatorId) {
+        List<Project> projects = projectService.findByCreatorId(creatorId);
 
+        if (projects.isEmpty()) {
+            return ResponseEntity.noContent().build(); // Return a 204 No Content if no projects are found
+        }
+
+        return ResponseEntity.ok(projects);
+    }
 }
