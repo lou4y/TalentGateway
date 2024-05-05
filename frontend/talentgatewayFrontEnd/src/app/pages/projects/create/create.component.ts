@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { ProjectService } from 'src/app/services/project.service';
 import { TeamService } from 'src/app/services/team.service';
 import Swal from 'sweetalert2';
+import { User } from 'src/app/core/models/auth.models';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-create',
@@ -15,6 +17,7 @@ export class CreateComponent implements OnInit {
   fileURL: string | ArrayBuffer | null = null;
   teams: any[] = [];
   selectedTeam: number;
+  currentuser:User;
   projectData = {
     projectName: '',
     projectDescription: '',
@@ -27,11 +30,13 @@ export class CreateComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     private http: HttpClient,
-    private teamService: TeamService
+    private teamService: TeamService,
+    private authService: AuthenticationService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.fetchTeams();
+    this.currentuser = await this.authService.currentUser();
   }
 
   fetchTeams() {
@@ -84,7 +89,7 @@ export class CreateComponent implements OnInit {
         price: this.projectData.price,
         projectFile: this.file.name,
         projectStatus: this.projectData.projectStatus,
-        creatorId:'1',
+        creatorId: this.currentuser.id,
         team: {
             teamId: this.selectedTeam // Ensure that the teamId is correctly named
         }
@@ -100,8 +105,6 @@ export class CreateComponent implements OnInit {
         // Reset the form or perform other necessary actions
     });
 }
-
-
 
   onRemove() {
     this.file = null;

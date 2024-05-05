@@ -235,7 +235,7 @@
                 top: 50px;
             }
         }
-        
+
         &-2 {
             position: absolute;
             top: 60%;
@@ -245,7 +245,7 @@
             @media #{$lg,$xs,$sm,$md,$xl} {
                 display: none;
             }
-            
+
         }
 
         &-3 {
@@ -295,10 +295,7 @@
         }
 
         & .tp-border-btn {
-            & span {
-                border-color: rgba($color: #3270fc, $alpha: 0.08);
-                color: #020c2a;
-            }
+            
 
             &:hover {
                 & span {
@@ -661,13 +658,13 @@
             display: inline-block;
             background-color: var(--tp-common-white);
             opacity: .10;
-            
+
         }
     }
 }
-            
+
 .events__sidebar{
     @media #{$xs,$sm,$md} {
             padding-left: 0;
-    }   
+    }
 }

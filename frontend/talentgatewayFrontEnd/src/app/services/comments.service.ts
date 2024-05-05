@@ -17,5 +17,11 @@ export class CommentsService {
   addComment(comment: any, projectId:any, userId: any): Observable<any> {
     return this.httpClient.post<any>(this.API_URL + this.ENDPOINT_Comments, comment, { params: { projectId, userId } });
   }
-  
+  getAllComments(): Observable<any[]> {
+    return this.httpClient.get<any[]>(this.API_URL + this.ENDPOINT_Comments);
+  }
+  getTopProjectsWithPositiveComments(): Observable<any[]> {
+    return this.httpClient.get<any[]>(`${this.API_URL}/top-positive-comments`);
+  }
+
 }

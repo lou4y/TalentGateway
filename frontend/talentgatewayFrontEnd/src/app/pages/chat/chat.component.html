@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid full-height-container">
   <app-page-title title="Chat" [breadcrumbItems]="breadCrumbItems"></app-page-title>
 
   <div class="d-lg-flex">
@@ -111,11 +111,12 @@
 
                 <li class="list-inline-item">
                   <div class="dropdown">
-                    <button class="btn nav-btn" type="button" (click)="openMeeting()">
+                    <button class="btn nav-btn" type="button" (click)="openMeeting(chat.recipientId)">
                       <i class="bx bx-video"></i>
                     </button>
                   </div>
                 </li>
+
 
 
 
@@ -198,18 +199,19 @@
                     </div>
                     <div class="ctext-wrap">
                       <div class="conversation-name">{{ message.senderId }}</div>
-                      <p>{{ message.content }}</p>
+                      <p [innerHTML]="message.content"></p> <!-- Updated line to use innerHTML property binding -->
                       <p class="chat-time mb-0"><i class="bx bx-time-five align-middle me-1"></i> {{ message.timestamp | date: 'medium' }}</p>
                     </div>
                   </div>
                 </li>
+
               </ul>
             </ngx-simplebar>
 
           </div>
           <div class="p-3 chat-input-section">
             <!-- Your existing form for sending messages -->
-            <form (ngSubmit)="messageSave(chat.recipientId)" [formGroup]="formData" class="row">
+            <form (ngSubmit)="messageSend(chat.recipientId)" [formGroup]="formData" class="row">
               <div class="col">
                 <div class="position-relative">
                   <input type="text" class="form-control chat-input" placeholder="Enter Message..."
