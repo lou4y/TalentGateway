@@ -24,6 +24,9 @@ import { AddInternshipsComponent } from './add-internships/add-internships.compo
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import { InternshipDetailsComponent } from './internship-details/internship-details.component';
 import {RatingModule} from "ngx-bootstrap/rating";
+import {ShareButtonsModule} from "ngx-sharebuttons/buttons";
+import {ShareIconsModule} from "ngx-sharebuttons/icons";
+import { UpdateInternshipComponent } from './update-internship/update-internship.component';
 
 @NgModule({
   declarations: [
@@ -38,21 +41,24 @@ import {RatingModule} from "ngx-bootstrap/rating";
     MyapplicationComponent,
     ListInternshipsComponent,
     AddInternshipsComponent,
-    InternshipDetailsComponent
+    InternshipDetailsComponent,
+    UpdateInternshipComponent
   ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        BsDatepickerModule.forRoot(),
-        PaginationModule.forRoot(),
-        BsDropdownModule.forRoot(),
-        CollapseModule.forRoot(),
-        UIModule,
-        JobsRoutingModule,
-        CKEditorModule,
-        RatingModule,
-    ]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BsDatepickerModule.forRoot(),
+    PaginationModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    CollapseModule.forRoot(),
+    UIModule,
+    JobsRoutingModule,
+    CKEditorModule,
+    RatingModule,
+    ShareButtonsModule,
+    ShareIconsModule,
+  ]
 })
 
 export class JobsModule { }

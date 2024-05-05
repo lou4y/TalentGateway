@@ -1,0 +1,10 @@
+.d-flex {
+  display: flex; /* Permet d'utiliser Flexbox */
+  justify-content: flex-start; /* Aligne horizontalement à gauche */
+  align-items: center; /* Aligne verticalement les éléments */
+}
+
+.card-title {
+  margin-bottom: 0; /* Évite un espace supplémentaire sous le titre */
+  margin-right: 10px; /* Ajuste l'espace entre le titre et le bouton */
+}

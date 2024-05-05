@@ -106,6 +106,7 @@ public class TaskController {
         return ResponseEntity.ok(tasks);
     }
 
+
     // Get tasks by user id
     @GetMapping("/ByUserId/{userId}")
     public ResponseEntity<List<TaskResponse>> getTasksByUserId(@PathVariable String userId) {

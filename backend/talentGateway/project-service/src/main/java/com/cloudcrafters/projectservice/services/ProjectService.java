@@ -15,4 +15,7 @@ public interface ProjectService {
     void deleteProject(Project p);
     List<Project> searchProjects(String searchCriteria);
     String uploadFile(MultipartFile multipartFile) throws IOException;
+
+    List<Project> findByCreatorId(String creatorId);
+
 }

@@ -1,0 +1,69 @@
+/* Style pour le conteneur de la carte */
+.card {
+  border: 1px solid #ddd; /* Bordure légère */
+  border-radius: 10px; /* Coins arrondis */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); /* Légère ombre */
+  background-color: white; /* Fond blanc */
+  margin-top: -50px;
+  position: relative;
+  min-height: 200px;
+}
+
+/* Style pour le corps de la carte */
+.card-body {
+  padding: 10px; /* Ajout d'espace intérieur */
+  overflow: visible
+}
+
+/* Style pour le titre */
+.card-title {
+  font-weight: bold; /* Mettre en gras */
+  color: #333; /* Couleur de texte */
+}
+.ngx-slider{
+  color: red;
+}
+.ng-select {
+  position: relative; /* Ensure proper stacking */
+}
+
+/* Style pour les éléments du formulaire */
+.form-select {
+  border-radius: 5px; /* Coins arrondis */
+  border: 1px solid #ccc; /* Bordure grise */
+  padding: 10px; /* Espace intérieur */
+}
+
+/* Style pour le slider */
+.ngx-slider {
+  width: 100%; /* Prendre toute la largeur */
+}
+
+.ngx-slider-handle {
+  background-color: #007bff; /* Couleur bleue */
+  border: 1px solid #0056b3; /* Bordure plus foncée */
+}
+
+.ngx-slider-bar {
+  background-color: #007bff; /* Couleur bleue */
+}
+
+/* Style pour les filtres supplémentaires */
+.form-check {
+  margin-bottom: 10px; /* Espace entre les filtres */
+}
+
+/* Style pour les étiquettes des filtres supplémentaires */
+.form-check label {
+  color: #333; /* Couleur de texte */
+  font-weight: 500; /* Semi-gras */
+}
+.ng-select {
+  background-color: #007bff; /* A shade of blue for the background */
+  color: white; /* Optional: white text for contrast */
+}
+
+.ng-select .ng-dropdown-panel {
+  background-color: #007bff; /* Ensure the dropdown panel has a blue background */
+}
+

@@ -12,24 +12,38 @@ import {AuthenticationService} from "../../core/services/auth.service";
   styleUrls: ['./internships.component.scss']
 })
 export class InternshipsComponent implements OnInit {
-  internships$: Observable<Internship[]>; // Observable to hold the list of internships
-  user: any; // Assuming you have an AuthService to get user info
+  internships: Internship[] = [];
+  user: any;
+  totalRecords: number = 0;
+  page: number = 1;
+  pageSize: number = 3; // Changed to 5 items per page
 
   constructor(private internshipsService: InternshipsService, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.user = this.authService.currentUser();
     this.getInternships();
-    // Call method to fetch all internships
   }
 
   getInternships(): void {
-    this.internships$ = this.internshipsService.getAllInternships();
+    this.internshipsService.getAllInternships().subscribe(internships => {
+      this.internships = internships;
+      this.totalRecords = this.internships.length;
+    });
   }
 
-  // Method to check if the internship start date is less than the current system date
-  isInternshipStartDatePassed(internshipStartDate: Date): boolean {
-    const currentDate = new Date();
-    return currentDate > new Date(internshipStartDate);
+  getCurrentPageInternships(): Internship[] {
+    const startIndex = (this.page - 1) * this.pageSize;
+    const endIndex = Math.min(startIndex + this.pageSize, this.totalRecords);
+    return this.internships.slice(startIndex, endIndex);
+  }
+
+  pageChanged(event: any): void {
+    this.page = event;
+  }
+
+  isInternshipStartDatePassed(startDate: Date): boolean {
+    // Implement your logic to check if the internship start date has passed
+    return new Date(startDate) < new Date();
   }
 }

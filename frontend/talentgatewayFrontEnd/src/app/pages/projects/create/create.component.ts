@@ -3,7 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { ProjectService } from 'src/app/services/project.service';
 import { TeamService } from 'src/app/services/team.service';
 import Swal from 'sweetalert2';
-
+import { User } from 'src/app/core/models/auth.models';
+import { AuthenticationService } from 'src/app/core/services/auth.service';
+import Pusher from 'pusher-js';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -15,6 +18,7 @@ export class CreateComponent implements OnInit {
   fileURL: string | ArrayBuffer | null = null;
   teams: any[] = [];
   selectedTeam: number;
+  currentuser:User;
   projectData = {
     projectName: '',
     projectDescription: '',
@@ -23,15 +27,21 @@ export class CreateComponent implements OnInit {
     endTime: '',
     price: 0
   };
+  private pusher: any;
+  private channel: any;
 
   constructor(
     private projectService: ProjectService,
     private http: HttpClient,
-    private teamService: TeamService
+    private teamService: TeamService,
+    private authService: AuthenticationService,
+    private toastr: ToastrService,
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.fetchTeams();
+    this.currentuser = await this.authService.currentUser();
+    //this.initializePusher();
   }
 
   fetchTeams() {
@@ -39,6 +49,22 @@ export class CreateComponent implements OnInit {
       this.teams = teams;
     });
   }
+  /*initializePusher(): void {
+    this.pusher = new Pusher('3867787e7fdcc8389321', {
+      cluster: 'ap4',
+      forceTLS: true
+    });
+
+    this.channel = this.pusher.subscribe('projects');
+    this.channel.bind('new-project', (data: any) => {
+      const message = `${data.message}`;
+      this.toastr.success(message, 'Project Notification', {
+        closeButton: true,
+        positionClass: 'toast-top-right',
+        progressBar: true
+      });
+    });
+  }*/
 
   onFileSelected(event: any) {
     if (event && event.addedFiles && event.addedFiles.length > 0) {
@@ -84,24 +110,18 @@ export class CreateComponent implements OnInit {
         price: this.projectData.price,
         projectFile: this.file.name,
         projectStatus: this.projectData.projectStatus,
-        creatorId:'1',
+        creatorId: this.currentuser.id,
         team: {
             teamId: this.selectedTeam // Ensure that the teamId is correctly named
         }
     };
 
     this.projectService.addProject(projectData).subscribe((response: any) => {
-      Swal.fire({
-        title: "Good job!",
-        text: "Your Project added successfully!",
-        icon: "success"
-      });
+      this.toastr.success("Project created successfully!", "Success");
 
         // Reset the form or perform other necessary actions
     });
 }
-
-
 
   onRemove() {
     this.file = null;
