@@ -4,10 +4,9 @@ import com.cloudcrafters.projectservice.daos.ProjectDao;
 import com.cloudcrafters.projectservice.entities.Project;
 import com.cloudcrafters.projectservice.enums.ProjectStatus;
 import com.cloudcrafters.projectservice.services.ProjectService;
-import com.cloudinary.Cloudinary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -19,7 +18,6 @@ import java.util.UUID;
 public class ProjectServiceImplementation implements ProjectService {
     @Autowired
     private ProjectDao projectDao;
-    private Cloudinary cloudinary;
     @Override
     public List<Project> getAllProjects() {
         return projectDao.findAll();
@@ -38,14 +36,10 @@ public class ProjectServiceImplementation implements ProjectService {
     }
 
     @Override
-    public String uploadFile(MultipartFile multipartFile) throws IOException {
-        Map<String, Object> result = cloudinary.uploader().upload(
-                multipartFile.getBytes(),
-                Map.of("public_id", UUID.randomUUID().toString())
-        );
-
-        return (String) result.get("url");
+    public List<Project> findByCreatorId(String creatorId) {
+        return projectDao.findByCreatorId(creatorId);
     }
+
     @Override
     public Project addProject(Project p) {
         return projectDao.save(p);
@@ -66,5 +60,6 @@ public class ProjectServiceImplementation implements ProjectService {
         // Implement your search logic here
         return projectDao.searchProjects(searchCriteria);
     }
+
 
 }

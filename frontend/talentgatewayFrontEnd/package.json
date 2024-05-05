@@ -57,6 +57,7 @@
     "echarts": "^5.5.0",
     "firebase": "^10.11.0",
     "flatpickr": "^4.6.13",
+    "js-base64": "^3.7.7",
     "keycloak-angular": "^15.2.1",
     "keycloak-js": "^22.0.5",
     "leaflet": "^1.9.4",
