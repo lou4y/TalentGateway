@@ -3,6 +3,7 @@ package com.cloudcrafters.taskservice.Controller;
 import com.cloudcrafters.taskservice.Clients.ProjectRestClient;
 import com.cloudcrafters.taskservice.Clients.UserRestClient;
 import com.cloudcrafters.taskservice.Entities.Task;
+import com.cloudcrafters.taskservice.Enums.Statut;
 import com.cloudcrafters.taskservice.dto.TaskResponse;
 import com.cloudcrafters.taskservice.Enums.Priority;
 import com.cloudcrafters.taskservice.models.Project;
@@ -31,25 +32,11 @@ public class TaskController {
     private UserRestClient userRestClient;
     private ProjectRestClient projectRestClient;
 
-    // Create task
-//    @PostMapping("/CreateTask")
-//    public ResponseEntity<?> createTask(@RequestBody Task task) {
-//        try {
-//            Task newTask = taskService.createTask(task);
-//            return new ResponseEntity<>(newTask, HttpStatus.CREATED);
-//        } catch (RuntimeException ex) {
-//            return ResponseEntity
-//                    .status(HttpStatus.BAD_REQUEST)
-//                    .body("We can't create this task: " + ex.getMessage());
-//        }
-//    }
-
     @PostMapping("/CreateTask")
     public ResponseEntity<TaskResponse> createTask(@RequestBody Task task) {
         TaskResponse response = taskService.createTask(task);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
-
 
     // Get all tasks
     @GetMapping( "/GetAllTasks")
@@ -99,25 +86,15 @@ public class TaskController {
         return ResponseEntity.ok(tasks);
     }
 
-    // Get tasks by user id
-    @GetMapping("/ByUserId/{userId}")
-    public ResponseEntity<List<TaskResponse>> getTasksByUserId(@PathVariable String userId) {
-        List<TaskResponse> tasks = taskService.findTasksByUserId(userId);
+    // Get tasks by status
+    @GetMapping("/ByStatus/{status}")
+    public ResponseEntity<List<TaskResponse>> findTasksByStatus(@PathVariable Statut status) {
+        List<TaskResponse> tasks = taskService.findTasksByStatus(status);
         if (tasks.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.emptyList());
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(tasks);
     }
-
-
-
-    // Search tasks
-    @GetMapping( "/search")
-    @ResponseStatus(HttpStatus.OK)
-    public List<TaskResponse> searchTasks(@RequestParam(name ="keyword" , defaultValue = "") String keyword) {
-        return taskService.searchTasks("%"+keyword+"%");
-    }
-
 
     // Get all tasks sorted by date
     @GetMapping("/SortedByDate")
@@ -128,6 +105,26 @@ public class TaskController {
         }
         return ResponseEntity.ok(tasks);
     }
+
+    // Get tasks by user id
+    @GetMapping("/ByUserId/{userId}")
+    public ResponseEntity<List<TaskResponse>> getTasksByUserId(@PathVariable String userId) {
+        List<TaskResponse> tasks = taskService.findTasksByUserId(userId);
+        if (tasks.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.emptyList());
+        }
+        return ResponseEntity.ok(tasks);
+    }
+
+    // Search tasks
+    @GetMapping( "/search")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TaskResponse> searchTasks(@RequestParam(name ="keyword" , defaultValue = "") String keyword) {
+        return taskService.searchTasks("%"+keyword+"%");
+    }
+
+
+
 
     @GetMapping("/user/{userId}/stats")
     public ResponseEntity<?> getTaskStatsByUserId(@PathVariable String userId) {

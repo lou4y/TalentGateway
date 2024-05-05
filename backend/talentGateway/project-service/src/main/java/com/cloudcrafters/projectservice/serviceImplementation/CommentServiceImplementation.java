@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentServiceImplementation implements CommentService {
@@ -21,6 +23,8 @@ public class CommentServiceImplementation implements CommentService {
     private ProjectService projectService;
     @Autowired
     private UserRestClient userRestClient;
+    @Autowired
+    private SentimentAnalysisService sentimentAnalysisService;
     @Override
     public List<Comment> getAllComments() {
         return commentDao.findAll();
@@ -47,8 +51,19 @@ public class CommentServiceImplementation implements CommentService {
                 comment.setProject(project);
                 comment.setUserId(userId);
                 comment.setCommentDate(new Date());
+                String sentiment = sentimentAnalysisService.analyzeSentiment(comment.getCommentContent());
+                comment.setSentiment(sentiment);
+
+                return commentDao.save(comment);
             }
         }
         return commentDao.save(comment);
+    }
+    @Override
+    public Map<Project, Long> getProjectCommentCounts() {
+        return commentDao.findAll()
+                .stream()
+                .filter(comment -> "positive".equalsIgnoreCase(comment.getSentiment())) // Filtre les commentaires positifs
+                .collect(Collectors.groupingBy(Comment::getProject, Collectors.counting()));
     }
 }

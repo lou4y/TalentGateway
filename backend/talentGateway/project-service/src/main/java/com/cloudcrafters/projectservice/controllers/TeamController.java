@@ -56,6 +56,35 @@ public class TeamController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("team not found");
         }
     }
+    @PostMapping("/teams/add-member")
+    public ResponseEntity<String> addTeamMemberToProject(@RequestParam("projectId") Long projectId,
+                                                         @RequestParam("userId") String userId,
+                                                         @RequestParam("memberRole") String memberRole) {
+        try {
+            teamService.addTeamMemberToProject(projectId, userId, memberRole);
+            return ResponseEntity.ok("Team member added successfully.");
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());  // Retourne le message de l'exception
+        } catch (Exception ex) {
+            return ResponseEntity.status(500).body("An error occurred while adding the team member.");
+        }
+    }
+    @DeleteMapping("/teams/{teamId}/members/{userId}")
+    public ResponseEntity<String> removeTeamMember(@PathVariable Long teamId, @PathVariable String userId) {
+        try {
+            boolean success = teamService.removeTeamMember(teamId, userId);
+            if (success) {
+                return ResponseEntity.ok("Team member removed successfully.");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Team member not found.");
+            }
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        } catch (Exception ex) {
+            return ResponseEntity.status(500).body("An error occurred while removing the team member.");
+        }
+    }
+
    /* @GetMapping("/teams-detail/{id}")
     public Map<String, Object> getTeamDetailById(@PathVariable Long id) {
         Team team = teamService.getTeamById(id);

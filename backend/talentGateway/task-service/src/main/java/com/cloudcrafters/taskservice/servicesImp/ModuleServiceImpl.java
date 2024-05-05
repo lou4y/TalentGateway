@@ -30,6 +30,7 @@ public class ModuleServiceImpl implements ModuleService {
     private final ModuleDao moduleDao;
     private final ProjectRestClient projectRestClient;
 
+    // Create module
     @Override
     public Module createModule(Module module) {
         // Fetch the project by projectName
@@ -38,17 +39,15 @@ public class ModuleServiceImpl implements ModuleService {
         if (optionalProject.isEmpty()) {
             throw new RuntimeException("Project not found for name: " + module.getProjectName());
         }
-
         Project project = optionalProject.get();
-
         // Set projectId and project details from fetched project
         module.setProjectId(project.getProjectId());
         module.setProjectName(project.getProjectName());
         module.setProjectDescription(project.getProjectDescription());
-
         return moduleDao.save(module);
     }
 
+    // Update module by moduleId
     @Override
     public Module updateModule(Long moduleId, Module moduleDetails) {
         Module existingModule = moduleDao.findById(moduleId)
@@ -58,24 +57,27 @@ public class ModuleServiceImpl implements ModuleService {
         return moduleDao.save(existingModule);
     }
 
+    // Get all modules
     @Override
     public List<Module> getAllModules() {
         return moduleDao.findAll();
     }
 
+    // Get module by moduleId
     @Override
     public Module getModuleById(Long moduleId) {
         return moduleDao.findById(moduleId)
                 .orElseThrow(() -> new RuntimeException("Module not found for This id: " + moduleId));
     }
 
+    // Delete module by moduleId
     @Override
     public void deleteModule(Long moduleId) {
         Module module = getModuleById(moduleId);
         moduleDao.delete(module);
     }
 
-    //test
+    // Get module by moduleName
     @Override
     public Optional<Module> getModuleByName(String moduleName) {
         return moduleDao.findByModuleName(moduleName);
