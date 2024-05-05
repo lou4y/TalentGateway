@@ -29,10 +29,11 @@ import { ContactsModule } from './contacts/contacts.module';
 import { CalendarComponent } from './calendar/calendar.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ChatComponent } from './chat/chat.component';
+import { GoogleGeminiComponent } from './chat/components/google-gemini/google-gemini.component';
 
 
 @NgModule({
-  declarations: [CalendarComponent, ChatComponent],
+  declarations: [CalendarComponent, ChatComponent, GoogleGeminiComponent],
   imports: [
     CommonModule,
     FormsModule,

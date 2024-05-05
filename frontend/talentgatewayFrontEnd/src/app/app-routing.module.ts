@@ -7,6 +7,7 @@ import { CyptolandingComponent } from './cyptolanding/cyptolanding.component';
 import { Page404Component } from './extrapages/page404/page404.component';
 
 import {VideoConferenceComponent} from "./chatComponents/video-conference/video-conference.component";
+import { GoogleGeminiComponent} from "./pages/chat/components/google-gemini/google-gemini.component";
 
 import { ListprojectsComponent } from './FrontOffice/listprojects/listprojects.component';
 import { DetailProjectComponent } from './FrontOffice/projects/detail-project/detail-project.component';
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'pages', loadChildren: () => import('./extrapages/extrapages.module').then(m => m.ExtrapagesModule), canActivate: [AuthGuard] },
   { path: 'crypto-ico-landing', component: CyptolandingComponent },
   {path:'meeting', component:VideoConferenceComponent},
+  {path:'gemini', component:GoogleGeminiComponent},
   { path: '**', component: Page404Component },
 
 
