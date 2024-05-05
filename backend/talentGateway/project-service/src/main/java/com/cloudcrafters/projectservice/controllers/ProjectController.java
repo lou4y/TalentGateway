@@ -6,6 +6,7 @@ import com.cloudcrafters.projectservice.entities.Team;
 import com.cloudcrafters.projectservice.entities.UserRoleInTeam;
 import com.cloudcrafters.projectservice.enums.ProjectStatus;
 import com.cloudcrafters.projectservice.models.User;
+import com.cloudcrafters.projectservice.serviceImplementation.CloudinaryService;
 import com.cloudcrafters.projectservice.services.ProjectService;
 import com.cloudcrafters.projectservice.services.TeamService;
 import jakarta.ws.rs.PathParam;
@@ -29,6 +30,9 @@ public class ProjectController {
     @Autowired
     UserRestClient userRestClient;
     @Autowired
+    CloudinaryService cloudinaryService;
+    @Autowired
+
     TeamService teamService;
 
     @GetMapping("/projects")

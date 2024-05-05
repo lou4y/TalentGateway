@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/Modules") // Note the leading slash for consistency
+@RequestMapping("/Modules")
 @CrossOrigin("*")  // autorise les requêtes de tous les domaines
 public class ModuleController {
 
@@ -39,8 +39,6 @@ public class ModuleController {
         Module createdModule = moduleService.createModule(module);
         return new ResponseEntity<>(createdModule, HttpStatus.CREATED);
     }
-
-
 
     // Get all modules
     @GetMapping("/GetAllModules")
@@ -67,7 +65,6 @@ public class ModuleController {
         return moduleService.updateModule(moduleId, moduleDetails);
     }
 
-
     // Delete module
     @DeleteMapping("/DeleteModule/{moduleId}")
     public ResponseEntity<String> deleteModule(@PathVariable Long moduleId) {
@@ -84,7 +81,6 @@ public class ModuleController {
     @GetMapping("/byName/{moduleName}")
     public ResponseEntity<?> getModuleByName(@PathVariable String moduleName) {
         Optional<Module> moduleOptional = moduleService.getModuleByName(moduleName);
-
         return moduleOptional.map(module -> {
             // Ici, vous tentez de récupérer et d'associer les détails du projet, si projectId n'est pas null
             if (module.getProjectId() != null) {
