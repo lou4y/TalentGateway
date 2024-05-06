@@ -57,10 +57,17 @@ import {CdkStepperModule} from '@angular/cdk/stepper';
 import { NgStepperModule } from 'angular-ng-stepper';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { UiSwitchModule } from 'ngx-ui-switch';
+
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import {PaginationModule} from "ngx-bootstrap/pagination";
 import {JobsModule} from "./pages/jobs/jobs.module";
 import {UIModule} from "./shared/ui/ui.module";
+
+
+import { UploadfilefirebaseComponent } from './FrontOffice/projects/uploadfiles/uploadfilefirebase/uploadfilefirebase.component';
+import { firebaseenvir } from 'src/environments/firebaseenvir';
+import { NgxFileDropModule } from 'ngx-file-drop';
+
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -82,6 +89,7 @@ export function createTranslateLoader(http: HttpClient): any {
     AddTeamComponent,
     ProjectFilterComponent,
     AddprojectWithTeamComponent,
+    UploadfilefirebaseComponent,
 
   ],
   imports: [
@@ -140,6 +148,62 @@ export function createTranslateLoader(http: HttpClient): any {
     PaginationModule,
     JobsModule,
     UIModule,
+
+
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        ModalModule.forRoot(),
+        NgxEchartsModule.forRoot({
+            echarts: () => import('echarts'),
+        }),
+        NgApexchartsModule,
+        AngularFireModule.initializeApp(firebaseenvir.firebaseConfig),
+        AngularFireDatabaseModule,
+        AngularFirestoreModule,
+        AngularFireStorageModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [HttpClient]
+            }
+        }),
+        LayoutsModule,
+        AppRoutingModule,
+        ExtrapagesModule,
+        ConfirmpagesModule,
+        CarouselModule,
+        AccordionModule.forRoot(),
+        TabsModule.forRoot(),
+        TooltipModule.forRoot(),
+        SharedModule,
+        ScrollToModule.forRoot(),
+        ToastrModule.forRoot(),
+        KeycloakAngularModule,
+        FormsModule,
+        RatingModule,
+        DndModule,
+        MatAutocompleteModule,
+        MatSnackBarModule,
+        NgApexchartsModule,
+        NgxSliderModule,
+        NgSelectModule,
+        MatCheckboxModule,
+        CollapseModule.forRoot(),
+        BsDropdownModule.forRoot(),
+        CKEditorModule,
+        NgStepperModule,
+        CdkStepperModule,
+        NgxMaskDirective,
+        NgxMaskPipe,
+        NgSelectModule,
+        UiSwitchModule,
+        ShareButtonsModule,
+        PaginationModule,
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -86,8 +86,8 @@ export class TasksService {
 
   
   // Method to get all tasks
-  public getAllTasks(skip: number, take: number): Observable<Array<Tasks>> {
-    const url = `${this.API_URL}/Tasks/GetAllTasks?skip=${skip}&take=${take}`;
+  public getAllTasks(): Observable<Array<Tasks>> {
+    const url = `${this.API_URL}/Tasks/GetAllTasks`;
     return this.http.get<Array<Tasks>>(url);
   }
 

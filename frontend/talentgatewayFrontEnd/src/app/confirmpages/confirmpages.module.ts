@@ -7,6 +7,7 @@ import {NgStepperModule} from "angular-ng-stepper";
 import {CdkStepperModule} from "@angular/cdk/stepper";
 import {MatIconModule} from "@angular/material/icon";
 import {NgSelectModule} from "@ng-select/ng-select";
+import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 
 @NgModule({
   declarations: [ConfirmProfileDetailsComponent,VerificationComponent],
@@ -17,7 +18,8 @@ import {NgSelectModule} from "@ng-select/ng-select";
     CdkStepperModule,
     MatIconModule,
     ReactiveFormsModule,
-    NgSelectModule
+    NgSelectModule,
+    BsDatepickerModule
   ]
 })
 export class ConfirmpagesModule { }

@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'email', loadChildren: () => import('./email/email.module').then(m => m.EmailModule) },
   { path: 'projects', loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule) },
   { path: 'tasks', loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule) },
-  { path: 'contacts', loadChildren: () => import('./contacts/contacts.module').then(m => m.ContactsModule) },
+  { path: 'profile', loadChildren: () => import('./contacts/contacts.module').then(m => m.ContactsModule) },
   { path: 'internship-details/:id', component: InternshipDetailsComponent },
 
   { path: 'jobs', loadChildren: () => import('./jobs/jobs.module').then(m => m.JobsModule) },

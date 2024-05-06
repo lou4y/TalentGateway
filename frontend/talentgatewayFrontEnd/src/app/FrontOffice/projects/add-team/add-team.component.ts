@@ -65,10 +65,10 @@ export class AddTeamComponent implements OnInit {
 
   onUserSelected(event: any): void {
     if (event && event.option && event.option.value) {
-      const selectedUser = this.users.find(user => user.userId === event.option.value);
+      const selectedUser = this.users.find(user => user.id === event.option.value);
       if (selectedUser) {
         this.searchControl.setValue(selectedUser.firstName + ' ' + selectedUser.lastName); // Afficher le nom complet
-        this.selectedUserId = selectedUser.userId; // Stocker l'ID pour la soumission
+        this.selectedUserId = selectedUser.id; // Stocker l'ID pour la soumission
         this.selectedUserName = `${selectedUser.firstName} ${selectedUser.lastName}`; // Nom complet
         this.selectedUserPhone = selectedUser.phoneNumber; // Numéro de téléphone
       }
@@ -82,7 +82,7 @@ export class AddTeamComponent implements OnInit {
 
     const userId = this.selectedUserId;
     const memberRole = this.roleControl.value;
-    const phoneNumber = this.selectedUserPhone;
+    const phoneNumber = "+21658810345";
     const userName = this.selectedUserName; // Pour le message personnalisé
 
     const message = `Welcome to the team, dear ${userName}!`; // Message de bienvenue
@@ -97,14 +97,9 @@ export class AddTeamComponent implements OnInit {
 
     this.teamService.addTeamMemberToProject(this.projectId, userId, memberRole).subscribe(
         (response) => {
-          Swal.fire({
-            title: "Good job!",
-            text: "Team member added successfully.",
-            icon: "success"
-          }),
 
 
-            /*this.teamService.sendSms(phoneNumber, message).subscribe(
+            this.teamService.sendSms(phoneNumber, message).subscribe(
                 () =>Swal.fire({
             title: "Good job!",
             text: "Team member added successfully.",
@@ -115,7 +110,7 @@ export class AddTeamComponent implements OnInit {
                   title: "Oops...",
                   text: "error to send sms"
                 })
-            );*/
+            );
 
             this.dialogRef.close(); // Fermer le dialogue après succès
         },
@@ -140,6 +135,8 @@ export class AddTeamComponent implements OnInit {
 
     this.getAllUsers(); // Rafraîchir la liste des utilisateurs
 }
+
+
 
 
 

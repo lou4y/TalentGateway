@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TestuserService {
-  readonly API_URL = "http://localhost:8888/USERTEST-SERVICE";
+  readonly API_URL = "http://localhost:8089/keycloak";
   readonly ENDPOINT_Projects = "/users";
 
   constructor(private http: HttpClient) { }

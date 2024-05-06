@@ -1,0 +1,143 @@
+<div class="container-fluid">
+
+  <app-page-title title="Edit Profile" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-center">
+            <div class="avatar-container">
+              <div class="image-container" *ngIf="Image; else placeholder"
+                   [ngClass]="{'box-shadow-avatar': !!Image}"
+                   [ngStyle]="{backgroundImage: 'url(' + Image + ')'}">
+              </div>
+
+              <ng-template #placeholder>
+                <div class="image-container avatar-placeholder">
+                </div>
+              </ng-template>
+
+              <label for="avatar-input-file">
+                <div class="icon-wrapper">
+                  <input type="file" id="avatar-input-file" accept="image/*" (change)="onFileChange($event)"/>
+                  <mat-icon class="icon" fontIcon="edit"></mat-icon>
+                </div>
+              </label>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="FirstNameInput" [(ngModel)]="FirstName" placeholder="" >
+                <label for="FirstNameInput">FirstName</label>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="LastNameInput" [(ngModel)]="LastName" placeholder="" >
+                <label for="LastNameInput">LastName</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="EmailInput" [(ngModel)]="Email" placeholder="" >
+            <label for="EmailInput">Email </label>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <div class="form-floating ">
+                  <input bsDatepicker class="form-control" id="BirthdateInput" [(ngModel)]="Birthdate"  placeholder="" >
+                  <label for="BirthdateInput">Date of Birth</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="mb-3">
+                <label class="d-block mb-3">Gender:</label>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="gender" id="maleRadio" [(ngModel)]="selectedGender" value="Male">
+                  <label class="form-check-label" for="maleRadio">Male</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="gender" id="femaleRadio" [(ngModel)]="selectedGender" value="Female">
+                  <label class="form-check-label" for="femaleRadio">Female</label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="AddressInput"  [(ngModel)]="Address" placeholder="" >
+              <label for="AddressInput">Address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="CityInput" [(ngModel)]="City" placeholder="" >
+              <label for="CityInput">City</label>
+            </div>
+            <div class="form-floating mb-3">
+              <select  class="form-control" id="StateInput" [(ngModel)]="State"  >
+                <option *ngFor="let state of tunisiaStates" [value]="state">{{ state }}</option>
+              </select>
+              <label for="StateInput">State</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="tel" class="form-control" id="MobileInput" [(ngModel)]="phoneNumber" (input)="validatePhoneNumber()" placeholder="Enter Phone Number" >
+              <label for="MobileInput">Phone Number</label>
+              <small class="text-danger" *ngIf="phoneNumberError">Please enter a valid 8-digit phone number.</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-12 mb-3">
+              <p >Description :
+              </p>
+              <textarea class="form-control" [(ngModel)]="description" rows="5"></textarea>
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="mb-3" [formGroup]="skillData">
+              <div formArrayName="skillValue">
+                <label>Skills :</label>
+                <div class="inner mb-3 row" *ngFor="let data1 of  skilldata().controls; let i=index;"
+                     [formGroupName]="i">
+                  <div class="col-md-5 col-4">
+                    <input type="text" class="inner form-control" formControlName="skillname"
+                           placeholder="Enter your Skill name">
+                  </div>
+                  <div class="col-md-5 col-4">
+                    <select class="inner form-control" formControlName="skilllevel">
+                      <option value="BEGINNER">Beginner</option>
+                      <option value="INTERMEDIATE">Intermediate</option>
+                      <option value="EXPERT">Expert</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2 col-4">
+                    <div class="d-grid">
+                      <input type="button" class="btn btn-primary inner" value="Delete" (click)="deleteskill(i)">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <input type="button"  class="btn btn-success inner" value="Add Skill" (click)="addSkill()">
+          </div>
+          <p >Upload your resume in PDF format.  </p>
+          <div class="mb-3">
+            <input type="file" (change)="onFileSelected($event)" accept=".pdf" class="form-control" id="formrow-resume-input" placeholder="Upload Resume">
+            <small class="text-danger" *ngIf="fileError">Please upload a PDF file :</small>
+          </div>
+        </div>
+      </div>
+      <input type="button"  class="btn btn-success inner" value="save" (click)="saveData()">
+      <!-- end card -->
+    </div>
+    <!-- end col -->
+  </div>
+</div>
+

@@ -4,6 +4,7 @@ import com.cloudcrafters.userservice.entity.Skill;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -21,10 +22,10 @@ public class User {
 	private String userName;
 	
 	private String password;
+	private Long createdDate;
 
 	private Boolean isEmailVerified = false;
 
-	private List<Skill> skills;
 
 
 	

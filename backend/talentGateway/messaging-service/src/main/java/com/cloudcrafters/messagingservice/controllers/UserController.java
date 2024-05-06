@@ -13,6 +13,8 @@ import com.cloudcrafters.messagingservice.entities.*;
 
 @Controller
 @RequiredArgsConstructor
+@CrossOrigin("*")
+@RestController
 public class UserController {
 
     private final UserService userService;

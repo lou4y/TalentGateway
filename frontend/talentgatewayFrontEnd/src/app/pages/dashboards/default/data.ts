@@ -149,16 +149,16 @@ const transactions = [
 
 const statData = [{
     icon: 'bx bx-copy-alt',
-    title: 'Orders',
+    title: 'Internships',
     value: '1,235'
 }, {
     icon: 'bx bx-archive-in',
-    title: 'Revenue',
-    value: '$35, 723'
+    title: 'Projects',
+    value: '200'
 }, {
     icon: 'bx bx-purchase-tag-alt',
-    title: 'Average Price',
-    value: '$16.2'
+    title: 'Applications',
+    value: '400'
 }];
 
 export { emailSentBarChart, monthlyEarningChart, transactions, statData };

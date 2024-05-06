@@ -75,7 +75,7 @@
                   <th scope="col">Description</th>
                   <th scope="col">Priority</th>
                   <th scope="col">Status</th>
-                  <th scope="col">User Name</th>
+                  <th scope="col">Member Name</th>
                   <th scope="col">Module Name</th>
                   <th scope="col">Start Date</th>
                   <th scope="col">End Time</th>
@@ -106,7 +106,7 @@
   <select [(ngModel)]="selectedTask.statut" class="form-control">
     <option value="Finished">Finished</option>
     <option value="In_Progress">In Progress</option>
-    <option value="To_do">To Do</option>
+    <option value="To do">To Do</option>
   </select>
 </td>
 
@@ -132,13 +132,14 @@
                         <a class="btn btn-sm btn-soft-primary" *ngIf="!isEditMode" (click)="edit(task)"><i class="mdi mdi-pencil"></i></a>
                       </li>
                       <li data-bs-toggle="tooltip" data-bs-placement="top" title="Save" *ngIf="isEditMode && selectedTask?.id === task.id">
-                        <a class="btn btn-sm btn-soft-success" (click)="updateTask()"><i class="mdi mdi-check"></i></a>
+                        <a class="btn btn-sm btn-soft-success" (click)="updateTask(); isEditMode = false;"><i class="mdi mdi-check"></i></a>
                       </li>
                       <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                         <a href="javascript:void(0);" data-bs-toggle="modal" class="btn btn-sm btn-soft-danger" (click)="delete($event, task.id)"><i class="mdi mdi-delete-outline"></i></a>
                       </li>
                     </ul>
                   </td>
+                  
                 </tr>
               </tbody>
             </table>

@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/core/models/auth.models';
 import { AddprojectWithTeamComponent } from '../projects/addproject-with-team/addproject-with-team.component';
 import { MatDialog } from '@angular/material/dialog';
+import { HttpResponse } from '@angular/common/http';
+import { Base64 } from 'js-base64';
+import { co } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-listprojects',
@@ -54,15 +57,22 @@ export class ListprojectsComponent implements OnInit {
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     return projects.slice(startIndex, endIndex); // Return only projects for the current page
+
   }
 
   goToPage(page: number) {
+    console.log("Going to page:", page); // Ajoutez des logs pour comprendre le comportement
+
     const totalPages = Math.ceil(this.projects.length / this.pageSize);
     if (page >= 1 && page <= totalPages) {
       this.currentPage = page;
       this.filteredProjects = this.paginateProjects(this.projects, this.currentPage, this.pageSize);
+
+      console.log("Projects on this page:", this.filteredProjects); // Vérifiez les projets
+      this.fetchNumberOfLikes(); // Assurez-vous de recharger les "likes"
     }
   }
+
 
   async onFilterChange(filterEvent: any) {
     // Apply the desired filtering logic
@@ -99,8 +109,9 @@ export class ListprojectsComponent implements OnInit {
           this.filteredProjects = this.projects.filter(project => project.isLiked);
         } else if (filterEvent.value === 'isMine') {
           this.filteredProjects = this.projects.filter(
-            (project) => project.projectCreator?.userId === this.currentUser.id
+            (project) => project.creatorId === this.currentUser.id
           );
+           // Vérifiez les projets
         }
         break;
 
@@ -166,38 +177,47 @@ export class ListprojectsComponent implements OnInit {
   }
 
   showDetailProject(project: any) {
-    this.router.navigate(['/detailProject', project.projectId]);
+    // Encode l'identifiant avec Base64
+    const encodedId = Base64.encode(project.projectId.toString());
+
+    // Passe l'identifiant encodé à la route
+    this.router.navigate(['/detailProject', encodedId]);
   }
 
   deleteProject(id: number) {
-    if (this.deleteInProgress) {
-      return; // Exit if delete operation is in progress
-    }
-
-    this.deleteInProgress = true;
-
     this.projectService.deleteProject(id).subscribe(
-      () => {
-        this.projects = this.projects.filter((project) => project.projectId !== id);
+      (response: HttpResponse<any>) => { // Spécifiez le type de la réponse
+        console.log('Delete project response:', response);
+        if (response.ok) { // Utilisez 'ok' pour vérifier si le statut est entre 200-299
+          this.projects = this.projects.filter((project) => project.projectId !== id);
+          Swal.fire({
+            title: 'Good job!',
+            text: 'Your project was deleted successfully!',
+            icon: 'success'
+          });
+        } else {
+          // Si la réponse ne montre pas le succès, affichez un message d'erreur
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Failed to delete your project',
+            footer: '<a href="#">Why do I have this issue?</a>'
+          });
+        }
+      },
+      (error) => {
         Swal.fire({
           title: 'Good job!',
           text: 'Your project was deleted successfully!',
           icon: 'success'
         });
       },
-      (error) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Failed to delete your project',
-          footer: '<a href="#">Why do I have this issue?</a>'
-        });
+      () => {
+        this.loadProjects(); // Rafraîchissez la liste après la suppression
       }
-    ).add(() => {
-      this.deleteInProgress = false;
-      this.loadProjects(); // Refresh the list after deletion
-    });
-  }
+    );
+}
+
 
   openAddProjectDialog() {
     this.dialog.open(AddprojectWithTeamComponent, {

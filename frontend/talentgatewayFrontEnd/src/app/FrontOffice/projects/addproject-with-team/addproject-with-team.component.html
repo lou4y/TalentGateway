@@ -1,6 +1,10 @@
-<!-- Step-by-step form with corrected structure -->
 <div class="container-fluid" style="margin-top:50px;">
-  <button type="button" (click)="onCancel()" class="close-btn" style="display: flex; justify-content: flex-end;margin-left:1100px;">
+  <button
+    type="button"
+    (click)="onCancel()"
+    class="close-btn"
+    style="display: flex; justify-content: flex-end;"
+  >
     <i class="fas fa-times" style="color:red; font-size: 1.3em;"></i>
   </button>
   <div class="row">
@@ -9,26 +13,26 @@
         <div class="card-body">
           <div id="basic-example">
             <ng-stepper #cdkStepper [linear]="true" class="wizard">
-
               <!-- Step 1: Project Information -->
-              <cdk-step [optional]="false">
+              <cdk-step>
                 <ng-template cdkStepLabel>
                   <span class="number">1.</span>
                   <span>Project Information</span>
                 </ng-template>
                 <section *ngIf="cdkStepper.selectedIndex === 0">
-                  <!-- Ensure the form is properly closed and structured -->
                   <form [formGroup]="firstFormGroup">
                     <div class="mb-3">
                       <label for="projectName">Project Name</label>
                       <input
                         formControlName="projectName"
                         class="form-control"
-                        [ngClass]="{ 'is-invalid': firstFormGroup.get('projectName').invalid && firstFormGroup.get('projectName').touched }"
+                        [ngClass]="{
+                          'is-invalid': firstFormGroup.get('projectName').invalid && firstFormGroup.get('projectName').touched
+                        }"
                         placeholder="Project name"
                       />
-                      <div *ngIf="firstFormGroup.get('projectName').invalid && firstFormGroup.get('projectName').touched" class="text-danger">
-                        Project name is required.
+                      <div *ngIf="firstFormGroup.get('projectName').hasError('maxlength')" class="text-danger">
+                        Project name must not exceed 20 characters.
                       </div>
                     </div>
 
@@ -37,15 +41,20 @@
                       <textarea
                         formControlName="projectDescription"
                         class="form-control"
+                        [ngClass]="{
+                          'is-invalid': firstFormGroup.get('projectDescription').invalid && firstFormGroup.get('projectDescription').touched
+                        }"
                         placeholder="Project description"
                       ></textarea>
-                      <div *ngIf="firstFormGroup.get('projectDescription').invalid && firstFormGroup.get('projectDescription').touched" class="text-danger">
-                        Project description is required.
+                      <div *ngIf="firstFormGroup.get('projectDescription').hasError('maxlength')" class="text-danger">
+                        Project description must not exceed 400 characters.
                       </div>
                     </div>
 
                     <ul class="list-inline wizard d-flex justify-content-end">
-                      <li class="next list-inline-item"><button class="btn btn-primary" cdkStepperNext [disabled]="!firstFormGroup.valid">Next</button></li>
+                      <li class="next list-inline-item">
+                        <button class="btn btn-primary" cdkStepperNext [disabled]="!firstFormGroup.valid">Next</button>
+                      </li>
                     </ul>
                   </form>
                 </section>
@@ -65,9 +74,15 @@
                         formControlName="startDate"
                         type="date"
                         class="form-control"
+                        [ngClass]="{
+                          'is-invalid': secondFormGroup.get('startDate').invalid && secondFormGroup.get('startDate').touched
+                        }"
                       />
-                      <div *ngIf="secondFormGroup.get('startDate').invalid && secondFormGroup.get('startDate').touched" class="text-danger">
+                      <div *ngIf="secondFormGroup.get('startDate').hasError('required')" class="text-danger">
                         Start date is required.
+                      </div>
+                      <div *ngIf="secondFormGroup.hasError('invalidDateRange')" class="text-danger">
+                        Start date must be before end time.
                       </div>
                     </div>
 
@@ -77,8 +92,11 @@
                         formControlName="endTime"
                         type="date"
                         class="form-control"
+                        [ngClass]="{
+                          'is-invalid': secondFormGroup.get('endTime').invalid && secondFormGroup.get('endTime').touched
+                        }"
                       />
-                      <div *ngIf="secondFormGroup.get('endTime').invalid && secondFormGroup.get('endTime').touched" class="text-danger">
+                      <div *ngIf="secondFormGroup.get('endTime').hasError('required')" class="text-danger">
                         End time is required.
                       </div>
                     </div>
@@ -89,15 +107,44 @@
                         formControlName="price"
                         type="number"
                         class="form-control"
+                        [ngClass]="{
+                          'is-invalid': secondFormGroup.get('price').invalid && secondFormGroup.get('price').touched
+                        }"
                       />
-                      <div *ngIf="secondFormGroup.get('price').invalid && secondFormGroup.get('price').touched" class="text-danger">
-                        Price is required.
+                      <div *ngIf="secondFormGroup.get('price').hasError('min')" class="text-danger">
+                        Price must be positive.
                       </div>
                     </div>
+                  <div>
+                    <!-- Ngx File Drop Component -->
+                    <ngx-file-drop
+                      dropZoneLabel="Drop your files here"
+                      (onFileDrop)="onFileDrop($event)">
+                    </ngx-file-drop>
+
+                    <!-- Button for selecting a file -->
+                    <button (click)="triggerFileInput()" class="btn btn-primary">Select a file</button>
+
+                    <!-- Hidden file input for manual file selection -->
+                    <input
+                      type="file"
+                      (change)="onFileChange($event)"
+                      style="display: none;"
+                      id="fileInput"
+                      #fileInput
+                    />
+
+                    <!-- Display selected file name -->
+                    <div *ngIf="selectedFileName">Selected file: {{ selectedFileName }}</div>
+                  </div>
 
                     <ul class="list-inline wizard d-flex justify-content-end">
-                      <li class="previous list-inline-item"><button class="btn btn-primary" cdkStepperPrevious>Previous</button></li>
-                      <li class="next list-inline-item"><button class="btn btn-primary" cdkStepperNext [disabled]="!secondFormGroup.valid">Next</button></li>
+                      <li class="previous list-inline-item">
+                        <button class="btn btn-primary" cdkStepperPrevious>Previous</button>
+                      </li>
+                      <li class="next list-inline-item">
+                        <button class="btn btn-primary" cdkStepperNext [disabled]="!secondFormGroup.valid">Next</button>
+                      </li>
                     </ul>
                   </form>
                 </section>
@@ -117,36 +164,47 @@
                         formControlName="teamName"
                         type="text"
                         class="form-control"
+                        [ngClass]="{
+                          'is-invalid': thirdFormGroup.get('teamName').invalid && thirdFormGroup.get('teamName').touched
+                        }"
                         placeholder="Team Name"
                       />
+                      <div *ngIf="thirdFormGroup.get('teamName').hasError('maxlength')" class="text-danger">
+                        Team name must not exceed 20 characters.
+                      </div>
                     </div>
-
                     <div class="mb-3">
                       <mat-label>Sélectionner un membre d'équipe</mat-label>
-                      <input
-                        type="text"
-                        matInput
-                        [formControl]="searchControl"
-                        [matAutocomplete]="auto"
-                        class="form-control"
-                      />
-                      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onUserSelected($event)">
-                        <mat-option *ngFor="let user of filteredUsers" [value]="user.userId">
-                          {{ user.firstName }} {{ user.lastName }}
-                        </mat-option>
-                      </mat-autocomplete>
-                    </div>
 
-                    <!-- Assign roles to team members -->
+                      <mat-form-field style="width: 50%; color:white;">
+                        <mat-label style="color:black;">Sélectionner un membre d'équipe</mat-label>
+                        <input
+                          type="text"
+                          matInput
+                          [formControl]="searchControl"
+                          [matAutocomplete]="auto"
+                          class="form-control"
+                          placeholder="Rechercher par nom ou prénom" style="width:200px;height:40px;border-radius:5%"
+                        />
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onUserSelected($event)">
+                          <mat-option *ngFor="let user of filteredUsers" [value]="user.id">
+                            {{ user.firstName }} {{ user.lastName }}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+
+                    </div>
                     <div class="mb-3">
                       <h5>Assign Roles to Team Members</h5>
                       <ul>
+                        <!-- Utilisez `ngFor` pour afficher les membres sélectionnés -->
                         <li *ngFor="let member of selectedTeamMembers" style="display: flex; align-items: center;">
-                          {{ member.firstName }} {{ member.lastName }}
+                          {{ member.firstName }} {{ member.lastName }} <!-- Affichez le prénom et le nom -->
                           <input
                             type="text"
-                            class="form-control" style="width: 50%; margin-left: 10px;"
-                            (input)="updateTeamMemberRole(member.userId, $event.target.value)"
+                            class="form-control"
+                            style="width: 50%; margin-left: 10px;"
+                            (input)="updateTeamMemberRole(member.id, $event.target.value)"
                             placeholder="Assign role"
                           />
                         </li>
@@ -154,8 +212,12 @@
                     </div>
 
                     <ul class="list-inline wizard d-flex justify-content-end">
-                      <li class="previous list-inline-item"><button class="btn btn-primary" cdkStepperPrevious>Previous</button></li>
-                      <li class="next list-inline-item"><button class="btn btn-primary" cdkStepperNext [disabled]="!thirdFormGroup.valid">Next</button></li>
+                      <li class="previous list-inline-item">
+                        <button class="btn btn-primary" cdkStepperPrevious>Previous</button>
+                      </li>
+                      <li class="next list-inline-item">
+                        <button class="btn btn-primary" cdkStepperNext [disabled]="!thirdFormGroup.valid">Next</button>
+                      </li>
                     </ul>
                   </form>
                 </section>
@@ -167,14 +229,18 @@
                   <span class="number">4.</span>
                   <span>Confirmation</span>
                 </ng-template>
+
                 <section *ngIf="cdkStepper.selectedIndex === 3">
                   <ul class="list-inline wizard d-flex justify-content-end">
-                    <li class="previous list-inline-item"><button class="btn btn-primary" cdkStepperPrevious>Previous</button></li>
-                    <li class="next list-inline-item"><button class="btn btn-primary" (click)="submitProject()">Submit</button></li>
+                    <li class="previous list-inline-item">
+                      <button class="btn btn-primary" cdkStepperPrevious>Previous</button>
+                    </li>
+                    <li class="next list-inline-item">
+                      <button class="btn btn-primary" (click)="submitProject()">Submit</button>
+                    </li>
                   </ul>
                 </section>
               </cdk-step>
-
             </ng-stepper>
           </div>
         </div>
@@ -182,5 +248,3 @@
     </div>
   </div>
 </div>
-
-

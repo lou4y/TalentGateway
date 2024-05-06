@@ -1,30 +1,19 @@
 
  import { Component, OnInit } from '@angular/core';
- import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
- import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   import { FormBuilder, FormGroup } from '@angular/forms';
   import { map, catchError, distinctUntilChanged, debounceTime, switchMap, startWith } from 'rxjs/operators';
   import { Observable, throwError } from 'rxjs';
-
   import { Tasks } from 'src/app/core/models/task.model';
   import { TasksService } from 'src/app/services/tasks.service';
   import { FormsModule } from '@angular/forms';
-
   import Swal from 'sweetalert2';
   import { Module } from 'src/app/core/models/module-list.model';
-
   import Pusher from 'pusher-js';
-
   import { ToastrService } from 'ngx-toastr';
-
-  import { Router, ActivatedRoute , NavigationEnd  } from '@angular/router';
-
+  import { Router, NavigationEnd  } from '@angular/router';
   import { filter } from 'rxjs/operators';
-
-  import { Subscription } from 'rxjs';
-
-
-
+  import { AuthenticationService } from 'src/app/core/services/auth.service';
+  import { User } from 'src/app/core/models/auth.models';
 
   @Component({
     selector: 'app-list',
@@ -39,11 +28,11 @@
 
     currentPage = 1;
     itemsPerPage = 10;
-
     page = 1;
-    breadCrumbItems: Array<{}>;
     totalItems = 100;
 
+    breadCrumbItems: Array<{}>;
+    
     showQualificationList = false;
     selectedPriority: string | null = 'ALL';
     selectedStatus: string | null = 'ALL';
@@ -56,31 +45,38 @@
 
     modules: Module[] = [];
 
+    user: User;
+
     private pusher: any;
     private channel: any;
     private isVisible = true;
-    private isComponentActive = false;
-    private routerSubscription: Subscription;
-    private isActive = false;
 
     constructor(
       private toastr: ToastrService,
       private taskService: TasksService,
       private fb: FormBuilder,
       private router: Router,
-      private route: ActivatedRoute
-
+      private authService: AuthenticationService,
+  
     ){}
 
-    ngOnInit(): void {
-      this.searchFormGroup = this.fb.group({
-        keyword: this.fb.control('')
-      });
+    async ngOnInit(): Promise<void>{
+
+      this.user = await this.authService.currentUser();
+        if (this.user) {
+          if (this.user.role.includes('admin') || this.user.role.includes('company')) {
+            this.router.navigate(['/tasks/list']); // Rediriger vers la page de list
+      } else {
+        this.router.navigate(['/pages/500']); // Rediriger vers une page d'erreur pour les autres rôles
+      }
+    } 
+        this.searchFormGroup = this.fb.group({
+          keyword: this.fb.control('')
+        });
 
       this.fetchAllTasks();
       this.fetchModules();
 
-      this.RealTimeSearch();
       this.isVisible = true;
 
       this.initializePusher();
@@ -93,12 +89,52 @@
         }
       })
   }
+
+  fetchAllTasks(): void {
+    this.tasks$ =  this.taskService.getAllTasks().pipe(
+      catchError(err => {
+        this.errorMessage = err.message;
+        return throwError(err);
+      })
+    );
+  }
+  
+  RealTimeSearch(): void {
+    this.tasks$ = this.searchFormGroup.get('keyword')!.valueChanges.pipe(
+      startWith(''),  // Start with an empty string to load all tasks initially
+      debounceTime(50),  // Wait for 300ms pause in events
+      distinctUntilChanged(),  // Only if the value has changed
+      switchMap(kw => this.taskService.searchTasks(kw)),  // Switch to the latest search observable
+      catchError(err => {
+        this.errorMessage = err.message;
+        return throwError(err);  // Handle errors and continue emitting them as an Observable
+      })
+    );
+  }
+  
+  fetchModules(): void {
+    this.taskService.getModules().subscribe(
+      modules => {
+        this.modules = modules.map(module => ({
+          moduleId: module.moduleId,
+          moduleName: module.moduleName,
+          moduleDescription: module.moduleDescription,
+          projectId: module.projectId,
+          project: module.project
+        }));
+      },
+      error => {
+        console.error('Error fetching modules:', error);
+      }
+    );
+  }
+
   initializePusher(): void {
     this.pusher = new Pusher('3867787e7fdcc8389321', {
       cluster: 'ap4',
       forceTLS: true
     });
-
+  
     const channel = this.pusher.subscribe('tasks');
     channel.bind('new-task', (data: any) => {
       const message = `${data.message}`;
@@ -118,10 +154,7 @@
       }
     });
   }
-
-
-
-
+  
   displayStoredNotification() {
     const message = JSON.parse(localStorage.getItem('latestTaskNotification') || 'null');
     if (message) {
@@ -136,75 +169,18 @@
     }
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy(): void { // 
     if (this.channel) {
       this.channel.unbind('new-task');
       this.pusher.unsubscribe('tasks');
     }
   }
-
-
-    fetchModules(): void {
-      this.taskService.getModules().subscribe(
-        modules => {
-          this.modules = modules.map(module => ({
-            moduleId: module.moduleId,
-            moduleName: module.moduleName,
-            moduleDescription: module.moduleDescription,
-            projectId: module.projectId,
-            project: module.project
-          }));
-        },
-        error => {
-          console.error('Error fetching modules:', error);
-        }
-      );
-    }
-
-
-  selectModule(event: any): void {
-    const selectedModuleName = event.target.value;
-    const selectedModule = this.modules.find(module => module.moduleName === selectedModuleName);
-    if (selectedModule) {
-      this.selectedTask.module = {
-        id: selectedModule.id || 0,  // default value or retrieve from selectedModule if available
-        moduleId: selectedModule.moduleId || 0,  // default value or retrieve from selectedModule if available
-        moduleName: selectedModule.moduleName,
-        moduleDescription: selectedModule.moduleDescription
-      };
-      this.selectedTask.module.moduleName = selectedModule.moduleName; // Set moduleName directly under the module object
-    }
-  }
-
-
-    RealTimeSearch(): void {
-      this.tasks$ = this.searchFormGroup.get('keyword')!.valueChanges.pipe(
-        startWith(''),  // Start with an empty string to load all tasks initially
-        debounceTime(50),  // Wait for 300ms pause in events
-        distinctUntilChanged(),  // Only if the value has changed
-        switchMap(kw => this.taskService.searchTasks(kw)),  // Switch to the latest search observable
-        catchError(err => {
-          this.errorMessage = err.message;
-          return throwError(err);  // Handle errors and continue emitting them as an Observable
-        })
-      );
-    }
-
-    fetchAllTasks(): void {
-      const skip = (this.currentPage - 1) * this.itemsPerPage;
-      this.tasks$ = this.taskService.getAllTasks(skip, this.itemsPerPage).pipe(
-        catchError(err => {
-          this.errorMessage = err.message;
-          return throwError(err);
-        })
-      );
-    }
-
+  
     pageChanged(event: any): void {
       this.page = event.page;
     }
 
-    toggleQualificationList(): void {
+    toggleQualificationList(): void { // 
       if (this.selectedPriority === 'ALL' && this.selectedStatus === 'ALL') {
         this.fetchAllTasks();
       } else {
@@ -218,23 +194,11 @@
       this.showQualificationList = !this.showQualificationList;
     }
 
-    applyFilters(): void {
-      if (this.selectedPriority === 'ALL' && this.selectedStatus === 'ALL') {
-        this.fetchAllTasks();
-      } else if (this.selectedPriority !== 'ALL' && this.selectedStatus === 'ALL') {
-        this.filterTasksByPriority();
-      } else if (this.selectedPriority === 'ALL' && this.selectedStatus !== 'ALL') {
-        this.filterTasksByStatus();
-      }
-
-      if (this.sortByDate) {
-        this.sortTasksByDate();
-      }
-    }
+    
 
     toggleSortByDate(event: any): void {
       this.sortByDate = event.target.checked;
-
+      
       if (this.showQualificationList) {
         this.toggleQualificationList();
       } else {
@@ -282,13 +246,27 @@
       }
     }
 
+    applyFilters(): void {
+      if (this.selectedPriority === 'ALL' && this.selectedStatus === 'ALL') {
+        this.fetchAllTasks();
+      } else if (this.selectedPriority !== 'ALL' && this.selectedStatus === 'ALL') {
+        this.filterTasksByPriority();
+      } else if (this.selectedPriority === 'ALL' && this.selectedStatus !== 'ALL') {
+        this.filterTasksByStatus();
+      } 
 
+      if (this.sortByDate) {
+        this.sortTasksByDate();
+      }
+    }
+    
 
-
+    
 
     edit(task: Tasks): void {
       this.selectedTask = { ...task };
       this.isEditMode = true;
+      
     }
 
     updateTask(): void {
@@ -310,7 +288,7 @@
             moduleDescription: this.selectedTask.module?.moduleDescription
           }
         };
-
+    
         this.taskService.updateTask(this.selectedTask.id!, updatedTask).subscribe(
           () => {
             this.isEditMode = false;
@@ -320,16 +298,13 @@
           (error) => {
             console.error('Error updating task:', error);  //             console.error('Error updating task:', error);
             Swal.fire('Success', 'Task updated successfully', 'success');   // Swal.fire('Error', 'Failed to update task', 'error');
-
           }
-
+          
         );
         this.ngOnInit();
 
       }
     }
-
-
 
     delete(event: any, taskId: number): void {
       const swalWithBootstrapButtons = Swal.mixin({
@@ -339,7 +314,7 @@
         },
         buttonsStyling: false
       });
-
+    
       swalWithBootstrapButtons
         .fire({
           title: 'Are you sure?',
@@ -361,14 +336,14 @@
                   );
                   event.target.closest('tr')?.remove();
                 },
-
+              
               );
             swalWithBootstrapButtons.fire(
               'Deleted!',
               'Your file has been deleted.',
               'success'
             );
-
+            
             event.target.closest('tr')?.remove();
           } else if (
             /* Read more about handling dismissals below */

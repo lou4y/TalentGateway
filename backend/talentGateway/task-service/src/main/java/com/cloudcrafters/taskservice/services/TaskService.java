@@ -28,6 +28,4 @@ public interface TaskService {
     long countCompletedTasksByUserId(String userId);
     long countIncompleteTasksByUserId(String userId);
 
-
-
 }

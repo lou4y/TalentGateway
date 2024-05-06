@@ -32,6 +32,7 @@ public class ProjectController {
     @Autowired
     CloudinaryService cloudinaryService;
     @Autowired
+
     TeamService teamService;
 
     @GetMapping("/projects")
@@ -131,5 +132,14 @@ public class ProjectController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Project not found");
         }
     }
+    @GetMapping("/projects/creator/{creatorId}")
+    public ResponseEntity<List<Project>> getProjectsByCreatorId(@PathVariable String creatorId) {
+        List<Project> projects = projectService.findByCreatorId(creatorId);
 
+        if (projects.isEmpty()) {
+            return ResponseEntity.noContent().build(); // Return a 204 No Content if no projects are found
+        }
+
+        return ResponseEntity.ok(projects);
+    }
 }

@@ -6,6 +6,12 @@ import { CookieService } from 'ngx-cookie-service';
 import { LanguageService } from '../../core/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import {User} from "../../core/models/auth.models";
+import {MatDialog} from "@angular/material/dialog";
+import {UntypedFormBuilder} from "@angular/forms";
+import {FileService} from "../../core/services/file.service";
+import {AdditionalUserDataService} from "../../core/services/additional-user-data.service";
+import {SkillsService} from "../../core/services/skills.service";
+import {AdditionalUserData} from "../../core/models/additional-user-data.model";
 
 @Component({
   selector: 'app-topbar',
@@ -25,7 +31,9 @@ export class TopbarComponent implements OnInit {
   countryName:any;
   valueset:any;
   user: User;
-  constructor(@Inject(DOCUMENT) private document: any, private router: Router, private authService: AuthenticationService,
+  Image: string;
+  private userData: AdditionalUserData;
+  constructor(@Inject(DOCUMENT) private document: any,private fileService: FileService, private userDataService: AdditionalUserDataService, private router: Router, private authService: AuthenticationService,
               public languageService: LanguageService,
               public translate: TranslateService,
               public _cookiesService: CookieService) {
@@ -58,6 +66,8 @@ export class TopbarComponent implements OnInit {
       this.flagvalue = val.map(element => element.flag);
     }
     this.user = await this.authService.currentUser();
+    this.userData = await this.userDataService.getAdditionalUserData(this.user.id).toPromise()
+    this.Image=await this.fileService.getImageFromFirestore(this.userData.profilePicture);
   }
 
     setLanguage(text: string, lang: string, flag: string) {
@@ -124,6 +134,4 @@ export class TopbarComponent implements OnInit {
       }
     }
   }
-
-  protected readonly User = User;
 }

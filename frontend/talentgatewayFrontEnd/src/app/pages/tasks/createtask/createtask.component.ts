@@ -1,9 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild, EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
-
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { Observable, catchError, throwError } from 'rxjs';
 import { User } from 'src/app/core/models/auth.models';
 import { Module, Project } from 'src/app/core/models/module.model';
 import { Tasks } from 'src/app/core/models/task.model';
@@ -41,23 +39,16 @@ export class CreatetaskComponent implements OnInit {
 
   get member(): FormArray { return this.form.get('member') as FormArray; }
 
-  addMember() {
-    this.member.push(new FormControl());
-  }
-
-  deleteMember(i: number) {
-    this.member.removeAt(i);
-  }
-
   taskStatus: string[];
-
   errorMessage!: string;
-  modules: Module[] = [];
+  
   selectedModule: Module | null = null;
+
   newTaskFormGroup!: FormGroup;
   taskForm: FormGroup;
   moduleForm: FormGroup;
 
+  modules: Module[] = [];
   projects: Project[] = [];
   users: User[] = []; // Add users array
 
@@ -85,8 +76,7 @@ export class CreatetaskComponent implements OnInit {
       projectName: ['']
     });
   
-    console.log('Before API calls');
-  
+
     // Fetch all modules
     this.taskService.getModules().subscribe(
       (modules: Module[]) => {
@@ -111,7 +101,6 @@ export class CreatetaskComponent implements OnInit {
       }
     );
   
-    console.log('After API calls');
 
      // Fetch all users
      this.taskService.getAllUsers().subscribe(
@@ -126,10 +115,6 @@ export class CreatetaskComponent implements OnInit {
     );
   }
   
-  
-  selectModule(module: Module) {
-    this.selectedModule = module;
-  }
 
   createTask() {
     if (this.taskForm.valid) {
@@ -226,8 +211,6 @@ export class CreatetaskComponent implements OnInit {
       });
     }
   }
-  
-  
   
   
 }
