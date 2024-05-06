@@ -14,6 +14,7 @@ import {InternshipsService} from "../../../core/services/internships/internships
 import {AuthenticationService} from "../../../core/services/auth.service";
 import {Internship} from "../../../core/models/internship.model";
 import {PageChangedEvent} from "ngx-bootstrap/pagination";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-grid',
@@ -46,7 +47,8 @@ export class GridComponent implements OnInit {
   constructor(
               private authService: AuthenticationService,
               private internshipsService: InternshipsService,
-              private modalService: BsModalService
+              private modalService: BsModalService,
+              private router: Router
   ) {
 
   }
@@ -71,6 +73,12 @@ export class GridComponent implements OnInit {
   openModal(content: any) {
     this.submitted = false;
     this.modalRef = this.modalService.show(content, { class: 'modal-md' });
+  }
+
+  viewInternshipDetails(internshipId: number): void {
+    console.log('Internship ID:', internshipId);
+    // Navigate to the specific route with the internship ID
+    this.router.navigate(['internship-details', internshipId]);
   }
 
 
