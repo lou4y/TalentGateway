@@ -10,7 +10,7 @@
           {{ message.message }}
         </div>
       </div>
-      <div class="gemini-chat-input">
+      <div class="gemini-chat-input mt-10">
         <div class="input-container">
           <textarea [(ngModel)]="prompt" placeholder="Type your message..." (keyup.enter)="sendMessage()"></textarea>
           <button (click)="sendMessage()">Send</button>

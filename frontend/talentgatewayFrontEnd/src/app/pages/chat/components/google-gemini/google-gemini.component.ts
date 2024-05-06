@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GoogleGeminiComponent  implements OnInit {
   receivedText: string='';
-  isChatOpen: boolean = true;
+  isChatOpen: boolean = false;
   chatHistory: any[] = [];
   prompt:string="";
 
