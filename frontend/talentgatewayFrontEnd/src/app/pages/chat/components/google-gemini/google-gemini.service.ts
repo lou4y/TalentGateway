@@ -9,7 +9,7 @@ export class GeminiService {
   private generativeAI : GoogleGenerativeAI;
   private messageHistory:BehaviorSubject<any>= new BehaviorSubject(null);
   constructor() {
-    this.generativeAI= new GoogleGenerativeAI('');
+    this.generativeAI= new GoogleGenerativeAI('AIzaSyB_iRPqfopNIUqJQGKa5RaQbWLH7zD1uGY');
   }
   async generateText(prompt:string){
     const model = this.generativeAI.getGenerativeModel({model:'gemini-pro'});

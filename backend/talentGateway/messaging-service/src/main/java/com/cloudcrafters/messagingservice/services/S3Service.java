@@ -1,16 +1,17 @@
 package com.cloudcrafters.messagingservice.services;
 
-import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.S3Object;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.web.multipart.MultipartFile;
-
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.PutObjectResult;
 import java.io.IOException;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
-@Log4j2
 public class S3Service {
 
     private AmazonS3 s3client;
@@ -22,14 +23,20 @@ public class S3Service {
         this.s3client = s3client;
     }
 
-    public void uploadFile(String keyName, MultipartFile file) throws IOException {
-        var putObjectResult = s3client.putObject(bucketName, keyName, file.getInputStream(), null);
-        log.info(putObjectResult.getMetadata());
+    public String uploadFile(String keyName, MultipartFile file) throws IOException {
+        PutObjectResult putObjectResult = s3client.putObject(bucketName, keyName, file.getInputStream(), null);
+        log.info("Uploaded file: {}", putObjectResult.getMetadata());
 
+        String fileUrl = "https://" + bucketName + ".s3.amazonaws.com/" + keyName;
+        return fileUrl;
     }
 
-    public S3Object getFile(String keyName) {
-        return s3client.getObject(bucketName, keyName);
+    public InputStreamResource viewFile(String keyName) {
+        S3Object s3Object = s3client.getObject(bucketName, keyName);
+        return new InputStreamResource(s3Object.getObjectContent());
     }
 
+    public InputStreamResource downloadFile(String keyName) {
+        return viewFile(keyName);
+    }
 }
