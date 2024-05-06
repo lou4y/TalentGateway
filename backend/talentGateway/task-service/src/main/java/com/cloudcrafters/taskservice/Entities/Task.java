@@ -49,6 +49,8 @@ public class Task implements Serializable {
     private User user;
     private String userId;
     private String firstName;
+    private String email;
+    private String password;
 
 
 }

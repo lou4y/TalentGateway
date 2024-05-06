@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +48,11 @@ public class ProjectServiceImplementation implements ProjectService {
 
         return (String) result.get("url");
     }
+
+    public List<Project> findByCreatorId(String creatorId) {
+        return projectDao.findByCreatorId(creatorId);
+    }
+
     @Override
     public Project addProject(Project p) {
         return projectDao.save(p);
@@ -66,5 +73,6 @@ public class ProjectServiceImplementation implements ProjectService {
         // Implement your search logic here
         return projectDao.searchProjects(searchCriteria);
     }
+
 
 }

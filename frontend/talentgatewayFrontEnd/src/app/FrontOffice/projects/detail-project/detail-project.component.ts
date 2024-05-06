@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { HttpResponse } from '@angular/common/http';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { User } from 'src/app/core/models/auth.models';
+import { Base64 } from 'js-base64';
 
 @Component({
   selector: 'app-detail-project',
@@ -17,7 +18,7 @@ import { User } from 'src/app/core/models/auth.models';
   styleUrls: ['./detail-project.component.scss']
 })
 export class DetailProjectComponent {
-  project={projectId:'',projectName:'',projectDescription:'',startDate:'',endTime:'',price:0, projectStatus:'',projectCreator:{
+  project={projectId:'',projectName:'',projectDescription:'',startDate:'',endTime:'',price:0, creatorId:'', projectStatus:'',projectCreator:{
     userId:'',firstName:'',email:'',lastName:'',userRole:''},team:{
       teamId:0,name:'',usersWithRoles:[{user:{userId:'',firstName:'',lastName:''},memberRole:''}]
     }};
@@ -34,45 +35,54 @@ export class DetailProjectComponent {
 
   async ngOnInit() {
     this.currentUser = await this.authService.currentUser();
-    
+
     this.breadCrumbItems = [{ label: 'Projects' }, { label: 'Projects Overview', active: true }];
     this.overviewBarChart = overviewBarChart;
     this.getNumberOfLikes();
     //get the project with id pass in the route
-    let id= parseInt(this.activatedroute.snapshot.params['id']);
+    const encodedId = this.activatedroute.snapshot.params['id'];
+    const decodedId = parseInt(Base64.decode(encodedId));
+    let id = decodedId;
     this.projectId=id;
     this.loadProjectData();
 
   }
   loadProjectData() {
-    const id = parseInt(this.activatedroute.snapshot.params['id']);
+
+    const encodedId = this.activatedroute.snapshot.params['id'];
+    const decodedId = parseInt(Base64.decode(encodedId));
+    let id = decodedId;
     this.projectId = id;
     this.projectservice.getProjectById(this.projectId).subscribe(
       (data) => {
         this.project = data;
+        console.log("dataa",data.creatorId);
+
       },
       (error) => {
-        console.log(error);
+        console.log("error");
       }
     );
   }
   openAddTeamDialog() {
     this.dialog.open(AddTeamComponent, {
       width: '550px', // Taille du dialogue
-      data: { projectId: this.projectId }, // Passez l'ID du projet
+      data: { projectId: this.projectId.crea }, // Passez l'ID du projet
     });
     this.loadProjectData();
   }
 
   getNumberOfLikes(){
-    let id= parseInt(this.activatedroute.snapshot.params['id']);
+    const encodedId = this.activatedroute.snapshot.params['id'];
+    const decodedId = parseInt(Base64.decode(encodedId));
+    let id = decodedId;
     this.projectservice.getNumberOfLikes(id).subscribe(
       data=>{
         this.numberOfLikes=data;
         console.log("number of likes:", this.projectId, this.numberOfLikes);
       },
       error=>{
-        console.log(error);
+        console.log("error");
       }
     )
   }

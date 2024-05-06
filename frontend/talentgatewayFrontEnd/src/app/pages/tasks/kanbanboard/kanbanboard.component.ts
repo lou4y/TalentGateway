@@ -1,17 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DndDropEvent } from 'ngx-drag-drop';
 import {TaskKanban} from './kanabn.model'; 
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators , FormGroup , FormBuilder } from '@angular/forms';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { TasksService } from 'src/app/services/tasks.service';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Module } from 'src/app/core/models/module.model';
 import Swal from 'sweetalert2';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { User } from 'src/app/core/models/auth.models';
 import { ChartType } from './kanabn.model';
 import { EChartsOption } from 'echarts';
+import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-kanbanboard',
@@ -31,13 +33,14 @@ export class KanbanboardComponent implements OnInit {
 
   tasks: TaskKanban[] = [];
   modules: Module[] = []; // To store modules from the backend
-
+  status: any;
   modalRef?: BsModalRef;
 
   // bread crumb items
   breadCrumbItems: Array<{}>;
   taskForm!: UntypedFormGroup;
 
+  taskFormCreate : FormGroup ;
   user: User;
 
   taskStats: any = {};
@@ -50,58 +53,43 @@ export class KanbanboardComponent implements OnInit {
   @ViewChild('statsModal', { static: false }) statsModal?: ModalDirective;
 
   modalTitle: string = 'Add New Task';
-  bsConfig: Partial<BsDatepickerConfig>;
 
   constructor(private formBuilder: UntypedFormBuilder,
+    private fb: FormBuilder,
     private tasksService: TasksService,
-    private authService: AuthenticationService) { }
+    private authService: AuthenticationService,
+    private datePipe: DatePipe,
+    private taskService: TasksService,
+    private router: Router) { }
 
   async ngOnInit(): Promise<void>{
 
-    // this.loadTasks('f78c1770-902d-45e6-a0ef-c436ac762bc3');  
-
     this.user = await this.authService.currentUser();
-    if (this.user) {
-      this.loadTasks(this.user.id.toString());
-    }
-    
-  
+      if (this.user) {
+        if (this.user.role.includes('student')) {
+    this.router.navigate(['/tasks/kanban']); 
+  } else {
+    this.router.navigate(['/pages/500']); 
+  }
 
-    this.taskForm = this.formBuilder.group({
-      id: [null],
-      taskName: ['', Validators.required],
-      taskDescription: ['', Validators.required],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
-      duration: [],
-      statut: ['', Validators.required],
-      priority: ['', Validators.required],
-      module: this.formBuilder.group({
-        id: [null],
-        moduleName: [''],
-        moduleDescription: [''],
-      }),
-      userId: ['', Validators.required],
-      firstName: [''],
-    });
-
-    this.loadModules();
-    this.taskForm = this.formBuilder.group({
-      taskName: ['', Validators.required],
+}
+    this.taskFormCreate = this.fb.group({
+      taskName: [''],
       taskDescription: [''],
-      statut: ['', Validators.required], // Ensure this is linked correctly in the HTML
-      endDate: ['', Validators.required] , // Adding endDate to the form group
-      priority: ['', Validators.required], // Adding priority to the form group
-      module: this.formBuilder.group({
-        moduleName: ['', Validators.required]
-      })
-    }); 
-    
+      startDate: [''],
+      endDate: [''],
+      priority: [''],
+      statut: [''],
+      moduleId: [''],
+      moduleName: [''],
+      userId: [''],
+      firstName:  ['']
+    });
+ 
     this.loadTaskStats(this.user.id.toString());  // Load stats on component initialization
     this.setupPieChart();
   }
 
-  
   loadTaskStats(userId: string): void {
     // Fetch the tasks first, since you need them to set up the charts
     this.tasksService.getTasksByUserId(userId).subscribe({
@@ -127,33 +115,6 @@ export class KanbanboardComponent implements OnInit {
   }
   
   
-
-  /*
-  loadTaskStats(userId: string): void {
-    this.tasksService.getTaskStatsByUserId(userId).subscribe({
-      next: (stats) => {
-        this.taskStats = stats;
-        console.log('Task stats loaded', stats);
-        this.setupChart();
-      },
-      error: (error) => console.error('Error loading task stats:', error)
-    });
-  }
-  
-  
-
-
-  loadTaskStats(userId: string): void {
-    this.tasksService.getTasksByUserId(userId).subscribe({
-      next: (tasks) => {
-        this.alltask = tasks;
-        this.setupChart(); // Call setupChart to update the chart with the new data
-        this.setupPieChart(); // Call setupPieChart to update the pie chart with the new data
-      },
-      error: (error) => console.error('Error loading task stats:', error)
-    });
-  }
-*/
 
   loadTasksAndStats(userId: string): void {
     // Fetch the task statistics
@@ -269,12 +230,7 @@ export class KanbanboardComponent implements OnInit {
     }
   }
 
-loadModules(): void {
-  this.tasksService.getModules().subscribe(
-    modules => this.modules = modules,
-    error => console.error('Error loading modules:', error)
-  );
-}
+
 
 loadTasks(userId: string): void {
   this.tasksService.getTasksByUserId(userId).subscribe({
@@ -305,28 +261,6 @@ loadTasks(userId: string): void {
       }
   });
 }
-
-createTask() {
-  // API call
-  this.tasksService.createTask(this.taskForm.value).subscribe({
-    next: response => {
-      console.log('Task created successfully', response);
-      this.modalForm?.hide();
-    },
-    error: error => {
-      console.error('Failed to create task', error);
-    }
-  });
-}
-
-submitTask() {
-  if (this.taskForm.valid) {
-    this.createTask();
-  } else {
-    console.error('Form is not valid:', this.taskForm.errors);
-  }
-}
-
 
 delete(event: any, taskId: number): void {
   const swalWithBootstrapButtons = Swal.mixin({
@@ -379,30 +313,8 @@ delete(event: any, taskId: number): void {
         );
       }
     });
-    
-
 }
 
-   // Update task method
-   updateTask(index: number) {
-    const task = this.alltask[index];
-    this.taskForm.patchValue({
-      id: task.id,
-      taskName: task.taskName,
-      taskDescription: task.taskDescription,
-      // ... other task properties
-    });
-
-    // This opens the modal form
-    this.modalForm?.show();
-
-    // If your modal component is defined within the same component, you can simply show it using ViewChild
-   
-  }
-
-
-
-  
   submitForm() {
     if (this.taskForm.valid) {
       const updatedTask = this.taskForm.value;
@@ -469,9 +381,7 @@ mapStatus(statut: string): string {
 }
 
 
-mapPriorityToStatus(priority: string): string {
-  // Since priority isn't status, you might need a different approach to display priority
-  // but here is a direct mapping if it's needed
+mapPriorityToStatus(priority: string): string { // Map priority to status
   const priorityMappings = {
     'HIGH': 'upcoming',
     'MEDIUM': 'inprogress',
@@ -517,80 +427,5 @@ mapPriorityToStatus(priority: string): string {
       error: (error) => console.error('Error updating task', error)
     });
   }
-  
-
-
  
-  /*
-
-  // add new tak  
-  addnewTask(status: any) {
-    this.status = status
-    this.modalForm.show()
-  }
-
-  // Save Form
-  submitForm() {
-    if (this.taskForm.valid) {
-      if (this.taskForm.get('id')?.value) {
-        this.alltask = tasks.map((data: { id: any; }) => data.id === this.taskForm.get('id')?.value ? { ...data, ...this.taskForm.value } : data)
-      } else {
-        const title = this.taskForm.get('taskname')?.value;
-        const desc = this.taskForm.get('taskdesc')?.value;
-        const task = this.taskForm.get('taskstatus')?.value;
-        const budget = this.taskForm.get('taskbudget')?.value;
-        const user = []
-        for (var i = 0; i < this.memberLists.length; i++) {
-          if (this.memberLists[i].checked == true) {
-            user.push(this.memberLists[i].profile)
-          }
-        }
-        tasks.push({
-          id: tasks.length + 1,
-          date: '14 Oct, 2019',
-          title,
-          task,
-          user,
-          status: this.status,
-          budget
-        })
-    
-      }
-    }
-    this._fetchData();
-    this.taskForm.reset();
-    this.modalForm.hide()
-  }
-
-  // Update Task
-  updateTask(id: any) {
-    this.submitted = false;
-    this.modalForm?.show()
-
-    var updatetitle = document.querySelector('.modal-title') as HTMLAreaElement
-    updatetitle.innerHTML = "Update Task";
-
-    var updatebtn = document.getElementById('addtask') as HTMLAreaElement
-    updatebtn.innerHTML = "Update Task";
-
-    var data = tasks[id]
-    this.taskForm.controls['id'].setValue(data.id);
-    this.taskForm.controls['taskname'].setValue(data.title);
-    this.taskForm.controls['taskstatus'].setValue(data.task);
-    this.taskForm.controls['taskbudget'].setValue(data.budget);
-    // Compare data.user profile and memberList profile if same the set checked property to true
-    for (var i = 0; i < this.memberLists.length; i++) {
-      for (var x = 0; x < data.user.length; x++) {
-        if (this.memberLists[i].profile == data.user[x]) {
-          this.memberLists[i].checked = true;
-          // this.taskForm.controls['taskassignee'].setValue( this.memberLists[i].id);
-        }
-      }
-    }
-
-  }
-  */
-
-
-
 }

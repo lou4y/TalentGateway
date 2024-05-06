@@ -8,6 +8,8 @@ import { User } from 'src/app/core/models/auth.models';
 import { AddprojectWithTeamComponent } from '../projects/addproject-with-team/addproject-with-team.component';
 import { MatDialog } from '@angular/material/dialog';
 import { HttpResponse } from '@angular/common/http';
+import { Base64 } from 'js-base64';
+import { co } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-listprojects',
@@ -107,8 +109,9 @@ export class ListprojectsComponent implements OnInit {
           this.filteredProjects = this.projects.filter(project => project.isLiked);
         } else if (filterEvent.value === 'isMine') {
           this.filteredProjects = this.projects.filter(
-            (project) => project.projectCreator?.userId === this.currentUser.id
+            (project) => project.creatorId === this.currentUser.id
           );
+           // Vérifiez les projets
         }
         break;
 
@@ -174,7 +177,11 @@ export class ListprojectsComponent implements OnInit {
   }
 
   showDetailProject(project: any) {
-    this.router.navigate(['/detailProject', project.projectId]);
+    // Encode l'identifiant avec Base64
+    const encodedId = Base64.encode(project.projectId.toString());
+
+    // Passe l'identifiant encodé à la route
+    this.router.navigate(['/detailProject', encodedId]);
   }
 
   deleteProject(id: number) {
