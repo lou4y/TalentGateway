@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
 import com.sendgrid.*;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -32,35 +34,37 @@ public class ScheduledTasks {
     private UserRestClient userRestClient;
 
     @Autowired
-    private EmailService emailService; // Inject EmailService
+    private EmailService emailService;
 
+    private Map<Long, Integer> emailsSentPerInternship = new HashMap<>(); // Map to track emails sent per internship
 
-    @Autowired
-    private LinkedInService linkedInService; // Inject LinkedInService
-
-
-
-
-
-    @Scheduled(fixedRate = 10000) // Run every 10 seconds
+/*
+    @Scheduled(fixedRate = 600000) // Run every 10 seconds
+*/
     public void checkMatchingInternshipsScheduled() {
         List<Internship> internships = internshipService.getAllInternships();
         List<User> usersWithSkills = userRestClient.getUsersWithSkills();
 
-        if (!internships.isEmpty() && !usersWithSkills.isEmpty()) {
 
+        if (!internships.isEmpty() && !usersWithSkills.isEmpty()) {
             for (Internship internship : internships) {
                 String internshipSkills = internship.getIntershipSkills();
+                int emailsSentCount = 0;
 
                 for (User user : usersWithSkills) {
                     List<Skill> userSkills = user.getSkills();
-
+/*
+                    test to send emails for all user
+*/
+                    sendNotificationEmail(user, internship);
                     boolean matchFound = checkSkillsMatch(internshipSkills, userSkills);
                     if (matchFound) {
                         sendNotificationEmail(user, internship);
-
+                        emailsSentCount++; // Increment emails sent count for this internship
                     }
                 }
+
+                emailsSentPerInternship.put(internship.getIntershipId(), emailsSentCount);
             }
         }
     }
@@ -92,6 +96,7 @@ public class ScheduledTasks {
         emailService.sendEmail(recipientEmail, subject, content);
     }
 
+    public Map<Long, Integer> getEmailsSentPerInternship() {
+        return emailsSentPerInternship;
+    }
 }
-
-

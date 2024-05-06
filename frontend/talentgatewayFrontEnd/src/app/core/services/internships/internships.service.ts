@@ -71,4 +71,13 @@ export class InternshipsService {
     return this.httpClient.get<number>(`${this.API_URL}/statistics/total-by-user/${userId}`);
   }
 
+  getEmailsSentPerInternship(): Observable<any> {
+    return this.httpClient.get<any>(`${this.API_URL}/emails-sent-per-internship`);
+  }
+
+  // New method to get the total number of internships
+  getTotalInternshipsCountaddmin(): Observable<number> {
+    return this.httpClient.get<number>(`${this.API_URL}/statistics/total`);
+  }
+
 }

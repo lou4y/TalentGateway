@@ -1,6 +1,7 @@
 package com.cloudcrafters.internshipservice.entites;
 
 import com.cloudcrafters.internshipservice.enums.InternshipType;
+import com.cloudcrafters.internshipservice.models.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -28,4 +29,13 @@ public class Category implements Serializable {
     @ManyToMany(mappedBy = "categories", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnoreProperties("categories")
     private Set<Internship> internships = new HashSet<>();
+
+
+
+    private String userId;
+
+    // Setter method for setting the creator of the internship
+    public void setCreator(User creator) {
+        this.userId = creator.getUserId();
+    }
 }
