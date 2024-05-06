@@ -28,6 +28,7 @@ export class AuthenticationService {
       username: profile.username,
       firstName: profile.firstName,
       lastName: profile.lastName,
+      createddate: profile.createdTimestamp,
       token: this.keycloakService.getKeycloakInstance().token,
       role: this.keycloakService.getUserRoles()
     };

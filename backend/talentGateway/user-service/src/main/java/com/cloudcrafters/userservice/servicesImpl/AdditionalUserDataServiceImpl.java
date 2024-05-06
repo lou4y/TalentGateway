@@ -54,4 +54,9 @@ public class AdditionalUserDataServiceImpl implements AdditionalUserDataService 
         }
         return null;
     }
+
+    @Override
+    public List<AdditionalUserData> getAllAdditionalUserData() {
+        return this.additionalUserDataDao.findAll();
+    }
 }
