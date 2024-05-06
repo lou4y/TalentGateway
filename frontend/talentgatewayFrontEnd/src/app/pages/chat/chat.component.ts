@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild, ChangeDetectorRef, ElementRef} from '@angular/core';
 import { UntypedFormBuilder, Validators, UntypedFormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from "@angular/router";
@@ -10,6 +10,9 @@ import { VideoConferenceUrlService } from "../../chatComponents/video-conference
 import { SocketService } from './socket.service';
 import { KeycloakService } from 'keycloak-angular';
 import { GeminiService } from './components/google-gemini/google-gemini.service';
+import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {FileSystemFileEntry, NgxFileDropEntry} from "ngx-file-drop";
+import { S3Service } from './s3.service'; // Import the S3Service
 
 
 @Component({
@@ -37,10 +40,15 @@ export class ChatComponent implements OnInit, AfterViewInit {
   recipientUsername: string;
   showEmojiPicker = false;
   currentUser: User;
+
+  selectedFileName: string | null = null;
+  url: any;
+  @ViewChild('fileInput') fileInputRef!: ElementRef;
   constructor(public formBuilder: UntypedFormBuilder, private router: Router, private http: HttpClient,
               private authService: AuthenticationService, private conferenceUrlService: VideoConferenceUrlService,
               private socketService: SocketService, private keycloakService: KeycloakService,
-              private geminiService: GeminiService, private cdr: ChangeDetectorRef, ) {
+              private geminiService: GeminiService, private cdr: ChangeDetectorRef,
+              private fireStorage: AngularFireStorage, private s3Service: S3Service) {
     this.auth = authService;
   }
 
@@ -244,6 +252,52 @@ export class ChatComponent implements OnInit, AfterViewInit {
       console.error('Video conference URL not available.');
     }
     this.router.navigate(['meeting']);
+  }
+  triggerFileInput(): void {
+    if (this.fileInputRef) {
+      this.fileInputRef.nativeElement.click(); // Triggers the hidden file input
+    }
+  }
+
+  onFileChange(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      this.uploadFile(file); // Handles the file upload
+    }
+  }
+
+
+
+
+
+  async uploadFile(file: File): Promise<void> {
+    try {
+      const fileUrl = await this.s3Service.uploadImage(file).toPromise();
+      console.log("File uploaded to S3:", fileUrl);
+
+      // Assign the file URL to a property for later use
+      this.url = fileUrl;
+      this.selectedFileName = file.name;
+    } catch (error) {
+      console.error('Error uploading file to S3:', error);
+    }
+  }
+
+  fileSend(recipientId: string) {
+    if (this.url) {
+      const messageData = {
+        senderId: this.currentUserId,
+        recipientId: recipientId,
+        content: this.url,
+        timestamp: new Date()
+      };
+      this.socketService.sendMessage(`/app/chat`, messageData);
+      this.formData.patchValue({ message: '' });
+      this.scrollChatToBottom();
+      this.cdr.detectChanges();
+    } else {
+      console.error('No file URL available.');
+    }
   }
 
 

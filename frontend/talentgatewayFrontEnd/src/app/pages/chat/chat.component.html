@@ -141,11 +141,21 @@
                       <emoji-mart class="emoji-mart" *ngIf="showEmojiPicker" (emojiSelect)="addEmoji($event)" title="Pick your emoji…"></emoji-mart>
                       <li class="list-inline-item">
                         <a href="javascript:void(0);" data-toggle="tooltip" placement="top" tooltip="Add Files" (click)="handleAddFilesClick()">
-                          <i class="mdi mdi-file-document-outline"></i>
+                          <i class="mdi mdi-file-document-outline" (click)="triggerFileInput()"></i>
                         </a>
                       </li>
+
+                      <!-- Hidden file input for manual file selection -->
+                      <input
+                        type="file"
+                        (change)="onFileChange($event)"
+                        style="display: none;"
+                        id="fileInput"
+                        #fileInput
+                      />
+
                       <li class="list-inline-item">
-                        <button onclick="sendFile()" data-toggle="tooltip" placement="top" tooltip="Send File">
+                        <button (click)="fileSend(chat.recipientId)" data-toggle="tooltip" placement="top" tooltip="Send File">
                           Send
                         </button>
                       </li>
