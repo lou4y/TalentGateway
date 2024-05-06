@@ -10,7 +10,8 @@
 	  {
 		"path": "/swagger-ui/*",
 		"enforcement-mode": "DISABLED"
-	},{
+	},
+	  {
 		  "path": "/profile/*",
 		  "enforcement-mode": "DISABLED"
 	  },{
@@ -26,6 +27,18 @@
 		}
 	}, {
 		  "path": "/keycloak/user/signin",
+		  "enforcement-mode": "DISABLED"
+	  },
+	  {
+		  "path": "/keycloak/user/signin",
+		  "enforcement-mode": "DISABLED"
+	  },
+	  {
+		  "path": "/profile/additionalUserData",
+		  "enforcement-mode": "DISABLED"
+	  },
+	  {
+		  "path": "/profile/userVerif",
 		  "enforcement-mode": "DISABLED"
 	  },{
 		"path": "/keycloak/*",

@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "USERTEST-SERVICE")
+@FeignClient(name = "user-service")
 public interface UserRestClient {
-    @GetMapping("/users/{id}")
+    @GetMapping("/keycloak/users/{id}")
     //handler d'exception /fallbackMethod: la méthode qui va appler en local si l'autre échoue
     @CircuitBreaker(name = "userService", fallbackMethod = "getDefaultCreator")
     User findCreatorById(@PathVariable String id);
 
     @CircuitBreaker(name = "userService", fallbackMethod = "getDefaultAllCreators")
-    @GetMapping("/users ")
+    @GetMapping("/keycloak/users/")
     List<User> allCreators();
 
     default User getDefaultCreator(String id, Exception exception){

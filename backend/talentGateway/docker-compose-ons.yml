@@ -71,6 +71,7 @@ services:
     depends_on:
       enset-talentgateway-config-service:
         condition: service_healthy
+
   project-service:
     build: ./project-service
     ports:

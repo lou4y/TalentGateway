@@ -45,7 +45,7 @@ import { GoogleGeminiComponent } from './chat/components/google-gemini/google-ge
     DashboardsModule,
     EmailModule,
     HttpClientModule,
-    ProjectsModule,
+    //ProjectsModule,
     UIModule,
     TasksModule,
     ContactsModule,

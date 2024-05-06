@@ -1,20 +1,34 @@
-<app-header-front></app-header-front>
+<app-header-back></app-header-back>
+<div class="breadcrumb__area include-bg pt-200 pb-150 breadcrumb__overlay"
+     data-background="../../../assets/images/esprit/espritbg1.jpg">
+  <div class="container">
+    <div class="row">
+      <div class="col-X-12">
+        <div class="breadcrumb__content p-relative z-index-1">
+          <h3 class="breadcrumb__title">Internships List</h3>
+          <div class="breadcrumb__list">
+            <span><a href="#">Home</a></span>
+            <span class="dvdr"><i class="fa-regular fa-angle-right"></i></span>
+            <span>Internships</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-
-<!-- Internships Section -->
 <div class="container mt-4">
   <div class="row">
     <div class="col-lg-12">
       <div class="tp-section__title-wrapper text-center mb-60">
-        <h3 class="tp-section__title mb-15">Upcoming Intersnsips</h3>
+        <h3 class="tp-section__title mb-15">Upcoming Internships</h3>
         <p>******************************</p>
-        {{user.username}}
+        {{ user.username }}
       </div>
     </div>
   </div>
   <div class="row">
-    <!-- Use *ngFor to iterate over internships and display them -->
-    <div class="col-lg-6" *ngFor="let internship of internships$ | async">
+    <div class="col-lg-6" *ngFor="let internship of getCurrentPageInternships()">
       <div class="tp-event-3__item mb-30">
         <div class="tp-event-3__content d-md-flex justify-content-between align-items-center">
           <div class="tp-event-3__info">
@@ -27,19 +41,14 @@
           </div>
 
           <div class="tp-evnet-2__btn p-relative z-index-11">
-
             <a [routerLink]="['/details', internship.intershipId]" class="tp-border-btn">
-
               <span>Details</span>
               <div class="transition"></div>
             </a>
           </div>
 
-          <!-- Apply button -->
           <div class="tp-evnet-2__btn p-relative z-index-11" *ngIf="!isInternshipStartDatePassed(internship.intershipStartDate)">
-
             <a [routerLink]="['/details', internship.intershipId]" class="tp-border-btn">
-
               <span>Apply</span>
               <div class="transition"></div>
             </a>
@@ -48,10 +57,7 @@
       </div>
     </div>
   </div>
+  <pagination [totalItems]="totalRecords" [(ngModel)]="page" [itemsPerPage]="pageSize" previousText="&lsaquo;" nextText="&rsaquo;" (pageChanged)="pageChanged($event)"></pagination>
 </div>
-<!-- Internships Section End -->
-
-
 
 <app-footer-front></app-footer-front>
-

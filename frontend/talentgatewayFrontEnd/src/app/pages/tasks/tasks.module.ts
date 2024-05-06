@@ -19,10 +19,14 @@ import { UIModule } from '../../shared/ui/ui.module';
 import { ListComponent } from './list/list.component';
 import { KanbanboardComponent } from './kanbanboard/kanbanboard.component';
 import { CreatetaskComponent } from './createtask/createtask.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   declarations: [ListComponent, KanbanboardComponent, CreatetaskComponent],
   imports: [
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    }),
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

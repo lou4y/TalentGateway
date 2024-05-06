@@ -28,9 +28,6 @@
   align-items: center;
 }
 
-.tp-evnet-2__btn {
-  display: flex;
-}
 
 .tp-delete-btn {
   border: none;
@@ -49,6 +46,45 @@
   color: white;
   font-size: 18px; /* Adjust the font size as needed */
 }
+
+.rounded-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;  /* Adjust the value for the desired effect */
+}
+.text-center {
+  text-align: center;
+  margin-left: 50px;
+  margin-top: 10px;
+}
+.button-blue-border {
+  border: 2px solid #0d6efd;  /* Bordure bleue */
+  color:#0d6efd;  /* Texte bleu */
+  background-color: white;  /* Fond blanc pour contraste */
+  padding: 5px 10px;  /* Espace intérieur du bouton */
+  border-radius: 5px;  /* Coins arrondis */
+  transition: all 0.3s ease;  /* Transition douce pour les effets hover */
+}
+.button-blue-border:hover {
+  background-color: #0d6efd;  /* Changement de fond au survol */
+  color: white;  /* Texte blanc au survol */
+}
+.btn-rounded {
+  background-color: #34c38f; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  margin-bottom: 15px; /* Espace en bas */
+  display: flex; /* Définir comme conteneur Flexbox */
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement */
+  height: 40px; /* Définir une hauteur fixe pour le bouton */
+}
+
+.addproject {
+  font-size: 15px; /* Taille du texte */
+  color: white; /* Couleur du texte */
+  text-align: center; /* Alignement du texte */
+}
+
 
 
 

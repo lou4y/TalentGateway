@@ -1,8 +1,11 @@
 package com.cloudcrafters.projectservice.serviceImplementation;
 
 import com.cloudcrafters.projectservice.daos.TeamDao;
+import com.cloudcrafters.projectservice.daos.UserRoleInTeamDao;
+import com.cloudcrafters.projectservice.entities.Project;
 import com.cloudcrafters.projectservice.entities.Team;
 import com.cloudcrafters.projectservice.entities.UserRoleInTeam;
+import com.cloudcrafters.projectservice.services.ProjectService;
 import com.cloudcrafters.projectservice.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,10 @@ import java.util.Optional;
 public class TeamServiceImplementation implements TeamService {
     @Autowired
     TeamDao teamDao;
+    @Autowired
+    UserRoleInTeamDao userRoleInTeamDao;
+    @Autowired
+    ProjectService projectService;
     @Override
     public List<Team> getAllTeams() {
         return teamDao.findAll();
@@ -70,6 +77,66 @@ public class TeamServiceImplementation implements TeamService {
             // Handle if team with given ID doesn't exist
             return null;
         }
+    }
+    public void addTeamMemberToProject(Long projectId, String userId, String memberRole) {
+        Project project = projectService.getProjectById(projectId);
+        if (project == null) {
+            throw new IllegalArgumentException("Project not found");
+        }
+
+        Team team = project.getTeam();
+
+        if (team == null) {
+            team = new Team();
+            project.setTeam(team);
+        }
+
+        // Vérifie si l'utilisateur existe déjà dans l'équipe
+        boolean userExists = team.getUsersWithRoles().stream()
+                .anyMatch(ur -> ur.getUserId().equals(userId));
+
+        if (userExists) {
+            throw new IllegalArgumentException("User already exists in the team");
+        }
+
+        // Crée un nouvel utilisateur avec son rôle
+        UserRoleInTeam newUserRoleInTeam = new UserRoleInTeam();
+        newUserRoleInTeam.setUserId(userId);
+        newUserRoleInTeam.setMemberRole(memberRole);
+        newUserRoleInTeam.setTeam(team);
+
+        team.getUsersWithRoles().add(newUserRoleInTeam);
+
+        teamDao.save(team);
+    }
+    @Override
+    public boolean removeTeamMember(Long teamId, String userId) {
+        Team team = teamDao.findById(teamId).orElse(null);
+        if (team == null) {
+            throw new IllegalArgumentException("Team not found");
+        }
+
+        // Find the UserRoleInTeam to delete
+        UserRoleInTeam userRoleToRemove = null;
+        for (UserRoleInTeam userRole : team.getUsersWithRoles()) {
+            if (userRole.getUserId().equals(userId)) {
+                userRoleToRemove = userRole;
+                break;
+            }
+        }
+
+        if (userRoleToRemove == null) {
+            throw new IllegalArgumentException("User not found in the team");
+        }
+
+        // Remove the user role from the team and delete from the database
+        team.getUsersWithRoles().remove(userRoleToRemove);
+
+        userRoleInTeamDao.delete(userRoleToRemove); // Explicitly delete the UserRoleInTeam
+
+        teamDao.save(team); // Save the updated team without the deleted member
+
+        return true; // Deletion successful
     }
 
 

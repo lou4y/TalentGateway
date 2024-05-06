@@ -23,4 +23,5 @@ public class Comment implements Serializable {
     @Transient
     private User user;
     private String userId;
+    private String sentiment;
 }

@@ -75,6 +75,13 @@
             <artifactId>resilience4j-annotations</artifactId>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20240303</version>
+        </dependency>
+
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>

@@ -1,8 +1,11 @@
 package com.cloudcrafters.projectservice.controllers;
 
+import com.cloudcrafters.projectservice.entities.Like;
 import com.cloudcrafters.projectservice.services.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/likes")
@@ -14,6 +17,7 @@ public class LikeController {
     public LikeController(LikeService likeService) {
         this.likeService = likeService;
     }
+
 
     @PostMapping("/like/{projectId}")
     public void likeProject(@PathVariable Long projectId, @RequestParam String userId) {
@@ -33,4 +37,8 @@ public class LikeController {
         return likeService.isUserLikedProject(projectId, userId);
     }
 
+    @GetMapping("/all")
+    public List<Like> getAllLikes() {
+        return likeService.getAllLikes();
+    }
 }

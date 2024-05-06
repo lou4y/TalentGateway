@@ -10,6 +10,8 @@ import { Module } from 'src/app/core/models/module.model';
 import Swal from 'sweetalert2';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { User } from 'src/app/core/models/auth.models';
+import { ChartType } from './kanabn.model';
+import { EChartsOption } from 'echarts';
 
 @Component({
   selector: 'app-kanbanboard',
@@ -39,6 +41,9 @@ export class KanbanboardComponent implements OnInit {
   user: User;
 
   taskStats: any = {};
+
+  taskChart: ChartType;
+  pieChartOptions: EChartsOption = {};
 
 
   @ViewChild('modalForm', { static: false }) modalForm?: ModalDirective;
@@ -93,22 +98,172 @@ export class KanbanboardComponent implements OnInit {
     }); 
     
     this.loadTaskStats(this.user.id.toString());  // Load stats on component initialization
+    this.setupPieChart();
   }
 
+  
+  loadTaskStats(userId: string): void {
+    // Fetch the tasks first, since you need them to set up the charts
+    this.tasksService.getTasksByUserId(userId).subscribe({
+      next: (tasks) => {
+        this.alltask = tasks;
+        this.segregateTasksByStatus(); // Make sure this is called to update your upcoming, inprogress, and completed task arrays
+        
+        // Now fetch the task statistics if needed
+        this.tasksService.getTaskStatsByUserId(userId).subscribe({
+          next: (stats) => {
+            this.taskStats = stats;
+            console.log('Task stats loaded', stats);
+            
+            // Now that we have both tasks and stats, setup the charts
+            this.setupChart(); // Setup the line/bar chart with the new data
+            this.setupPieChart(); // Setup the pie chart with the new data
+          },
+          error: (error) => console.error('Error loading task stats:', error)
+        });
+      },
+      error: (error) => console.error('Error loading tasks:', error)
+    });
+  }
+  
+  
+
+  /*
   loadTaskStats(userId: string): void {
     this.tasksService.getTaskStatsByUserId(userId).subscribe({
       next: (stats) => {
         this.taskStats = stats;
         console.log('Task stats loaded', stats);
+        this.setupChart();
       },
       error: (error) => console.error('Error loading task stats:', error)
     });
   }
+  
+  
+
+
+  loadTaskStats(userId: string): void {
+    this.tasksService.getTasksByUserId(userId).subscribe({
+      next: (tasks) => {
+        this.alltask = tasks;
+        this.setupChart(); // Call setupChart to update the chart with the new data
+        this.setupPieChart(); // Call setupPieChart to update the pie chart with the new data
+      },
+      error: (error) => console.error('Error loading task stats:', error)
+    });
+  }
+*/
+
+  loadTasksAndStats(userId: string): void {
+    // Fetch the task statistics
+    this.tasksService.getTaskStatsByUserId(userId).subscribe({
+      next: (stats) => {
+        this.taskStats = stats;
+        console.log('Task stats loaded', stats);
+        // After loading stats, fetch the tasks and setup the chart
+        this.loadTasks(userId); // Call the method to load tasks
+      },
+      error: (error) => console.error('Error loading task stats:', error)
+    });
+  }
+  
+
+  setupChart(): void {
+    const completedTasksByMonth = new Array(12).fill(0);
+
+    this.alltask.forEach(task => {
+      if (task.statut === 'Finished') {
+        const monthIndex = this.getMonthFromTask(task);
+        completedTasksByMonth[monthIndex]++;
+      }
+    });
+    
+    this.taskChart = {
+      series: [{
+        name: 'Completed Tasks',
+        data: completedTasksByMonth
+      }],
+      chart: {
+        height: 350,
+        type: 'line',
+        toolbar: {
+          show: true,
+          tools: {
+            zoom: false, // to hide the zoom tool
+            reset: false, // to hide the reset tool
+            
+          }
+        }
+      },
+      stroke: {
+        curve: 'smooth',
+        width: 1.5 // Adjust the width for thicker or thinner lines.
+      },
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      },
+      yaxis: {
+      }
+    };
+    
+  }
+  
+  
+  setupPieChart(): void {
+    const taskStatusCounts = {
+      'To_do': this.upcomingTasks.length,
+      'In_Progress': this.inprogressTasks.length,
+      'Finished': this.completedTasks.length
+    };
+
+    this.pieChartOptions = {
+      tooltip: {
+        trigger: 'item'
+      },
+      legend: {
+        orient: 'vertical',
+        left: 'left'
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          saveAsImage: { show: true, title: 'Save' }
+        }
+      },
+      series: [
+        {
+          name: 'Tasks',
+          type: 'pie',
+          radius: '50%',
+          data: [
+            { value: taskStatusCounts['To_do'], name: 'To do' },
+            { value: taskStatusCounts['In_Progress'], name: 'In Progress' },
+            { value: taskStatusCounts['Finished'], name: 'Finished' }
+          ],
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
+    };
+  }
+
+  getMonthFromTask(task: TaskKanban): number {
+    const dateParts = task.endDate.split('-');
+  const month = parseInt(dateParts[1], 10) - 1; // Subtract 1 to get a zero-indexed month (0 for January, 11 for December)
+    return month;
+  }
+  
 
   showStatsModal(): void {
-    this.loadTaskStats(this.user.id.toString());  // Load or reload stats
+    this.loadTaskStats(this.user.id.toString()); // Load or reload stats
     if (this.modalForm) {
-      this.statsModal?.show();  // Shows the modal
+      this.statsModal?.show(); // Shows the modal
     } else {
       console.error('Modal reference is not defined');
     }
@@ -142,6 +297,8 @@ loadTasks(userId: string): void {
               firstName: task.firstName
           })) as TaskKanban[]; // Convert each task to TaskKanban
           this.segregateTasksByStatus();
+          this.setupPieChart();
+          this.setupChart();
       },
       error: (error) => {
           console.error('Failed to fetch tasks:', error);
@@ -243,6 +400,8 @@ delete(event: any, taskId: number): void {
    
   }
 
+
+
   
   submitForm() {
     if (this.taskForm.valid) {
@@ -297,9 +456,6 @@ segregateTasksByStatus() {
   this.inprogressTasks = this.alltask.filter(t => t.statut === 'In_Progress');
   this.completedTasks = this.alltask.filter(t => t.statut === 'Finished');
 
-  console.log('Upcoming Tasks:', this.upcomingTasks);
-  console.log('In Progress Tasks:', this.inprogressTasks);
-  console.log('Completed Tasks:', this.completedTasks);
 }
 
 

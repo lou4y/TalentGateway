@@ -8,21 +8,44 @@
       <i class="bx bx-bar-chart-alt align-middle"></i> My Stat
     </a>
 
-    <!-- Statistics Modal -->
+<!-- Statistics Modal -->
 <div bsModal #statsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-xl"> <!-- Increased modal size -->
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Your Task Statistics</h5>
         <button type="button" class="btn-close" (click)="statsModal?.hide()" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Completed Tasks: {{ taskStats.completedTasks }}</p>
-        <p>Incomplete Tasks: {{ taskStats.incompleteTasks }}</p>
+        <!-- Text information centered -->
+        <div class="row text-center mb-4">
+          <div class="col-12">
+            <div class="p-3 border rounded">
+              <p class="mb-2">Completed Tasks: {{ taskStats.completedTasks }}</p>
+              <p>Incomplete Tasks: {{ taskStats.incompleteTasks }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- Charts -->
+        <div class="row mt-4">
+          <div class="col-lg-6" >
+            <!-- Line chart container -->
+            <apx-chart [series]="taskChart.series" [chart]="taskChart.chart"
+              [xaxis]="taskChart.xaxis" [yaxis]="taskChart.yaxis" [dataLabels]="taskChart.dataLabels"
+              [stroke]="taskChart.stroke" [title]="taskChart.title" [labels]="taskChart.labels">
+            </apx-chart>
+          </div>
+          <div class="col-lg-6" style="padding-left: 50px;">
+            <!-- Pie chart container -->
+            <div echarts [options]="pieChartOptions" class="demo-chart" style="height: 400px;"></div>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
 </div>
+
 
 
   </div>

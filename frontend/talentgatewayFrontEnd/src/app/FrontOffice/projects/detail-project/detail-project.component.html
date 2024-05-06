@@ -1,7 +1,8 @@
-<app-header-front></app-header-front>
-<div class="container-fluid" style="margin:5%;">
+<app-header-back></app-header-back>
+<div class="container-fluid" style="margin:5%;margin-top:100px;">
+
   <div class="row">
-    <div class="col-lg-8">
+    <div class="col-lg-7">
       <div class="card">
         <div class="card-body">
           <div class="d-flex">
@@ -60,17 +61,21 @@
     </div>
     <!-- end col -->
 
+    <!-- Colonne avec les membres de l'équipe -->
     <div class="col-lg-4">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-4">Team Members</h4>
-
+          <div class="d-flex justify-content-start align-items-center">
+            <h4 class="card-title" style="margin-right: 10px;">Team Members</h4>
+            <button (click)="openAddTeamDialog()" class="btn btn-primary" style="margin-left: 200px;">Add Team Member</button>
+          </div>
           <div class="table-responsive">
             <table class="table align-middle table-nowrap">
               <tbody *ngFor="let user of project.team.usersWithRoles">
                 <tr>
-                  <td style="width: 50px;"><img src="assets/images/users/avatar-2.jpg" class="rounded-circle avatar-xs"
-                      alt=""></td>
+                  <td style="width: 50px;">
+                    <img src="assets/images/users/avatar-2.jpg" class="rounded-circle avatar-xs" alt="">
+                  </td>
                   <td>
                     <h5 class="font-size-14 m-0"><a href="" class="text-dark">{{ user.user.firstName }} {{ user.user.lastName }}</a></h5>
                   </td>
@@ -79,6 +84,12 @@
                       <a href="javascript: void(0);" class="badge bg-primary-subtle text-primary font-size-11">{{user.memberRole}}</a>
                     </div>
                   </td>
+                  <!-- Dans la section des membres de l'équipe -->
+                  <td>
+                    <button (click)="deleteTeamMember(user.userId)" class="btn btn-danger btn-sm">
+                      <i class="fas fa-trash-alt"></i> <!-- Icône de suppression -->
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -86,6 +97,7 @@
         </div>
       </div>
     </div>
+
     <!-- end col -->
   </div>
   <!-- end row -->

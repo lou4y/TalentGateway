@@ -4,7 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {InternshipsService} from "../../core/services/internships/internships.service";
 import {AuthenticationService} from "../../core/services/auth.service";
 import { HttpClient } from '@angular/common/http';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-internships-detail',
@@ -21,7 +21,8 @@ export class InternshipsDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private internshipsService: InternshipsService,
     private authService: AuthenticationService,
-    private http: HttpClient
+    private http: HttpClient,
+  private router: Router
     
   ) {}
 
@@ -147,4 +148,42 @@ generatePDF() {
     } else {
         console.error('Utilisateur non authentifié');
     }
-}}
+}
+
+
+
+
+
+
+
+
+viewCandidates(): void {
+  if (!this.offerId) {
+    console.error('Offer ID not available');
+    return;
+  }
+  console.log('Offer ID:', this.offerId);
+   
+    this.router.navigateByUrl('/jobs/myapplication');
+  
+}
+
+
+
+navigateToMyApplication(): void {
+  if (!this.offerId) {
+    console.error('Offer ID is null or undefined');
+    return;
+  }
+
+  console.log('Navigating to myapplication with offer ID:', this.offerId);
+  
+  this.router.navigate(['/jobs/myapplication',this.offerId]);
+  console.log("11111111111111111111111",this.offerId);
+}
+
+
+
+
+
+}
