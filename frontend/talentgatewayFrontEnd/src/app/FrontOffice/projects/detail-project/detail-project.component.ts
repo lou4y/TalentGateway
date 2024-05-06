@@ -18,7 +18,7 @@ import { Base64 } from 'js-base64';
   styleUrls: ['./detail-project.component.scss']
 })
 export class DetailProjectComponent {
-  project={projectId:'',projectName:'',projectDescription:'',startDate:'',endTime:'',price:0, projectStatus:'',projectCreator:{
+  project={projectId:'',projectName:'',projectDescription:'',startDate:'',endTime:'',price:0, creatorId:'', projectStatus:'',projectCreator:{
     userId:'',firstName:'',email:'',lastName:'',userRole:''},team:{
       teamId:0,name:'',usersWithRoles:[{user:{userId:'',firstName:'',lastName:''},memberRole:''}]
     }};
@@ -56,6 +56,8 @@ export class DetailProjectComponent {
     this.projectservice.getProjectById(this.projectId).subscribe(
       (data) => {
         this.project = data;
+        console.log("dataa",data.creatorId);
+
       },
       (error) => {
         console.log("error");
@@ -65,7 +67,7 @@ export class DetailProjectComponent {
   openAddTeamDialog() {
     this.dialog.open(AddTeamComponent, {
       width: '550px', // Taille du dialogue
-      data: { projectId: this.projectId }, // Passez l'ID du projet
+      data: { projectId: this.projectId.crea }, // Passez l'ID du projet
     });
     this.loadProjectData();
   }
