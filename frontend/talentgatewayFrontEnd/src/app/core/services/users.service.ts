@@ -11,8 +11,8 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
 
-  Getallusers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.baseUrl}/users`); // Updated endpoint
+  Getallusers(): Observable<Kuser[]> {
+    return this.http.get<Kuser[]>(`${this.baseUrl}/users`); // Updated endpoint
   }
 
   //put method to update user by userId

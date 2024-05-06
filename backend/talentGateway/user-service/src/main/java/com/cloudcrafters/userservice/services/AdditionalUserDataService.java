@@ -8,6 +8,7 @@ public interface AdditionalUserDataService {
     public AdditionalUserData updateAdditionalUserData(AdditionalUserData additionalUserData);
     public void deleteAdditionalUserData(String UserID);
     public AdditionalUserData getAdditionalUserData(String UserID);
+    public List<AdditionalUserData> getAllAdditionalUserData();
 
 
 

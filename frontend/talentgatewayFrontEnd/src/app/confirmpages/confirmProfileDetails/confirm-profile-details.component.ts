@@ -66,7 +66,7 @@ export class ConfirmProfileDetailsComponent implements OnInit,ControlValueAccess
   phoneNumberError: boolean = false;
   disabled: boolean = false;
    user: User;
-  constructor(public dialog: MatDialog,private authService: AuthenticationService,private dataservice:AdditionalUserDataService,private userverif: ProfileVerificationService,private Skillservice: SkillsService,private fb: UntypedFormBuilder,private fbl: FormBuilder,private fileService: FileService, private authservice: AuthenticationService,private router: Router) {
+  constructor(public dialog: MatDialog,private authService: AuthenticationService,private dataservice:AdditionalUserDataService,private userverif: ProfileVerificationService,private Skillservice: SkillsService,private fb: UntypedFormBuilder,private fbl: FormBuilder,private fileService: FileService,private router: Router) {
     this.skillData = this.fb.group({
       skillValue: this.fb.array([]),
     });
@@ -179,7 +179,7 @@ export class ConfirmProfileDetailsComponent implements OnInit,ControlValueAccess
   }
 
   async saveData() {
-    var user : User = await this.authservice.currentUser();
+      var user : User = await this.authService.currentUser();
     var imageUrl = this.Image;
     try {
       if (imageUrl.startsWith('blob:')) {

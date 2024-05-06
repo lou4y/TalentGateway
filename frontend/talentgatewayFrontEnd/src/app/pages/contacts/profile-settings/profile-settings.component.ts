@@ -240,6 +240,7 @@ export class ProfileSettingsComponent implements OnInit{
         username: this.user.username,
         firstName: this.FirstName,
         lastName: this.LastName,
+        createdDate: this.user.createddate,
         password: '',
         isEmailVerified: true
       }

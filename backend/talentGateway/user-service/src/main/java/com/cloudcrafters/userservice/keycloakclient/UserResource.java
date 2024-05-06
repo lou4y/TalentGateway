@@ -115,6 +115,7 @@ public class UserResource {
 		user.setLastName(userRep.getLastName());
 		user.setEmail(userRep.getEmail());
 		user.setUserName(userRep.getUsername());
+		user.setCreatedDate(userRep.getCreatedTimestamp());
 		user.setIsEmailVerified(userRep.isEmailVerified())	;
 
 		return user;
@@ -126,6 +127,7 @@ public class UserResource {
 		userRep.setUsername(user.getUserName());
 		userRep.setFirstName(user.getFirstName());
 		userRep.setLastName(user.getLastName());
+		userRep.setCreatedTimestamp(user.getCreatedDate())		;
 		userRep.setEmail(user.getEmail());
 		userRep.setEnabled(true);
 		userRep.setEmailVerified(user.getIsEmailVerified());
