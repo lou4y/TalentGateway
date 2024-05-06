@@ -197,4 +197,22 @@ public class InternshipServiceImpl implements InternshipService {
         return InternshipDao.countByUserId(userId); // Assuming InternshipDao has a countByUserId method
     }
 
+    @Override
+    public long getTotalInternshipsr() {
+        return InternshipDao.count();
+    }
+
+
+    @Override
+    public Map<Category, List<Internship>> getInternshipsGroupedByCategory() {
+        List<Internship> internships = InternshipDao.findAll(); // Fetch all internships
+
+        // Group internships by category using Java streams and Collectors.groupingBy
+        return internships.stream()
+                .flatMap(internship -> internship.getCategories().stream().map(category -> Map.entry(category, internship)))
+                .collect(Collectors.groupingBy(Map.Entry::getKey, Collectors.mapping(Map.Entry::getValue, Collectors.toList())));
+    }
+
+
+
 }

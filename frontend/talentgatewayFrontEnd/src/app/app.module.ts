@@ -59,6 +59,8 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import {PaginationModule} from "ngx-bootstrap/pagination";
+import {JobsModule} from "./pages/jobs/jobs.module";
+import {UIModule} from "./shared/ui/ui.module";
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
@@ -82,70 +84,77 @@ export function createTranslateLoader(http: HttpClient): any {
     AddprojectWithTeamComponent,
 
   ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        ModalModule.forRoot(),
-        NgxEchartsModule.forRoot({
-            echarts: () => import('echarts'),
-        }),
-        NgApexchartsModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFireDatabaseModule,
-        AngularFirestoreModule,
-        AngularFireStorageModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: createTranslateLoader,
-                deps: [HttpClient]
-            }
-        }),
-        LayoutsModule,
-        AppRoutingModule,
-        ExtrapagesModule,
-        ConfirmpagesModule,
-        CarouselModule,
-        AccordionModule.forRoot(),
-        TabsModule.forRoot(),
-        TooltipModule.forRoot(),
-        SharedModule,
-        ScrollToModule.forRoot(),
-        ToastrModule.forRoot(),
-        KeycloakAngularModule,
-        FormsModule,
-        RatingModule,
-        DndModule,
-        MatAutocompleteModule,
-        MatSnackBarModule,
-        NgApexchartsModule,
-        NgxSliderModule,
-        NgSelectModule,
-        MatCheckboxModule,
-        CollapseModule.forRoot(),
-        BsDropdownModule.forRoot(),
-        CKEditorModule,
-        NgStepperModule,
-        CdkStepperModule,
-        NgxMaskDirective,
-        NgxMaskPipe,
-        NgSelectModule,
-        UiSwitchModule,
-        ShareButtonsModule,
-        PaginationModule,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ModalModule.forRoot(),
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
+    NgApexchartsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    }),
+    LayoutsModule,
+    AppRoutingModule,
+    ExtrapagesModule,
+    ConfirmpagesModule,
+    CarouselModule,
+    AccordionModule.forRoot(),
+    TabsModule.forRoot(),
+    TooltipModule.forRoot(),
+    SharedModule,
+    ScrollToModule.forRoot(),
+    ToastrModule.forRoot(),
+    KeycloakAngularModule,
+    FormsModule,
+    RatingModule,
+    DndModule,
+    MatAutocompleteModule,
+    MatSnackBarModule,
+    NgApexchartsModule,
+    NgxSliderModule,
+    NgSelectModule,
+    MatCheckboxModule,
+    CollapseModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    CKEditorModule,
+    NgStepperModule,
+    CdkStepperModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
+    NgSelectModule,
+    UiSwitchModule,
+    ShareButtonsModule,
+    PaginationModule,
+    JobsModule,
+    UIModule,
 
-    ],
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
   providers: [
-    { provide: APP_INITIALIZER,
+    {
+      provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,
-      deps: [KeycloakService]},
-      DatePipe
+      deps: [KeycloakService]
+    },
+    DatePipe
   ],
+  exports: [
+    HeaderBackComponent
+  ]
 })
 export class AppModule { }

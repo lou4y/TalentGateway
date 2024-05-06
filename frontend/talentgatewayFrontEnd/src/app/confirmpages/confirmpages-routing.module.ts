@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ConfirmProfileDetailsComponent } from './confirmProfileDetails/confirm-profile-details.component';
 import { VerificationComponent } from './verification/verification.component'; // Corrected path
+// @ts-ignore
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 const routes: Routes = [

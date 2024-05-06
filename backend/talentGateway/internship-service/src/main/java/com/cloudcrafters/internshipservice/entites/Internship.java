@@ -59,8 +59,6 @@ public class Internship implements Serializable {
 
     // Setter method for setting the creator of the internship
     public void setCreator(User creator) {
-        // Implement your logic here to set the creator
-        // For example:
         this.userId = creator.getUserId();
     }
 }
