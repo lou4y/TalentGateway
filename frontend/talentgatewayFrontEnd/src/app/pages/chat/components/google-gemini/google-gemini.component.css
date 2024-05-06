@@ -99,3 +99,8 @@
 .chat-leftsidebar-me-lg-4 .open {
   height: auto !important;
 }
+
+.chat-image {
+  width: 200px; /* Set a fixed width for the images */
+  height: auto; /* Ensure the aspect ratio of the image is maintained */
+}

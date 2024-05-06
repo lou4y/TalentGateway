@@ -1,10 +1,9 @@
-<div class="container-fluid full-height-container">
+<div class="container-fluid h-500">
   <app-page-title title="Chat" [breadcrumbItems]="breadCrumbItems"></app-page-title>
 
   <div class="d-lg-flex">
     <div class="chat-leftsidebar me-lg-4">
       <div>
-        <!-- Username section -->
         <div class="py-4 border-bottom">
           <div class="d-flex">
             <div class="flex-shrink-0 align-self-center me-3">
@@ -16,7 +15,6 @@
             </div>
           </div>
         </div>
-        <!-- End username section -->
         <div class="search-box chat-search-box py-4">
           <div class="position-relative">
             <input type="text" class="form-control" placeholder="Search..." (keyup)="ContactSearch()" id="searchContact" autocomplete="off">
@@ -95,35 +93,51 @@
           </div>
         </div>
         <div>
+
+
+
           <div class="chat-conversation p-3">
             <ngx-simplebar style="height: 470px;" #scrollRef>
               <ul class="list-unstyled">
-                <li>
-                  <div class="chat-day-title">
-                    <span class="title">Today</span>
-                  </div>
-                </li>
-                <li *ngFor="let message of chatMessages" [ngClass]="{ 'right': message.senderId === currentUserId, 'left': message.senderId !== currentUserId }">
-                  <div class="conversation-list">
-                    <div class="dropdown" dropdown>
-                      <a class="dropdown-toggle" href="javascript:void(0);" role="button" dropdownToggle>
-                        <i class="bx bx-dots-vertical-rounded"></i>
-                      </a>
-
+                <ng-container *ngFor="let message of chatMessages; let i = index">
+                  <ng-container *ngIf="isFirstMessageOfTheDay(message, i)">
+                    <li>
+                      <div class="chat-day-title">
+                        <span class="title">{{ message.timestamp | date: 'mediumDate' }}</span>
+                      </div>
+                    </li>
+                  </ng-container>
+                  <li [ngClass]="{ 'right': message.senderId === currentUserId, 'left': message.senderId !== currentUserId }">
+                    <div class="conversation-list">
+                      <div class="dropdown" dropdown>
+                        <a class="dropdown-toggle" href="javascript:void(0);" role="button" dropdownToggle>
+                          <i class="bx bx-dots-vertical-rounded"></i>
+                        </a>
+                      </div>
+                      <div class="ctext-wrap">
+                        <div class="conversation-name">{{ message.senderId }}</div>
+                        <ng-container *ngIf="isImage(message.content)">
+                          <img [src]="message.content" alt="Image" class="chat-image" (click)="openFile(message.content)">
+                        </ng-container>
+                        <ng-container *ngIf="!isImage(message.content)">
+                          <p *ngIf="!isFile(message.content)" [innerHTML]="message.content"></p>
+                          <button *ngIf="isFile(message.content)" (click)="downloadFile(message.content)">
+                            {{ extractFileName(message.content) }}
+                          </button>
+                        </ng-container>
+                        <p class="chat-time mb-0"><i class="bx bx-time-five align-middle me-1"></i> {{ message.timestamp | date: 'mediumTime' }}</p>
+                      </div>
                     </div>
-                    <div class="ctext-wrap">
-                      <div class="conversation-name">{{ message.senderId }}</div>
-                      <p [innerHTML]="message.content"></p>
-                      <p class="chat-time mb-0"><i class="bx bx-time-five align-middle me-1"></i> {{ message.timestamp | date: 'medium' }}</p>
-                    </div>
-
-                  </div>
-                </li>
+                  </li>
+                </ng-container>
               </ul>
             </ngx-simplebar>
           </div>
+
+
+
+
           <div class="p-3 chat-input-section">
-            <!-- Your existing form for sending messages -->
             <form (ngSubmit)="messageSend(chat.recipientId)" [formGroup]="formData" class="row">
               <div class="col">
                 <div class="position-relative">
@@ -145,7 +159,6 @@
                         </a>
                       </li>
 
-                      <!-- Hidden file input for manual file selection -->
                       <input
                         type="file"
                         (change)="onFileChange($event)"
