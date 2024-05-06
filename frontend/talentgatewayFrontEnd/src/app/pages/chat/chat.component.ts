@@ -10,9 +10,7 @@ import { VideoConferenceUrlService } from "../../chatComponents/video-conference
 import { SocketService } from './socket.service';
 import { KeycloakService } from 'keycloak-angular';
 import { GeminiService } from './components/google-gemini/google-gemini.service';
-import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {FileSystemFileEntry, NgxFileDropEntry} from "ngx-file-drop";
-import { S3Service } from './s3.service'; // Import the S3Service
+import { S3Service } from './s3.service';
 
 
 @Component({
@@ -48,7 +46,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
               private authService: AuthenticationService, private conferenceUrlService: VideoConferenceUrlService,
               private socketService: SocketService, private keycloakService: KeycloakService,
               private geminiService: GeminiService, private cdr: ChangeDetectorRef,
-              private fireStorage: AngularFireStorage, private s3Service: S3Service) {
+               private s3Service: S3Service) {
     this.auth = authService;
   }
 
@@ -300,6 +298,76 @@ export class ChatComponent implements OnInit, AfterViewInit {
     }
   }
 
+  openFile(url: string): void {
+    if (url) {
+      window.open(url, '_blank');
+    } else {
+      console.error('No file URL available.');
+    }
+  }
+
+  // New method to check if the content is an image URL
+  isImage(content: string): boolean {
+    if (!content) {
+      return false;
+    }
+    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+    const extension = content.split('.').pop()?.toLowerCase();
+    return extension ? imageExtensions.includes(extension) : false;
+  }
+
+  // Inside the component class
+
+// New method to check if the content is a file URL
+  isFile(content: string): boolean {
+    // Check if the content starts with 'http://' or 'https://'
+    return content && (content.startsWith('http://') || content.startsWith('https://'));
+  }
+
+// Method to download the file
+  downloadFile(url: string): void {
+    // Open the file URL in a new tab to trigger the download
+    window.open(url, '_blank');
+  }
+// Inside the component class
+
+// New method to extract file name from URL
+  extractFileName(url: string): string {
+    const prefix = 'https://msgappfiles.s3.amazonaws.com/';
+    // Check if the URL starts with the expected prefix
+    if (url.startsWith(prefix)) {
+      // Extract the file name by removing the prefix
+      return url.substring(prefix.length);
+    } else {
+      // If the URL doesn't match the expected pattern, return the full URL
+      return url;
+    }
+  }
 
 
+  isSameDay(prevDate: any, currDate: any): boolean {
+    // Check if both dates are valid Date objects
+    if (!(prevDate instanceof Date) || !(currDate instanceof Date)) {
+      return false;
+    }
+
+    // Compare the year, month, and day of the two dates
+    return (
+      prevDate.getFullYear() === currDate.getFullYear() &&
+      prevDate.getMonth() === currDate.getMonth() &&
+      prevDate.getDate() === currDate.getDate()
+    );
+  }
+
+  isFirstMessageOfTheDay(message: ChatMessage, index: number): boolean {
+    if (index === 0) {
+      return true; // First message is always the first of the day
+    }
+
+    const currentMessageDate = new Date(message.timestamp);
+    const previousMessageDate = new Date(this.chatMessages[index - 1].timestamp);
+
+    // Compare the date part only (without time)
+    return currentMessageDate.toDateString() !== previousMessageDate.toDateString();
+  }
 }
