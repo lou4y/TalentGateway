@@ -4,70 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8646316c-3181-4bdc-a429-332ebfde49a0" name="Changes" comment="">
-
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="30902913-a656-4d0a-aac6-8ca1178fbf13" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/src/main/java/com/cloudcrafters/configservice/ConfigServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/src/main/java/com/cloudcrafters/configservice/ConfigServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/src/test/java/com/cloudcrafters/configservice/ConfigServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/src/test/java/com/cloudcrafters/configservice/ConfigServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/src/main/java/com/cloudcrafters/discoveryservice/DiscoveryServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/src/main/java/com/cloudcrafters/discoveryservice/DiscoveryServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/src/test/java/com/cloudcrafters/discoveryservice/DiscoveryServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/src/test/java/com/cloudcrafters/discoveryservice/DiscoveryServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose-ons.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose-ons.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/cloudcrafters/gatewayservice/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/cloudcrafters/gatewayservice/CorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/cloudcrafters/gatewayservice/GatewayServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/cloudcrafters/gatewayservice/GatewayServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/app.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/app.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/test/java/com/cloudcrafters/gatewayservice/GatewayServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/test/java/com/cloudcrafters/gatewayservice/GatewayServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/InternshipServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/InternshipServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/clients/UserRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/clients/UserRestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/configuration/RestTemplateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/configuration/RestTemplateConfig.java" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/InternshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/InternshipController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/CategoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/CategoryDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/InternshipDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/InternshipDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Internship.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Internship.java" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/CategoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/InternshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/InternshipService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/ScheduledTasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/ScheduledTasks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/CategoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/InternshipServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/InternshipServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/header-front/header-front.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/header-front/header-front.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships-detail/internships-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships-detail/internships-detail.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships-detail/internships-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships-detail/internships-detail.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messaging-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships/internships.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships/internships.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships/internships.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships/internships.component.ts" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/cyptolanding/cyptolanding.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/cyptolanding/cyptolanding.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/cyptolanding/header-back/header-back.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/cyptolanding/header-back/header-back.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/assets/scss/custom/pages/_crypto.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/assets/scss/custom/pages/_crypto.scss" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/confirmpages/confirmpages-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/confirmpages/confirmpages-routing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/core/models/categorys.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/core/models/categorys.model.ts" afterDir="false" />
@@ -263,6 +210,7 @@
 
       <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/ProjectServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/ProjectServiceApplication.java" afterDir="false" />
 
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,10 +224,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
+
         <option value="Class" />
 
         <option value="HTML File" />
-
         <option value="Class" />
       </list>
     </option>
@@ -309,74 +257,43 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="2fVCm76SUIGyMqawIgLV9JcW5bt" />
+  <component name="ProjectId" id="2g6Kp1kbHbWNfEvMxgU3n5fSLVl" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{{
-  &amp;quot;keyToString&amp;quot;: {
-    &amp;quot;RequestMappingsPanelOrder0&amp;quot;: &amp;quot;0&amp;quot;,
-    &amp;quot;RequestMappingsPanelOrder1&amp;quot;: &amp;quot;1&amp;quot;,
-    &amp;quot;RequestMappingsPanelWidth0&amp;quot;: &amp;quot;75&amp;quot;,
-    &amp;quot;RequestMappingsPanelWidth1&amp;quot;: &amp;quot;75&amp;quot;,
-    &amp;quot;RunOnceActivity.OpenProjectViewOnStart&amp;quot;: &amp;quot;true&amp;quot;,
-    &amp;quot;RunOnceActivity.ShowReadmeOnStart&amp;quot;: &amp;quot;true&amp;quot;,
-    &amp;quot;Spring Boot.ConfigServiceApplication.executor&amp;quot;: &amp;quot;Run&amp;quot;,
-    &amp;quot;Spring Boot.DiscoveryServiceApplication.executor&amp;quot;: &amp;quot;Run&amp;quot;,
-    &amp;quot;Spring Boot.GatewayServiceApplication.executor&amp;quot;: &amp;quot;Run&amp;quot;,
-    &amp;quot;Spring Boot.InternshipServiceApplication.executor&amp;quot;: &amp;quot;Run&amp;quot;,
-    &amp;quot;Spring Boot.UserServiceApplication.executor&amp;quot;: &amp;quot;Run&amp;quot;,
-    &amp;quot;WebServerToolWindowFactoryState&amp;quot;: &amp;quot;false&amp;quot;,
-    &amp;quot;git-widget-placeholder&amp;quot;: &amp;quot;interview-service&amp;quot;,
-    &amp;quot;kotlin-language-version-configured&amp;quot;: &amp;quot;true&amp;quot;,
-    &amp;quot;last_opened_file_path&amp;quot;: &amp;quot;C:/Users/ahmed/Desktop/TalentGateway/backend/talentGateway/user-service&amp;quot;,
-    &amp;quot;node.js.detected.package.eslint&amp;quot;: &amp;quot;true&amp;quot;,
-    &amp;quot;node.js.selected.package.eslint&amp;quot;: &amp;quot;(autodetect)&amp;quot;,
-    &amp;quot;node.js.selected.package.tslint&amp;quot;: &amp;quot;(autodetect)&amp;quot;,
-    &amp;quot;nodejs_package_manager_path&amp;quot;: &amp;quot;npm&amp;quot;,
-    &amp;quot;project.structure.last.edited&amp;quot;: &amp;quot;SDKs&amp;quot;,
-    &amp;quot;project.structure.proportion&amp;quot;: &amp;quot;0.15&amp;quot;,
-    &amp;quot;project.structure.side.proportion&amp;quot;: &amp;quot;0.2&amp;quot;,
-    &amp;quot;run.configurations.included.in.services&amp;quot;: &amp;quot;true&amp;quot;,
-    &amp;quot;settings.editor.selected.configurable&amp;quot;: &amp;quot;advanced.settings&amp;quot;,
-    &amp;quot;spring.configuration.checksum&amp;quot;: &amp;quot;8aac6404e04a940750965ea7c668e25f&amp;quot;,
-    &amp;quot;vue.rearranger.settings.migration&amp;quot;: &amp;quot;true&amp;quot;
-  &lt;component name=&quot;PropertiesComponent&quot;&gt;&lt;![CDATA[{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;FrontMa&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Amine/OneDrive/4ARTIC/S2/Spring-boot/Exams/Condidat/Exam-Condidat&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.ConfigServiceApplication.executor": "Run",
+    "Spring Boot.DiscoveryServiceApplication.executor": "Run",
+    "Spring Boot.GatewayServiceApplication.executor": "Run",
+    "Spring Boot.InternshipServiceApplication.executor": "Run",
+    "Spring Boot.InterviewServiceApplication.executor": "Run",
+    "Spring Boot.MessagingServiceApplication.executor": "Run",
+    "Spring Boot.TaskServiceApplication.executor": "Run",
+    "Spring Boot.UserServiceApplication.executor": "Run",
+    "git-widget-placeholder": "internshipfi",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/cloudpi/TalentGateway/backend/talentGateway/messaging-service",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -476,10 +393,20 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8646316c-3181-4bdc-a429-332ebfde49a0" name="Changes" comment="" />
-      <created>1713877015560</created>
+      <changelist id="30902913-a656-4d0a-aac6-8ca1178fbf13" name="Changes" comment="" />
+      <created>1715012780311</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+
+      <updated>1715012780311</updated>
+      <workItem from="1715012783939" duration="407000" />
+      <workItem from="1715025297806" duration="1507000" />
+      <workItem from="1715028996782" duration="1026000" />
+      <workItem from="1715069995955" duration="3143000" />
+      <workItem from="1715084198618" duration="1042000" />
+      <workItem from="1715089314164" duration="151000" />
+      <workItem from="1715089563898" duration="1512000" />
+
       <updated>1713877015560</updated>
       <workItem from="1712138042854" duration="817000" />
       <workItem from="1712139002196" duration="8446000" />
@@ -576,21 +503,11 @@
       <workItem from="1715059436456" duration="3132000" />
 
       <workItem from="1714998356608" duration="866000" />
+
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>

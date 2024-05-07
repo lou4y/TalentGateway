@@ -108,18 +108,26 @@
                       <!--<label for="" class="form-label">Internship Type</label>-->
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="inlineCheckbox6" [(ngModel)]="filter.FULL_TIME" (change)="updateInternshipsDisplay()">                      <label class="form-check-label" for="inlineCheckbox6">Full Time</label>
+<!--
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox6" [(ngModel)]="filter.FULL_TIME" (change)="updateInternshipsDisplay()">
+-->
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox6" [(ngModel)]="filter.FULL_TIME">
+                      <label class="form-check-label" for="inlineCheckbox6">FULL_TIME</label>
                     </div>
-
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="checkbox" id="inlineCheckbox7" [(ngModel)]="filter.remote">
                       <label class="form-check-label" for="inlineCheckbox7">REMOTE</label>
                     </div>
-
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="checkbox" id="inlineCheckbox8" [(ngModel)]="filter.contract">
                       <label class="form-check-label" for="inlineCheckbox8">CONTRACT</label>
                     </div>
+
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox9" [(ngModel)]="filter.PART_TIME">
+                      <label class="form-check-label" for="inlineCheckbox9">PART_TIME</label>
+                    </div>
+
 
 
                     <!-- Add more checkboxes for internship types as needed -->
