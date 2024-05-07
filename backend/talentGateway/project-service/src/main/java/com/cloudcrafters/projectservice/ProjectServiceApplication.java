@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -20,6 +21,7 @@ import java.util.List;
 @SpringBootApplication
 @EnableFeignClients
 @EnableConfigurationProperties(GlobalConfig.class)
+@EnableScheduling
 public class ProjectServiceApplication {
 
     public static void main(String[] args) {
