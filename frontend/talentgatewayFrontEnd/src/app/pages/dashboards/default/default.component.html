@@ -1,210 +1,232 @@
 <app-loader></app-loader>
 <div class="container-fluid">
-    <!-- start page title -->
-    <div class="row">
-        <div class="col-12">
-            <div class="page-title-box d-flex align-items-center justify-content-between">
-                <h4 class="mb-0 font-size-18">Dashboard</h4>
-                <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <ng-container>
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a>
-                            </li>
-                            <li class="breadcrumb-item active">Dashboard
-                            </li>
-                        </ng-container>
-                    </ol>
-                </div>
-            </div>
+  <!-- start page title -->
+  <div class="row">
+    <div class="col-12">
+      <div class="page-title-box d-flex align-items-center justify-content-between">
+        <h4 class="mb-0 font-size-18">Dashboard</h4>
+        <div class="page-title-right">
+          <ol class="breadcrumb m-0">
+            <ng-container>
+              <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a>
+              </li>
+              <li class="breadcrumb-item active">Dashboard
+              </li>
+            </ng-container>
+          </ol>
         </div>
+      </div>
     </div>
-    <!-- end page title -->
+  </div>
+  <!-- end page title -->
 
-    <div class="row">
-        <div class="col-xl-4">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title mb-4">all users</h4>
+  <div class="row">
+    <div class="col-xl-4">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4">all users</h4>
 
-                <div>
-                  <apx-chart class="apex-charts" dir="ltr" [series]="salesAnalyticsDonutChart.series"
-                             [chart]="salesAnalyticsDonutChart.chart" [colors]="salesAnalyticsDonutChart.colors"
-                             [plotOptions]="salesAnalyticsDonutChart.plotOptions"
-                             [legend]="salesAnalyticsDonutChart.legend" [labels]="salesAnalyticsDonutChart.labels">
-                  </apx-chart>
-                </div>
+          <div>
+            <apx-chart class="apex-charts" dir="ltr" [series]="usersTypesDonutChart.series"
+                       [chart]="usersTypesDonutChart.chart" [colors]="usersTypesDonutChart.colors"
+                       [plotOptions]="usersTypesDonutChart.plotOptions"
+                       [legend]="usersTypesDonutChart.legend" [labels]="usersTypesDonutChart.labels">
+            </apx-chart>
+          </div>
 
-                <div class="text-center text-muted">
-                  <div class="row">
-                    <div class="col-4">
-                      <div class="mt-4">
-                        <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-primary me-1"></i>
-                          students   </p>
-                        <h5>{{userCountsByRole.student}}</h5>
-                      </div>
-                    </div>
-                    <div class="col-4">
-                      <div class="mt-4">
-                        <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-success me-1"></i>
-                          Companies </p>
-                        <h5>{{ userCountsByRole.company}}</h5>
-                      </div>
-                    </div>
-                    <div class="col-4">
-                      <div class="mt-4">
-                        <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-danger me-1"></i>
-                          Teachers</p>
-                        <h5>{{ userCountsByRole.teacher }}</h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div class="col-xl-8">
+          <div class="text-center text-muted">
             <div class="row">
-                <div *ngFor="let stat of statData" class="col-md-4">
-                    <app-stat [title]="stat.title" [value]="stat.value" [icon]="stat.icon"></app-stat>
-                </div>
-            </div>
-            <!-- end row -->
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-sm-flex flex-wrap">
-                        <h4 class="card-title mb-4">accounts created</h4>
-                    </div>
-                    <apx-chart dir="ltr" class="apex-charts" [chart]="emailSentBarChart.chart" [series]="emailSentBarChart.series" [legend]="emailSentBarChart.legend" [colors]="emailSentBarChart.colors" [fill]="emailSentBarChart.fill" [dataLabels]="emailSentBarChart.dataLabels" [xaxis]="emailSentBarChart.xaxis" [plotOptions]="emailSentBarChart.plotOptions">
-                    </apx-chart>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end row -->
-
-    <div class="row">
-      <div class="col-xl-8">
-        <div class="card">
-          <div class="card-body">
-            <div class="clearfix">
-              <div class="float-end">
-                <div class="input-group input-group-sm">
-                  <select class="form-select form-select-sm" (change)="selectMonth($event.target.value)">
-                    <option *ngFor="let month of months" [value]="month" [selected]="month === 'january'"> <!-- Assuming 'months' is an array of month names -->
-                      {{ month.charAt(0).toUpperCase() + month.slice(1) }}
-                    </option>
-                  </select>
-                  <label class="input-group-text">Month</label>
+              <div class="col-4">
+                <div class="mt-4">
+                  <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-primary me-1"></i>
+                    students   </p>
+                  <h5>{{userCountsByRole.student}}</h5>
                 </div>
               </div>
-              <h4 class="card-title mb-4">new users</h4>
-            </div>
-            <div class="row" *ngFor="let item of sassEarning">
-              <div class="col-lg-4">
-                <div class="text-muted">
-                  <div class="mb-4">
-                    <p>{{item.name}}</p>
-                    <h4>{{ item.amount }}</h4>
-                    <div><span class="badge badge-soft-success font-size-12 me-1"> {{ item.revenue }}
-                                        </span> {{ item.time }}</div>
-                  </div>
-
-                  <div>
-                    <a href="javascript: void(0);" class="btn btn-primary btn-sm">View Details <i
-                      class="mdi mdi-chevron-right ms-1"></i></a>
-                  </div>
-
-                  <div class="mt-4">
-                    <p class="mb-2">{{ item.month }}</p>
-                    <h5>{{ item.previousamount }}</h5>
-                  </div>
-
+              <div class="col-4">
+                <div class="mt-4">
+                  <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-success me-1"></i>
+                    Companies </p>
+                  <h5>{{ userCountsByRole.company}}</h5>
                 </div>
               </div>
-
-              <div class="col-lg-8">
-                <apx-chart class="apex-charts" dir="ltr" [series]="item.series"
-                           [chart]="earningLineChart.chart" [colors]="earningLineChart.colors"
-                           [stroke]="earningLineChart.stroke" [dataLabels]="earningLineChart.dataLabels">
-                </apx-chart>
+              <div class="col-4">
+                <div class="mt-4">
+                  <p class="mb-2 text-truncate"><i class="mdi mdi-circle text-danger me-1"></i>
+                    Teachers</p>
+                  <h5>{{ userCountsByRole.teacher }}</h5>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="mt-4">
+                  <p class="mb-2 text-truncate"><i class="bx bx-male text-success me-1"></i>
+                    Males: {{ genderCounts.male }}</p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="mt-4">
+                  <p class="mb-2 text-truncate"><i class="bx bx-female text-danger me-1"></i>
+                    Females: {{ genderCounts.female }}</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-        <div class="col-xl-4">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-4">Top states participation </h4>
-
-                    <div class="text-center">
-                        <div class="mb-4">
-                            <i class="bx bx-map-pin text-primary display-4"></i>
-                        </div>
-                        <h3>1,456</h3>
-                        <p>San Francisco</p>
-                    </div>
-
-                    <div class="table-responsive mt-4">
-                        <table class="table table-centered align-middle table-nowrap">
-                            <tbody>
-                                <tr>
-                                    <td style="width: 30%">
-                                        <p class="mb-0">San Francisco</p>
-                                    </td>
-                                    <td style="width: 25%">
-                                        <h5 class="mb-0">1,456</h5>
-                                    </td>
-                                    <td>
-                                        <div class="progress bg-transparent progress-sm">
-                                            <div class="progress-bar bg-primary rounded" role="progressbar" style="width: 94%" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="mb-0">Los Angeles</p>
-                                    </td>
-                                    <td>
-                                        <h5 class="mb-0">1,123</h5>
-                                    </td>
-                                    <td>
-                                        <div class="progress bg-transparent progress-sm">
-                                            <div class="progress-bar bg-success rounded" role="progressbar" style="width: 82%" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="mb-0">San Diego</p>
-                                    </td>
-                                    <td>
-                                        <h5 class="mb-0">1,026</h5>
-                                    </td>
-                                    <td>
-                                        <div class="progress bg-transparent progress-sm">
-                                            <div class="progress-bar bg-warning rounded" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-4">Latest Transaction</h4>
-                    <app-transaction [transactions]="transactions"></app-transaction>
-                    <!-- end table -->
-                </div>
-            </div>
+    <div class="col-xl-8">
+      <div class="card" style="min-height:454px;">
+        <div class="card-body">
+          <div class="d-sm-flex flex-wrap">
+            <h4 class="card-title mb-4">accounts created</h4>
+          </div>
+          <apx-chart dir="ltr" class="apex-charts" [chart]="newuserchartbymonth.chart" [series]="newuserchartbymonth.series" [legend]="newuserchartbymonth.legend" [colors]="newuserchartbymonth.colors" [fill]="newuserchartbymonth.fill" [dataLabels]="newuserchartbymonth.dataLabels" [xaxis]="newuserchartbymonth.xaxis" [plotOptions]="newuserchartbymonth.plotOptions">
+          </apx-chart>
         </div>
+      </div>
     </div>
+  </div>
+  <!-- end row -->
+
+  <div class="row">
+    <div class="col-xl-8">
+      <div class="card">
+        <div class="card-body">
+          <div class="clearfix">
+            <div class="float-end">
+              <div class="input-group input-group-sm">
+                <select class="form-select form-select-sm" (change)="selectMonth($event.target.value)">
+                  <option *ngFor="let month of months" [value]="month" [selected]="month === 'january'">
+                    {{ month.charAt(0).toUpperCase() + month.slice(1) }}
+                  </option>
+                </select>
+                <label class="input-group-text">Month</label>
+              </div>
+            </div>
+            <h4 class="card-title mb-4">new users</h4>
+          </div>
+          <div class="row" *ngFor="let item of sassEarning">
+            <div class="col-lg-4">
+              <div class="text-muted">
+                <div class="mb-4">
+                  <p>{{item.name}}</p>
+                  <h4>{{ item.amount }}</h4>
+                  <div><span class="badge badge-soft-success font-size-12 me-1"> {{ item.revenue }}
+                                        </span> {{ item.time }}</div>
+                </div>
+                <div class="mt-4">
+                  <p class="mb-2">{{ item.month }}</p>
+                  <h5>{{ item.previousamount }}</h5>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-lg-8">
+              <apx-chart class="apex-charts" dir="ltr" [series]="item.series"
+                         [chart]="earningLineChart.chart" [colors]="earningLineChart.colors"
+                         [stroke]="earningLineChart.stroke" [dataLabels]="earningLineChart.dataLabels">
+              </apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4">
+      <div class="card" style="height: 433px;">
+        <div class="card-body">
+          <h4 class="card-title mb-4">Top states participation </h4>
+
+          <div class="text-center">
+            <div class="mb-4">
+              <i class="bx bx-map-pin text-primary display-4"></i>
+            </div>
+            <h3>{{topStates[0].count }}</h3>
+            <p>{{topStates[0].name }}</p>
+          </div>
+
+          <table class="table table-centered align-middle table-nowrap">
+            <tbody>
+            <tr *ngFor="let state of topStates">
+              <td style="width: 30%">
+                <p class="mb-0">{{ state.name }}</p>
+              </td>
+              <td style="width: 25%">
+                <h5 class="mb-0">{{ state.count }}</h5>
+              </td>
+              <td>
+                <div class="progress bg-transparent progress-sm">
+                  <div class="progress-bar bg-primary rounded" role="progressbar" [style.width.%]="state.percentage" [attr.aria-valuenow]="state.percentage" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-sm-4">
+              <div class="search-box me-2 mb-2 d-inline-block">
+                <div class="position-relative">
+                  <p>All users</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end row -->
+          <div class="table-responsive">
+            <table class="table align-middle table-nowrap table-hover dt-responsive nowrap w-100" id="userList-table">
+              <thead class="table-light">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">creation date </th>
+                <th scope="col">EmaiL Verified</th>
+                <th scope="col" style="width: 200px;">Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let data of kusers;let i = index;">
+                <td>
+                  <h5 class="font-size-14 mb-1"><a href="javascript: void(0);" class="text-dark">{{data.firstName}}</a>
+                  </h5>
+                  <p class="text-muted mb-0">{{data.lastName}}</p>
+                </td>
+                <td>{{data.email}}</td>
+                <td>
+                  <div>
+                    {{ data.createdDate | date:'yyyy-MM-dd' }}
+
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    {{ data.isEmailVerified }}
+
+                  </div>
+                </td>
+                <td>
+                  <ul class="list-inline font-size-20 contact-links mb-0">
+                    <li class="list-inline-item px-2">
+                      <a (click)="banuser(data)" tooltip="ban"><i class="bx bxs-user-x"></i></a>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div> <!-- container-fluid -->

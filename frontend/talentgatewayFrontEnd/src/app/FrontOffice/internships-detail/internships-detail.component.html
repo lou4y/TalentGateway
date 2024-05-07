@@ -246,10 +246,11 @@
             </table>
           </div>
           <!-- HTML -->
-          <div class="hstack gap-2">
-            <button class="btn btn-soft-primary w-100" *ngIf="!isStartDatePassed()" (click)="applyForInternship()">Apply Now</button>
-            <button class="btn btn-soft-primary w-100" (click)="navigateToMyApplication()">View Candidates</button>
-          </div>
+             <div class="hstack gap-2">
+              <button class="btn btn-soft-primary w-100" *ngIf="isStudent && !isStartDatePassed()" (click)="applyForInternship()">Apply Now</button>
+              <button class="btn btn-soft-primary w-100" *ngIf="isCompany" (click)="navigateToMyApplication()">View Candidates</button>
+              <button class="btn btn-soft-primary w-100" *ngIf="isStudent && !isStartDatePassed()" (click)="consultMySchedule()">Consult My Schedule</button>
+            </div>
 
 
         </div>
