@@ -29,7 +29,6 @@ export class AuthGuard extends KeycloakAuthGuard {
       });
 
     }
-    await this.authService.authenticateUser()
 
     // Get the roles required from the route.
     const requiredRoles = route.data.roles;

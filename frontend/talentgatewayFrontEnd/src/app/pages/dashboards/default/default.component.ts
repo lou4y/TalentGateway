@@ -11,7 +11,6 @@ import { UsersService } from "../../../core/services/users.service";
 import { RolesService } from "../../../core/services/roles.service";
 import {forkJoin, Observable} from "rxjs";
 import { map } from "rxjs/operators";
-import {UserVerif} from "../../../core/models/UserVerificationData.model";
 import Swal from "sweetalert2";
 
 @Component({
@@ -22,8 +21,8 @@ import Swal from "sweetalert2";
 export class DefaultComponent implements OnInit {
   modalRef?: BsModalRef;
   isVisible: string;
-  genderCounts: { male: number; female: number };
-  userCountsByRole: { student: number; company: number; teacher: number };
+  genderCounts: { male: number; female: number }={male:0,female:0};
+  userCountsByRole: { student: number; company: number; teacher: number }={student: 0, company: 0, teacher: 0}
   usersByMonthsAndDays: Map<number, Map<number, number>>;
   newuserchartbymonth: ChartType = {
     chart: {
@@ -62,8 +61,6 @@ export class DefaultComponent implements OnInit {
       opacity: 1
     },
   };
-  transactions: any;
-  statData: any;
   config: any = {
     backdrop: true,
     ignoreBackdropClick: true
@@ -71,8 +68,25 @@ export class DefaultComponent implements OnInit {
   kusers: Kuser[] = [];
   topStates: { name: string, count: number, percentage: number }[];
   additionalUserData: AdditionalUserData[] = [];
-  isActive: string;
-  usersTypesDonutChart: ChartType ;
+  usersTypesDonutChart: ChartType ={
+    series: [0, 0, 0],
+    chart: {
+      type: 'donut',
+      height: 240,
+    },
+    labels: ['student', 'companies', 'teachers'],
+    colors: ['#556ee6', '#34c38f', '#f46a6a'],
+    legend: {
+      show: false,
+    },
+    plotOptions: {
+      pie: {
+        donut: {
+          size: '70%',
+        }
+      }
+    }
+  };
   sassEarning: any;
   sassTopSelling:any;
   protected earningLineChart: any;
@@ -91,10 +105,10 @@ export class DefaultComponent implements OnInit {
   }
 
   async ngOnInit() {
-    const attribute = document.body.getAttribute('data-layout');
     this.kusers = await this.userservice.Getallusers().toPromise();
     this.additionalUserData = await this.dataservice.getAllAdditionalUserData().toPromise();
     this.topStates = await this.fetchTopStatesParticipation();
+    const attribute = document.body.getAttribute('data-layout');
     this.isVisible = attribute;
     const vertical = document.getElementById('layout-vertical');
     if (vertical != null) {
@@ -109,7 +123,6 @@ export class DefaultComponent implements OnInit {
     this.usersByMonthsAndDays = this.getUsersByMonthsAndDaysMap(this.kusers);
     this.genderCounts = this.getGenderCounts(this.additionalUserData);
     this.userCountsByRole = await this.getUsersByRole(this.kusers);
-    const currentYear = new Date().getFullYear();
     const months = Array.from({ length: 12 }, (_, index) => index); // Array representing months 0 to 11
     const monthlyUserCounts = months.map(monthIndex => {
       const monthKey = monthIndex + 1; // Construct month key in 'MM' format
@@ -348,17 +361,6 @@ export class DefaultComponent implements OnInit {
   getMonthNumber(month: string): number {
     return this.months.indexOf(month.toLowerCase()) + 1;
   }
-  removeUser(id: any) {
-  }
-
-  /* banuser() {
-     this.userverif.getUserVerification(id).subscribe((data) => {
-       data.banned = true;
-       this.userverif.updateUserVerification(data).subscribe(() => {
-         console.log('User banned');
-       });
-     });
-   }*/
   banuser(user : Kuser) {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -407,15 +409,5 @@ export class DefaultComponent implements OnInit {
           });
         }
       });
-  }
-  async isuserbanned(id: string) {
-    let userverif: UserVerif;
-    userverif = await this.userverif.getUserVerification(id).toPromise()
-    if(userverif.banned == true){
-      return true;
-    }
-    else{
-      return false;
-    }
   }
 }
