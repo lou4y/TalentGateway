@@ -29,8 +29,6 @@ export class AuthGuard extends KeycloakAuthGuard {
         redirectUri: window.location.origin + state.url
       });
     }
-    await this.authService.authenticateUser();
-
     // Get the roles required from the route.
     const requiredRoles = route.data.roles;
 

@@ -18,24 +18,6 @@ export const MENU: MenuItem[] = [
         parentId: 2
       },
       {
-        id: 4,
-        label: 'MENUITEMS.DASHBOARDS.LIST.SAAS',
-        link: '/dashboards/saas',
-        parentId: 2
-      },
-      {
-        id: 5,
-        label: 'MENUITEMS.DASHBOARDS.LIST.CRYPTO',
-        link: '/dashboards/crypto',
-        parentId: 2
-      },
-      {
-        id: 6,
-        label: 'MENUITEMS.DASHBOARDS.LIST.BLOG',
-        link: '/dashboards/blog',
-        parentId: 2
-      },
-      {
         id: 7,
         label: 'MENUITEMS.DASHBOARDS.LIST.JOBS',
         link: '/dashboards/jobs',
@@ -64,54 +46,6 @@ export const MENU: MenuItem[] = [
     icon: 'bx-chat',
     link: '/chat',
 
-  },
-  {
-    id: 21,
-    label: 'MENUITEMS.EMAIL.TEXT',
-    icon: 'bx-envelope',
-    subItems: [
-      {
-        id: 22,
-        label: 'MENUITEMS.EMAIL.LIST.INBOX',
-        link: '/email/inbox',
-        parentId: 21
-      },
-      {
-        id: 23,
-        label: 'MENUITEMS.EMAIL.LIST.READEMAIL',
-        link: '/email/read/1',
-        parentId: 21
-      },
-      {
-        id: 24,
-        label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.TEXT',
-        badge: {
-          variant: 'success',
-          text: 'MENUITEMS.EMAIL.LIST.TEMPLATE.BADGE',
-        },
-        parentId: 21,
-        subItems: [
-          {
-            id:25,
-            label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.LIST.BASIC',
-            link: '/email/basic',
-            parentId:24
-          },
-          {
-            id:26,
-            label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.LIST.ALERT',
-            link: '/email/alert',
-            parentId:24
-          },
-          {
-            id:27,
-            label: 'MENUITEMS.EMAIL.LIST.TEMPLATE.LIST.BILLING',
-            link: '/email/billing',
-            parentId:24
-          }
-        ]
-      }
-    ]
   },
   {
     id: 30,
@@ -166,31 +100,6 @@ export const MENU: MenuItem[] = [
         label: 'MENUITEMS.TASKS.LIST.CREATETASK',
         link: '/tasks/create',
         parentId: 35
-      }
-    ]
-  },
-  {
-    id: 39,
-    label: 'MENUITEMS.CONTACTS.TEXT',
-    icon: 'bxs-user-detail',
-    subItems: [
-      {
-        id: 40,
-        label: 'MENUITEMS.CONTACTS.LIST.USERGRID',
-        link: '/profile/grid',
-        parentId: 39
-      },
-      {
-        id: 41,
-        label: 'MENUITEMS.CONTACTS.LIST.USERLIST',
-        link: '/profile/list',
-        parentId: 39
-      },
-      {
-        id: 42,
-        label: 'MENUITEMS.CONTACTS.LIST.PROFILE',
-        link: '/profile/view',
-        parentId: 39
       }
     ]
   },
@@ -273,12 +182,6 @@ export const MENU: MenuItem[] = [
                 ]
             }
         ]
-    },
-  {
-    id: 10,
-    label: 'Edit Profile',
-    icon: 'bx-edit',
-    link: '/profile/Settings',
-  },
+    }
 ];
 
