@@ -27,23 +27,29 @@ import {RatingModule} from "ngx-bootstrap/rating";
 import {ShareButtonsModule} from "ngx-sharebuttons/buttons";
 import {ShareIconsModule} from "ngx-sharebuttons/icons";
 import { UpdateInternshipComponent } from './update-internship/update-internship.component';
+import {AppModule} from "../../app.module";
+import { UpdateCategoryComponent } from './update-category/update-category.component';
 
 @NgModule({
-  declarations: [
-    ListComponent,
-    GridComponent,
-    ApplyComponent,
-    DetailsComponent,
-    CategoriesComponent,
-    CandidateListComponent,
-    CandidateOverviewComponent,
-    AllapplicationComponent,
-    MyapplicationComponent,
-    ListInternshipsComponent,
-    AddInternshipsComponent,
-    InternshipDetailsComponent,
-    UpdateInternshipComponent
-  ],
+    declarations: [
+        ListComponent,
+        GridComponent,
+        ApplyComponent,
+        DetailsComponent,
+        CategoriesComponent,
+        CandidateListComponent,
+        CandidateOverviewComponent,
+        AllapplicationComponent,
+        MyapplicationComponent,
+        ListInternshipsComponent,
+        AddInternshipsComponent,
+        InternshipDetailsComponent,
+        UpdateInternshipComponent,
+        UpdateCategoryComponent
+    ],
+    exports: [
+        GridComponent
+    ],
   imports: [
     CommonModule,
     FormsModule,
@@ -58,6 +64,7 @@ import { UpdateInternshipComponent } from './update-internship/update-internship
     RatingModule,
     ShareButtonsModule,
     ShareIconsModule,
+
   ]
 })
 

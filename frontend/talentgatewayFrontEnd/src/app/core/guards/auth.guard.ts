@@ -6,6 +6,7 @@ import {
 } from '@angular/router';
 import { KeycloakAuthGuard, KeycloakService } from 'keycloak-angular';
 import { AuthenticationService } from '../services/auth.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,9 +28,8 @@ export class AuthGuard extends KeycloakAuthGuard {
       await this.keycloak.login({
         redirectUri: window.location.origin + state.url
       });
-
     }
-    await this.authService.authenticateUser()
+    await this.authService.authenticateUser();
 
     // Get the roles required from the route.
     const requiredRoles = route.data.roles;
@@ -39,7 +39,12 @@ export class AuthGuard extends KeycloakAuthGuard {
       return true;
     }
 
-    // Allow the user to proceed if all the required roles are present.
-    return requiredRoles.every((role) => this.roles.includes(role));
+    // Redirect based on user's role.
+    if (this.roles.includes('admin')) {
+      this.router.navigateByUrl('/page/jobs/internships');
+    } else {
+      // For other roles, stay in the current route.
+      return true;
+    }
   }
 }

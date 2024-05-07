@@ -4,5 +4,7 @@ export interface Category {
   categoryId: number;
   categoryName: string;
   categoryDescription: string;
-  internships: Internship[]; // Assuming InternshipModel is another interface representing internships
+  internships: Internship[];
+  userId: string;
+  // Assuming InternshipModel is another interface representing internships
 }

@@ -2,6 +2,7 @@ package com.cloudcrafters.internshipservice.controller;
 
 
 import com.cloudcrafters.internshipservice.entites.Category;
+import com.cloudcrafters.internshipservice.entites.Internship;
 import com.cloudcrafters.internshipservice.services.CategoryService;
 import jakarta.ws.rs.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,4 +76,12 @@ public class CategoryController {
             throw new NotFoundException("Category with name " + categoryName + " not found.");
         }
     }
+
+
+
+    @GetMapping("/user/{userId}")
+    public List<Category> getCategorybyuser(@PathVariable String userId) {
+        return categoryService.getCategorybyuser(userId);
+    }
+
 }

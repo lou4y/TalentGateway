@@ -45,11 +45,7 @@
     </div>
   </div>
 </div>
-
-
-
   </div>
-
   <div class="row">
     <div class="col-lg-4">
       <div class="card">
@@ -70,9 +66,6 @@
       </div>
     </div>
 
-    
-
-    
     <div class="col-lg-4">
       <div class="card">
         <div class="card-body">
@@ -123,7 +116,6 @@
           <i class="mdi mdi-dots-vertical m-0 text-muted h5"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-end" *dropdownMenu>
-          <a class="dropdown-item edittask-details" href="javascript:void(0);" id="taskedit" data-id="#uptask-2" (click)="updateTask(i)">Edit</a>
           <a class="dropdown-item deletetask" href="javascript:void(0);" (click)="delete($event, task.id)">Delete</a>
           
         </div>
@@ -148,30 +140,9 @@
         <h5 class="modal-title">Add/Update Task</h5>
         <button type="button" class="btn-close" (click)="modalForm?.hide()" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <!-- Make sure the form is correctly linked to the formGroup -->
-        <form [formGroup]="taskForm" (ngSubmit)="createTask()">
-          <div class="mb-3">
-            <label for="taskName" class="form-label">Task Name</label>
-            <input type="text" id="taskName" class="form-control" formControlName="taskName" placeholder="Enter Task Name">
-          </div>
-          <div class="mb-3">
-            <label for="taskDescription" class="form-label">Task Description</label>
-            <textarea id="taskDescription" class="form-control" formControlName="taskDescription" placeholder="Enter Task Description"></textarea>
-          </div>
-          <div formGroupName="module">
-            <div class="mb-3">
-              <label for="moduleName" class="form-label">Module Name</label>
-              <select id="moduleName" class="form-select" formControlName="moduleName">
-                <option *ngFor="let module of modules" [ngValue]="module">{{ module.moduleName }}</option>
-              </select>
-            </div>
-          </div>
-          
-          <button type="submit" class="btn btn-primary">Create Task</button>
-        </form>
+    
       </div>
     </div>
   </div>
-</div>
+  
 

@@ -3,10 +3,7 @@ package com.cloudcrafters.internshipservice.controller;
 
 import com.cloudcrafters.internshipservice.entites.Category;
 import com.cloudcrafters.internshipservice.entites.Internship;
-import com.cloudcrafters.internshipservice.services.CategoryService;
-import com.cloudcrafters.internshipservice.services.EmailService;
-import com.cloudcrafters.internshipservice.services.InternshipService;
-import com.cloudcrafters.internshipservice.services.LinkedInService;
+import com.cloudcrafters.internshipservice.services.*;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +25,9 @@ public class InternshipController {
 
     @Autowired
     private LinkedInService linkedInService;
+
+    @Autowired
+    private ScheduledTasks scheduledTasks;
 
     //create internship
 
@@ -181,6 +181,12 @@ public class InternshipController {
         return ResponseEntity.ok(totalInternships);
     }
 
+    @GetMapping("/internshipsstatistics/total")
+    public ResponseEntity<Long> getTotalInternshipsr() {
+        long totalInternships = internshipService.getTotalInternshipsCount();
+        return ResponseEntity.ok(totalInternships);
+    }
+
 
 
     @PostMapping("/share-internship")
@@ -191,4 +197,24 @@ public class InternshipController {
     ) {
         linkedInService.shareInternship(internshipTitle, internshipDescription);
     }
+
+
+    @GetMapping("/grouped-by-category")
+    public ResponseEntity<Map<Category, List<Internship>>> getInternshipsGroupedByCategory() {
+        Map<Category, List<Internship>> internshipsGroupedByCategory = internshipService.getInternshipsGroupedByCategory();
+
+        if (internshipsGroupedByCategory.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(internshipsGroupedByCategory, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/emails-sent-per-internship")
+    public ResponseEntity<Map<Long, Integer>> getEmailsSentPerInternship() {
+        Map<Long, Integer> emailsSentPerInternship = scheduledTasks.getEmailsSentPerInternship();
+        return ResponseEntity.ok(emailsSentPerInternship);
+    }
+
 }

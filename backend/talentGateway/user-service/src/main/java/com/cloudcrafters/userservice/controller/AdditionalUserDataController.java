@@ -26,5 +26,9 @@ public class AdditionalUserDataController {
     public AdditionalUserData getAdditionalUserData(@PathVariable String userId) {
         return this.additionalUserDataService.getAdditionalUserData(userId);
     }
+    @GetMapping(value = "GetAll")
+    public Iterable<AdditionalUserData> getAllAdditionalUserData() {
+        return this.additionalUserDataService.getAllAdditionalUserData();
+    }
 
 }

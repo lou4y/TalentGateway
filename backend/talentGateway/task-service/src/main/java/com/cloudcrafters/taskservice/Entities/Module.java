@@ -19,7 +19,6 @@ public class Module implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long moduleId;
-
     private String moduleName;
     private String moduleDescription;
 
@@ -27,10 +26,8 @@ public class Module implements Serializable {
     @Transient // Do not include project in the JSON response
     private Project project;
 
-    @JsonProperty // Allows deserialization
+    @JsonProperty // Allows deserialization of the project ID
     private Long projectId;
-
-    // New fields
     private String projectName;
     private String projectDescription;
 

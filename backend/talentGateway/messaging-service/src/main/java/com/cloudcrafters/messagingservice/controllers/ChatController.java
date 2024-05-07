@@ -8,16 +8,22 @@ import org.springframework.messaging.handler.annotation.*;
 import org.springframework.messaging.simp.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
+import com.cloudcrafters.messagingservice.services.ChatMessageService;
+
 
 
 import java.util.*;
 
+@RestController
 @Controller
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class ChatController {
 
     private final SimpMessagingTemplate messagingTemplate;
     private final ChatMessageService chatMessageService;
+    private final ChatRoomService chatRoomService;
+
 
     @MessageMapping("/chat")
     public void processMessage(@Payload ChatMessage chatMessage) {

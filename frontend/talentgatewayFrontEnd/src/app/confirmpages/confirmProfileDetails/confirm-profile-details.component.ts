@@ -19,6 +19,7 @@ import {SkillsService} from "../../core/services/skills.service";
 import {ProfileVerificationService} from "../../core/services/profile-verification.service";
 import {UserVerif} from "../../core/models/UserVerificationData.model";
 import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 @Component({
   selector: 'app-confirm-profile-details',
   templateUrl: './confirm-profile-details.component.html',
@@ -66,7 +67,7 @@ export class ConfirmProfileDetailsComponent implements OnInit,ControlValueAccess
   phoneNumberError: boolean = false;
   disabled: boolean = false;
    user: User;
-  constructor(public dialog: MatDialog,private authService: AuthenticationService,private dataservice:AdditionalUserDataService,private userverif: ProfileVerificationService,private Skillservice: SkillsService,private fb: UntypedFormBuilder,private fbl: FormBuilder,private fileService: FileService, private authservice: AuthenticationService,private router: Router) {
+  constructor(public dialog: MatDialog,private authService: AuthenticationService,private dataservice:AdditionalUserDataService,private userverif: ProfileVerificationService,private Skillservice: SkillsService,private fb: UntypedFormBuilder,private fbl: FormBuilder,private fileService: FileService,private router: Router) {
     this.skillData = this.fb.group({
       skillValue: this.fb.array([]),
     });
@@ -179,7 +180,17 @@ export class ConfirmProfileDetailsComponent implements OnInit,ControlValueAccess
   }
 
   async saveData() {
-    var user : User = await this.authservice.currentUser();
+
+    if (!this.validateForm()) {
+      await Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Please complete the data ',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }else{
+      var user : User = await this.authService.currentUser();
     var imageUrl = this.Image;
     try {
       if (imageUrl.startsWith('blob:')) {
@@ -236,6 +247,18 @@ export class ConfirmProfileDetailsComponent implements OnInit,ControlValueAccess
     } catch (error) {
       console.error('Error saving data:', error);
     }
+  }}
+  validateForm(): boolean {
+    // Perform validation for all required fields
+    if (!this.Image || !this.Birthdate || !this.Address || !this.City || !this.State || !this.phoneNumber || !this.selectedGender || !this.PDFfile || this.skilldata().length === 0) {
+      // If any required field is empty, set error flags and return false
+      this.fileError = !this.PDFfile;
+      this.phoneNumberError = !this.phoneNumber;
+      return false;
+    }
+
+    // If all required fields have data, return true
+    return true;
   }
   dataURItoBlob(dataURI: string) {
     const byteString = atob(dataURI.split(',')[1]);
@@ -247,4 +270,6 @@ export class ConfirmProfileDetailsComponent implements OnInit,ControlValueAccess
     }
     return new Blob([ab], { type: mimeString });
   }
+
+
 }

@@ -1,17 +1,16 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild, ChangeDetectorRef, ElementRef} from '@angular/core';
 import { UntypedFormBuilder, Validators, UntypedFormGroup } from '@angular/forms';
-
-import { ChatUser, ChatMessage, ConnectedUser, Chat } from './chat.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-import { chatData, chatMessagesData } from './data';
-import {Router} from "@angular/router";
-import {User} from "../../core/models/auth.models";
-import {AuthenticationService} from "../../core/services/auth.service";
-import {VideoConferenceUrlService} from "../../chatComponents/video-conference/VideoConferenceUrl.service";
-
-import { interval, Subscription } from 'rxjs';
-
+import { Router } from "@angular/router";
+import { Subscription } from 'rxjs';
+import { ChatMessage, Chat } from './chat.model';
+import { AuthenticationService } from "../../core/services/auth.service";
+import { User } from "../../core/models/auth.models";
+import { VideoConferenceUrlService } from "../../chatComponents/video-conference/VideoConferenceUrl.service";
+import { SocketService } from './socket.service';
+import { KeycloakService } from 'keycloak-angular';
+import { GeminiService } from './components/google-gemini/google-gemini.service';
+import { S3Service } from './s3.service';
 
 
 @Component({
@@ -24,97 +23,107 @@ export class ChatComponent implements OnInit, AfterViewInit {
   @ViewChild('scrollEle') scrollEle;
   @ViewChild('scrollRef') scrollRef;
 
-
-
-  // bread crumb items
+  // Properties
   breadCrumbItems: Array<{}>;
-  chatData: ChatUser[];
-  chatMessagesData: ChatMessage[];
   formData: UntypedFormGroup;
-  // Form submit
   chatSubmit: boolean;
-  emoji:any = '';
-
-  connectedUser: ConnectedUser[] | undefined | null;
+  emoji: any = '';
+  connectedUser: User[] | undefined | null;
   userChats: any[] = [];
-  chatMessages: ChatMessage[];
+  chatMessages: ChatMessage[] = [];
+  chatMessagesSubscription: Subscription;
   chat: { chatId: string, recipientId?: string};
-  currentUserId: any ;
+  currentUserId: any;
   auth: AuthenticationService;
-  private refreshSubscription: Subscription;
+  recipientUsername: string;
+  showEmojiPicker = false;
+  currentUser: User;
 
-
-  constructor(public formBuilder: UntypedFormBuilder, private router:Router, private http: HttpClient, private authService: AuthenticationService, private conferenceUrlService: VideoConferenceUrlService) {
+  selectedFileName: string | null = null;
+  url: any;
+  @ViewChild('fileInput') fileInputRef!: ElementRef;
+  constructor(public formBuilder: UntypedFormBuilder, private router: Router, private http: HttpClient,
+              private authService: AuthenticationService, private conferenceUrlService: VideoConferenceUrlService,
+              private socketService: SocketService, private keycloakService: KeycloakService,
+              private geminiService: GeminiService, private cdr: ChangeDetectorRef,
+               private s3Service: S3Service) {
     this.auth = authService;
   }
 
   async ngOnInit() {
     this.breadCrumbItems = [{label: 'Skote'}, {label: 'Chat', active: true}];
-
     this.formData = this.formBuilder.group({
       message: ['', [Validators.required]],
     });
     const user: User = await this.auth.currentUser();
-    this.onListScroll();
-    this._fetchData();
     this.fetchConnectedUser();
-    this.fetchUserChats(user.username)
-
-
+    this.fetchUserChats(user.username);
     this.currentUserId = user.username;
 
-    this.refreshSubscription = interval(10) // Adjust the interval time as needed (5000 milliseconds = 5 seconds)
-      .subscribe(() => {
-        // Fetch chat messages periodically
-        if (this.chat && this.chat.chatId) {
-          this.fetchChatMessages(this.chat.chatId);
-        }
-      });
+    this.authService.currentUser().then(user => {
+      this.currentUser = user;
+      this.socketService.connect(this.currentUser);
+      console.log('Connected to WebSocket server');
+
+    });
 
     console.log('Current user ID:', this.currentUserId);
+
+    this.authService.currentUser().then(user => {
+      this.currentUser = user;
+      this.socketService.connect(this.currentUser);
+      console.log('Connected to WebSocket server');
+    });
+
+    this.chatMessagesSubscription = this.socketService.chatMessages$.subscribe(
+      (messages) => {
+        this.chatMessages = messages;
+      }
+    );
+
+    this.socketService.chatMessages$.subscribe(
+      (messages) => {
+        this.chatMessages = messages;
+        this.cdr.detectChanges(); // Trigger change detection
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe from the subscription to prevent memory leaks
+    this.chatMessagesSubscription.unsubscribe();
   }
 
 
+  ngAfterViewInit() {
+    this.scrollEle.SimpleBar.getScrollElement().scrollTop = 100;
+    this.scrollRef.SimpleBar.getScrollElement().scrollTop = 200;
+  }
 
   fetchConnectedUser() {
-    this.http.get<ConnectedUser[]>('http://localhost:8088/api/connected-users')
+    this.http.get<User[]>('http://localhost:8089/keycloak/users')
       .subscribe(
         (data) => {
-          this.connectedUser = data; // Assign fetched data to connectedUser variable
-        },
+          this.connectedUser = data; },
         (error) => {
           console.error('Error fetching connected user:', error);
         }
       );
   }
 
-
   fetchChatMessages(chatId: string) {
-    this.http.get<ChatMessage[]>(`http://localhost:8088/api/chat-messages/${chatId}`)
-      .subscribe(
-        (data) => {
-          this.chatMessages = data;
-        },
-        (error) => {
-          console.error('Error fetching chat messages:', error);
-        }
-      );
+    this.socketService.fetchChatMessages(chatId); // Fetch chat messages using SocketService
   }
-
 
   fetchUserChats(userId: string) {
     this.http.get<ChatMessage[]>(`http://localhost:8088/api/user-chats/${userId}`)
       .subscribe(
         (data) => {
-          // Flatten the chat messages to include both sender and recipient IDs
           const userChats = data.map(chat => ({
             chatId: chat.chatId,
             recipientId: chat.recipientId === userId ? chat.senderId : chat.recipientId
           }));
-          // Remove duplicates based on recipientId
           this.userChats = this.removeDuplicates(userChats, 'recipientId');
-
-          // Remove the current user's chats from the list
           this.userChats = this.userChats.filter(chat => chat.recipientId !== userId);
         },
         (error) => {
@@ -123,8 +132,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
       );
   }
 
-
-// Function to remove duplicates from an array of objects based on a specified key
   removeDuplicates(array: any[], key: string) {
     return array.filter((item, index, self) =>
         index === self.findIndex((t) => (
@@ -132,101 +139,38 @@ export class ChatComponent implements OnInit, AfterViewInit {
         ))
     );
   }
-
-
-
-  // Function to handle click on the image icon
-  handleImageClick() {
-    // Implement your logic here, for example, open a file picker for images
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/*';
-    input.onchange = (event) => {
-      const files = (event.target as HTMLInputElement).files;
-      console.log('Selected image files:', files);
-      // Add your logic to handle the selected image files
-    };
-    input.click();
-  }
-
-  // Function to handle click on the add files icon
   handleAddFilesClick() {
-    // Implement your logic here, for example, open a file picker for all files
     const input = document.createElement('input');
     input.type = 'file';
     input.onchange = (event) => {
       const files = (event.target as HTMLInputElement).files;
       console.log('Selected files:', files);
-      // Add your logic to handle the selected files
     };
     input.click();
   }
 
   openChat(chat: Chat) {
-    // Fetch chat messages based on the current user and the recipient
     this.fetchChatMessages(chat.chatId);
-
-    // Fetch user chats based on the current user
     this.fetchUserChats(this.currentUserId);
-
-    // Log the recipientId for debugging purposes
-    console.log("recipientId", chat.recipientId);
-
-    // Assign the chat details to the chat variable
     this.chat = { chatId: chat.chatId, recipientId: chat.recipientId };
-
-    // Scroll to the bottom of the chat window after the messages are fetched
+    this.recipientUsername = chat.recipientId;
     setTimeout(() => {
       this.scrollChatToBottom();
-    }, 100); // Adjust the delay if needed
+    }, 100);
   }
 
-
-  private scrollChatToBottom() {
+  scrollChatToBottom() {
     if (this.scrollRef !== undefined) {
       this.scrollRef.SimpleBar.getScrollElement().scrollTop =
         this.scrollRef.SimpleBar.getScrollElement().scrollHeight;
     }
   }
 
-
-
-
-
-  ngAfterViewInit() {
-    this.scrollEle.SimpleBar.getScrollElement().scrollTop = 100;
-    this.scrollRef.SimpleBar.getScrollElement().scrollTop = 200;
-  }
-
-  /**
-   * Returns form
-   */
   get form() {
     return this.formData.controls;
   }
 
-  private _fetchData() {
-    this.chatData = chatData;
-    this.chatMessagesData = chatMessagesData;
-  }
-
-  onListScroll() {
-    if (this.scrollRef !== undefined) {
-      setTimeout(() => {
-        this.scrollRef.SimpleBar.getScrollElement().scrollTop =
-          this.scrollRef.SimpleBar.getScrollElement().scrollHeight + 1500;
-      }, 500);
-    }
-  }
-
-
-
-  /**
-   * Save the message in chat
-   */
-
   messageSend(recipientId: string) {
-    console.log('recipientId:', recipientId);
     const messageContent = this.formData.get('message').value;
     if (messageContent) {
       const messageData = {
@@ -235,84 +179,26 @@ export class ChatComponent implements OnInit, AfterViewInit {
         content: messageContent,
         timestamp: new Date()
       };
-
-      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-      this.http.post<any>('http://localhost:8088/api/send-message', messageData, { headers })
-        .toPromise()
-        .then(() => {
-          console.log('Message sent successfully');
-          // Clear input field
-          this.formData.patchValue({ message: '' });
-          // Fetch chat messages with the correct recipient ID
-          this.fetchChatMessages(recipientId);
-          // Scroll to the bottom after sending the message
-          setTimeout(() => {
-            this.scrollChatToBottom();
-          }, 100);
-        })
-        .catch((error) => {
-          console.error('Error sending message:', error);
-        });
+      this.socketService.sendMessage(`/app/chat`, messageData);
+      this.formData.patchValue({ message: '' });
+      this.scrollChatToBottom();
+      this.cdr.detectChanges(); // Trigger change detection
     }
   }
 
-
-
-
-  // Delete Message
-  deleteMessage(event: any) {
-    event.target.closest('li').remove();
-  }
-
-  // Copy Message
-  copyMessage(event: any) {
-    navigator.clipboard.writeText(event.target.closest('li').querySelector('p').innerHTML);
-  }
-
-  // Delete All Message
-  deleteAllMessage(event: any) {
-    var allMsgDelete: any = document.querySelector('.chat-conversation')?.querySelectorAll('li');
-    allMsgDelete.forEach((item: any) => {
-      item.remove();
-    })
-  }
-
-  // Emoji Picker
-  showEmojiPicker = false;
-  sets: any = [
-    'native',
-    'google',
-    'twitter',
-    'facebook',
-    'emojione',
-    'apple',
-    'messenger'
-  ]
-  set: any = 'twitter';
   toggleEmojiPicker() {
     this.showEmojiPicker = !this.showEmojiPicker;
   }
 
   addEmoji(event: any) {
-
     const { emoji } = this;
     if (this.formData.get('message').value) {
       var text = `${emoji}${event.emoji.native}`;
     } else {
-      text = event.emoji.native;
-    }
+      text = event.emoji.native;}
     this.emoji = text;
     this.showEmojiPicker = false;
   }
-
-  onFocus() {
-    this.showEmojiPicker = false;
-  }
-
-  onBlur() {
-  }
-
 
 
   // keep
@@ -335,36 +221,28 @@ export class ChatComponent implements OnInit, AfterViewInit {
     })
   }
 
+  //Meetings
   sendMeetingUrl(messageData: any): void {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
     this.http.post<any>('http://localhost:8088/api/send-message', messageData, { headers })
       .toPromise()
       .then(() => {
         console.log('Message sent successfully');
-
       })
       .catch((error) => {
         console.error('Error sending message:', error);
       });
   }
   openMeeting(recipientId: string): void {
-    // Retrieve the video conference URL from the VideoConferenceUrlService
     const videoConferenceUrl = this.conferenceUrlService.getConferenceUrl();
-
     if (videoConferenceUrl) {
-      // Prepare the message content containing the URL
       const messageContent = `Hey, let's meet here: <a href="${videoConferenceUrl}" target="_blank">${videoConferenceUrl}</a>`;
-
-      // Prepare the message data
       const messageData = {
         senderId: this.currentUserId,
         recipientId: recipientId,
         content: messageContent,
         timestamp: new Date()
       };
-
-      // Send the message to the recipient
       this.sendMeetingUrl(messageData);
       console.log('Meeting URL sent successfully:', messageContent);
       this.router.navigate(['meeting']);
@@ -373,7 +251,123 @@ export class ChatComponent implements OnInit, AfterViewInit {
     }
     this.router.navigate(['meeting']);
   }
+  triggerFileInput(): void {
+    if (this.fileInputRef) {
+      this.fileInputRef.nativeElement.click(); // Triggers the hidden file input
+    }
+  }
+
+  onFileChange(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      this.uploadFile(file); // Handles the file upload
+    }
+  }
 
 
 
+
+
+  async uploadFile(file: File): Promise<void> {
+    try {
+      const fileUrl = await this.s3Service.uploadImage(file).toPromise();
+      console.log("File uploaded to S3:", fileUrl);
+
+      // Assign the file URL to a property for later use
+      this.url = fileUrl;
+      this.selectedFileName = file.name;
+    } catch (error) {
+      console.error('Error uploading file to S3:', error);
+    }
+  }
+
+  fileSend(recipientId: string) {
+    if (this.url) {
+      const messageData = {
+        senderId: this.currentUserId,
+        recipientId: recipientId,
+        content: this.url,
+        timestamp: new Date()
+      };
+      this.socketService.sendMessage(`/app/chat`, messageData);
+      this.formData.patchValue({ message: '' });
+      this.scrollChatToBottom();
+      this.cdr.detectChanges();
+    } else {
+      console.error('No file URL available.');
+    }
+  }
+
+  openFile(url: string): void {
+    if (url) {
+      window.open(url, '_blank');
+    } else {
+      console.error('No file URL available.');
+    }
+  }
+
+  // New method to check if the content is an image URL
+  isImage(content: string): boolean {
+    if (!content) {
+      return false;
+    }
+    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+    const extension = content.split('.').pop()?.toLowerCase();
+    return extension ? imageExtensions.includes(extension) : false;
+  }
+
+  // Inside the component class
+
+// New method to check if the content is a file URL
+  isFile(content: string): boolean {
+    // Check if the content starts with 'http://' or 'https://'
+    return content && (content.startsWith('http://') || content.startsWith('https://'));
+  }
+
+// Method to download the file
+  downloadFile(url: string): void {
+    // Open the file URL in a new tab to trigger the download
+    window.open(url, '_blank');
+  }
+// Inside the component class
+
+// New method to extract file name from URL
+  extractFileName(url: string): string {
+    const prefix = 'https://msgappfiles.s3.amazonaws.com/';
+    // Check if the URL starts with the expected prefix
+    if (url.startsWith(prefix)) {
+      // Extract the file name by removing the prefix
+      return url.substring(prefix.length);
+    } else {
+      // If the URL doesn't match the expected pattern, return the full URL
+      return url;
+    }
+  }
+
+
+  isSameDay(prevDate: any, currDate: any): boolean {
+    // Check if both dates are valid Date objects
+    if (!(prevDate instanceof Date) || !(currDate instanceof Date)) {
+      return false;
+    }
+
+    // Compare the year, month, and day of the two dates
+    return (
+      prevDate.getFullYear() === currDate.getFullYear() &&
+      prevDate.getMonth() === currDate.getMonth() &&
+      prevDate.getDate() === currDate.getDate()
+    );
+  }
+
+  isFirstMessageOfTheDay(message: ChatMessage, index: number): boolean {
+    if (index === 0) {
+      return true; // First message is always the first of the day
+    }
+
+    const currentMessageDate = new Date(message.timestamp);
+    const previousMessageDate = new Date(this.chatMessages[index - 1].timestamp);
+
+    // Compare the date part only (without time)
+    return currentMessageDate.toDateString() !== previousMessageDate.toDateString();
+  }
 }

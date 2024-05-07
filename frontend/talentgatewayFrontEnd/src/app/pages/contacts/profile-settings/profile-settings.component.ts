@@ -16,6 +16,7 @@ import {SkillsService} from "../../../core/services/skills.service";
 import {Skill} from "../../../core/models/skill.model";
 import {Kuser, User} from "../../../core/models/auth.models";
 import {UsersService} from "../../../core/services/users.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-profile-settings',
@@ -114,7 +115,10 @@ export class ProfileSettingsComponent implements OnInit{
 
   // Delete skill group at index
   deleteskill(index: number) {
+    const id= this.skillData.value.skillValue[index].id;
+    console.log(id)
     this.skilldata().removeAt(index);
+    this.skillsService.deleteSkill(id).subscribe();
   }
 
   // Helper method to get skillData form array
@@ -240,6 +244,7 @@ export class ProfileSettingsComponent implements OnInit{
         username: this.user.username,
         firstName: this.FirstName,
         lastName: this.LastName,
+        createdDate: this.user.createddate,
         password: '',
         isEmailVerified: true
       }
@@ -289,7 +294,13 @@ export class ProfileSettingsComponent implements OnInit{
       let usr= this.userservice.updateUser(kuser).subscribe();
       console.log(usr);
       let tezs = await this.userDataService.updateAdditionalUserData(this.userData).toPromise();
-      console.log(tezs);
+      await Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your Profile has been Edited',
+        showConfirmButton: false,
+        timer: 1500
+      });
       console.log('Data Modified successfully.');
     } catch (error) {
       console.error('Error saving data:', error);

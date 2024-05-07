@@ -34,33 +34,57 @@ export class JobsComponent implements OnInit {
   ApprovedChart: ChartType;
   RejectedChart: ChartType;
   emailSentBarChart: ChartType;
-  showNavigationArrows: any;
-  showNavigationIndicators: any;
+
   vacancyData: any;
   receivedTimeChart: ChartType;
   recentJobsData: any;
 
   user: User;
 
- /* async ngOnInit(): Promise<void> {
-    this._fetchData();
-    this.fetchStatistics();
-    this.user = await this.authService.currentUser();
-    if (this.user) {
-      this.fetchImagesForInternships(); // Call the image fetching method
 
-      this.getInternshipsByUser(this.user.id.toString()); // Convert to string if needed
-    }
-  }*/
+
+  isActive: string = 'week'; // Initial active tab
+
+
   async ngOnInit(): Promise<void> {
     this.fetchImagesForInternships();
     this._fetchData();
+    this.loadEmailStatistics();
     this.user = await this.authService.currentUser();
     if (this.user) {
-      this.fetchStatisticsByUser(this.user.id.toString()); // Call the statistics fetching method with the user ID
-      this.getInternshipsByUser(this.user.id.toString());
+      if (this.user.role.includes('admin'))
+      { this.getAllInternships();
+        this.fetchStatistics();
+      }else if (this.user.role.includes('company')) {
+        this.fetchStatisticsByUser(this.user.id.toString()); // Call the statistics fetching method with the user ID
+        this.getInternshipsByUser(this.user.id.toString());
+      }
+
     }
   }
+
+
+  getAllInternships(): void {
+    this.internshipsService.getAllInternships().subscribe(
+      (data: any[]) => {
+        this.internships = data;
+        // Log the categories for each internship
+        this.internships.forEach(internship => {
+          console.log('Categories for Internship:', internship.categories);
+        });
+      },
+      (error) => {
+        console.error('Error fetching internships:', error);
+      }
+    );
+  }
+
+
+
+
+
+
+
 
 
   private _fetchData() {
@@ -86,8 +110,7 @@ export class JobsComponent implements OnInit {
   }
 
 
-
-  fetchStatistics() {
+  fetchStatistics(): void {
     this.internshipsService.getTotalInternshipsCount().subscribe((count: number) => {
       this.jobViews = count;
     });
@@ -96,6 +119,9 @@ export class JobsComponent implements OnInit {
       this.increase = rating; // Assuming rating represents the increase percentage
     });
   }
+
+
+
 
   getInternshipsByUser(userId: string): void {
     this.internshipsService.getInternshipsByUserId(userId).subscribe(
@@ -110,41 +136,18 @@ export class JobsComponent implements OnInit {
   }
 
 
-  /*fetchImagesForInternships(): void {
-    console.log('Image fetching initiated.');
-    const unsplashAccessKey = 'Tu6jc2QwjhLpbAMvQBajfzRztpv0bOIIxxBNMh9u1yc';
-    const unsplashUrl = `https://api.unsplash.com/photos/random?query=cloud&client_id=${unsplashAccessKey}`;
 
-    this.internships.forEach(internship => {
-      // Make a direct API call to Unsplash to get a random photo with the query 'cloud'
-      fetch(unsplashUrl)
-        .then(response => response.json())
-        .then(json => {
-          const randomImage = json.urls.regular;
-          // Check if the internship object has a property named 'image' and it's not already set
-          if (internship.hasOwnProperty('image') && !internship.image) {
-            // Assign the fetched image URL to the 'image' property of the current internship
-            internship.image = randomImage;
-            console.log('Internship Image:', randomImage); // Log the image URL
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching image:', error);
-          console.log('Internship:', internship); // Log the internship object if there's an error
-        });
-    });
-  }*/
 
 
   async fetchImagesForInternships(): Promise<void> {
     const unsplashAccessKey = 'Tu6jc2QwjhLpbAMvQBajfzRztpv0bOIIxxBNMh9u1yc';
-    const unsplashUrl = `https://api.unsplash.com/photos/random?query=test&client_id=${unsplashAccessKey}`;
-
+    const query = 'microsoft';
+    //get
+    const unsplashUrl = `https://api.unsplash.com/photos/random?query=${query}&client_id=${unsplashAccessKey}`;
     try {
       const response = await fetch(unsplashUrl);
       const json = await response.json();
       const randomImage = json.urls.regular;
-
       // Assuming Internship model has an 'image' property
       this.internships.forEach(internship => {
         internship.image = randomImage;
@@ -153,5 +156,83 @@ export class JobsComponent implements OnInit {
       console.error('Error fetching image:', error);
     }
   }
+
+
+
+
+
+  /*async fetchImagesForInternships(): Promise<void> {
+    const unsplashAccessKey = 'Tu6jc2QwjhLpbAMvQBajfzRztpv0bOIIxxBNMh9u1yc';
+    const defaultImage = 'https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg';
+    const fallbackQuery = "cloud"; // A common fallback that returns results
+
+    if (this.internships.length === 0) {
+      console.log('No internships to fetch images for');
+      return;
+    }
+
+    for (const internship of this.internships) {
+      let imageUrl = await this.fetchImageFromUnsplash(internship.intershipTitle, unsplashAccessKey);
+      if (!imageUrl) {
+        imageUrl = await this.fetchImageFromUnsplash(fallbackQuery, unsplashAccessKey);  // Use fallback query if no image was found
+      }
+      internship.image = imageUrl || defaultImage;
+    }
+
+    this.internships = [...this.internships]; // Update state to trigger UI refresh
+  }
+
+  async fetchImageFromUnsplash(query: string, apiKey: string): Promise<string | null> {
+    const encodedQuery = encodeURIComponent(query);
+    const url = 'https://api.unsplash.com/photos/random?query=${encodedQuery}&client_id=${apiKey}';
+    try {
+      const response = await fetch(url);
+      const json = await response.json();
+      return json && json.urls && json.urls.regular ? json.urls.regular : null;
+    } catch (error) {
+      console.error('Error fetching image for query:', query, error);
+      return null;
+    }
+  }*/
+
+
+  loadEmailStatistics() {
+    this.internshipsService.getEmailsSentPerInternship().subscribe(
+      (data) => {
+        // Assuming data is in the format { internshipId: emailsSentCount }
+        // You can process the data here and update your chart object accordingly
+        this.emailSentBarChart = {
+          chart: { /* Chart options */ },
+          series: [{ name: 'Emails Sent', data: Object.values(data) }],
+          legend: { /* Legend options */ },
+          colors: ['#36a2eb'],
+          fill: { /* Fill options */ },
+          dataLabels: { /* Data labels options */ },
+          xaxis: { /* X-axis options */ },
+          plotOptions: { /* Plot options */ }
+        };
+      },
+      (error) => {
+        console.error('Error fetching email statistics:', error);
+      }
+    );
+  }
+
+  // Methods for switching tabs and reloading data
+  weeklyreport() {
+    this.isActive = 'week';
+    this.loadEmailStatistics();
+  }
+
+  monthlyreport() {
+    this.isActive = 'month';
+    this.loadEmailStatistics();
+  }
+
+  yearlyreport() {
+    this.isActive = 'year';
+    this.loadEmailStatistics();
+  }
+
 
 }

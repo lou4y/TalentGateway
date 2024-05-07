@@ -32,6 +32,8 @@ export class AdditionalUserDataService {
     return this.http.delete<AdditionalUserData>(`${this.baseUrl}/Delete/${userId}`); // Updated endpoint
   }
 
-
+  getAllAdditionalUserData(): Observable<AdditionalUserData[]> {
+    return this.http.get<AdditionalUserData[]>(`${this.baseUrl}/GetAll`); // Updated endpoint
+  }
 
 }

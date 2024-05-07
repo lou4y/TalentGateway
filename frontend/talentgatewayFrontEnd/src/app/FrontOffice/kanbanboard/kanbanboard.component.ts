@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { TaskKanban } from './kanabn.model';
 import { Module } from 'src/app/core/models/module.model';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import {  BsModalRef } from 'ngx-bootstrap/modal';
 import { User } from 'src/app/core/models/auth.models';
 import { ChartType } from './kanabn.model';
 import { EChartsOption } from 'echarts';
@@ -121,35 +121,7 @@ export class KanbanboardComponent {
       error: (error) => console.error('Error loading tasks:', error)
     });
   }
-  
-  
-
-  /*
-  loadTaskStats(userId: string): void {
-    this.tasksService.getTaskStatsByUserId(userId).subscribe({
-      next: (stats) => {
-        this.taskStats = stats;
-        console.log('Task stats loaded', stats);
-        this.setupChart();
-      },
-      error: (error) => console.error('Error loading task stats:', error)
-    });
-  }
-  
-  
-
-
-  loadTaskStats(userId: string): void {
-    this.tasksService.getTasksByUserId(userId).subscribe({
-      next: (tasks) => {
-        this.alltask = tasks;
-        this.setupChart(); // Call setupChart to update the chart with the new data
-        this.setupPieChart(); // Call setupPieChart to update the pie chart with the new data
-      },
-      error: (error) => console.error('Error loading task stats:', error)
-    });
-  }
-*/
+ 
 
   loadTasksAndStats(userId: string): void {
     // Fetch the task statistics
@@ -376,7 +348,6 @@ delete(event: any, taskId: number): void {
       }
     });
     
-
 }
 
    // Update task method
@@ -396,9 +367,6 @@ delete(event: any, taskId: number): void {
    
   }
 
-
-
-  
   submitForm() {
     if (this.taskForm.valid) {
       const updatedTask = this.taskForm.value;
@@ -514,79 +482,5 @@ mapPriorityToStatus(priority: string): string {
     });
   }
   
-
-
- 
-  /*
-
-  // add new tak  
-  addnewTask(status: any) {
-    this.status = status
-    this.modalForm.show()
-  }
-
-  // Save Form
-  submitForm() {
-    if (this.taskForm.valid) {
-      if (this.taskForm.get('id')?.value) {
-        this.alltask = tasks.map((data: { id: any; }) => data.id === this.taskForm.get('id')?.value ? { ...data, ...this.taskForm.value } : data)
-      } else {
-        const title = this.taskForm.get('taskname')?.value;
-        const desc = this.taskForm.get('taskdesc')?.value;
-        const task = this.taskForm.get('taskstatus')?.value;
-        const budget = this.taskForm.get('taskbudget')?.value;
-        const user = []
-        for (var i = 0; i < this.memberLists.length; i++) {
-          if (this.memberLists[i].checked == true) {
-            user.push(this.memberLists[i].profile)
-          }
-        }
-        tasks.push({
-          id: tasks.length + 1,
-          date: '14 Oct, 2019',
-          title,
-          task,
-          user,
-          status: this.status,
-          budget
-        })
-    
-      }
-    }
-    this._fetchData();
-    this.taskForm.reset();
-    this.modalForm.hide()
-  }
-
-  // Update Task
-  updateTask(id: any) {
-    this.submitted = false;
-    this.modalForm?.show()
-
-    var updatetitle = document.querySelector('.modal-title') as HTMLAreaElement
-    updatetitle.innerHTML = "Update Task";
-
-    var updatebtn = document.getElementById('addtask') as HTMLAreaElement
-    updatebtn.innerHTML = "Update Task";
-
-    var data = tasks[id]
-    this.taskForm.controls['id'].setValue(data.id);
-    this.taskForm.controls['taskname'].setValue(data.title);
-    this.taskForm.controls['taskstatus'].setValue(data.task);
-    this.taskForm.controls['taskbudget'].setValue(data.budget);
-    // Compare data.user profile and memberList profile if same the set checked property to true
-    for (var i = 0; i < this.memberLists.length; i++) {
-      for (var x = 0; x < data.user.length; x++) {
-        if (this.memberLists[i].profile == data.user[x]) {
-          this.memberLists[i].checked = true;
-          // this.taskForm.controls['taskassignee'].setValue( this.memberLists[i].id);
-        }
-      }
-    }
-
-  }
-  */
-
-
 
 }

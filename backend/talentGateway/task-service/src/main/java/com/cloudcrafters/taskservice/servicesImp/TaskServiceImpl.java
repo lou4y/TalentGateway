@@ -1,5 +1,6 @@
 package com.cloudcrafters.taskservice.servicesImp;
 
+import com.cloudcrafters.taskservice.Mailgun.MailService;
 import com.cloudcrafters.taskservice.Clients.UserRestClient;
 import com.cloudcrafters.taskservice.Dao.TaskDao;
 import com.cloudcrafters.taskservice.Entities.Module;
@@ -38,6 +39,9 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     private UserRestClient userRestClient;
 
+    @Autowired
+    private MailService mailService;
+
 
     @Override
     public TaskResponse createTask(Task task) {
@@ -57,6 +61,7 @@ public class TaskServiceImpl implements TaskService {
 
         User user = optionalUser.get();
         task.setUserId(user.getId());  // Set the user ID based on the found user
+        task.setEmail(user.getEmail());  // Set the user email based on the found user
 
         // Module handling based on module name
         if (task.getModule() != null && task.getModule().getModuleName() != null) {
@@ -70,6 +75,29 @@ public class TaskServiceImpl implements TaskService {
         // Saving the task
         Task savedTask = taskDao.save(task);
 
+        System.out.println("Task saved with email: " + savedTask.getEmail());
+
+        // Envoyer l'email après la sauvegarde réussie de la tâche
+        try {
+            mailService.sendEmail(
+                    savedTask.getEmail(),
+                    "New Assigned Task\n",
+                    "You have been assigned a new task in the module '" + task.getModule().getModuleName() + "' with the following details:\n" +
+                            "Task Name: " + savedTask.getTaskName() + "\n" +
+                            "Description: " + savedTask.getTaskDescription() + "\n" +
+                            "Start Date: " + savedTask.getStartDate() + "\n" +
+                            "End Date: " + savedTask.getEndDate() + "\n" +
+                            "Priority: " + savedTask.getPriority() + "\n" +
+                            "Please login to the Platform to view more details about your Task." +
+                            "\n\nRegards,\nTask Management System" +
+                            "\n\nThis is an automated email. Please do not reply to this email."
+
+            );
+        } catch (Exception ignored) {
+
+        }
+
+
         // Trigger any notifications
         if (savedTask.getModule() != null && savedTask.getModule().getProjectId() != null) {
             //  pusher.trigger("project-" + savedTask.getModule().getProjectId(), "new-task", Collections.singletonMap("message", "A new task has been created: " + savedTask.getTaskName()));
@@ -78,46 +106,17 @@ public class TaskServiceImpl implements TaskService {
         } else {
             System.out.println("Project ID not available for this task");
         }
-
         return mapToTaskResponse(savedTask);
     }
 
-//    @Override
-//    public Task createTask(Task task) {
-//        // Validation et association du module
-//        if (task.getModule() != null && task.getModule().getModuleName() != null) {
-//            Module module = moduleService.getModuleByName(task.getModule().getModuleName())
-//                    .orElseThrow(() -> new RuntimeException("Module Name does not exist"));
-//            task.setModule(module);
-//        } else {
-//            throw new RuntimeException("Task must have a valid module");
-//        }
-//
-//        // Sauvegarde de la tâche
-//        Task savedTask = taskDao.save(task);
-//
-//        // Assurez-vous que task.getModule() et getModule().getProjectId() sont correctement définis
-//        Long projectId = task.getModule().getProjectId(); // Ceci suppose que votre Module a un getProjectId()
-//        if (projectId != null) {
-//            // Envoi de la notification via Pusher
-//            pusher.trigger("project-" + projectId, "new-task", Collections.singletonMap("message", "Une nouvelle tâche a été créée : " + task.getTaskName()));
-//        } else {
-//            // Gérer le cas où l'ID du projet n'est pas disponible
-//            System.out.println("Project ID not available for this task");
-//        }
-//
-//        return savedTask;
-//    }
-
-
-
+    // Get all tasks
     @Override
     public List<TaskResponse> getAllTasks() {
         List <Task> tasks = taskDao.findAll();
         return tasks.stream().map(this::mapToTaskResponse).toList();
     }
 
-
+    // Get task by ID
     @Override
     public TaskResponse getTaskById(Long taskId) {
         Task task = taskDao.findById(taskId)
@@ -125,6 +124,7 @@ public class TaskServiceImpl implements TaskService {
         return mapToTaskResponse(task);
     }
 
+    // Update task
     @Override
     public Task updateTask(Long taskId, Task taskDetails) {
         Task existingTask = taskDao.findById(taskId)
@@ -161,7 +161,7 @@ public class TaskServiceImpl implements TaskService {
         return taskDao.save(existingTask);
     }
 
-
+    // Delete task
     @Override
     public void deleteTask(Long taskId) {
         if (taskDao.existsById(taskId)) {
@@ -171,19 +171,21 @@ public class TaskServiceImpl implements TaskService {
         }
     }
 
+    // Find tasks by priority
     @Override
     public List<TaskResponse> findTasksByPriority(Priority priority) {
         List<Task> tasks = taskDao.findByPriority(priority);
         return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
     }
 
+    // Find tasks by status
     @Override
     public List<TaskResponse> findTasksByStatus(Statut statut) {
         List<Task> tasks = taskDao.findByStatut(statut);
         return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
     }
 
-    // Test userId
+    // Find tasks by user ID
     @Override
     public List<TaskResponse> findTasksByUserId(String userId) {
         List<Task> tasks = taskDao.findByUserId(userId);
@@ -195,9 +197,29 @@ public class TaskServiceImpl implements TaskService {
     public List<TaskResponse> searchTasks(String keyword) {
         List<Task> tasks = taskDao.searchTask(keyword);
         return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
-
     }
 
+
+    // Find tasks sorted by start date
+    public List<TaskResponse> findTasksSortedByStartDate() {
+        List<Task> tasks = taskDao.findByOrderByStartDateAsc();
+        return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
+    }
+
+    // Count completed tasks by user ID
+    @Override
+    public long countCompletedTasksByUserId(String userId) {
+        return taskDao.countByUserIdAndStatut(userId, Statut.Finished);
+    }
+
+    // Count incomplete tasks by user ID
+    @Override
+    public long countIncompleteTasksByUserId(String userId) {
+        // Combiner le compte de TO_DO et IN_PROGRESS pourrait nécessiter une approche différente
+        // Ici, pour simplifier, considérons uniquement TO_DO comme exemple
+        return taskDao.countByUserIdAndStatut(userId, Statut.To_do) +
+                taskDao.countByUserIdAndStatut(userId, Statut.In_Progress);
+    }
 
     //DTO
     private TaskResponse mapToTaskResponse(Task task) {
@@ -208,7 +230,6 @@ public class TaskServiceImpl implements TaskService {
             moduleResponse.setModuleName(task.getModule().getModuleName());
             moduleResponse.setModuleDescription(task.getModule().getModuleDescription());
         }
-        String firstName = (task.getUser() != null) ? task.getUser().getFirstName() : "Unknown";
 
         return TaskResponse.builder()
                 .id(task.getId())
@@ -221,27 +242,9 @@ public class TaskServiceImpl implements TaskService {
                 .priority(task.getPriority())
                 .module(moduleResponse)
                 .userId(task.getUserId())
-                .firstName(firstName)
+                .firstName(task.getFirstName())
+                .email(task.getEmail())
                 .build();
-    }
-
-    public List<TaskResponse> findTasksSortedByStartDate() {
-        List<Task> tasks = taskDao.findByOrderByStartDateAsc();
-        return tasks.stream().map(this::mapToTaskResponse).collect(Collectors.toList());
-    }
-
-
-    @Override
-    public long countCompletedTasksByUserId(String userId) {
-        return taskDao.countByUserIdAndStatut(userId, Statut.Finished);
-    }
-
-    @Override
-    public long countIncompleteTasksByUserId(String userId) {
-        // Combiner le compte de TO_DO et IN_PROGRESS pourrait nécessiter une approche différente
-        // Ici, pour simplifier, considérons uniquement TO_DO comme exemple
-        return taskDao.countByUserIdAndStatut(userId, Statut.To_do) +
-                taskDao.countByUserIdAndStatut(userId, Statut.In_Progress);
     }
 
 }

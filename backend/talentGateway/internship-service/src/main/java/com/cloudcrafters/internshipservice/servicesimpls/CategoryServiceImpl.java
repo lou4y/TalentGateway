@@ -85,6 +85,12 @@ public class CategoryServiceImpl implements CategoryService {
         }
     }
 
+    @Override
+    public List<Category> getCategorybyuser(String userId) {
+        //list of Categorys for his user
+        return categoryDao.findCategoryByUserId(userId);
+    }
+
 
     @Override
     public Category getCategoryByName(String categoryName) {

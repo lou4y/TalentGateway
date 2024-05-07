@@ -39,7 +39,9 @@ import { JobsComponent } from './jobs/jobs.component';
     NgApexchartsModule,
     SharedModule,
     SimplebarAngularModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgApexchartsModule,
+
   ],
   providers: [BsDropdownConfig],
 })

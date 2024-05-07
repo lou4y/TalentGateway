@@ -9,7 +9,7 @@
             <h5 class="mb-0 card-title flex-grow-1">Internship List</h5>
             <div class="flex-shrink-0 d-flex gap-1">
               <!--
-                            <a href="javascript:void(0);" class="btn btn-primary" (click)="openModal()">Add New Job</a>
+                                          <a href="javascript:void(0);" class="btn btn-primary" (click)="openModal()">Add New Job</a>
               -->
               <div class="col-sm-auto">
                 <div class="text-sm-end">
@@ -33,11 +33,15 @@
         </div>
         <div class="card-body border-bottom">
           <div class="row g-3">
+            <!-- Inside the card-body border-bottom -->
+
             <div class="col-xxl-4 col-lg-6">
-              <input type="search" class="form-control" id="searchInput" placeholder="Search by title or company ..." [(ngModel)]="searchTerm">
+              <input type="search" class="form-control" id="searchInput" placeholder="Search by title or company ..." [(ngModel)]="searchTerm" (input)="onSearchInputChange()">
             </div>
+
+
             <div class="col-xxl-2 col-lg-4">
-              <button type="button" class="btn btn-soft-secondary w-100" (click)="searchInternships()">
+              <button type="button" class="btn btn-soft-secondary w-100)">
                 <i class="mdi mdi-filter-outline align-middle"></i> Filter
               </button>
             </div>
@@ -59,6 +63,7 @@
                 <th scope="col">Duration</th>
                 <th scope="col">Posted Date</th>
                 <th scope="col">Start Date</th>
+                <th scope="col">Categories</th> <!-- Add a new header for Categories -->
                 <th scope="col">Type</th>
                 <th scope="col">Action</th>
               </tr>
@@ -75,6 +80,13 @@
                 <td>{{ internship.intershipDuration }}</td>
                 <td>{{ internship.intershippostedDate | date }}</td>
                 <td>{{ internship.intershipStartDate | date }}</td>
+                <td>
+                  <ul class="list-unstyled">
+                    <li *ngFor="let category of internship.categories">
+                      {{ category.categoryName }}
+                    </li>
+                  </ul>
+                </td>
                 <td>{{ internship.intershipType }}</td>
                 <td>
                   <ul class="list-unstyled hstack gap-1 mb-0">
@@ -98,11 +110,6 @@
                         <i class="mdi mdi-pencil-outline"></i>
                       </a>
                     </li>
-
-
-
-
-
 
 
                   </ul>
@@ -129,41 +136,3 @@
     </div>
   </div>
 </div>
-
-
-
-<!-- Add New Internship Modal -->
-<ng-template #content let-modal>
-  <!-- Modal header -->
-  <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Add New Internship</h5>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modalRef?.hide()"></button>
-  </div>
-
-  <!-- Internship form -->
-  <form (ngSubmit)="saveJob()" [formGroup]="jobForm">
-    <div class="modal-body">
-      <!-- Title field -->
-      <div class="mb-3">
-        <label for="title-field" class="form-label">Title</label>
-        <input type="text" id="title-field" class="form-control" placeholder="Enter title" formControlName="title" />
-      </div>
-
-      <!-- Company field -->
-      <div class="mb-3">
-        <label for="company-field" class="form-label">Company</label>
-        <input type="text" id="company-field" class="form-control" placeholder="Enter company" formControlName="company" />
-      </div>
-
-      <!-- Add more form fields for internship details here -->
-    </div>
-
-    <!-- Modal footer with close and save buttons -->
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Close</button>
-      <button type="submit" class="btn btn-primary">Save</button>
-    </div>
-
-  </form>
-</ng-template>
-

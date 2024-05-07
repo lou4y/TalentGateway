@@ -28,6 +28,7 @@ function connect(event) {
         stompClient.connect({}, onConnected, onError);
     }
     event.preventDefault();
+    console.log('Socket Connected');
 }
 
 

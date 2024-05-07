@@ -18,11 +18,11 @@ export interface ChatMessage {
   _class: string;
 }// connected-user
 
-export interface ConnectedUser {
-  nickName: string;
-  fullName: string;
-  status: string;
-}
+// export interface ConnectedUser {
+//   nickName: string;
+//   fullName: string;
+//   status: string;
+// }
 
 
 export interface Chat {
