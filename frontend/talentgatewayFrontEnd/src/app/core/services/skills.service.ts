@@ -25,6 +25,9 @@ export class SkillsService {
   editSkill(skill: Skill) {
     return this.http.put<Skill>(`${this.baseUrl}/skill`, skill);
   }
+  deleteSkill(id: string) {
+    return this.http.delete(`${this.baseUrl}/skill/${id}`);
+  }
 
 
 }
