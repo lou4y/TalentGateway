@@ -25,6 +25,10 @@ export class InternshipsDetailComponent implements OnInit {
   shareUrl: string; // Define shareUrl variable
 
 
+isCompany: boolean = false;
+  isStudent: boolean = false;
+
+  
   readonly: boolean = false;
   currentRate: number = 0;
   stepRate: number = 0;
