@@ -105,6 +105,9 @@ isCompany: boolean = false;
       }
     );
   }
+consultMySchedule() {
+  this.router.navigateByUrl('/calendar');
+}
 
   setOpenGraphMetaTags(): void {
     if (this.internship) {
