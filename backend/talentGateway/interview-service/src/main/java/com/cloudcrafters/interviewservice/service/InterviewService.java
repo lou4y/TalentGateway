@@ -1,12 +1,16 @@
 package com.cloudcrafters.interviewservice.service;
+import com.cloudcrafters.interviewservice.clients.UserRestClient;
 import com.cloudcrafters.interviewservice.dto.InterviewResponse;
 import com.cloudcrafters.interviewservice.dto.InterviewRequest;
+import com.cloudcrafters.interviewservice.entities.User;
+import com.cloudcrafters.interviewservice.mailgun.MailService;
 import com.cloudcrafters.interviewservice.model.Application;
 import com.cloudcrafters.interviewservice.model.Interview;
 import com.cloudcrafters.interviewservice.repository.Applicationrepository;
 import com.cloudcrafters.interviewservice.repository.InterviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +24,12 @@ public class InterviewService implements InterviewServiceInterface {
     private final InterviewRepository interviewRepository;
     private final Applicationrepository applicationRepository;
 
+    private final MailService mailService;
+    @Autowired
+    UserRestClient userRestClient;
+
+
+    //private final ApplicationResponse applicationResponse;
     @Override
     public InterviewResponse createInterview(String applicationId, InterviewRequest interviewRequest) {
         // Vérifier si une candidature avec l'ID spécifié existe
@@ -37,9 +47,29 @@ public class InterviewService implements InterviewServiceInterface {
         interview.setModaliteEntretien(interviewRequest.getModaliteEntretien());
         interview.setApplication(application); // Associer l'entretien à la candidature///
         Interview savedInterview = interviewRepository.save(interview);
+
         // Associer l'entretien à la candidature
         application.setInterview(savedInterview);
         applicationRepository.save(application);
+
+        // Fetch the user associated with the application
+        String userId = application.getUserid();
+        User user= userRestClient.findUserById(userId);
+
+        // Send email notification
+        try {
+            mailService.sendEmail(
+                    user.getEmail(),
+                    "Interview Scheduled\n",
+                    "An interview has been scheduled for your application : " + "\n" +
+                            "Date: " + interviewRequest.getDateEntretien() + "\n" +
+                            "Mode: " + interviewRequest.getModaliteEntretien()
+
+            );
+        } catch (Exception ignored) {
+            // Handle exception
+        }
+
         return mapToInterviewResponse(savedInterview);
     }
 

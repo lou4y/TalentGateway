@@ -8,13 +8,15 @@ import { DefaultComponent } from './dashboards/default/default.component';
 import { ListprojectsComponent } from '../FrontOffice/listprojects/listprojects.component';
 
 import {InternshipDetailsComponent} from "./jobs/internship-details/internship-details.component";
+import {ProjectgridComponent} from "./projects/projectgrid/projectgrid.component";
+import {CryptoComponent} from "./dashboards/crypto/crypto.component";
 
 
 const routes: Routes = [
   // { path: '', redirectTo: 'dashboard' },
   {
     path: "",
-    component: DefaultComponent
+    component: CryptoComponent
   },
   { path: 'dashboard', component: DefaultComponent },
   { path: 'calendar', component: CalendarComponent },

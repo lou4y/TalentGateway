@@ -21,10 +21,12 @@ export class InternshipsComponent implements OnInit {
     FULL_TIME: boolean;
     remote: boolean;
     contract: boolean;
+    PART_TIME:boolean;
   } = {
     FULL_TIME: false,
     remote: false,
-    contract: false
+    contract: false,
+    PART_TIME:false
   };
 
 
@@ -59,7 +61,7 @@ export class InternshipsComponent implements OnInit {
     this.user = await this.authService.currentUser();
 
     if (this.user) {
-      if (this.user.role.includes('admin')) {
+      if (this.user.role.includes('student')) {
         this.getAllInternships();
       } else if (this.user.role.includes('company')) {
         this.getInternshipsByUser(this.user.id.toString());
@@ -93,7 +95,8 @@ export class InternshipsComponent implements OnInit {
         (this.searchTerm ? internship.intershipTitle.toLowerCase().includes(this.searchTerm.toLowerCase()) || internship.intershipCompany.toLowerCase().includes(this.searchTerm.toLowerCase()) : true) &&
         (this.filter.FULL_TIME ? internship.intershipType === 'FULL_TIME' : true) &&
         (this.filter.remote ? internship.intershipType === 'REMOTE' : true) &&
-        (this.filter.contract ? internship.intershipType === 'CONTRACT' : true)
+        (this.filter.contract ? internship.intershipType === 'CONTRACT' : true) &&
+        (this.filter.PART_TIME ? internship.intershipType === 'PART_TIME' : true)
       )
       .slice(startIndex, endIndex);
   }

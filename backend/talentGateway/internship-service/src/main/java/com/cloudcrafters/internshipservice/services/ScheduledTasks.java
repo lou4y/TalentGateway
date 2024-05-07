@@ -90,7 +90,7 @@ public class ScheduledTasks {
                 + "We found an internship that matches your skills:\n\n"
                 + "Internship Title: " + internship.getIntershipTitle() + "\n"
                 + "Internship Description: " + internship.getIntershipDescription() + "\n"
-                + "Internship URL: http://localhost:4200/internship-details/" + internship.getIntershipId() + "\n\n"
+                + "Internship URL: http://localhost:4200/details" + internship.getIntershipId() + "\n\n"
                 + "Best regards,\nInternship Service";
 
         emailService.sendEmail(recipientEmail, subject, content);

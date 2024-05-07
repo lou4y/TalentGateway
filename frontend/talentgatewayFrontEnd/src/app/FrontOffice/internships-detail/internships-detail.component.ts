@@ -25,6 +25,10 @@ export class InternshipsDetailComponent implements OnInit {
   shareUrl: string; // Define shareUrl variable
 
 
+isCompany: boolean = false;
+  isStudent: boolean = false;
+
+
   readonly: boolean = false;
   currentRate: number = 0;
   stepRate: number = 0;
@@ -52,25 +56,42 @@ export class InternshipsDetailComponent implements OnInit {
   ) {}
 
 
-  async ngOnInit(): Promise<void> {
-    this.breadCrumbItems = [{label: 'Jobs'}, {label: 'Job Details', active: true}];
-
-
-    this.route.params.subscribe(params => {
-      this.internshipId = params['id'];
-      this.internshipUrl = `http://localhost:4200/internship-details/${this.internshipId}`;
-      this.getInternshipDetails(); // Call method to fetch internship details
-    });
-
-    this.route.queryParams.subscribe(params => {
-      this.message = params['message'];
-    });
-
-    this.user = await this.authService.currentUser();
-    this.getInternshipDetails();
-    this.getOfferIdFromUrl();
-
+ async ngOnInit(): Promise<void> {
+  this.user = await this.authService.currentUser();
+  if (this.user) {
+    if (this.user.role.includes('student')) {
+      this.isStudent = true;
+    } else if (this.user.role.includes('company')) {
+      this.isCompany = true;
+    }
   }
+
+  console.log("isStudent:", this.isStudent);
+  console.log("isCompany:", this.isCompany);
+
+
+
+  // Continuer avec le reste du code...
+  this.breadCrumbItems = [{label: 'Jobs'}, {label: 'Job Details', active: true}];
+
+  this.route.params.subscribe(params => {
+    this.internshipId = params['id'];
+    this.internshipUrl = `http://localhost:4200/internship-details/${this.internshipId}`;
+    this.getInternshipDetails(); // Call method to fetch internship details
+  });
+
+  this.route.queryParams.subscribe(params => {
+    this.message = params['message'];
+  });
+
+  this.getOfferIdFromUrl();
+}
+
+
+  consultMySchedule() {
+    this.router.navigateByUrl('/calendar');
+  }
+
 
   getInternshipDetails(): void {
     this.internshipsService.getInternshipById(+this.internshipId).subscribe(
@@ -84,6 +105,9 @@ export class InternshipsDetailComponent implements OnInit {
       }
     );
   }
+consultMySchedule() {
+  this.router.navigateByUrl('/calendar');
+}
 
   setOpenGraphMetaTags(): void {
     if (this.internship) {

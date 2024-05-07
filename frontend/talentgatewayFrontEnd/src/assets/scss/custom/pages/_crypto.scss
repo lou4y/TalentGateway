@@ -113,7 +113,7 @@
                 transition: all 0.4s;
 
                 @media (max-width: 991.98px) {
-                    color: var(--#{$prefix}header-item-color);
+                    color: white;
                 }
 
                 &:hover,
@@ -121,7 +121,7 @@
                     color: rgba($white, 0.9);
 
                     @media (max-width: 991.98px) {
-                        color: $primary;
+                        color: white;
                     }
                 }
 
@@ -152,11 +152,11 @@
             .nav-item {
                 .nav-link {
                     line-height: 48px;
-                    color: var(--#{$prefix}header-item-color);
+                    color: white;
 
                     &:hover,
                     &.active {
-                        color: $primary;
+                        color: white;
                     }
                 }
             }
