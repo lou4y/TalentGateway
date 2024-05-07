@@ -48,7 +48,7 @@ function matches(country: jobGridModel, term: string, pipe: PipeTransform) {
 @Injectable({providedIn: 'root'})
 export class JobGridService {
   private _loading$ = new BehaviorSubject<boolean>(true);
-  private _search$ = new Subject<void>();
+  _search$ = new Subject<void>();
   private jobLlist$ = new BehaviorSubject<jobGridModel[]>([]);
   private _total$ = new BehaviorSubject<number>(0);
 
@@ -119,10 +119,10 @@ export class JobGridService {
     const {sortColumn, sortDirection, pageSize, page, searchTerm, status, type, date} = this._state;
 
     // 1. sort
-    let jobGrid = sort(JobGriddata, sortColumn, sortDirection);    
+    let jobGrid = sort(JobGriddata, sortColumn, sortDirection);
 
     // 2. filter
-    jobGrid = jobGrid.filter(country => matches(country, searchTerm, this.pipe));  
+    jobGrid = jobGrid.filter(country => matches(country, searchTerm, this.pipe));
     const total = jobGrid.length;
 
     // 3. paginate

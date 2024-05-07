@@ -1,10 +1,11 @@
-<app-header-front></app-header-front>
+<!--
+&lt;!&ndash;<app-header-front></app-header-front>&ndash;&gt;
 
-<!-- event details area start -->
+&lt;!&ndash; event details area start &ndash;&gt;
 <section class="event__inner pb-110 pt-110">
   <div class="container">
 
-    <!-- Display User ID -->
+    &lt;!&ndash; Display User ID &ndash;&gt;
     <div class="user-details">
 
    </div>
@@ -17,14 +18,14 @@
 
         </h1>
 
-       <!-- <div class="intership-rating">
+       &lt;!&ndash; <div class="intership-rating">
           <h5 class="font-size-15">Rate This Internship <strong> : {{ internship?.averageRating }} </strong></h5>
           <div class="rating-star d-flex align-items-center justify-content-center">
             &lt;!&ndash; Listen to the ratingChange event emitted by the rating component &ndash;&gt;
             <rating [(ngModel)]="rating" [readonly]="false" class="stars" [max]="5"></rating>
             <span class="ratingnum badge bg-info align-middle ms-2">{{ rating }}</span>
           </div>
-        </div>-->
+        </div>&ndash;&gt;
 
         <div class="row">
           <div class="col-xl-3 col-md-4 col-sm-6">
@@ -46,9 +47,9 @@
         <div class="course__meta-2 d-sm-flex">
           <div class="course__teacher-3 d-flex align-items-center mr-70 mb-30">
             <div class="course__teacher-thumb-3 mr-15">
-              <!--
+              &lt;!&ndash;
                             <img src="assets/img/courses/avata/course-avata-1.jpg" alt="">
-              -->
+              &ndash;&gt;
             </div>
             <div class="course__teacher-info-3">
               <h5>Internship Type</h5>
@@ -82,10 +83,10 @@
           </div>
 
 
-          <!-- Display internship responsibilities -->
+          &lt;!&ndash; Display internship responsibilities &ndash;&gt;
           <div class="intership-responsibilities mb-30">
             <h3>Internship Responsibilities</h3>
-            <!-- Split the responsibilities string and iterate over them -->
+            &lt;!&ndash; Split the responsibilities string and iterate over them &ndash;&gt;
             <ul>
               <li *ngFor="let responsibility of (internship?.intershipResponsibilities || '').split('.'); let last = last">
                 <i class=""></i> {{ responsibility.trim() }}
@@ -97,7 +98,7 @@
 
 
 
-          <!-- Display internship skills -->
+          &lt;!&ndash; Display internship skills &ndash;&gt;
           <div class="events__tag">
             <h3>Skills</h3>
             <span><i class=""></i> </span>
@@ -120,13 +121,13 @@
           <div class="events__sidebar-widget white-bg mb-20">
             <div class="events__info">
               <div class="events__info-meta mb-25 d-flex align-items-center justify-content-between">
-                <!--  <div class="events__info-price">
+                &lt;!&ndash;  <div class="events__info-price">
                     <h5>$76.<span>00</span> </h5>
                     <h5 class="old-price">$142.00</h5>
-                  </div>-->
-                <!--<div class="events__info-discount">
+                  </div>&ndash;&gt;
+                &lt;!&ndash;<div class="events__info-discount">
                   <span>68% OFF</span>
-                </div>-->
+                </div>&ndash;&gt;
               </div>
               <div class="events__info-content mb-35">
                 <ul>
@@ -176,14 +177,12 @@
                   <div class="transition"></div>
                 </button>
               </div>
-              
-              
+
+
               <div class="events__join-btn p-relative z-index-1">
                 <button class="tp-btn w-100" (click)="navigateToMyApplication()">
                     <span>View Candidates <i class="fa-regular fa-arrow-right"></i></span>
                     <div class="transition"></div>
-                    
-
                 </button>
             </div>
 
@@ -197,4 +196,228 @@
   </div>
 </section>
 
-<app-footer-front></app-footer-front>
+
+-->
+
+
+
+
+<app-header-back></app-header-back>
+<div *ngIf="internship" class="container-fluid">
+  <app-page-title title="Internship Details" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+  <div class="container mt-4">
+    <div class="row">
+  <div class="row">
+    <div class="col-xl-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="fw-semibold">Overview</h5>
+          <div class="table-responsive">
+            <table class="table">
+              <tbody>
+
+              <tr>
+                <th scope="col">Rating</th>
+                <td scope="col">{{internship.averageRating}} </td>
+              </tr>
+              <tr>
+                <th scope="col">Internship</th>
+                <td scope="col">{{ internship.intershipTitle }}</td>
+              </tr>
+
+              <tr>
+                <th scope="row">Internship Type</th>
+                <td><span class="badge badge-soft-success"><strong>{{ internship.intershipType }}</strong></span></td>
+              </tr>
+
+              <tr>
+                <th scope="row">Posted Date</th>
+                <td>{{ internship.intershippostedDate }}</td>
+              </tr>
+
+              <tr>
+                <th scope="row">Start Date</th>
+                <td>{{ internship.intershipStartDate }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Duration</th>
+                <td>{{ internship.intershipDuration }}</td>
+              </tbody>
+            </table>
+          </div>
+          <!-- HTML -->
+          <div class="hstack gap-2">
+            <button class="btn btn-soft-primary w-100" *ngIf="!isStartDatePassed()" (click)="applyForInternship()">Apply Now</button>
+            <button class="btn btn-soft-primary w-100" (click)="navigateToMyApplication()">View Candidates</button>
+          </div>
+
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+      <div class="card">
+        <div class="card-body">
+          <div class="text-center">
+            <h5 class="mt-3 mb-1">{{ internship.intershipCompany }}</h5>
+
+          </div>
+
+          <ul class="list-unstyled mt-4">
+            <li>
+
+            </li>
+            <li class="mt-3">
+              <div class="d-flex">
+                <i class="bx bx-mail-send text-primary fs-4"></i>
+                <div class="ms-3">
+                  <h6 class="fs-14 mb-2">Email</h6>
+
+
+                </div>
+              </div>
+            </li>
+            <li class="mt-3">
+              <div class="d-flex">
+                <i class="bx bx-globe text-primary fs-4"></i>
+                <div class="ms-3">
+                  <h6 class="fs-14 mb-2">Website</h6>
+                  <p class="text-muted fs-14 text-break mb-0">{{ internship.intershipCompany }}.com</p>
+                </div>
+              </div>
+            </li>
+            <li class="mt-3">
+              <div class="d-flex">
+                <i class="bx bx-map text-primary fs-4"></i>
+                <div class="ms-3">
+                  <h6 class="fs-14 mb-2">Location</h6>
+                  <p (click)="openGoogleMaps()">
+                    <i class="bx bx-map"></i>
+                    <span class="text-muted">{{ internship.intershipLocation }}</span>
+                  </p>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="mt-4">
+          </div>
+        </div>
+      </div>
+    </div><!--end col-->
+    <div class="col-xl-9">
+      <div class="card">
+        <div class="card-body border-bottom">
+          <div class="d-flex">
+            <img src="assets/images/companies/wechat.svg" alt="" height="50">
+            <div class="flex-grow-1 ms-3">
+              <h5 class="fw-semibold">{{ internship.intershipCompany }}</h5>
+              <ul class="list-unstyled hstack gap-2 mb-0">
+                <li>
+                  <i class="bx bx-building-house"></i> <span class="text-muted">{{ internship.intershipTitle }}</span>
+                </li>
+                <li (click)="openGoogleMaps()">
+                  <i class="bx bx-map"></i>
+                  <span class="text-muted">{{ internship.intershipLocation }}</span>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="fw-semibold mb-3">Description</h5>
+          <p class="text-muted">{{ internship.intershipDescription }}</p>
+
+          <h5 class="fw-semibold mb-3">Responsibilities:</h5>
+          <ul class="vstack gap-3">
+            <!-- Split the intershipResponsibilities string into an array and iterate over it -->
+            <li *ngFor="let responsibility of internship.intershipResponsibilities.split('. ')">
+              {{ responsibility }}
+            </li>
+          </ul>
+
+
+          <h5 class="fw-semibold mb-3">Qualification:</h5>
+          <ul class="vstack gap-3">
+            {{ internship.intershipQualifications }}
+          </ul>
+          <h5 class="fw-semibold mb-3">Skill & Experience:</h5>
+          <div class="mt-4 d-flex gap-1">
+  <span class="badge badge-soft-warning custom-badge">
+    <strong>{{ internship.intershipSkills }}</strong>
+  </span>
+          </div>
+
+
+
+
+          <div class="col-20">
+            <div class="card">
+              <div class="card-body">
+                <!-- Existing content -->
+
+                <!-- Rating input and submit button -->
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+       <<div class="col-12"> <!-- Updated col size for full width if needed -->
+      <div class="card">
+        <div class="card-body">
+          <div class="row align-items-center"> <!-- Add align-items-center to vertically align the items in the middle -->
+            <div class="col-md-8 col-sm-6">
+              <h3 class="fw-semibold mb-0">Rate This Internship</h3> <!-- mb-0 to remove margin bottom -->
+            </div>
+            <div class="col-md-4 col-sm-6">
+              <div class="d-flex justify-content-md-end justify-content-start p-3"> <!-- Flex utilities for alignment -->
+                <div class="rating-star d-flex align-items-center">
+                  <rating [(ngModel)]="rating" [readonly]="readonly" class="stars" [max]=5 (ngModelChange)="updateRating()"></rating>
+                  <span class="ratingnum badge bg-info align-middle ms-2">{{ rating }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+      <div class="col-10" >
+        <div class="card">
+          <div class="card-body">
+            <h3 class="fw-semibold">Quick Share </h3>
+            <share-buttons theme="circles-dark"
+                           [include]="['copy','email','mix','linkedin', 'pinterest', 'print', 'reddit', 'telegram','twitter', 'vk', 'xing', 'whatsapp']"
+                           [showIcon]="true"
+                           [showText]="true"
+                           [url]="internshipUrl"
+                           [title]="internship.intershipTitle"
+                           description="Check out this internship!"
+                           class="pt-5">
+            </share-buttons>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div><!--end col-->
+  </div><!--end row-->
+
+
+
+
+</div>
+
+  </div>
+
+</div>

@@ -1,0 +1,21 @@
+<!-- Inside your main file -->
+<div class="chat-leftsidebar-me-lg-4">
+  <div class="gemini-chat-container" [ngClass]="{'open': isChatOpen, 'closed': !isChatOpen}">
+    <div class="gemini-chat-header" (click)="toggleChat()">
+      <span class="toggle-icon">{{ isChatOpen ? '-' : '+' }}Talk To Gemini</span>
+    </div>
+    <div class="gemini-chat-body" *ngIf="isChatOpen" (click)="$event.stopPropagation()">
+      <div *ngFor="let message of chatHistory" class="message" [ngClass]="{'user-message': message.from === 'user', 'bot-message': message.from === 'bot'}">
+        <div [ngClass]="{'user-message-text': message.from === 'user', 'bot-message-text': message.from === 'bot'}">
+          {{ message.message }}
+        </div>
+      </div>
+      <div class="gemini-chat-input mt-10">
+        <div class="input-container">
+          <textarea [(ngModel)]="prompt" placeholder="Type your message..." (keyup.enter)="sendMessage()"></textarea>
+          <button (click)="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

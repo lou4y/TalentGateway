@@ -1,0 +1,25 @@
+<!-- category form -->
+<form [formGroup]="categoryForm" (ngSubmit)="updatecategory()">
+  <div class="modal-body">
+    <!-- Title field -->
+    <div class="mb-3">
+      <label for="title-field" class="form-label">Title</label>
+      <input type="text" id="title-field" class="form-control" placeholder="Enter title" formControlName="title" />
+    </div>
+    <!-- Company field -->
+    <div class="mb-3">
+      <label for="company-field" class="form-label">Company</label>
+      <input type="text" id="company-field" class="form-control" placeholder="Enter company" formControlName="company" />
+    </div>
+
+    <!-- Add more form fields for internship details here -->
+  </div>
+
+  <!-- Modal footer with close and save buttons -->
+  <div class="col-lg-8">
+    <div class="text-end mb-4">
+      <button type="submit" class="btn btn-primary">Update Internship</button>
+    </div>
+  </div>
+
+</form>

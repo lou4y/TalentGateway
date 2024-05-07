@@ -1,48 +1,30 @@
-<div class="container-fluid full-height-container">
+<div class="container-fluid h-500">
   <app-page-title title="Chat" [breadcrumbItems]="breadCrumbItems"></app-page-title>
 
   <div class="d-lg-flex">
     <div class="chat-leftsidebar me-lg-4">
-      <div class="">
+      <div>
         <div class="py-4 border-bottom">
           <div class="d-flex">
             <div class="flex-shrink-0 align-self-center me-3">
               <img src="assets/images/users/avatar-1.jpg" class="avatar-xs rounded-circle" alt="">
             </div>
             <div class="flex-grow-1">
-              <h5 class="font-size-15 mb-1"> {{currentUserId}}</h5>
+              <h5 class="font-size-15 mb-1">{{ currentUserId }}</h5>
               <p class="text-muted mb-0"><i class="mdi mdi-circle text-success align-middle me-1"></i> Active</p>
-            </div>
-
-            <div dropdown>
-              <div class="dropdown chat-noti-dropdown active">
-                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false" dropdownToggle>
-                  <i class="bx bx-bell bx-tada"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end" *dropdownMenu>
-                  <a class="dropdown-item" href="javascript: void(0);">Action</a>
-                  <a class="dropdown-item" href="javascript: void(0);">Another action</a>
-                  <a class="dropdown-item" href="javascript: void(0);">Something else here</a>
-                </div>
-              </div>
             </div>
           </div>
         </div>
-
         <div class="search-box chat-search-box py-4">
           <div class="position-relative">
-            <input type="text" class="form-control" placeholder="Search..." (keyup)="ContactSearch()" id="searchContact"
-              autocomplete="off">
+            <input type="text" class="form-control" placeholder="Search..." (keyup)="ContactSearch()" id="searchContact" autocomplete="off">
             <i class="bx bx-search-alt search-icon"></i>
           </div>
         </div>
-
         <div class="chat-leftsidebar-nav">
           <tabset [justified]="true" class="nav-pills nav-justified">
-
-
             <tab heading="Chat" class="">
+              <app-google-gemini class="mt-10"></app-google-gemini>
               <div class="py-4 tab-content">
                 <h5 class="font-size-14 mb-3">Recent</h5>
                 <ngx-simplebar style="position: relative; height: 410px;" #scrollEle>
@@ -56,36 +38,27 @@
                 </ngx-simplebar>
               </div>
             </tab>
-
-
-
-
-
-
             <tab heading="Groups" class="py-4 tab-content">
               <h5 class="font-size-14 mb-3">Groups</h5>
               <ul class="list-unstyled chat-list">
-<!--                ADD LI HERE                   -->
+                <!-- ADD LI HERE -->
               </ul>
             </tab>
-
-
             <tab heading="Contacts" class="py-4 tab-content">
               <h5 class="font-size-14 mb-3">Online Contacts</h5>
-              <ngx-simplebar style="height: 410px;" #scrollEle>
+              <ngx-simplebar style="height: 410px;">
                 <div *ngIf="connectedUser">
                   <div *ngFor="let user of connectedUser">
                     <div class="mt-4">
                       <div class="avatar-xs mb-3">
-                          <span class="avatar-title rounded-circle bg-primary-subtle text-primary">
-                            {{ user.fullName.charAt(0) }}
-                          </span>
+                        <span class="avatar-title rounded-circle bg-primary-subtle text-primary">
+                          {{ user.firstName.charAt(0) }}
+                        </span>
                       </div>
-
                       <ul class="list-unstyled chat-list">
                         <li>
                           <a href="javascript: void(0);">
-                            <h5 class="font-size-14 mb-0">{{ user.fullName }}</h5>
+                            <h5 class="font-size-14 mb-0">{{ user.firstName }}</h5>
                           </a>
                         </li>
                       </ul>
@@ -103,12 +76,11 @@
         <div class="p-4 border-bottom">
           <div class="row">
             <div class="col-md-4 col-9">
-              <h5 class="font-size-15 mb-1">user</h5>
+              <h5 class="font-size-15 mb-1">{{ recipientUsername }}</h5>
               <p class="text-muted mb-0"><i class="mdi mdi-circle text-success align-middle me-1"></i> Active now</p>
             </div>
             <div class="col-md-8 col-3">
               <ul class="list-inline user-chat-nav text-end mb-0">
-
                 <li class="list-inline-item">
                   <div class="dropdown">
                     <button class="btn nav-btn" type="button" (click)="openMeeting(chat.recipientId)">
@@ -116,146 +88,106 @@
                     </button>
                   </div>
                 </li>
-
-
-
-
-                <li class="list-inline-item d-none d-sm-inline-block">
-                  <div class="dropdown" dropdown>
-                    <button class="btn nav-btn dropdown-toggle" dropdownToggle type="button" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">
-                      <i class="bx bx-search-alt-2"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-md" *dropdownMenu>
-                      <form class="p-3">
-                        <div class="m-0">
-                          <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search ..."
-                              aria-label="Recipient's username">
-
-                            <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
-
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="list-inline-item  d-none d-sm-inline-block">
-                  <div class="dropdown" dropdown>
-                    <button class="btn nav-btn dropdown-toggle" type="button" data-toggle="dropdown" dropdownToggle
-                      aria-haspopup="true" aria-expanded="false">
-                      <i class="bx bx-cog"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end" *dropdownMenu>
-                      <a class="dropdown-item" href="javascript: void(0);">View Profile</a>
-                      <a class="dropdown-item" href="javascript: void(0);">Clear chat</a>
-                      <a class="dropdown-item" href="javascript: void(0);">Muted</a>
-                      <a class="dropdown-item" href="javascript: void(0);" (click)="deleteAllMessage($event)">Delete</a>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="list-inline-item">
-                  <div class="dropdown" dropdown>
-                    <button class="btn nav-btn dropdown-toggle" type="button" data-toggle="dropdown" dropdownToggle
-                      aria-haspopup="true" aria-expanded="false">
-                      <i class="bx bx-dots-horizontal-rounded"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end" *dropdownMenu>
-                      <a class="dropdown-item" href="javascript: void(0);">Action</a>
-                      <a class="dropdown-item" href="javascript: void(0);">Another action</a>
-                      <a class="dropdown-item" href="javascript: void(0);">Something else</a>
-                    </div>
-                  </div>
-                </li>
               </ul>
             </div>
           </div>
         </div>
-
         <div>
+
+
+
           <div class="chat-conversation p-3">
             <ngx-simplebar style="height: 470px;" #scrollRef>
               <ul class="list-unstyled">
-                <li>
-                  <div class="chat-day-title">
-                    <span class="title">Today</span>
-                  </div>
-                </li>
-                <li *ngFor="let message of chatMessages" [ngClass]="{ 'right': message.senderId === currentUserId, 'left': message.senderId !== currentUserId }">
-                  <div class="conversation-list">
-                    <div class="dropdown" dropdown>
-                      <a class="dropdown-toggle" href="javascript:void(0);" role="button" dropdownToggle>
-                        <i class="bx bx-dots-vertical-rounded"></i>
-                      </a>
-                      <div class="dropdown-menu" *dropdownMenu>
-                        <a class="dropdown-item" href="javascript:void(0);" (click)="copyMessage($event)">Copy</a>
-                        <a class="dropdown-item" href="javascript:void(0);">Save</a>
-                        <a class="dropdown-item" href="javascript:void(0);">Forward</a>
-                        <a class="dropdown-item" href="javascript:void(0);" (click)="deleteMessage($event)">Delete</a>
+                <ng-container *ngFor="let message of chatMessages; let i = index">
+                  <ng-container *ngIf="isFirstMessageOfTheDay(message, i)">
+                    <li>
+                      <div class="chat-day-title">
+                        <span class="title">{{ message.timestamp | date: 'mediumDate' }}</span>
+                      </div>
+                    </li>
+                  </ng-container>
+                  <li [ngClass]="{ 'right': message.senderId === currentUserId, 'left': message.senderId !== currentUserId }">
+                    <div class="conversation-list">
+                      <div class="dropdown" dropdown>
+                        <a class="dropdown-toggle" href="javascript:void(0);" role="button" dropdownToggle>
+                          <i class="bx bx-dots-vertical-rounded"></i>
+                        </a>
+                      </div>
+                      <div class="ctext-wrap">
+                        <div class="conversation-name">{{ message.senderId }}</div>
+                        <ng-container *ngIf="isImage(message.content)">
+                          <img [src]="message.content" alt="Image" class="chat-image" (click)="openFile(message.content)">
+                        </ng-container>
+                        <ng-container *ngIf="!isImage(message.content)">
+                          <p *ngIf="!isFile(message.content)" [innerHTML]="message.content"></p>
+                          <button *ngIf="isFile(message.content)" (click)="downloadFile(message.content)">
+                            {{ extractFileName(message.content) }}
+                          </button>
+                        </ng-container>
+                        <p class="chat-time mb-0"><i class="bx bx-time-five align-middle me-1"></i> {{ message.timestamp | date: 'mediumTime' }}</p>
                       </div>
                     </div>
-                    <div class="ctext-wrap">
-                      <div class="conversation-name">{{ message.senderId }}</div>
-                      <p [innerHTML]="message.content"></p> <!-- Updated line to use innerHTML property binding -->
-                      <p class="chat-time mb-0"><i class="bx bx-time-five align-middle me-1"></i> {{ message.timestamp | date: 'medium' }}</p>
-                    </div>
-                  </div>
-                </li>
-
+                  </li>
+                </ng-container>
               </ul>
             </ngx-simplebar>
-
           </div>
+
+
+
+
           <div class="p-3 chat-input-section">
-            <!-- Your existing form for sending messages -->
             <form (ngSubmit)="messageSend(chat.recipientId)" [formGroup]="formData" class="row">
               <div class="col">
                 <div class="position-relative">
-                  <input type="text" class="form-control chat-input" placeholder="Enter Message..."
-                         formControlName="message" [ngClass]="{'is-invalid': chatSubmit && form.message.errors}"
-                         [(ngModel)]="emoji" (blur)="onBlur()" (focus)="onFocus()">
+                  <input type="text" class="form-control chat-input" placeholder="Enter Message..." formControlName="message" [ngClass]="{'is-invalid': chatSubmit && form.message.errors}" [(ngModel)]="emoji">
                   <div *ngIf="chatSubmit && form.message.errors" class="invalid-feedback">
                     <span *ngIf="form.message.errors.required">This value is required.</span>
                   </div>
                   <div class="chat-input-links">
                     <ul class="list-inline mb-0">
-                      <li class="list-inline-item"><a href="javascript:void(0);" class="emoji-btn"
-                                                      data-toggle="tooltip" placement="top" tooltip="Emoji" id="emoji-btn"
-                                                      (click)="toggleEmojiPicker()"><i class="mdi mdi-emoticon-happy-outline"></i></a>
-                      </li>
-                      <emoji-mart class="emoji-mart" *ngIf="showEmojiPicker" (emojiSelect)="addEmoji($event)"
-                                  title="Pick your emoji…"></emoji-mart>
                       <li class="list-inline-item">
-                        <a href="javascript:void(0);" data-toggle="tooltip" placement="top" tooltip="Images" (click)="handleImageClick()">
-                          <i class="mdi mdi-file-image-outline"></i>
+                        <a href="javascript:void(0);" class="emoji-btn" data-toggle="tooltip" placement="top" tooltip="Emoji" id="emoji-btn" (click)="toggleEmojiPicker()">
+                          <i class="mdi mdi-emoticon-happy-outline"></i>
                         </a>
                       </li>
+                      <emoji-mart class="emoji-mart" *ngIf="showEmojiPicker" (emojiSelect)="addEmoji($event)" title="Pick your emoji…"></emoji-mart>
                       <li class="list-inline-item">
                         <a href="javascript:void(0);" data-toggle="tooltip" placement="top" tooltip="Add Files" (click)="handleAddFilesClick()">
-                          <i class="mdi mdi-file-document-outline"></i>
+                          <i class="mdi mdi-file-document-outline" (click)="triggerFileInput()"></i>
                         </a>
                       </li>
 
+                      <input
+                        type="file"
+                        (change)="onFileChange($event)"
+                        style="display: none;"
+                        id="fileInput"
+                        #fileInput
+                      />
+
+                      <li class="list-inline-item">
+                        <button (click)="fileSend(chat.recipientId)" data-toggle="tooltip" placement="top" tooltip="Send File">
+                          Send
+                        </button>
+                      </li>
 
                     </ul>
                   </div>
                 </div>
               </div>
               <div class="col-auto">
-                <button type="submit" class="btn btn-primary btn-rounded chat-send w-md"><span
-                  class="d-none d-sm-inline-block me-2">Send</span> <i class="mdi mdi-send"></i></button>
+                <button type="submit" class="btn btn-primary btn-rounded chat-send w-md">
+                  <span class="d-none d-sm-inline-block me-2">Send</span>
+                  <i class="mdi mdi-send"></i>
+                </button>
               </div>
             </form>
-
           </div>
         </div>
 
       </div>
     </div>
   </div>
-  <!-- end row -->
-
 </div>

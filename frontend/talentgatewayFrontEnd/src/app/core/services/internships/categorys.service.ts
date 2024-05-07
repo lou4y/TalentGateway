@@ -15,7 +15,7 @@ export class CategorysService {
     return this.httpClient.get<Category[]>(this.API_URL);
   }
 
-  createCategory(category: Category): Observable<Category> {
+  createCategory(category: { categoryName: any; userId: String; categoryDescription: any }): Observable<Category> {
     return this.httpClient.post<Category>(this.API_URL, category);
   }
 
@@ -29,6 +29,10 @@ export class CategorysService {
 
   updateCategory(category: Category): Observable<Category> {
     return this.httpClient.put<Category>(`${this.API_URL}/${category.categoryId}`, category);
+  }
+
+  getCategoriesByUser(userId: string): Observable<Category[]> {
+    return this.httpClient.get<Category[]>(`${this.API_URL}/user/${userId}`);
   }
 
 }

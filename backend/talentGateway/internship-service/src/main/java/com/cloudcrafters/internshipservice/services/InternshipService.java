@@ -5,6 +5,7 @@ import com.cloudcrafters.internshipservice.entites.Internship;
 import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface InternshipService {
@@ -38,4 +39,9 @@ public interface InternshipService {
 
     // Calculate the total number of internships for a specific user
     long getTotalInternshipsCountByUser(String userId);
+
+    long getTotalInternshipsr();
+
+    Map<Category, List<Internship>> getInternshipsGroupedByCategory();
+
 }

@@ -3,6 +3,7 @@ export interface User {
     username: string;
     firstName?: string;
     lastName?: string;
+    createddate?: number;
     token?: string;
     email: string;
     role: string[];
@@ -15,5 +16,6 @@ export interface Kuser {
     lastName: string;
     email: string;
     password?: string;
+    createdDate: number;
     isEmailVerified: boolean;
   }

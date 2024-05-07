@@ -16,7 +16,6 @@ import {User} from "../../../core/models/auth.models";
 import {AuthenticationService} from "../../../core/services/auth.service";
 import {Internship} from "../../../core/models/internship.model";
 import {InternshipsService} from "../../../core/services/internships/internships.service";
-import {AddTeamComponent} from "../../../FrontOffice/projects/add-team/add-team.component";
 import {UpdateInternshipComponent} from "../update-internship/update-internship.component";
 import {MatDialog} from "@angular/material/dialog";
 
@@ -29,7 +28,8 @@ export class ListInternshipsComponent implements OnInit {
   internships: any[] = [];
   totalRecords: number = 0;
   page: number = 1;
-  searchTerm: string = '';
+  searchTerm: string = ''; // Add this property for search term
+
   breadCrumbItems: any[] = [];
   startIndex: number = 0;
   endIndex: number = 0;
@@ -40,34 +40,20 @@ export class ListInternshipsComponent implements OnInit {
   internshipData: Internship | null = null; // For storing the currently edited internship
 
   user: User;
-  @ViewChild('content') content: TemplateRef<any>;
 
   constructor(private authService: AuthenticationService, private internshipsService: InternshipsService, private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router, private dialog: MatDialog) {
   }
 
   async ngOnInit(): Promise<void> {
-    /*this.getAllInternships();*/
-    this.initJobForm();
-
     this.user = await this.authService.currentUser();
     if (this.user) {
       if (this.user.role.includes('admin')) {
-        this.getAllInternships();
+        this.getAllInternships(); // Call getAllInternships() for admin role
       } else if (this.user.role.includes('company')) {
         this.getInternshipsByUser(this.user.id.toString());
       }
     }
   }
-
-
-  openModal(): void {
-    this.modalRef = this.modalService.show(this.content);
-  }
-
-  initJobForm(): void {
-
-  }
-
 
 
   updatePagination(): void {
@@ -77,10 +63,24 @@ export class ListInternshipsComponent implements OnInit {
     this.endIndex = endIndex;
   }
 
+
   getCurrentPageInternships(): any[] {
     const startIndex = (this.page - 1) * 5;
     const endIndex = Math.min(startIndex + 5, this.totalRecords);
-    return this.internships.slice(startIndex, endIndex);
+
+    // Filter internships based on search term
+    const filteredInternships = this.internships.filter(internship => {
+      const titleMatches = internship.intershipTitle.toLowerCase().includes(this.searchTerm.toLowerCase());
+      const companyMatches = internship.intershipCompany.toLowerCase().includes(this.searchTerm.toLowerCase());
+      return titleMatches || companyMatches;
+    });
+
+    return filteredInternships.slice(startIndex, endIndex);
+  }
+
+  // Add a method to handle search input changes
+  onSearchInputChange(): void {
+    this.page = 1; // Reset pagination when search term changes
   }
 
   pageChanged(event: any): void {
@@ -100,6 +100,8 @@ export class ListInternshipsComponent implements OnInit {
       }
     );
   }
+
+
 
 
   deleteInternship(id: number): void {
@@ -151,6 +153,7 @@ export class ListInternshipsComponent implements OnInit {
       });
   }
 
+
   searchInternships() {
     if (this.searchTerm.trim() !== '') {
       const searchTermLowerCase = this.searchTerm.toLowerCase();
@@ -167,17 +170,11 @@ export class ListInternshipsComponent implements OnInit {
   }
 
 
-
   viewInternshipDetails(internshipId: number): void {
     console.log('Internship ID:', internshipId);
     // Navigate to the specific route with the internship ID
     this.router.navigate(['internship-details', internshipId]);
   }
-
-
-
-
-
 
 
 
@@ -195,9 +192,6 @@ export class ListInternshipsComponent implements OnInit {
     );
   }
 
-  saveJob() {
-
-  }
 
   edit(internship: Internship): void {
     this.selectedinternships = { ...internship };
@@ -245,4 +239,11 @@ export class ListInternshipsComponent implements OnInit {
       });
     }
   }
+
+
+
 }
+
+
+
+
