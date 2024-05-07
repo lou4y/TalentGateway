@@ -5,16 +5,16 @@
         <div class="card-body">
           <h4 class="card-title mb-4">Create New Internship</h4>
           <form (submit)="createInternship()" [formGroup]="internshipForm" class="outer-repeater">
-                <!-- Internship Title -->
-                <div class="row mb-4">
-                  <label for="intershipTitle" class="col-form-label col-lg-2">Internship Title</label>
-                  <div class="col-lg-10">
-                    <input id="intershipTitle" name="intershipTitle" type="text" class="form-control" placeholder="Enter Internship Title..." formControlName="intershipTitle">
-                    <div *ngIf="internshipForm.get('intershipTitle').invalid && internshipForm.get('intershipTitle').touched" class="text-danger">
-                      Please enter a valid Title.
-                    </div>
-                  </div>
+            <!-- Internship Title -->
+            <div class="row mb-4">
+              <label for="intershipTitle" class="col-form-label col-lg-2">Internship Title</label>
+              <div class="col-lg-10">
+                <input id="intershipTitle" name="intershipTitle" type="text" class="form-control" placeholder="Enter Internship Title..." formControlName="intershipTitle">
+                <div *ngIf="internshipForm.get('intershipTitle').invalid && internshipForm.get('intershipTitle').touched" class="text-danger">
+                  Please enter a valid Title.
                 </div>
+              </div>
+            </div>
 
             <!-- Internship Description -->
             <div class="row mb-4">
@@ -185,14 +185,14 @@
             </div>-->
 
 
-<!--
-           Category Dropdown
--->
+            <!--
+                       Category Dropdown
+            -->
             <div class="row mb-4">
               <label for="categoryId" class="col-form-label col-lg-2">Category</label>
               <div class="col-lg-10">
                 <select id="categoryId" name="categoryId" class="form-control" formControlName="categoryId">
-                  <option *ngFor="let category of categories" [value]="category.categoryId">{{ category.categoryName }}</option>
+                  <option *ngFor="let category of categories" [value]="category.categoryName">{{ category.categoryName }}</option>
                 </select>
                 <div *ngIf="internshipForm.get('categoryId').invalid && internshipForm.get('categoryId').touched" class="text-danger">
                   Please select a category.
@@ -200,12 +200,12 @@
               </div>
             </div>
 
-                <!-- Submit Button -->
-                <div class="row justify-content-end">
-                  <div class="col-lg-10">
-                    <button type="submit" class="btn btn-primary">Create Internship</button>
-                  </div>
-                </div>
+            <!-- Submit Button -->
+            <div class="row justify-content-end">
+              <div class="col-lg-10">
+                <button type="submit" class="btn btn-primary">Create Internship</button>
+              </div>
+            </div>
           </form>
 
         </div>

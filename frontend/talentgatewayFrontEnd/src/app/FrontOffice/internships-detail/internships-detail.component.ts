@@ -28,7 +28,7 @@ export class InternshipsDetailComponent implements OnInit {
 isCompany: boolean = false;
   isStudent: boolean = false;
 
-  
+
   readonly: boolean = false;
   currentRate: number = 0;
   stepRate: number = 0;
@@ -69,6 +69,8 @@ isCompany: boolean = false;
   console.log("isStudent:", this.isStudent);
   console.log("isCompany:", this.isCompany);
 
+
+
   // Continuer avec le reste du code...
   this.breadCrumbItems = [{label: 'Jobs'}, {label: 'Job Details', active: true}];
 
@@ -84,6 +86,12 @@ isCompany: boolean = false;
 
   this.getOfferIdFromUrl();
 }
+
+
+  consultMySchedule() {
+    this.router.navigateByUrl('/calendar');
+  }
+
 
   getInternshipDetails(): void {
     this.internshipsService.getInternshipById(+this.internshipId).subscribe(

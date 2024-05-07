@@ -61,7 +61,7 @@ export class InternshipsComponent implements OnInit {
     this.user = await this.authService.currentUser();
 
     if (this.user) {
-      if (this.user.role.includes('admin')) {
+      if (this.user.role.includes('student')) {
         this.getAllInternships();
       } else if (this.user.role.includes('company')) {
         this.getInternshipsByUser(this.user.id.toString());

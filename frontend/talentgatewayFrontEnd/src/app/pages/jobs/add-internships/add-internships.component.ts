@@ -121,17 +121,23 @@ export class AddInternshipsComponent {
 
   createInternship(): void {
     if (this.internshipForm.valid && this.user) {
-      const categoryIdValue = this.internshipForm.get('categoryId').value;
+
+      const categoryNameValue = this.internshipForm.get('categoryId').value;
 
       const internshipData: Internship = {
         ...this.internshipForm.value,
         userId: this.user.id,
-        categoryId: categoryIdValue
-      };
+        categories: [
+          {
+            "categoryName": categoryNameValue,
+          }
 
+        ],
+      };
       this.internshipsService.createInternship(internshipData).subscribe(
         response => {
           this.toastr.success('Internship created successfully!', 'Success');
+          console.log('Internship created successfully:', response)
           this.internshipForm.reset();
         },
         error => {

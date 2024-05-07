@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {interval} from "rxjs";
 import {map} from "rxjs/operators";
+import {FileService} from "../../core/services/file.service";
+import {AdditionalUserDataService} from "../../core/services/additional-user-data.service";
+import {Router} from "@angular/router";
+import {AuthenticationService} from "../../core/services/auth.service";
+import {User} from "../../core/models/auth.models";
+import {AdditionalUserData} from "../../core/models/additional-user-data.model";
 
 @Component({
   selector: 'app-header-back',
@@ -9,6 +15,10 @@ import {map} from "rxjs/operators";
   styleUrls: ['./header-back.component.scss']
 })
 export class HeaderBackComponent {
+
+  user: User;
+  Image: string;
+  private userData: AdditionalUserData;
 
   // set the currenr year
   year: number = new Date().getFullYear();
@@ -60,11 +70,13 @@ export class HeaderBackComponent {
   _minutes: number;
   _seconds: number;
 
-  constructor() {
+  constructor(private fileService: FileService,
+              private userDataService: AdditionalUserDataService,
+              private router: Router, private authService: AuthenticationService) {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this._trialEndsAt = "2023-12-31";
 
     interval(3000).pipe(
@@ -76,6 +88,9 @@ export class HeaderBackComponent {
       this._minutes = this.getMinutes(this._diff);
       this._seconds = this.getSeconds(this._diff);
     });
+    this.user = await this.authService.currentUser();
+    this.userData = await this.userDataService.getAdditionalUserData(this.user.id).toPromise()
+    this.Image=await this.fileService.getImageFromFirestore(this.userData.profilePicture);
   }
 
   getDays(t) {
@@ -122,5 +137,13 @@ export class HeaderBackComponent {
    */
   onSectionChange(sectionId: string) {
     this.currentSection = sectionId;
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+
+  Login() {
+    this.authService.login();
   }
 }

@@ -34,15 +34,49 @@
           <a class="nav-link" href="javascript: void(0);" [ngxScrollTo]="'roadmap'" [ngxScrollToOffset]="5"
              [ngClass]="{'active':currentSection === 'roadmap'}">Feedback</a>
         </li>
-        
-        
-        
+
+
+
 
       </ul>
 
-      <div class="my-2 ms-lg-2">
-        <a href="javascript: void(0);" class="btn btn-outline-success w-xs">Sign in</a>
+      <div *ngIf="this.user; else loginBtn">
+        <!-- Your dropdown menu code when user is logged in -->
+        <div class="dropdown d-inline-block" dropdown>
+          <!-- Dropdown button -->
+          <button type="button" class="btn header-item" dropdownToggle id="page-header-user-dropdown">
+            <!-- User profile image and name -->
+            <img class="rounded-circle header-profile-user" src="{{ Image }}" alt="Header Avatar">
+            <span class="d-none d-xl-inline-block ms-1">{{user.firstName}} {{user.lastName}}</span>
+            <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+          </button>
+          <!-- Dropdown menu -->
+          <div class="dropdown-menu dropdown-menu-end" *dropdownMenu>
+            <!-- Dropdown items -->
+            <a class="dropdown-item" routerLink="/profile/view"><i class="bx bx-user font-size-16 align-middle me-1"></i>
+            PROFILE</a>
+            <a class="dropdown-item d-block" routerLink="/profile/Settings"><i class="bx bx-wrench font-size-16 align-middle me-1"></i>{{
+               SETTINGS'  </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="javascript: void(0);" (click)="logout()"><i
+              class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
+              Logout</a>
+          </div>
+        </div>
       </div>
+
+      <!-- Else block for login button -->
+      <ng-template #loginBtn>
+        <button style="color: white" type="button" class="btn header-item" (click)="Login()">
+        Login
+        </button>
+      </ng-template>
+
+
+
+
+
+
     </div>
   </div>
 </nav>
