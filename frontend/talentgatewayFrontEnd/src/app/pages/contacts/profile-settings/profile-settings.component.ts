@@ -237,7 +237,7 @@ export class ProfileSettingsComponent implements OnInit{
       const kuser :Kuser ={
         id: this.user.id,
         email: this.Email,
-        username: this.user.username,
+        userName: this.user.username,
         firstName: this.FirstName,
         lastName: this.LastName,
         createdDate: this.user.createddate,

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable  } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { User } from '../../core/models/auth.models';
@@ -19,7 +19,8 @@ export class SocketService {
 
   constructor(
     private keycloakService: KeycloakService,
-    private http: HttpClient
+    private http: HttpClient,
+
   ) { }
 
   public connect(user: User): void {
@@ -44,12 +45,16 @@ export class SocketService {
       const currentMessages = this.chatMessagesSubject.value;
       currentMessages.push(chatMessage);
       this.chatMessagesSubject.next(currentMessages);
+
     });
   }
+
+
 
   public sendMessage(destination: string, message?: any): void {
     if (message) {
       this.stompClient.send(destination, {}, JSON.stringify(message));
+      console.log( message);
     } else {
       this.stompClient.send(destination);
     }
@@ -73,6 +78,7 @@ export class SocketService {
           console.log('Chat messages fetched successfully:');
           // Emit fetched messages to trigger update in the chat component
           this.chatMessagesSubject.next(data);
+          console.log(data);
         },
         (error) => {
           console.error('Error fetching chat messages:', error);

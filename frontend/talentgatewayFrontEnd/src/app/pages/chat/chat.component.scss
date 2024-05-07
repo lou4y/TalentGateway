@@ -1,3 +1,29 @@
 .highlight {
   background-color: yellow;
 }
+/* Add this CSS to your stylesheet */
+.fixed-size-image {
+  max-width: 400px; /* Set a maximum width */
+  max-height: 400px; /* Set a maximum height */
+  width: auto; /* Let the width adjust to maintain aspect ratio */
+  height: auto; /* Let the height adjust to maintain aspect ratio */
+}
+
+.chat-conversation, {
+height: 70vh
+}
+
+/* Stretch list-unstyled to full height */
+.list-unstyled {
+  height: 100%; /* Ensure it takes up full height */
+  overflow-y: auto; /* Add scrollbar if content overflows */
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+/* Stretch list-unstyled to full height */
+.chat-leftsidebar {
+  display: flex;
+  flex-direction: column;
+}
+

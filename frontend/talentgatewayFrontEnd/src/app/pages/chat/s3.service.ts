@@ -8,8 +8,8 @@ import { map } from "rxjs/operators";
 })
 export class S3Service {
 
-  private s3UploadUrl = 'http://localhost:8088/aws/upload'; // Your backend API endpoint for image upload
-  private s3DownloadUrl = 'http://localhost:8088/aws/download'; // Your backend API endpoint for file download
+  private s3UploadUrl = 'http://localhost:8888/MESSAGING-SERVICE/aws/upload'; // Your backend API endpoint for image upload
+  private s3DownloadUrl = 'http://localhost:8888/MESSAGING-SERVICE/aws/download'; // Your backend API endpoint for file download
 
   constructor(private http: HttpClient) { }
 

@@ -5,262 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8646316c-3181-4bdc-a429-332ebfde49a0" name="Changes" comment="">
-
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/src/main/java/com/cloudcrafters/configservice/ConfigServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/src/main/java/com/cloudcrafters/configservice/ConfigServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-service/src/test/java/com/cloudcrafters/configservice/ConfigServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/config-service/src/test/java/com/cloudcrafters/configservice/ConfigServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/mvnw.cmd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/discovery-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/src/main/java/com/cloudcrafters/discoveryservice/DiscoveryServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/src/main/java/com/cloudcrafters/discoveryservice/DiscoveryServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discovery-service/src/test/java/com/cloudcrafters/discoveryservice/DiscoveryServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/src/test/java/com/cloudcrafters/discoveryservice/DiscoveryServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose-ons.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose-ons.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/cloudcrafters/gatewayservice/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/cloudcrafters/gatewayservice/CorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/cloudcrafters/gatewayservice/GatewayServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/cloudcrafters/gatewayservice/GatewayServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/app.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/app.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway-service/src/test/java/com/cloudcrafters/gatewayservice/GatewayServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/test/java/com/cloudcrafters/gatewayservice/GatewayServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/InternshipServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/InternshipServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/clients/UserRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/clients/UserRestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/configuration/RestTemplateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/configuration/RestTemplateConfig.java" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/InternshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/controller/InternshipController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/CategoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/CategoryDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/InternshipDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/daos/InternshipDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Internship.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Internship.java" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/CategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/InternshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/InternshipService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/ScheduledTasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/ScheduledTasks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/CategoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/InternshipServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/InternshipServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/header-front/header-front.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/header-front/header-front.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships-detail/internships-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships-detail/internships-detail.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships-detail/internships-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships-detail/internships-detail.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships/internships.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships/internships.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships/internships.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships/internships.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/confirmpages/confirmpages-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/confirmpages/confirmpages-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/core/models/categorys.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/core/models/categorys.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/core/services/internships/categorys.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/core/services/internships/categorys.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/core/services/internships/internships.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/core/services/internships/internships.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/dashboards/dashboards.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/dashboards/dashboards.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/dashboards/jobs/jobs.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/dashboards/jobs/jobs.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/dashboards/jobs/jobs.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/dashboards/jobs/jobs.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/add-internships/add-internships.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/add-internships/add-internships.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/add-internships/add-internships.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/add-internships/add-internships.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/categories/categories.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/categories/categories.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/categories/categories.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/categories/categories.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/grid/grid.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/grid/grid.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/grid/grid.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/grid/grid.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/grid/grid.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/grid/grid.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/internship-details/internship-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/internship-details/internship-details.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/jobs.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/jobs.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/list-internships/list-internships.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/list-internships/list-internships.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/list-internships/list-internships.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/jobs/list-internships/list-internships.component.ts" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/entites/Rating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/enums/InternshipType.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/enums/InternshipType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/enums/SkillLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/enums/SkillLevel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/models/Skill.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/models/Skill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/CategoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/InternshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/InternshipService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/LinkedInService.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/LinkedInService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/ScheduledTasks.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/services/ScheduledTasks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/CategoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/InternshipServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/java/com/cloudcrafters/internshipservice/servicesimpls/InternshipServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internship-service/src/test/java/com/cloudcrafters/internshipservice/InternshipServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/internship-service/src/test/java/com/cloudcrafters/internshipservice/InternshipServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/mvnw.cmd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interview-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/InterviewServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/InterviewServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/clients/OffreRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/clients/OffreRestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/clients/UserRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/clients/UserRestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/ApplicationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/ApplicationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/InterviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/InterviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/PDFExportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/controller/PDFExportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/dto/ApplicationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/dto/ApplicationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/dto/ApplicationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/dto/ApplicationResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/dto/InterviewRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/dto/InterviewRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/dto/InterviewResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/dto/InterviewResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/entities/Offre.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/entities/Offre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/model/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/model/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/model/Interview.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/model/Interview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/model/InterviewMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/model/InterviewMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/model/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/model/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/repository/Applicationrepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/repository/Applicationrepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/repository/InterviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/repository/InterviewRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/ApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/ApplicationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/IApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/IApplicationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/InterviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/InterviewService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/InterviewServiceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/InterviewServiceInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/PDFGeneratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/java/com/cloudcrafters/interviewservice/service/PDFGeneratorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interview-service/src/test/java/com/cloudcrafters/interviewservice/InterviewServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/interview-service/src/test/java/com/cloudcrafters/interviewservice/InterviewServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/MessagingServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/MessagingServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/config/CorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/config/CorsFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/config/CorsFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/config/WebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/config/WebSocketConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/controllers/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/controllers/ChatController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/controllers/MessagingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/controllers/MessagingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/daos/ChatMessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/daos/ChatMessageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/controllers/UserController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/daos/ChatRoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/daos/ChatRoomRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/daos/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/daos/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/entities/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/entities/ChatMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/entities/ChatNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/entities/ChatNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/entities/ChatRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/entities/ChatRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/enums/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/enums/Status.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/services/ChatMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/services/ChatMessageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/services/ChatRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/services/ChatRoomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/java/com/cloudcrafters/messagingservice/services/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/messaging-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/resources/static/call.html" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/resources/static/call.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/resources/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/resources/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messaging-service/src/main/resources/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/messaging-service/src/main/resources/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/ProjectServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/ProjectServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/clients/UserRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/clients/UserRestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/config/GlobalConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/config/GlobalConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/controllers/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/controllers/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/controllers/ConfigTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/controllers/ConfigTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/controllers/LikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/controllers/LikeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/controllers/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/controllers/ProjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/controllers/TeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/controllers/TeamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/controllers/TwilioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/controllers/TwilioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/controllers/UserRoleInTeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/controllers/UserRoleInTeamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/daos/CommentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/daos/CommentDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/daos/LikeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/daos/LikeDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/daos/ProjectDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/daos/ProjectDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/daos/TeamDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/daos/TeamDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/daos/UserRoleInTeamDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/daos/UserRoleInTeamDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/entities/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/entities/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/entities/Like.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/entities/Like.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/entities/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/entities/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/entities/SmsRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/entities/SmsRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/entities/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/entities/Team.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/entities/UserRoleInTeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/entities/UserRoleInTeam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/enums/ProjectStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/enums/ProjectStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/serviceImplementation/CommentServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/serviceImplementation/CommentServiceImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/serviceImplementation/LikeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/serviceImplementation/LikeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/serviceImplementation/ProjectServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/serviceImplementation/ProjectServiceImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/serviceImplementation/TeamServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/serviceImplementation/TeamServiceImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/serviceImplementation/TwilioSmsSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/serviceImplementation/TwilioSmsSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/serviceImplementation/UserRoleInTeamServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/serviceImplementation/UserRoleInTeamServiceImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/services/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/services/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/services/LikeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/services/LikeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/services/ProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/services/ProjectService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/services/SmsSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/services/SmsSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/services/TeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/services/TeamService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/services/TwilioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/services/TwilioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/services/UserRoleInTeamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/services/UserRoleInTeamService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/twilioconfig/TwilioConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/twilioconfig/TwilioConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/twilioconfig/TwilioInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/twilioconfig/TwilioInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/test/java/com/cloudcrafters/projectservice/ProjectServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/test/java/com/cloudcrafters/projectservice/ProjectServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Clients/ProjectRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Clients/ProjectRestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Clients/UserRestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Clients/UserRestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Controller/ModuleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Controller/ModuleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Controller/TaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Dao/ModuleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Dao/ModuleDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Dao/TaskDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Dao/TaskDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Entities/Module.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Entities/Module.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Entities/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Entities/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Enums/Priority.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Enums/Priority.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Enums/Statut.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/Enums/Statut.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/TaskServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/TaskServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/dto/ModuleResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/dto/ModuleResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/dto/TaskResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/dto/TaskResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/models/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/models/Project.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/services/ModuleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/services/ModuleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/services/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/services/TaskService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/ModuleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/ModuleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/java/com/cloudcrafters/taskservice/servicesImp/TaskServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task-service/src/test/java/com/cloudcrafters/taskservice/TaskServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/task-service/src/test/java/com/cloudcrafters/taskservice/TaskServiceApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/mvnw.cmd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/UserServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/controller/SkillController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/controller/SkillController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/dao/SkillDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/dao/SkillDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/dto/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/dto/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/dto/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/dto/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/entity/Skill.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/entity/Skill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/enums/SkillLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/enums/SkillLevel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/keycloakclient/RoleResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/keycloakclient/RoleResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/keycloakclient/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/keycloakclient/UserResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/security/KeycloakSecurityUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/security/KeycloakSecurityUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/services/SkillService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/services/SkillService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/servicesImpl/SkillServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/cloudcrafters/userservice/servicesImpl/SkillServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/policy-enforcer.json" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/policy-enforcer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/test/java/com/cloudcrafters/userservice/UserServiceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/test/java/com/cloudcrafters/userservice/UserServiceApplicationTests.java" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/../../frontend/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/node_modules/gemini-client/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/node_modules/gemini-client/dist/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/node_modules/gemini-client/dist/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/node_modules/gemini-client/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/core/models/auth.models.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/core/models/auth.models.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/chat/chat.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/chat/chat.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/chat/chat.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/chat/chat.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/chat/chat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/chat/chat.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/chat/components/google-gemini/google-gemini.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/chat/components/google-gemini/google-gemini.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/chat/s3.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/chat/s3.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/chat/socket.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/chat/socket.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/contacts/profile-settings/profile-settings.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/pages/contacts/profile-settings/profile-settings.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,11 +44,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
-
         <option value="HTML File" />
-
         <option value="Class" />
-
       </list>
     </option>
   </component>
@@ -297,6 +64,9 @@
     &quot;accountId&quot;: &quot;a384d6a8-9cd5-43ee-843d-d4cf25ba967b&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/openjdk-21.0.2/Contents/Home/lib/src.zip!/java.base/java/util/Optional.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
@@ -306,14 +76,6 @@
 }</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -387,7 +149,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.TaskServiceApplication">
+  <component name="RunManager" selected="Spring Boot.MessagingServiceApplication">
     <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.configservice.ConfigServiceApplication" />
@@ -542,7 +304,6 @@
       <workItem from="1714835405140" duration="427000" />
       <workItem from="1714844875918" duration="3286000" />
       <workItem from="1714944620422" duration="2489000" />
-
       <workItem from="1714664541896" duration="837000" />
       <workItem from="1714764456291" duration="4256000" />
       <workItem from="1714813359828" duration="4845000" />
@@ -551,7 +312,6 @@
       <workItem from="1714580949780" duration="5708000" />
       <workItem from="1714643271964" duration="3313000" />
       <workItem from="1714653121497" duration="5470000" />
-
       <workItem from="1714810403810" duration="10848000" />
       <workItem from="1714854508160" duration="463000" />
       <workItem from="1714855043763" duration="83000" />
@@ -562,7 +322,6 @@
       <workItem from="1715001095333" duration="3575000" />
       <workItem from="1715009347644" duration="291000" />
       <workItem from="1715009789807" duration="1300000" />
-
       <workItem from="1714810403810" duration="1044000" />
       <workItem from="1714834100383" duration="1033000" />
       <workItem from="1714896151082" duration="1723000" />
@@ -571,7 +330,10 @@
       <workItem from="1714987802989" duration="427000" />
       <workItem from="1714988714954" duration="608000" />
       <workItem from="1714998356608" duration="866000" />
-
+      <workItem from="1715082013054" duration="206000" />
+      <workItem from="1715082281434" duration="5205000" />
+      <workItem from="1715088214043" duration="17386000" />
+      <workItem from="1715119072549" duration="2018000" />
     </task>
     <servers />
   </component>
