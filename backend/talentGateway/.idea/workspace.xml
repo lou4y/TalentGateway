@@ -39,58 +39,58 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "marwen69"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;marwen69&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/lou4y/TalentGateway.git",
-    "accountId": "a384d6a8-9cd5-43ee-843d-d4cf25ba967b"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/lou4y/TalentGateway.git&quot;,
+    &quot;accountId&quot;: &quot;a384d6a8-9cd5-43ee-843d-d4cf25ba967b&quot;
   }
-}]]></component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2g9XMIhtTF9gdSa29rG4rQutiE1" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.ConfigServiceApplication.executor": "Run",
-    "Spring Boot.DiscoveryServiceApplication.executor": "Run",
-    "Spring Boot.GatewayServiceApplication.executor": "Run",
-    "Spring Boot.InternshipServiceApplication.executor": "Run",
-    "Spring Boot.InterviewServiceApplication.executor": "Run",
-    "Spring Boot.MessagingServiceApplication.executor": "Run",
-    "Spring Boot.ProjectServiceApplication.executor": "Run",
-    "Spring Boot.TaskServiceApplication.executor": "Run",
-    "Spring Boot.UserServiceApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/TalentGateway/backend/talentGateway/discovery-service",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.configurations.included.in.services": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ConfigServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DiscoveryServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GatewayServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.InternshipServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.InterviewServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.MessagingServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ProjectServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.TaskServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.UserServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/TalentGateway/backend/talentGateway/discovery-service&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -100,7 +100,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.MessagingServiceApplication">
+  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
     <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.configservice.ConfigServiceApplication" />
@@ -190,10 +190,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.UserServiceApplication" />
+        <item itemvalue="Spring Boot.ProjectServiceApplication" />
         <item itemvalue="Spring Boot.InterviewServiceApplication" />
         <item itemvalue="Spring Boot.MessagingServiceApplication" />
         <item itemvalue="Spring Boot.TaskServiceApplication" />
-        <item itemvalue="Spring Boot.ProjectServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -212,6 +212,81 @@
       <created>1715110720284</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+      <updated>1713877015560</updated>
+      <workItem from="1712138042854" duration="817000" />
+      <workItem from="1712139002196" duration="8446000" />
+      <workItem from="1712695130040" duration="17685000" />
+      <workItem from="1712741386228" duration="16999000" />
+      <workItem from="1712829630536" duration="835000" />
+      <workItem from="1712840004637" duration="5945000" />
+      <workItem from="1712871986528" duration="5091000" />
+      <workItem from="1712918861258" duration="15987000" />
+      <workItem from="1713113632895" duration="3369000" />
+      <workItem from="1713188873240" duration="1428000" />
+      <workItem from="1713203854585" duration="1108000" />
+      <workItem from="1713205594122" duration="6284000" />
+      <workItem from="1713255502663" duration="6969000" />
+      <workItem from="1713285716367" duration="5365000" />
+      <workItem from="1713295793348" duration="4641000" />
+      <workItem from="1713302654936" duration="8230000" />
+      <workItem from="1713341798830" duration="5106000" />
+      <workItem from="1713351323358" duration="40000" />
+      <workItem from="1713428482348" duration="691000" />
+      <workItem from="1713555177545" duration="3394000" />
+      <workItem from="1713257307479" duration="85000" />
+      <workItem from="1713257409992" duration="5786000" />
+      <workItem from="1713293582230" duration="8448000" />
+      <workItem from="1713341555773" duration="3679000" />
+      <workItem from="1713428638296" duration="2888000" />
+      <workItem from="1713472342919" duration="4996000" />
+      <workItem from="1713477469618" duration="615000" />
+      <workItem from="1713478488282" duration="437000" />
+      <workItem from="1713371401772" duration="1406000" />
+      <workItem from="1713372837730" duration="1457000" />
+      <workItem from="1713375000809" duration="3375000" />
+      <workItem from="1713775018762" duration="11680000" />
+      <workItem from="1713867787787" duration="3603000" />
+      <workItem from="1713893965920" duration="4008000" />
+      <workItem from="1713946583089" duration="2628000" />
+      <workItem from="1714226469638" duration="3061000" />
+      <workItem from="1714235027201" duration="1714000" />
+      <workItem from="1714237186425" duration="1728000" />
+      <workItem from="1714241816586" duration="9427000" />
+      <workItem from="1714304297048" duration="14401000" />
+      <workItem from="1714323010350" duration="3300000" />
+      <workItem from="1714338405276" duration="2338000" />
+      <workItem from="1714384899981" duration="4864000" />
+      <workItem from="1713877018828" duration="9037000" />
+      <workItem from="1713910753322" duration="1834000" />
+      <workItem from="1713946589375" duration="3944000" />
+      <workItem from="1713990809093" duration="1336000" />
+      <workItem from="1714033673824" duration="4758000" />
+      <workItem from="1714210600001" duration="5738000" />
+      <workItem from="1714405108891" duration="176000" />
+      <workItem from="1714489870997" duration="2354000" />
+      <workItem from="1714551536440" duration="5218000" />
+      <workItem from="1714637996103" duration="374000" />
+      <workItem from="1714643326345" duration="2765000" />
+      <workItem from="1714650547937" duration="1424000" />
+      <workItem from="1714653085508" duration="3638000" />
+      <workItem from="1714664541896" duration="837000" />
+      <workItem from="1714764456291" duration="4256000" />
+      <workItem from="1714813359828" duration="4845000" />
+      <workItem from="1714813359828" duration="4234000" />
+      <workItem from="1714551536440" duration="2530000" />
+      <workItem from="1714580949780" duration="5708000" />
+      <workItem from="1714643271964" duration="3313000" />
+      <workItem from="1714653121497" duration="5470000" />
+      <workItem from="1714810403810" duration="1044000" />
+      <workItem from="1714834100383" duration="1033000" />
+      <workItem from="1714896151082" duration="1723000" />
+      <workItem from="1714899768856" duration="3622000" />
+      <workItem from="1714937853883" duration="216000" />
+      <workItem from="1714987802989" duration="427000" />
+      <workItem from="1714988714954" duration="608000" />
+      <workItem from="1714998356608" duration="991000" />
+      <workItem from="1715059436456" duration="3381000" />
+      <workItem from="1715113742040" duration="2578000" />
       <updated>1715110720284</updated>
       <workItem from="1715110722871" duration="6402000" />
     </task>
