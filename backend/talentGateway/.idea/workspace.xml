@@ -261,6 +261,8 @@
 
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 
+      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/ProjectServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/ProjectServiceApplication.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,11 +276,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
+        <option value="Class" />
 
         <option value="HTML File" />
 
         <option value="Class" />
-
       </list>
     </option>
   </component>
@@ -570,8 +572,10 @@
       <workItem from="1714937853883" duration="216000" />
       <workItem from="1714987802989" duration="427000" />
       <workItem from="1714988714954" duration="608000" />
-      <workItem from="1714998356608" duration="866000" />
+      <workItem from="1714998356608" duration="991000" />
+      <workItem from="1715059436456" duration="3132000" />
 
+      <workItem from="1714998356608" duration="866000" />
     </task>
     <servers />
   </component>
