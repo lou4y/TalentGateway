@@ -8,18 +8,20 @@ import {CdkStepperModule} from "@angular/cdk/stepper";
 import {MatIconModule} from "@angular/material/icon";
 import {NgSelectModule} from "@ng-select/ng-select";
 import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
+import {RouterLink} from "@angular/router";
 
 @NgModule({
   declarations: [ConfirmProfileDetailsComponent,VerificationComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    NgStepperModule,
-    CdkStepperModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    NgSelectModule,
-    BsDatepickerModule
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        NgStepperModule,
+        CdkStepperModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        NgSelectModule,
+        BsDatepickerModule,
+        RouterLink
+    ]
 })
 export class ConfirmpagesModule { }
