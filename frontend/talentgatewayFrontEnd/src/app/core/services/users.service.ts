@@ -7,7 +7,7 @@ import {Kuser, User} from "../models/auth.models";
   providedIn: 'root'
 })
 export class UsersService {
-  private baseUrl = 'http://localhost:8089/keycloak'
+  private baseUrl = 'http://localhost:8888/USER-SERVICE/keycloak'
   constructor(private http: HttpClient) { }
 
 

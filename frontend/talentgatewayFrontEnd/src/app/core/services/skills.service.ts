@@ -9,7 +9,7 @@ import {Skill} from "../models/skill.model";
 export class SkillsService {
 
 
-  private baseUrl = 'http://localhost:8089/profile'; // Update the base URL
+  private baseUrl = 'http://localhost:8888/USER-SERVICE/profile'; // Update the base URL
 
   constructor(private http: HttpClient) { }
 

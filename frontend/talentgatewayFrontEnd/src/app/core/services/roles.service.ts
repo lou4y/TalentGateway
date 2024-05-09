@@ -9,7 +9,7 @@ import {map} from "rxjs/operators";
 })
 export class RolesService {
 
-  private baseUrl = 'http://localhost:8089/keycloak/users'; // Update the base URL
+  private baseUrl = 'http://localhost:8888/USER-SERVICE/keycloak/users'; // Update the base URL
 
   constructor(private http: HttpClient) { }
 

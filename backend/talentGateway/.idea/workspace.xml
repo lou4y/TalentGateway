@@ -6,16 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="143a82e0-dbbf-4c42-a7dc-976e41afcba0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/serviceImplementation/DatabaseBackupScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/java/com/cloudcrafters/projectservice/serviceImplementation/DatabaseBackupScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/project-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships-detail/internships-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/internships-detail/internships-detail.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/projects/add-team/add-team.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/projects/add-team/add-team.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/projects/detail-project/detail-project.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/FrontOffice/projects/detail-project/detail-project.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/services/team.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/src/app/services/team.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/talentgatewayFrontEnd/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +23,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-
         <option value="Class" />
       </list>
     </option>
@@ -49,7 +42,6 @@
     &quot;accountId&quot;: &quot;a384d6a8-9cd5-43ee-843d-d4cf25ba967b&quot;
   }
 }</component>
-
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -105,11 +97,7 @@
       </set>
     </option>
   </component>
-
   <component name="RunManager" selected="Spring Boot.GatewayServiceApplication">
-
-
-
     <configuration name="ConfigServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="config-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.cloudcrafters.configservice.ConfigServiceApplication" />
@@ -278,7 +266,6 @@
       <workItem from="1714643326345" duration="2765000" />
       <workItem from="1714650547937" duration="1424000" />
       <workItem from="1714653085508" duration="3638000" />
-
       <workItem from="1714664541896" duration="837000" />
       <workItem from="1714764456291" duration="4256000" />
       <workItem from="1714813359828" duration="4845000" />
@@ -287,7 +274,6 @@
       <workItem from="1714580949780" duration="5708000" />
       <workItem from="1714643271964" duration="3313000" />
       <workItem from="1714653121497" duration="5470000" />
-
       <workItem from="1714810403810" duration="1044000" />
       <workItem from="1714834100383" duration="1033000" />
       <workItem from="1714896151082" duration="1723000" />
@@ -302,6 +288,7 @@
       <workItem from="1715120292372" duration="3576000" />
       <workItem from="1715155870525" duration="2260000" />
       <workItem from="1715195071625" duration="797000" />
+      <workItem from="1715242445137" duration="3070000" />
     </task>
     <servers />
   </component>
