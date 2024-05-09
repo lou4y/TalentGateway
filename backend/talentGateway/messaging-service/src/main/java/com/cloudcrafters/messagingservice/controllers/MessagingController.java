@@ -9,6 +9,9 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
+import com.cloudcrafters.messagingservice.services.ChatRoomService;
+import com.cloudcrafters.messagingservice.entities.ChatRoom;
+
 
 import java.util.List;
 
@@ -22,6 +25,8 @@ public class MessagingController {
     private final UserService userService;
     private final ChatMessageService chatMessageService;
     private final SimpMessagingTemplate messagingTemplate;
+    private final ChatRoomService chatRoomService;
+
 
 
 
@@ -47,8 +52,8 @@ public class MessagingController {
     //TESTED APIs
 
     @GetMapping("/user-chats/{userId}")
-    public ResponseEntity<List<ChatMessage>> getUserChats(@PathVariable String userId) {
-        List<ChatMessage> userChats = chatMessageService.findUserChats(userId);
+    public ResponseEntity<List<ChatRoom>> getUserChats(@PathVariable String userId) {
+        List<ChatRoom> userChats = chatRoomService.findUserChats(userId);
         return ResponseEntity.ok(userChats);
     }
 
@@ -80,7 +85,12 @@ public class MessagingController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/create-chat")
+    public ResponseEntity<String> createChat(@RequestParam String senderId, @RequestParam String recipientId) {
+        String chatId = chatRoomService.getChatRoomId(senderId, recipientId, true)
+                .orElseThrow(() -> new RuntimeException("Failed to create chat"));
 
-
+        return ResponseEntity.ok(chatId);
+    }
 
 }

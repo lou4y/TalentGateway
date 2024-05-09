@@ -5,12 +5,15 @@ import { Router } from "@angular/router";
 import { Subscription } from 'rxjs';
 import { ChatMessage, Chat } from './chat.model';
 import { AuthenticationService } from "../../core/services/auth.service";
-import { User } from "../../core/models/auth.models";
+import { User,  Kuser } from "../../core/models/auth.models";
 import { VideoConferenceUrlService } from "../../chatComponents/video-conference/VideoConferenceUrl.service";
 import { SocketService } from './socket.service';
 import { KeycloakService } from 'keycloak-angular';
 import { GeminiService } from './components/google-gemini/google-gemini.service';
 import { S3Service } from './s3.service';
+import {FileService} from "../../core/services/file.service";
+import {AdditionalUserDataService} from "../../core/services/additional-user-data.service";
+import {AdditionalUserData} from "../../core/models/additional-user-data.model";
 
 
 @Component({
@@ -28,7 +31,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   formData: UntypedFormGroup;
   chatSubmit: boolean;
   emoji: any = '';
-  connectedUser: User[] | undefined | null;
+  connectedUser: Kuser[] | undefined | null;
   userChats: any[] = [];
   chatMessages: ChatMessage[] = [];
   chatMessagesSubscription: Subscription;
@@ -38,7 +41,9 @@ export class ChatComponent implements OnInit, AfterViewInit {
   recipientUsername: string;
   showEmojiPicker = false;
   currentUser: User;
-
+  user: User;
+  Image: string;
+  private userData: AdditionalUserData;
   selectedFileName: string | null = null;
   url: any;
   @ViewChild('fileInput') fileInputRef!: ElementRef;
@@ -46,7 +51,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
               private authService: AuthenticationService, private conferenceUrlService: VideoConferenceUrlService,
               private socketService: SocketService, private keycloakService: KeycloakService,
               private geminiService: GeminiService, private cdr: ChangeDetectorRef,
-               private s3Service: S3Service) {
+               private s3Service: S3Service, private fileService: FileService, private userDataService: AdditionalUserDataService) {
     this.auth = authService;
   }
 
@@ -75,24 +80,26 @@ export class ChatComponent implements OnInit, AfterViewInit {
       console.log('Connected to WebSocket server');
     });
 
-    this.chatMessagesSubscription = this.socketService.chatMessages$.subscribe(
+    this.socketService.chatMessages$.subscribe(
       (messages) => {
         this.chatMessages = messages;
+        this.cdr.detectChanges();
       }
     );
 
-    this.socketService.chatMessages$.subscribe(
+    this.chatMessagesSubscription = this.socketService.chatMessages$.subscribe(
       (messages) => {
         this.chatMessages = messages;
         this.cdr.detectChanges(); // Trigger change detection
       }
     );
+
+    this.user = await this.authService.currentUser();
+    this.userData = await this.userDataService.getAdditionalUserData(this.user.id).toPromise()
+    this.Image=await this.fileService.getImageFromFirestore(this.userData.profilePicture);
   }
 
-  ngOnDestroy(): void {
-    // Unsubscribe from the subscription to prevent memory leaks
-    this.chatMessagesSubscription.unsubscribe();
-  }
+
 
 
   ngAfterViewInit() {
@@ -101,10 +108,11 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
 
   fetchConnectedUser() {
-    this.http.get<User[]>('http://localhost:8089/keycloak/users')
+    this.http.get<Kuser[]>('http://localhost:8089/keycloak/users')
       .subscribe(
         (data) => {
-          this.connectedUser = data; },
+          this.connectedUser = data;
+          console.log('Connected user:', this.connectedUser);},
         (error) => {
           console.error('Error fetching connected user:', error);
         }
@@ -116,7 +124,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
 
   fetchUserChats(userId: string) {
-    this.http.get<ChatMessage[]>(`http://localhost:8088/api/user-chats/${userId}`)
+    this.http.get<ChatMessage[]>(`http://localhost:8888/MESSAGING-SERVICE/api/user-chats/${userId}`)
       .subscribe(
         (data) => {
           const userChats = data.map(chat => ({
@@ -125,6 +133,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
           }));
           this.userChats = this.removeDuplicates(userChats, 'recipientId');
           this.userChats = this.userChats.filter(chat => chat.recipientId !== userId);
+          console.log( this.userChats);
         },
         (error) => {
           console.error('Error fetching user chats:', error);
@@ -151,13 +160,17 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
   openChat(chat: Chat) {
     this.fetchChatMessages(chat.chatId);
-    this.fetchUserChats(this.currentUserId);
     this.chat = { chatId: chat.chatId, recipientId: chat.recipientId };
     this.recipientUsername = chat.recipientId;
+
+    console.log( chat);
     setTimeout(() => {
       this.scrollChatToBottom();
     }, 100);
   }
+
+
+
 
   scrollChatToBottom() {
     if (this.scrollRef !== undefined) {
@@ -201,7 +214,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
 
 
-  // keep
   ContactSearch() {
     var input: any, filter: any, ul: any, li: any, a: any | undefined, i: any, txtValue: any;
     input = document.getElementById("searchContact") as HTMLAreaElement;
@@ -221,10 +233,9 @@ export class ChatComponent implements OnInit, AfterViewInit {
     })
   }
 
-  //Meetings
   sendMeetingUrl(messageData: any): void {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.http.post<any>('http://localhost:8088/api/send-message', messageData, { headers })
+    this.http.post<any>('http://localhost:8888/MESSAGING-SERVICE/api/send-message', messageData, { headers })
       .toPromise()
       .then(() => {
         console.log('Message sent successfully');
@@ -265,15 +276,45 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
 
 
+  async createChatWithUser(username: string): Promise<void> {
+    try {
+      const currentUser = await this.authService.currentUser();
+      const senderId = currentUser.username;
+      const recipientId = username;
+      console.log(username)
+      console.log(this.userChats)
+      const existingChat: Chat = this.userChats.find(chat => chat.recipientId === recipientId);
+      console.log(username)
 
+      if (existingChat) {
+        this.openChat(existingChat);
+      }else {
+
+        // Adjust the request payload to include the senderId and recipientId as query parameters
+        const response = await this.http.post<any>('http://localhost:8888/MESSAGING-SERVICE/api/create-chat', null, {
+          params: {senderId, recipientId}
+        }).toPromise();
+
+        const chatId = response.data.chatId;
+
+        const newChat: Chat = {_id: null, chatId: null, senderId, recipientId, lastMessage: null, _class: null};
+        this.userChats.push(newChat);
+        console.log(newChat);
+        this.openChat(newChat);
+
+
+        console.log('Chat created successfully with chat ID:', chatId);
+      }
+    } catch (error) {
+      console.error('Error creating chat:', error);
+    }
+  }
 
 
   async uploadFile(file: File): Promise<void> {
     try {
       const fileUrl = await this.s3Service.uploadImage(file).toPromise();
       console.log("File uploaded to S3:", fileUrl);
-
-      // Assign the file URL to a property for later use
       this.url = fileUrl;
       this.selectedFileName = file.name;
     } catch (error) {
@@ -306,7 +347,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // New method to check if the content is an image URL
   isImage(content: string): boolean {
     if (!content) {
       return false;
@@ -316,58 +356,32 @@ export class ChatComponent implements OnInit, AfterViewInit {
     return extension ? imageExtensions.includes(extension) : false;
   }
 
-  // Inside the component class
 
-// New method to check if the content is a file URL
   isFile(content: string): boolean {
-    // Check if the content starts with 'http://' or 'https://'
     return content && (content.startsWith('http://') || content.startsWith('https://'));
   }
 
 // Method to download the file
   downloadFile(url: string): void {
-    // Open the file URL in a new tab to trigger the download
     window.open(url, '_blank');
   }
-// Inside the component class
 
-// New method to extract file name from URL
   extractFileName(url: string): string {
     const prefix = 'https://msgappfiles.s3.amazonaws.com/';
-    // Check if the URL starts with the expected prefix
     if (url.startsWith(prefix)) {
-      // Extract the file name by removing the prefix
       return url.substring(prefix.length);
     } else {
-      // If the URL doesn't match the expected pattern, return the full URL
       return url;
     }
   }
 
-
-  isSameDay(prevDate: any, currDate: any): boolean {
-    // Check if both dates are valid Date objects
-    if (!(prevDate instanceof Date) || !(currDate instanceof Date)) {
-      return false;
-    }
-
-    // Compare the year, month, and day of the two dates
-    return (
-      prevDate.getFullYear() === currDate.getFullYear() &&
-      prevDate.getMonth() === currDate.getMonth() &&
-      prevDate.getDate() === currDate.getDate()
-    );
-  }
-
   isFirstMessageOfTheDay(message: ChatMessage, index: number): boolean {
     if (index === 0) {
-      return true; // First message is always the first of the day
+      return true;
     }
-
     const currentMessageDate = new Date(message.timestamp);
     const previousMessageDate = new Date(this.chatMessages[index - 1].timestamp);
-
-    // Compare the date part only (without time)
     return currentMessageDate.toDateString() !== previousMessageDate.toDateString();
   }
+
 }
