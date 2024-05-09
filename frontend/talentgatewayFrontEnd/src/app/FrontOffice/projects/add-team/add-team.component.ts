@@ -39,6 +39,7 @@ export class AddTeamComponent implements OnInit {
     this.searchControl.valueChanges.subscribe((value) => {
       this.filterUsers(value); // Filtrage des utilisateurs
     });
+    console.log("projjttt",this.data);
   }
 
   getAllUsers() {
@@ -98,6 +99,7 @@ export class AddTeamComponent implements OnInit {
     this.teamService.addTeamMemberToProject(this.projectId, userId, memberRole).subscribe(
         (response) => {
 
+          console.log("pooo",this.projectId);
 
             this.teamService.sendSms(phoneNumber, message).subscribe(
                 () =>Swal.fire({

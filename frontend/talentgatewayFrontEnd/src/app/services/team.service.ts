@@ -35,7 +35,7 @@ export class TeamService {
     memberRole: string
   ): Observable<string> {
     const params = new HttpParams()
-      .set('projectId', projectId.toString())
+      .set('projectId', projectId)
       .set('userId', userId)
       .set('memberRole', memberRole);
 

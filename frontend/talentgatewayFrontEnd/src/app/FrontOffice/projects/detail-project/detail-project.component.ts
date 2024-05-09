@@ -67,7 +67,7 @@ export class DetailProjectComponent {
   openAddTeamDialog() {
     this.dialog.open(AddTeamComponent, {
       width: '550px', // Taille du dialogue
-      data: { projectId: this.projectId.crea }, // Passez l'ID du projet
+      data: { projectId: this.projectId }, // Passez l'ID du projet
     });
     this.loadProjectData();
   }
