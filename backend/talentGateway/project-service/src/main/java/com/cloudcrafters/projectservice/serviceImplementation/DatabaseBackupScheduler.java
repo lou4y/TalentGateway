@@ -20,7 +20,7 @@ public class DatabaseBackupScheduler {
     private final String mysqldumpPath = "D:/programemes/xampp/mysql/bin/mysqldump"; // Adjust to your MySQL version and path
 
     // Schedule the task to run every minute
-    //@Scheduled(cron = "0 */1 * * * ?")
+    @Scheduled(cron = "0 */1 * * * ?")
     //@Scheduled(cron = "0 0 0 * * ?")
     public void backupDatabase() {
         // Format the current date and time for a unique filename

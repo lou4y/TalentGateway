@@ -99,9 +99,8 @@
     "stompjs": "^2.3.3",
     "sweetalert2": "^11.6.13",
     "tslib": "^2.6.0",
-
-    "webstomp-client": "^1.2.6",
     "unsplash-js": "^7.0.19",
+    "webstomp-client": "^1.2.6",
     "xlsx": "^0.18.5",
     "zone.js": "^0.13.1"
   },
@@ -116,6 +115,7 @@
     "@types/jasminewd2": "^2.0.10",
     "@types/leaflet": "^1.9.3",
     "@types/node": "^20.4.1",
+    "@types/sockjs-client": "^1.5.4",
     "@types/youtube": "^0.0.47",
     "codelyzer": "^0.0.28",
     "jasmine-core": "^5.0.1",

@@ -23,7 +23,7 @@ import { AddprojectWithTeamComponent } from './FrontOffice/projects/addproject-w
 const routes: Routes = [
 
   {path: 'listprojectsfrontoffice', component: ListprojectsComponent },
-  { path: 'listprojectsfrontoffice', component: ListprojectsComponent },
+  //{ path: 'listprojectsfrontoffice', component: ListprojectsComponent },
   { path: 'Internships', component: InternshipsComponent },
   {path: 'detailProject/:id', component: DetailProjectComponent},
   {path: 'addprojectwithteam', component: AddprojectWithTeamComponent},
