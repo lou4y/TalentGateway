@@ -8,7 +8,7 @@ import { AdditionalUserData } from "../models/additional-user-data.model";
 })
 export class AdditionalUserDataService {
 
-  private baseUrl = 'http://localhost:8089/profile/additionalUserData';
+  private baseUrl = 'http://localhost:8888/USER-SERVICE/profile/additionalUserData';
 
   constructor(private http: HttpClient) { }
 

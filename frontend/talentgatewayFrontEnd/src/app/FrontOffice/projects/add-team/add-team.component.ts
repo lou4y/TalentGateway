@@ -99,20 +99,11 @@ export class AddTeamComponent implements OnInit {
     this.teamService.addTeamMemberToProject(this.projectId, userId, memberRole).subscribe(
         (response) => {
 
-          console.log("pooo",this.projectId);
-
-            this.teamService.sendSms(phoneNumber, message).subscribe(
-                () =>Swal.fire({
+          Swal.fire({
             title: "Good job!",
             text: "Team member added successfully.",
             icon: "success"
           }),
-                (error) =>   Swal.fire({
-                  icon: "error",
-                  title: "Oops...",
-                  text: "error to send sms"
-                })
-            );
 
             this.dialogRef.close(); // Fermer le dialogue après succès
         },

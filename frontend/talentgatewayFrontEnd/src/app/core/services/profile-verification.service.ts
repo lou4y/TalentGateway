@@ -8,7 +8,7 @@ import { UserVerif } from "../models/UserVerificationData.model"; // Assuming th
 })
 export class ProfileVerificationService {
 
-  private baseUrl = 'http://localhost:8089/profile/userVerif'; // Update the base URL
+  private baseUrl = 'http://localhost:8888/USER-SERVICE/profile/userVerif'; // Update the base URL
 
   constructor(private http: HttpClient) { }
 
